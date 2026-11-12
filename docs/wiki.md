@@ -12,13 +12,15 @@ This page is for maintaining it. For what it *says*, read the wiki.
 
 | Path | What |
 |---|---|
-| `wiki/*.md`, `wiki/*/*.md` | The source. Hand-edited markdown, one file per page. |
-| `wiki/nav.json` | Page order, sidebar grouping, titles, slugs, beta flags. The source of truth. |
+| `public/lang/attainder/help/` | The help adapted to the current game, in Swedish and English. Data: one JSON file per page, the navigation labels and the shell text. Section 2 covers it. |
+| `wiki/*.md`, `wiki/*/*.md` | The upstream help. Hand-edited markdown, one file per page. The record of the original text, and the source for a page the catalog lacks. |
+| `wiki/nav.json` | Which pages exist, their order, slugs and sidebar grouping; titles and beta flags for upstream pages. The source of truth. |
 | `wiki/img/*.jpg` | Screenshots, 1280px JPEG. |
 | `wiki/provenance.json` | What the wiki was last verified against, and which source files each page cites. |
 | `public/wiki/**` | **Generated.** Committed as well as generated — see below. |
 | `public/wiki.css` | The stylesheet. `public/guides.css` is a one-line `@import` shim for old links. |
-| `scripts/build-wiki.mjs` | The generator. |
+| `scripts/build-wiki.mjs` | The generator. `scripts/wiki/helpCatalog.mjs` reads the catalog and holds the language rule; `scripts/wiki/clientScript.mjs` is the script each page runs. |
+| `src/runtime/wikiHelp.test.js` | Runs in `npm test`: the committed pages equal a fresh build and carry both languages. |
 | `scripts/check-wiki-freshness.mjs` | Tells you what needs updating. |
 | `scripts/build-wiki-preview.mjs` | Builds a relocatable copy for sharing without touching the live site. |
 
@@ -31,14 +33,72 @@ source, two surfaces.
 missing from `dist-web/`, and neither `npm run build` (desktop) nor `build:web` invokes the
 generator — committing the output is what keeps all three build paths honest without threading the
 generator through every one of them. So: **always commit `public/wiki/` alongside your `wiki/`
-edits.**
+edits**, and alongside a change to the help catalog.
 
 ---
 
-## 2. Everyday commands
+## 2. Swedish and English
+
+**Where a page comes from.** The generator matches each page of `wiki/nav.json` to the help
+catalog by its route (`/wiki/<slug>/`). A page the catalog has is rendered from the catalog, in
+both languages, into one `index.html`. A page the catalog lacks is rendered from its markdown under
+`wiki/`, in English, and its main column is marked `lang="en"`. The build prints how many pages
+came from each source and names the upstream ones. On 12 November 2026 the catalog covers all 32
+pages, so no page renders from `wiki/*.md`.
+
+**Editing a bilingual page.** The catalog is data owned by the research session. Its schema is in
+`public/lang/attainder/help/README.md`: a page file holds paired `title`, `nav` and `description`
+and a list of sections, each with a stable `id` and a paired `title` and Markdown `body`. The
+generator only renders it. To change help text, change the catalog (or ask the research session
+to), then run `npm run build:wiki` and commit `public/wiki/` with it. Do not edit the generated
+HTML, and do not edit `wiki/*.md` to change a page the catalog has: that text is no longer shown.
+
+**What the generator takes from where.**
+
+| Text | Source |
+|---|---|
+| Page title, tagline, sections | The page file under `pages/`. |
+| Sidebar and pager labels | Each page's `nav`. Section labels from `navigation.json`, matched to `wiki/nav.json` by `sourceTitle`. |
+| Header and footer links, search box, contents and breadcrumb labels, the upstream legal notice | `shell.json` entries. |
+| The note that closes a page | `shell.json` `currentGuideNote`, with a link to `primaryIssueUrl`. An upstream page keeps the "last checked" note from `wiki/provenance.json`. |
+| The two labels of the language switch | `LANGUAGE_NAMES` in `scripts/wiki/helpCatalog.mjs`, the same endonyms as the game's language list. `shell.json` has no entry for them. |
+| Structured data (`application/ld+json`) | `wiki/nav.json`, unchanged. |
+
+**How one file holds two languages.** Every bilingual piece of text is marked `data-help-lang="sv"`
+or `"en"` together with the matching `lang`. `<html>` carries the chosen language in the same
+attribute, and `public/wiki.css` hides the other one. Both renderings of a section sit in one
+`<section>` that carries the catalog's section `id`, so `#storage-and-undo` works in either
+language and no id appears twice. Section ids are permanent for the same reason slugs are.
+
+**Which language shows.** A short script in `<head>` reads `localStorage.wiki_language`, then
+`localStorage.ui_language`, before the first paint. `en` gives English. Anything else, an unset
+value included, gives Swedish, which is the game's first-language rule. Without script the page
+reads Swedish. The switch stores `wiki_language` and leaves the game's choice alone. It is in the
+header, and above the search box at 720px and narrower, where the header has no room for it.
+The rule is `decideHelpLanguage` in `scripts/wiki/helpCatalog.mjs`; the script in the page is
+generated from that function's source text, so the two cannot drift.
+
+**Search.** `public/wiki/search-index.json` holds one entry per page and language, each with a
+`lang` field. The search box reads the entries of the chosen language. An upstream page is listed
+under both languages with its English text.
+
+**The check.** `node scripts/build-wiki.mjs --check` writes nothing. It exits 1 and lists the
+first differing files when the committed `public/wiki/` or `public/sitemap.xml` differs from a
+fresh build, including a file under `public/wiki/` that a build would not write. Text is compared
+with CRLF folded to LF, so a Windows checkout and CI agree. `src/runtime/wikiHelp.test.js` runs the
+same comparison in `npm test`.
+
+**Links in the catalog.** A catalog body may link to `/wiki/<slug>/` or
+`/wiki/<slug>/#<section-id>`. The build fails on a page that does not exist and on a section id the
+target page lacks.
+
+---
+
+## 3. Everyday commands
 
 ```
-npm run build:wiki      # regenerate public/wiki/ from wiki/
+npm run build:wiki      # regenerate public/wiki/ from the help catalog and wiki/
+node scripts/build-wiki.mjs --check   # does the committed public/wiki/ equal a fresh build?
 npm run wiki:check      # what has changed upstream that the wiki cites?
 npm run build:site      # full site build (runs build:wiki first)
 npm run preview:site    # serve dist-site/ at localhost:4173
@@ -47,12 +107,13 @@ npm run wiki:preview    # relocatable copy in dist-wiki-preview/, for sharing
 
 The generator fails the build rather than shipping something broken. It refuses to run if an
 internal `/wiki/…` link points at a page that does not exist, if `nav.json` names a missing file,
-or if a `.md` under `wiki/` is not referenced by `nav.json`. It also regenerates
+if a `.md` under `wiki/` is not referenced by `nav.json`, or if the help catalog is incomplete or
+disagrees with `nav.json` about the pages both list. It also regenerates
 `public/sitemap.xml` from `nav.json`, so the sitemap cannot drift.
 
 ---
 
-## 3. Showing it to people without touching the live site
+## 4. Showing it to people without touching the live site
 
 `openhistoria.com` deploys from `main` through a Cloudflare Pages project that not everyone has
 access to. To circulate the wiki for review without going near it:
@@ -97,7 +158,7 @@ preview — both publish to the live site.
 
 ---
 
-## 4. Answering "does the wiki need updating?"
+## 5. Answering "does the wiki need updating?"
 
 ```
 npm run wiki:check -- --fetch
@@ -124,7 +185,10 @@ wrong page.
 
 ---
 
-## 5. Editing rules
+## 6. Editing rules
+
+These rules are for the upstream markdown under `wiki/`. The catalog's own rules are in its
+`README.md`.
 
 **Two builds, kept distinct.** `main` is the stable build and `beta` runs ahead of it. The gap
 moves: in September 2026 main absorbed almost all of beta in one stretch, and the wiki's
@@ -149,7 +213,7 @@ describe it in prose. Code blocks are for commands and formulas.
 
 ---
 
-## 6. Screenshots
+## 7. Screenshots
 
 Captured by driving the real app — with Electron, which is already a dependency, or with
 Playwright's Chromium against `node server/server.js` and a `npm run build` in `dist/`. Headless
@@ -206,7 +270,7 @@ maintainer knows to replace them from a real campaign.
 
 ---
 
-## 7. Adding a page
+## 8. Adding a page
 
 1. Write `wiki/<section>/<slug>.md`. Start at `##` — the `#` title comes from `nav.json`.
 2. Add an entry to `wiki/nav.json` in reading order, with `slug`, `file`, `nav`, `title` and
@@ -217,9 +281,14 @@ maintainer knows to replace them from a real campaign.
 
 Slugs are permanent — they are the public URL. Changing one breaks inbound links.
 
+A page added this way renders from its markdown, in English, until the help catalog gains a page
+with the same route. From then on the catalog's text is shown in both languages and the markdown
+stays as the record. Every page needs its `nav.json` entry and markdown file either way: the
+build refuses a catalog page whose route `nav.json` does not list.
+
 ---
 
-## 8. URL history
+## 9. URL history
 
 The wiki absorbed the old guides. `/get-started/`, `/how-to-play/`, `/ai-setup/`, `/self-hosting/`
 and `/guides/` now 301 to their `/wiki/…` homes via `site/_redirects`, **and** keep stub pages
@@ -234,7 +303,10 @@ makes Cloudflare discard **the entire file**. Keep paths exact.
 
 ---
 
-## 9. Known gaps
+## 10. Known gaps
+
+The list below is about the upstream pages and their screenshots. The catalog pages carry no
+screenshots, and `public/wiki/img/` is still copied from `wiki/img/` for the upstream pages.
 
 Kept current in `wiki/provenance.json` and printed by `npm run wiki:check`. At the time of
 writing: the September 2026 map screenshots have no basemap imagery; there are no screenshots of

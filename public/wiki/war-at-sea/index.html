@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Flottor och krig till sjöss — Guide till Attainder" data-title-en="Fleets and war at sea — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>War at Sea — Open Historia Wiki</title>
+  <title>Flottor och krig till sjöss — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/war-at-sea/" />
-  <meta name="description" content="Fleets that fight their own battles: postures, commanding fleets, sea battles, blockades, convoys and escorts." />
+  <meta name="description" content="Läs flottförband och det aktuella sjökrigsgränssnittets begränsningar." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/war-at-sea/" />
-  <meta property="og:title" content="War at Sea — Open Historia Wiki" />
-  <meta property="og:description" content="Fleets that fight their own battles: postures, commanding fleets, sea battles, blockades, convoys and escorts." />
+  <meta property="og:title" content="Flottor och krig till sjöss — Guide till Attainder" />
+  <meta property="og:description" content="Läs flottförband och det aktuella sjökrigsgränssnittets begränsningar." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="War at Sea — Open Historia Wiki" />
-  <meta name="twitter:description" content="Fleets that fight their own battles: postures, commanding fleets, sea battles, blockades, convoys and escorts." />
+  <meta name="twitter:title" content="Flottor och krig till sjöss — Guide till Attainder" />
+  <meta name="twitter:description" content="Läs flottförband och det aktuella sjökrigsgränssnittets begränsningar." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,229 +81,134 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/" class="on" aria-current="page">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> War at Sea
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Flottor och krig till sjöss
     </nav>
-    <h1>War at Sea</h1>
-    <p class="tagline">Fleets that fight their own battles: postures, commanding fleets, sea battles, blockades, convoys and escorts.</p>
-    <p class="beta-note"><b>Beta channel only.</b> This system is not in the stable release yet. To try it, install the
-      <a href="https://github.com/Open-Historia/open-historia/releases/tag/desktop-beta">beta build</a>, which installs alongside
-      the stable app and keeps its own saves.</p>
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#fleets">Fleets</a></li><li class="d2"><a href="#commanding-your-fleets">Commanding your fleets</a></li><li class="d2"><a href="#sea-battles">Sea battles</a></li><li class="d2"><a href="#blockades">Blockades</a></li><li class="d2"><a href="#convoys-and-escorts">Convoys and escorts</a></li><li class="d2"><a href="#a-navy-for-every-coast">A navy for every coast</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>On beta, fleets at war fight their own battles. The game decides them day by day over the period a
-time skip covers, the same way it fights the land war on <a href="/wiki/war-room/">battlefields</a>, and the
-story is told what happened, at no extra request. A blockade that stands now costs the country it
-is laid on its trade, its economy and the strength of its armies. On the stable build a fleet is a
-formation like any other, and what happens at sea is whatever the story says: see
-<a href="/wiki/military/">military and combat</a>.</p>
-<p>The war at sea is part of the <strong>Fronts</strong> feature: switched off in a scenario&#39;s or a game&#39;s Features
-tab, fleets fight only when the story says so.</p>
-<h2 id="fleets">Fleets</h2>
-<p>A fleet is a naval formation on the map, as before: a strength, a make-up such as <em>&quot;carriers,
-destroyers and submarines&quot;</em>, and a posture. What a fleet does at war is read from two things it
-already has: <strong>where it is</strong>, and <strong>its posture</strong>.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Posture</th>
-<th>At war</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Seek battle</strong> (assaulting)</td>
-<td>Makes for the nearest hostile fleet it can reach over open water. The keenest to fight.</td>
-</tr>
-<tr>
-<td><strong>Blockade</strong></td>
-<td>Presses on an enemy&#39;s coast within its reach (see below).</td>
-</tr>
-<tr>
-<td><strong>Patrol</strong></td>
-<td>Works a station.</td>
-</tr>
-<tr>
-<td><strong>Hold</strong></td>
-<td>Keeps its place. Near its own coast it is seldom brought to battle.</td>
-</tr>
-<tr>
-<td><strong>Withdraw</strong></td>
-<td>Sails for its own coast, and is hard to bring to battle.</td>
-</tr>
-<tr>
-<td><strong>Escort</strong> (in transit)</td>
-<td>Covers a convoy of yours at sea.</td>
-</tr>
-</tbody></table></div>
-<h2 id="commanding-your-fleets">Commanding your fleets</h2>
-<p>Give a fleet its orders in plain words as an action, <em>&quot;Send the Pacific Fleet to blockade Japan&quot;</em>,
-or, while you have troops on a battlefield, from the <a href="/wiki/war-room/">War Room</a>: the rail&#39;s
-<strong>Fleets</strong> key puts out a plate beside the map. Pick a fleet from the list (each with its strength
-and what it is doing), then:</p>
-<ul>
-<li><strong>Posture</strong>: <strong>Patrol</strong>, <strong>Blockade</strong>, <strong>Seek battle</strong>, <strong>Hold</strong>, <strong>Withdraw</strong> or <strong>Escort</strong>.</li>
-<li><strong>Orders</strong>: <strong>Sail to</strong> or <strong>Patrol at</strong> a place at sea you then click on the map, or <strong>Call off</strong>
-its standing order.</li>
-<li><strong>Blockade a country</strong>: pick a country you are at war with and press <strong>Blockade</strong>. The fleet sails
-to the water off that country&#39;s coast nearest it and closes what of its trade comes by sea there.</li>
-<li><strong>Escort a convoy</strong>: pick one of your transporters at sea and press <strong>Escort</strong>. The fleet joins it
-from the middle of what is left of its way.</li>
-</ul>
-<p>The panel&#39;s <strong>Fleets</strong> list shows each fleet&#39;s strength, posture and how far it has to go. A fleet
-just raised joins your order of battle when time next passes and takes orders then. As with
-everything in the War Room, orders are carried out when time next passes.</p>
-<p>Countries nobody plays choose their fleets&#39; postures by playing the period ahead out with each and
-keeping the best, unless the story gave a fleet its orders.</p>
-<h2 id="sea-battles">Sea battles</h2>
-<p>Hostile fleets within reach of each other may fight. Their reach grows with the era:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Before 1500</th>
-<th>1500 – 1849</th>
-<th>1850 – 1944</th>
-<th>1945 onward</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Fleets can engage within</td>
-<td>150 km</td>
-<td>300 km</td>
-<td>600 km</td>
-<td>900 km</td>
-</tr>
-</tbody></table></div>
-<p>Each day there is a chance they meet: the keener either fleet&#39;s posture, the likelier. A fleet that
-is withdrawing is hard to bring to battle, and one withdrawing or holding within 120 km of its own
-coast is sheltered as well. A storm at sea makes a meeting a quarter as likely.</p>
-<p>Every fleet of the two sides in reach joins the battle. Each side weighs what its fleets&#39; strength,
-their countries&#39; navies and their postures bring, and the side outweighed loses more. Afterwards:</p>
-<ul>
-<li>a fleet left at 10% strength or less is <strong>sunk</strong> and gone;</li>
-<li>a fleet under 35% <strong>breaks off</strong> and withdraws, and so does every fleet of a side that brought
-less than 42% of the weight;</li>
-<li>a fleet that has fought is in no state to fight again for 21 days.</li>
-</ul>
-<p>A marker on the map shows where each battle was fought: a ring and a cross in the colour of how it
-went for you, with who fought and when beneath. Battles stay on the map for two turns, the older
-turn&#39;s fainter.</p>
-<h2 id="blockades">Blockades</h2>
-<p>A fleet in the <strong>Blockade</strong> posture, not beaten off and within reach of the coast of a country it
-is at war with, presses on that country. How hard, from nothing to a full blockade, is worked out
-for every day: how much of its coast the blockading fleets close, less what its own fleets and its
-allies&#39; fleets in reach tie down, and by how much the country lives by the sea. An island lives by
-nothing else; a country with open land borders to neighbours it is not at war with lives by the sea
-less. A coast whose water has frozen counts as closed. A blockading fleet in a storm counts half.</p>
-<p>What a blockade does:</p>
-<ul>
-<li><strong>The economy.</strong> At full pressure a country loses 20% of its GDP over a year, and 6 points off
-its budget&#39;s balance; less in proportion to the pressure. What its forces have to spend falls with
-it.</li>
-<li><strong>The land war.</strong> A country cut off from the sea runs short, fully once the blockade has stood for
-90 days. Its armies on the battlefields come back up to strength more slowly, with fewer reserves,
-and fight and move a little worse. A blockade laid this period bites on land from the next.</li>
-<li><strong>War resources</strong> refill more slowly, and <strong>war weariness</strong> rises. See
-<a href="/wiki/war/#war-weariness">relations, treaties and war</a>.</li>
-</ul>
-<p>On the map a blockading fleet has a dashed ring over the water it closes, and under it each
-country it presses on with how much of that country&#39;s trade is cut, as a percentage.</p>
-<h2 id="convoys-and-escorts">Convoys and escorts</h2>
-<p>Troops carried by sea from the War Room&#39;s <strong>Transport</strong> tool, or by the story, travel as convoys.
-Enemy fleets and aircraft in reach of their way can catch them, and a convoy that is caught loses
-troops or is lost. An enemy transporter on its way to your battlefield is listed in the War Room
-with <strong>Go after it</strong>, which sets your forces hunting it. A fleet given <strong>Escort</strong> for a convoy of yours
-shields it and saves part of what would be lost.</p>
-<h2 id="a-navy-for-every-coast">A navy for every coast</h2>
-<p>A country at war that has a coast, no fleet at all and an enemy it could meet at sea is given one,
-unless its military figures give it no navy: the <strong>Home Fleet</strong>, named for the country, patrolling
-its home waters, stronger for a stronger country. It is fitting out for its first 10 days and
-fights nobody. A country given a navy, or one whose last
-fleet is sunk, is not given another for three years.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/war-room/">The War Room</a> — battlefields, troops and the Fleets plate.</li>
-<li><a href="/wiki/military/">Military and combat</a> — formations, posture and travel at sea.</li>
-<li><a href="/wiki/war/">Relations, treaties and war</a> — weariness, peace and alliances.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/war-room/"><span>← Previous</span><b>The War Room</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Fleets and war at sea
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Flottor och krig till sjöss</span><span data-help-lang="en" lang="en">Fleets and war at sea</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Läs flottförband och det aktuella sjökrigsgränssnittets begränsningar.</span><span data-help-lang="en" lang="en">Read naval formations and the limits of the current naval interface.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#fleets">Flottförband</a></li><li class="d2"><a href="#current-scope">Läs sjökrigets utfall i kampanjen</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#fleets">Naval formations</a></li><li class="d2"><a href="#current-scope">Read naval outcomes in the campaign</a></li></ul></nav>
+    <section id="fleets" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="fleets">
+<h2>Flottförband</h2>
+<p>Den allmänna förbandsmodellen innehåller flottförband med ägare, styrka, sammansättning, position och uppträdande. Förflyttning till sjöss beror på speldatumets epok. Före 1500 förflyttar sig ett flottförband med en uthållig takt på 130 kilometer per dag.</p>
+<p>Läs <a href="/wiki/military/">Militär</a> om förbandsstyrka och vilka paneler som är tillgängliga. Dynastikampanjens beredskap och karaktärshandlingar finns i panelen för rike och familjer.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="fleets">
+<h2>Naval formations</h2>
+<p>The general formation model includes naval units with an owner, strength, composition, position and posture. Naval travel depends on the game date’s era. Before 1500 a naval formation travels at a sustained 130 kilometres per day.</p>
+<p>Read <a href="/wiki/military/">Military</a> for formation strength and current panel availability. The dynasty campaign’s readiness and character actions remain in the realm and families panel.</p>
+</div>
+</section>
+<section id="current-scope" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="current-scope">
+<h2>Läs sjökrigets utfall i kampanjen</h2>
+<p>Den här versionen saknar ett separat gränssnitt för automatiska sjöslag, konvojeskort eller blockadorder. De äldre betainstruktionerna från originalprojektet om flottreglage, dagliga sjöslag och automatiska hemmaflottor gäller inte här.</p>
+<p>Använd handlingarna som kampanjen erbjuder, läs deras bekräftelse och kontrollera turens registrerade följder. Stridshändelser kräver fortfarande ett aktivt registrerat krig. Se <a href="/wiki/orders/">Handlingar</a>, <a href="/wiki/events/">Händelser</a> och <a href="/wiki/war/">Krig</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="current-scope">
+<h2>Read naval outcomes in the campaign</h2>
+<p>This version has no separate automatic sea-battle, convoy-escort or blockade-command interface. The older upstream beta instructions for fleet plates, daily engagements and automatic home fleets do not apply here.</p>
+<p>Use the actions currently offered by your campaign, read their confirmation and check the turn’s recorded consequences. Combat events still require an active recorded war. See <a href="/wiki/orders/">Actions</a>, <a href="/wiki/events/">Events</a> and <a href="/wiki/war/">War</a>.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/war-room/"><span>← Föregående</span><b>Krigsrummet</b></a>
+        <a class="next" href="/wiki/espionage/"><span>Nästa →</span><b>Spionage</b></a>
+      </nav>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/war-room/"><span>← Previous</span><b>War Room</b></a>
         <a class="next" href="/wiki/espionage/"><span>Next →</span><b>Espionage</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -295,27 +220,71 @@ fleet is sunk, is not given another for three years.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

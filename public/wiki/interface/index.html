@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Gränssnittet — Guide till Attainder" data-title-en="The interface — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>The Interface — Open Historia Wiki</title>
+  <title>Gränssnittet — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/interface/" />
-  <meta name="description" content="Every panel, button and badge on screen, and what each one is for." />
+  <meta name="description" content="Hitta kampanjreglage, kartinformation och inställningsmenyn." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/interface/" />
-  <meta property="og:title" content="The Interface — Open Historia Wiki" />
-  <meta property="og:description" content="Every panel, button and badge on screen, and what each one is for." />
+  <meta property="og:title" content="Gränssnittet — Guide till Attainder" />
+  <meta property="og:description" content="Hitta kampanjreglage, kartinformation och inställningsmenyn." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Interface — Open Historia Wiki" />
-  <meta name="twitter:description" content="Every panel, button and badge on screen, and what each one is for." />
+  <meta name="twitter:title" content="Gränssnittet — Guide till Attainder" />
+  <meta name="twitter:description" content="Hitta kampanjreglage, kartinformation och inställningsmenyn." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,248 +81,158 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/" class="on" aria-current="page">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> The Interface
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Gränssnittet
     </nav>
-    <h1>The Interface</h1>
-    <p class="tagline">Every panel, button and badge on screen, and what each one is for.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#the-edges-at-a-glance">The edges at a glance</a></li><li class="d2"><a href="#the-map-itself">The map itself</a></li><li class="d2"><a href="#the-date-pill-and-time">The date pill and time</a></li><li class="d2"><a href="#the-toolbar">The toolbar</a></li><li class="d3"><a href="#chat">Chat</a></li><li class="d3"><a href="#actions">✦ Actions</a></li><li class="d3"><a href="#projects-amp-operations">Projects &amp; Operations</a></li><li class="d2"><a href="#the-advisor-drawer">The advisor drawer</a></li><li class="d2"><a href="#the-game-menu">The game menu</a></li><li class="d2"><a href="#search">Search</a></li><li class="d2"><a href="#cheats">Cheats</a></li><li class="d2"><a href="#the-main-menu">The main menu</a></li><li class="d2"><a href="#if-the-screen-is-blank">If the screen is blank</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Almost the entire screen is map. Everything else sits around the edges and gets out of the way
-when you are not using it.</p>
-<p><img src="/wiki/img/interface-hud.jpg" alt="The in-game HUD">
-<em>The game menu, session pill and date pill along the top; the toolbar bottom left; your flag and the advisor bottom right. Everything else is map.</em></p>
-<h2 id="the-edges-at-a-glance">The edges at a glance</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Where</th>
-<th>What</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Top left</strong></td>
-<td><strong>☰</strong> the game menu, the session pill — the game, your country, the date — and <strong>⌂ Exit Game</strong>.</td>
-</tr>
-<tr>
-<td><strong>Top right</strong></td>
-<td>The date pill, with <strong>«</strong> events and <strong>»</strong> time skip.</td>
-</tr>
-<tr>
-<td><strong>Bottom left</strong></td>
-<td>The toolbar: <strong>Chat</strong>, <strong>✦ Actions</strong> and <strong>Projects &amp; Operations</strong>, with search beside it.</td>
-</tr>
-<tr>
-<td><strong>Bottom right</strong></td>
-<td>Your flag, and the <strong>Advisor</strong> button, which opens a drawer with Advisor and Stats.</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta the bottom corners hold more.</b> Bottom right, your flag opens
-the <b>Country</b> panel (on a phone, your country's name in the date pill does), the
-<b>Advisor</b> button opens the advisor alone, and under them is the map switch,
-<b>Political</b> or <b>Diplomatic</b>, with a legend (see
-<a href="/wiki/world-map/#map-modes">map modes</a>). Bottom left, while your troops are on a
-battlefield, a red <b>War room</b> button stands beside the toolbar (see
-<a href="/wiki/war-room/">the War Room</a>).</p><p>Panels overlap in a fixed order, so opening the advisor never buries the thing you were reading,
-and the main menu always comes out on top. On a phone the whole interface fits the screen and the
-advisor drawer can be closed again like any other panel.</p>
-<h2 id="the-map-itself">The map itself</h2>
-<p>Clicking things is the primary way you interact with the world.</p>
-<ul>
-<li><strong>Click the map</strong> → a card for the country and the region under your cursor. The country row
-has <strong>💬</strong> to open a diplomatic chat, <strong>⧉</strong> to copy its name and <strong>ⓘ</strong> to open its panel; the
-region row names the region. Where the region is occupied or contested the card says who is
-sovereign, who controls it and who claims it, and where a group controls it, which group.</li>
-<li><strong>The country panel</strong> → flag, details, alternative names, related events filtered by
-importance (All, Major, Minor), an <strong>Advisor Report</strong> — an AI intelligence reading — on
-request, and <strong>Open Diplomacy</strong>. On beta it also has <strong>Stats</strong> and <strong>Listen in</strong>.</li>
-<li><strong>Click a unit</strong> → an intelligence card describing the formation — what it is, whose it is,
-how strong, and what it appears to be doing.</li>
-<li><strong>Click a city or structure</strong> → its name, population, and what it is.</li>
-</ul>
-<p class="beta-note"><b>On beta the region row's ⓘ opens the region's details</b> — its cities
-and its neighbours — and the card has <b>Listen in</b>, a phone of what ordinary people there are
-posting (see <a href="/wiki/diplomacy/">diplomacy</a>).</p><p>Drag to pan, scroll to zoom. See <a href="/wiki/world-map/">the world map</a> for what the colours,
-stripes and labels mean.</p>
-<h2 id="the-date-pill-and-time">The date pill and time</h2>
-<p>Top right, always visible: your country and the current in-game date.</p>
-<ul>
-<li><strong>»</strong> opens the <strong>time skip</strong> panel — fixed jumps from six hours to a year, a custom amount,
-auto-jump, <strong>↩ Undo last turn</strong>, and today&#39;s AI request count.</li>
-<li><strong>«</strong> opens the <strong>Events</strong> panel — the events from the last jump, replayed one at a time,
-with the map animating as each lands, and <strong>✋ Intervene here</strong> to stop the round where you
-want to act.</li>
-</ul>
-<p>Full detail in <a href="/wiki/time/">time and turns</a>.</p>
-<h2 id="the-toolbar">The toolbar</h2>
-<p>Three buttons, bottom left.</p>
-<h3 id="chat">Chat</h3>
-<p>Diplomacy. Two tabs:</p>
-<ul>
-<li><strong>Diplomacy</strong> — every conversation you are part of. One-to-one threads with a country, or
-group threads with several. Countries open threads with you unprompted, and unread ones are
-badged.</li>
-<li><strong>Spy</strong> — everyone else&#39;s conversations, as far as your intelligence service can read them.
-This is also where you deploy, recall, expel and turn agents.</li>
-</ul>
-<p class="beta-note"><b>On beta the panel is headed Diplomacy</b>, with three tabs:
-<b>Contacts</b> (your conversations), <b>Institutions</b> (the bodies countries belong to) and
-<b>Intelligence</b> (your service), which has its own <b>Overview</b>, <b>Countries</b>,
-<b>Operations</b> and <b>Reports</b>. Intelligence is where your agents take their orders.</p><p>See <a href="/wiki/diplomacy/">diplomacy</a> and <a href="/wiki/espionage/">espionage</a>.</p>
-<h3 id="actions">✦ Actions</h3>
-<p>Your order queue for the coming turn, under your <strong>standing goal</strong>. Write orders in plain
-English, press <strong>AI Suggestions</strong> for ideas or <strong>Brainstorm</strong> to talk them through with the
-advisor, refine a rough draft into a proper order, and delete anything you change your mind about.
-Only planned orders show, under <strong>Your Submitted Actions</strong>; they clear as the turn resolves them.
-On beta, <strong>Suggested Actions</strong> and <strong>Your Submitted Actions</strong> are two sections, and one is open at
-a time. See <a href="/wiki/orders/">giving orders</a>.</p>
-<h3 id="projects-amp-operations">Projects &amp; Operations</h3>
-<p>The board of long-running efforts — research programmes, construction, military and covert
-operations, campaigns — that span many turns. You do not add to it by hand: events, your agents
-and your advisor write it. See <a href="/wiki/projects/">projects and operations</a>.</p>
-<h2 id="the-advisor-drawer">The advisor drawer</h2>
-<p>The <strong>Advisor</strong> button, bottom right, opens a drawer you can resize by dragging its left edge. It
-has two tabs.</p>
-<p><strong>Advisor</strong> — a chat with your own analyst. It reads the real game state and answers about it,
-in markdown, sometimes with charts. Ask it anything about your position.</p>
-<p><strong>Stats</strong> — the national stat sheet. Two sub-tabs, <strong>Diplomacy</strong> and <strong>Economy</strong>: relations,
-agreements and conflicts on one, the economy, strategic indices, stability, population and your
-intelligence rating on the other. It retargets to <strong>whatever country you last clicked</strong>, so it
-doubles as a way to read anyone.</p>
-<p class="beta-note"><b>On beta Stats has a panel of its own.</b> The drawer is the advisor alone,
-and the stat sheet is the <b>Country</b> panel, opened by your flag or by <b>Stats</b> in any
-country's panel. It has four tabs —
-<b>🏛 Politics</b>, <b>🤝 Diplomacy</b>, <b>📈 Economy</b> and <b>🏆 Ranking</b>, which sets the
-countries side by side. While it is open, clicking a country on the map shows that one.</p><p>See <a href="/wiki/advisor/">the advisor</a> and <a href="/wiki/statistics/">national statistics</a>.</p>
-<h2 id="the-game-menu">The game menu</h2>
-<p><strong>☰</strong>, top left, opens the game menu, with four tabs:</p>
-<ul>
-<li><strong>Game</strong> — the current campaign and <strong>Game Management</strong>: switch, duplicate, import or manage
-campaigns.</li>
-<li><strong>Tools</strong> — <strong>Cheats</strong>, <strong>Events / Timeline</strong> and the <strong>AI debug console</strong>, one click away.</li>
-<li><strong>Settings</strong> — four tiles, <strong>General</strong>, <strong>Map</strong>, <strong>AI</strong> and <strong>Advanced</strong>, each opening the
-full-screen settings workspace at that section. On beta there is a fifth, <strong>Sound</strong>.</li>
-<li><strong>Help</strong> — the wiki, bug reporting, the privacy policy and the community links.</li>
-</ul>
-<p>See <a href="/wiki/settings/">the settings reference</a>.</p>
-<h2 id="search">Search</h2>
-<p>The <strong>🔍</strong> button beside the toolbar finds places by name as you type and flies the camera to
-them. The game&#39;s own countries, cities and structures come first, under the names they have in
-your campaign, then real-world places from an OpenStreetMap search. It only moves the camera — it
-does not select or change anything. On beta it finds the world&#39;s groups and units too, and in an
-invented world it leaves real-world places out.</p>
-<h2 id="cheats">Cheats</h2>
-<p>☰ → <strong>Tools</strong> → <strong>Cheats</strong> is the game master&#39;s toolbox: the GM console, standing reminders every
-AI is told, the event editor, interactive events, the history document, rolling back turns,
-annexing territory, editing or creating countries, inspecting regions, the Force Manager,
-difficulty, switching which country you play, and map features — and on beta, groups and puppet
-states. See <a href="/wiki/cheats/">cheats and the GM console</a>.</p>
-<h2 id="the-main-menu">The main menu</h2>
-<p>The session pill&#39;s <strong>⌂ Exit Game</strong> returns you to the library, which has three tabs:</p>
-<ul>
-<li><strong>Games</strong> — your campaigns, by last played and most played.</li>
-<li><strong>Scenarios</strong> — the worlds you can start new games on, plus <strong>Create Scenario</strong>.</li>
-<li><strong>Community</strong> — the <a href="/wiki/community-hub/">Community Hub</a>.</li>
-</ul>
-<p class="beta-note"><b>On beta the menu is where the game starts.</b> Nothing loads until you
-press <b>Play</b> on a game. The first time the game opens after an update, a vault door stands in
-front of the menu: click its wheel to open it, onto a notice of what the update brings when there
-is one. On a wide screen the pages sit on a rail down the left — <b>Games</b>, <b>Scenarios</b>,
-<b>Community</b> and <b>Lobbies</b> — with <b>Settings</b>, for what applies to every game, at its
-foot; the Open Historia mark at the top opens the history of every update. <b>Games</b> has
-<b>Continue Playing</b> and <b>All Games</b>; <b>Scenarios</b> has <b>Recently Used</b> and the
-<b>Scenario Library</b>, with All, Yours, Community and Updates; what you delete waits at the
-foot of each, on its <b>Recently deleted</b> shelf. <b>Lobbies</b> is for shared games: join one
-with the invite code its host sent you, or host one from the desktop app.</p><h2 id="if-the-screen-is-blank">If the screen is blank</h2>
-<p>A full-screen warning, <strong>WebGL Not Available</strong>, means the map cannot render. WebGL is sometimes
-refused for a moment — a laptop switching graphics, a driver reset, a wake from sleep — so the
-warning keeps checking for half a minute and reloads the game by itself if WebGL comes back;
-<strong>Reload</strong> tries again by hand. If it stays, on a desktop it usually means graphics drivers or a
-browser setting. See <a href="/wiki/troubleshooting/">troubleshooting</a>.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/world-map/">The world map</a> — reading what you are looking at.</li>
-<li><a href="/wiki/time/">Time and turns</a> — the button that actually advances the game.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/new-game/"><span>← Previous</span><b>Starting a game</b></a>
-        <a class="next" href="/wiki/world-map/"><span>Next →</span><b>The world map</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> The interface
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Gränssnittet</span><span data-help-lang="en" lang="en">The interface</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Hitta kampanjreglage, kartinformation och inställningsmenyn.</span><span data-help-lang="en" lang="en">Find campaign controls, map information and the settings menu.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#campaign">Kampanjskärmen</a></li><li class="d2"><a href="#menus">Meny och verktyg</a></li><li class="d2"><a href="#map-and-search">Kartkort och sökning</a></li><li class="d2"><a href="#display-problems">När visningen är tom</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#campaign">The campaign screen</a></li><li class="d2"><a href="#menus">Menu and tools</a></li><li class="d2"><a href="#map-and-search">Map cards and search</a></li><li class="d2"><a href="#display-problems">When the display is blank</a></li></ul></nav>
+    <section id="campaign" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="campaign">
+<h2>Kampanjskärmen</h2>
+<p>Kartan visar den aktuella världen. Öppna <strong>Rike &amp; familjer</strong> för att arbeta med den historiska kampanjens personer, familjer och beslut. I en kampanj med rollfigurssystemet är den vanliga verktygsraden för chatt, handlingar och projekt samt den fristående styrkepanelen dolda. Använd kampanjens eget beslutsflöde. Läs om <a href="/wiki/orders/">beslut</a> och <a href="/wiki/time/">tid</a>.</p>
+<p>Biblioteksraden, tidsreglagen, sökningen, rådgivaren och spelmenyn är separata reglage runt kartan. Återvänd till biblioteket för att välja spel eller hantera dess filer.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="campaign">
+<h2>The campaign screen</h2>
+<p>The map shows the current world. Open <strong>Realm &amp; families</strong> to work with the historical campaign’s people, families and decisions. In a campaign with the character system, the ordinary Chat/Actions/Projects toolbar and the standalone Forces panel are hidden. Use the campaign’s own decision flow; see <a href="/wiki/orders/">giving orders</a> and <a href="/wiki/time/">time</a>.</p>
+<p>The library bar, date controls, search, advisor and game menu remain separate controls around the map. Return to the library to choose a game or manage its files.</p>
+</div>
+</section>
+<section id="menus" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="menus">
+<h2>Meny och verktyg</h2>
+<p>Spelmenyn delar upp <strong>Spel</strong>, <strong>Verktyg</strong>, <strong>Inställningar</strong> och <strong>Hjälp</strong>. Spelhantering öppnar biblioteket. Verktyg öppnar Fusk, händelser och tidslinje samt AI-felsökningskonsolen. Inställningar har Allmänt, Karta, AI och Avancerad. Hjälp länkar till wikin, felrapportering och sekretess.</p>
+<p>Använd <a href="/wiki/settings/">inställningarna</a> för modellanslutningar och kartval. <a href="/wiki/cheats/">Fuskverktygen</a> kan ändra kampanjdata direkt. Gör en <a href="/wiki/saves/">export eller klon</a> innan du experimenterar.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="menus">
+<h2>Menu and tools</h2>
+<p>The game menu groups <strong>Game</strong>, <strong>Tools</strong>, <strong>Settings</strong> and <strong>Help</strong>. Game Management opens the library. Tools opens Cheats, Events / Timeline and the AI debug console. Settings offers General, Map, AI and Advanced. Help links to the wiki, reporting and privacy.</p>
+<p>Use <a href="/wiki/settings/">settings</a> for model connections and map preferences. The <a href="/wiki/cheats/">cheat tools</a> can change campaign data directly; make an <a href="/wiki/saves/">export or clone</a> before experimenting.</p>
+</div>
+</section>
+<section id="map-and-search" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="map-and-search">
+<h2>Kartkort och sökning</h2>
+<p>Klicka på en region för att granska landet och territoriet. Landpanelen skiljer suveräna regioner från kontrollerade utländska regioner och regioner under utländsk kontroll. Läs om <a href="/wiki/countries/">länder</a> och <a href="/wiki/world-map/">kartan</a> för mer information.</p>
+<p>Sökningen använder kampanjens lokala ortposter och flyttar kameran till det valda resultatet. Historiska kampanjer använder inte den verkliga världens nätbaserade geokodare som reserv när en lokal ort saknas.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="map-and-search">
+<h2>Map cards and search</h2>
+<p>Click a region to inspect its country and territory. The country panel separates sovereign regions from controlled foreign regions and regions under foreign control. Read <a href="/wiki/countries/">countries</a> and <a href="/wiki/world-map/">the map</a> for details.</p>
+<p>Search uses the campaign’s local place entries and moves the camera to the chosen result. Historical campaigns do not fall back to the real-world online geocoder when a local place is missing.</p>
+</div>
+</section>
+<section id="display-problems" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="display-problems">
+<h2>När visningen är tom</h2>
+<p>Varningen <strong>WebGL är inte tillgängligt</strong> betyder att renderaren inte kan skapa den grafikkontext som krävs. Varningen kontrollerar igen i ungefär 30 sekunder och laddar om sidan om WebGL blir tillgängligt. Du kan också ladda om manuellt. Kontrollera hårdvaruacceleration och grafikdrivrutiner om varningen kvarstår.</p>
+<p>Om gränssnittet öppnas men den historiska kartan saknas följer du <a href="/wiki/troubleshooting/#map">kartfelsökningen</a> innan du raderar kampanjdata.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="display-problems">
+<h2>When the display is blank</h2>
+<p>A <strong>WebGL Not Available</strong> warning means the renderer cannot create the required graphics context. The warning checks again for roughly 30 seconds and reloads if WebGL returns. You can also reload manually. If the warning persists, check hardware acceleration and graphics drivers.</p>
+<p>If the interface opens but the historical geography is missing, follow <a href="/wiki/troubleshooting/#map">map troubleshooting</a> before deleting campaign data.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/new-game/"><span>← Föregående</span><b>Starta en kampanj</b></a>
+        <a class="next" href="/wiki/world-map/"><span>Nästa →</span><b>Världskarta</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/new-game/"><span>← Previous</span><b>Start a campaign</b></a>
+        <a class="next" href="/wiki/world-map/"><span>Next →</span><b>World map</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -314,27 +244,71 @@ browser setting. See <a href="/wiki/troubleshooting/">troubleshooting</a>.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

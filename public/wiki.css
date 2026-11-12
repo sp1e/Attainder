@@ -124,6 +124,53 @@ footer .mark {
   .nav-links { gap: 1rem; }
 }
 
+/* ---------- Swedish and English ---------- */
+
+/* A help page carries both languages (scripts/build-wiki.mjs): each rendering is marked with
+   data-help-lang, and <html> carries the chosen one, set by the script in <head> before the
+   first paint. Only the other language is hidden, so text without the attribute — an upstream
+   page, a name that is the same in both — shows in either. !important because several of the
+   marked blocks (.wiki-pager, .wiki-toc b) set a display of their own further down. */
+html[data-help-lang="sv"] [data-help-lang="en"],
+html[data-help-lang="en"] [data-help-lang="sv"] { display: none !important; }
+
+/* The switch. Its two labels never change, and the pressed state moves colour only, never
+   weight or size, so the control keeps its width and place when used. The page carries it
+   twice: last in the header, and above the search box for a phone, where the header has room
+   for the brand, the guide link and Play and nothing more. One of the two is shown. */
+.lang-switch {
+  display: inline-flex;
+  flex: none;
+  border: 1px solid var(--line2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.lang-switch-side { display: none; }
+.lang-switch button {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.3;
+  color: var(--sepia);
+  background: none;
+  border: 0;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.lang-switch button + button { border-left: 1px solid var(--line2); }
+.lang-switch button:hover { color: var(--ink); }
+.lang-switch button[aria-pressed="true"] { color: var(--gold-l); background: var(--marble2); }
+.lang-switch button:focus-visible { outline: 2px solid var(--gold-l); outline-offset: -2px; }
+/* Same breakpoint as the header's own collapse below. */
+@media (max-width: 720px) {
+  .lang-switch-header { display: none; }
+  .lang-switch-side { display: flex; margin-bottom: 0.75rem; }
+  .lang-switch-side button { flex: 1; }
+  /* "▶ Spela" is 8px wider than "▶ Play", which at 375px was enough to push the brand onto
+     two lines. The button gives those 8px back, so Swedish fits where English always did. */
+  .nav-cta { padding-left: 0.875rem; padding-right: 0.875rem; }
+}
+
 /* ---------- wiki layout ---------- */
 
 .wiki-layout {

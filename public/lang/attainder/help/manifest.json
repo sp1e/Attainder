@@ -253,7 +253,7 @@
     "noticeEntry": "upstream-legal-notice"
   },
   "integration": {
-    "runtimeWired": false,
+    "runtimeWired": true,
     "browserVerified": false,
     "required": [
       "Read the selected Options locale for page, navigation, shell and search text.",

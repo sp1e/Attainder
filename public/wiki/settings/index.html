@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Inställningar — Guide till Attainder" data-title-en="Settings — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Settings Reference — Open Historia Wiki</title>
+  <title>Inställningar — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/settings/" />
-  <meta name="description" content="Every option in the game, what it does, and which ones are worth changing first." />
+  <meta name="description" content="Ställ in modeller, kartvisning, sekretess och diagnostik." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/settings/" />
-  <meta property="og:title" content="Settings Reference — Open Historia Wiki" />
-  <meta property="og:description" content="Every option in the game, what it does, and which ones are worth changing first." />
+  <meta property="og:title" content="Inställningar — Guide till Attainder" />
+  <meta property="og:description" content="Ställ in modeller, kartvisning, sekretess och diagnostik." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Settings Reference — Open Historia Wiki" />
-  <meta name="twitter:description" content="Every option in the game, what it does, and which ones are worth changing first." />
+  <meta name="twitter:title" content="Inställningar — Guide till Attainder" />
+  <meta name="twitter:description" content="Ställ in modeller, kartvisning, sekretess och diagnostik." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,563 +81,170 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/" class="on" aria-current="page">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Settings Reference
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Inställningar
     </nav>
-    <h1>Settings Reference</h1>
-    <p class="tagline">Every option in the game, what it does, and which ones are worth changing first.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#the-game-menu">The game menu</a></li><li class="d3"><a href="#where-things-are">Where things are</a></li><li class="d2"><a href="#ai">AI</a></li><li class="d3"><a href="#models-and-connections">Models and connections</a></li><li class="d3"><a href="#ai-requests">AI requests</a></li><li class="d3"><a href="#generation-behaviour">Generation behaviour</a></li><li class="d2"><a href="#general">General</a></li><li class="d2"><a href="#sound">Sound</a></li><li class="d2"><a href="#map">Map</a></li><li class="d2"><a href="#advanced">Advanced</a></li><li class="d2"><a href="#what-to-change-first">What to change first</a></li><li class="d2"><a href="#where-settings-are-stored">Where settings are stored</a></li><li class="d2"><a href="#detailed-logging">Detailed logging</a></li><li class="d3"><a href="#please-turn-it-on-before-reporting-a-bug">Please turn it on before reporting a bug</a></li><li class="d3"><a href="#what-it-adds">What it adds</a></li><li class="d3"><a href="#what-it-means-for-your-privacy">What it means for your privacy</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Settings live behind the <strong>☰</strong> button in the top-left corner. It opens a small <strong>game menu</strong>,
-and the game menu leads to a full-screen <strong>settings workspace</strong>.</p>
-<p class="beta-note"><b>On beta the main menu has Settings too.</b> Its <b>Settings</b> button — at
-the foot of the menu's rail on a wide screen — opens the same workspace straight away, holding
-what applies to every game.
-A game's own choices — its <a href="/wiki/time/#player-focus">player focus</a>, its pick of map —
-stay in that game's <b>☰</b> menu.</p><h2 id="the-game-menu">The game menu</h2>
-<p><img src="/wiki/img/game-menu-settings.jpg" alt="The game menu, Settings tab">
-<em>The game menu&#39;s Settings tab — the four tiles open the settings workspace at that section.</em></p>
-<p>Press <strong>☰</strong> and you get the game menu with four tabs — <strong>Game</strong>, <strong>Tools</strong>, <strong>Settings</strong> and
-<strong>Help</strong>. Game holds the current campaign and <strong>Game Management</strong> (switch, duplicate, import or
-manage campaigns). Tools puts cheats, the events timeline and the AI debug console one click away.
-Help has the wiki, bug reporting, the privacy policy and the community links.</p>
-<p>Choosing one of the four <strong>Settings</strong> tiles opens the full-screen <strong>workspace</strong> with that section
-selected:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Section</th>
-<th>Holds</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>◫</td>
-<td><strong>General</strong></td>
-<td>Language, display, accessibility, privacy</td>
-</tr>
-<tr>
-<td>◇</td>
-<td><strong>Map</strong></td>
-<td>Basemap, label font and labels, globe, terrain, camera</td>
-</tr>
-<tr>
-<td>✦</td>
-<td><strong>AI</strong></td>
-<td>Models and backups, connections, reasoning, AI requests, generation behaviour</td>
-</tr>
-<tr>
-<td>⌘</td>
-<td><strong>Advanced</strong></td>
-<td>Per-task models, telemetry, network, diagnostics</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta there is a fifth tile, ♫ Sound</b>, for the music and the sound
-effects (see <a href="#sound">Sound</a> below), and Help also has <b>Check for updates</b>, which
-asks the installed app for a newer build there and then.</p><h3 id="where-things-are">Where things are</h3>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>I want to…</th>
-<th>Go to</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Set my API key</td>
-<td>☰ → Settings → <strong>AI</strong></td>
-</tr>
-<tr>
-<td>Add a backup model</td>
-<td>☰ → Settings → <strong>AI</strong> → + Add a backup</td>
-</tr>
-<tr>
-<td>See how many requests I have used today</td>
-<td>☰ → Settings → <strong>AI</strong> → AI requests</td>
-</tr>
-<tr>
-<td>Change language</td>
-<td>☰ → Settings → <strong>General</strong></td>
-</tr>
-<tr>
-<td>Stop Discord showing what I play</td>
-<td>☰ → Settings → <strong>General</strong> → Privacy</td>
-</tr>
-<tr>
-<td>Turn off the globe</td>
-<td>☰ → Settings → <strong>Map</strong></td>
-</tr>
-<tr>
-<td>Change the basemap</td>
-<td>☰ → Settings → <strong>Map</strong></td>
-</tr>
-<tr>
-<td>Open cheats</td>
-<td>☰ → <strong>Tools</strong> → Cheats</td>
-</tr>
-<tr>
-<td>Read the wiki</td>
-<td>☰ → <strong>Help</strong> → Wiki</td>
-</tr>
-<tr>
-<td>Switch campaign</td>
-<td>☰ → <strong>Game</strong> → Game Management</td>
-</tr>
-<tr>
-<td>See what the AI cost</td>
-<td>☰ → <strong>Tools</strong> → AI debug console</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta:</b> the music and its volume are in ☰ → Settings → <b>Sound</b>;
-the switch between the Political and Diplomatic map is in ☰ → Settings → <b>Map</b>, and also at the
-bottom right of the screen, under the advisor's button.</p><h2 id="ai">AI</h2>
-<p>The only part you must set up. Covered in full in
-<a href="/wiki/ai-setup/">connecting an AI provider</a> and <a href="/wiki/ai-providers/">AI providers and models</a>.</p>
-<h3 id="models-and-connections">Models and connections</h3>
-<p>The AI section opens on a list headed <strong>Models</strong>. Each entry is a model on a <strong>connection</strong>:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>On a connection</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Provider</strong></td>
-<td>Gemini, OpenAI, Anthropic, OpenAI Compatible, Anthropic Compatible.</td>
-</tr>
-<tr>
-<td><strong>Connection name</strong></td>
-<td>A name you choose, so two keys for the same provider can be told apart.</td>
-</tr>
-<tr>
-<td><strong>API Key</strong></td>
-<td>Yours. Stored locally, never sent to an Open Historia server.</td>
-</tr>
-<tr>
-<td><strong>API endpoint</strong></td>
-<td>Only for the two Compatible providers.</td>
-</tr>
-<tr>
-<td><strong>Custom parameters (JSON)</strong></td>
-<td>Raw fields merged into the request body. An escape hatch — you do not need it.</td>
-</tr>
-<tr>
-<td><strong>Strict tool schema</strong></td>
-<td>Only on an OpenAI Compatible connection. Makes a self-hosted backend such as vLLM or SGLang keep to the shape of the answer. Leave it off for OpenAI and Azure, which refuse it.</td>
-</tr>
-</tbody></table></div>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>On an entry</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Model</strong></td>
-<td>The model name. Suggestions come from the models you have used recently.</td>
-</tr>
-<tr>
-<td><strong>This model only</strong></td>
-<td>Custom parameters for this model alone; <strong>How the AI answers</strong> — the structured-output method to try first; and <strong>Context window (tokens)</strong>, which shows what the game has learned about how much the model can take, or holds your own figure. <strong>Forget this window</strong> clears it — for a local model you have restarted with a bigger window.</td>
-</tr>
-</tbody></table></div>
-<p>Several entries can share one connection, and the list is tried from the top: when one model runs
-out or cannot answer, the next one takes over. See <a href="/wiki/ai-setup/#backup-models">backup models</a>.
-<strong>+ Add a backup</strong> adds an entry, <strong>Fill…</strong> builds the list from every model you type on every
-connection you tick, and <strong>Clear list</strong> empties it while keeping your connections and keys.
-<strong>When a model is rate limited</strong> decides what a short pause from the provider does: use the next
-one straight away (the default), or wait and try the same one again, which spares your backups&#39;
-daily allowance at the cost of a slower turn. <strong>Model reasoning</strong> sits under the list and applies
-to every entry.</p>
-<p>The <strong>Connections</strong> section below it lists every saved connection, how many entries use it, and
-ready-made ones to add: <strong>+ Groq</strong>, <strong>+ OpenRouter</strong> and <strong>+ Local Ollama</strong>. Removing a connection
-names the entries that go with it before it asks.</p>
-<p>A first Gemini connection fills the list with Google&#39;s defaults — <code>gemini-3.5-flash-lite</code>, with
-<code>gemini-3.1-flash-lite</code> as its backup. An OpenAI entry with no model runs <code>gpt-6-luna</code>; an
-Anthropic one runs <code>claude-haiku-4-5</code>.</p>
-<p class="beta-note"><b>On beta the key field has an eye button</b> to show or hide the key as
-you type it, and in the desktop app there is a sixth provider, <b>Your own Agent</b>, under
-<i>Your subscription</i>. It needs no key: what you start waits for your own Claude Code, Codex,
-OpenCode or Antigravity CLI, signed in with your own account and opened in the Agent folder
-(<b>Open the Agent folder</b>, and a <b>Copy the command for…</b> button for each), where typing
-<code>/answer</code> answers everything waiting, a whole time skip included. Its switches say which
-of Time skips, Advisor, Diplomacy, Game Master and Interactive events go to it; <b>Pause my
-Agent</b> sends everything to the entry below it while you are away. Anything unticked, and what
-the game starts by itself, goes to the next entry in the list — with nothing below it, that
-background work does not run.</p><h3 id="ai-requests">AI requests</h3>
-<p>A free key allows a few hundred requests a day, and this section decides how many the game
-spends. It shows how many have been used today (counted on this device, from midnight Pacific
-time, which is when a Gemini key&#39;s day begins) and what your last time skip cost.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Setting</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Save AI requests</strong></td>
-<td><strong>On by default.</strong> A time skip is one request either way: each event arrives already carrying what it changed, and your agents&#39; reports come back in the same answer. On, the model is handed the names it needs instead of looking them up, and a small mistake in its answer is cut out rather than asked for again; a skip takes a second request only when its answer could not be used at all, when a provider refuses the single-request form, or on a turn where the automatic Stats refresh falls due. Off is for a key with no daily limit: with AI lookup functions on, the model may look things up before it answers — two rounds at most, so a skip never uses more than three — and outside a skip a flawed answer is sent back to be redone.</td>
-</tr>
-<tr>
-<td><strong>Requests a day your key allows</strong></td>
-<td>500 by default. Used only for the count and to keep background AI off the end of your day. The game never stops you at the limit; your provider does.</td>
-</tr>
-<tr>
-<td><strong>Background AI</strong></td>
-<td><strong>On by default.</strong> While you are not skipping time, countries may write to you unprompted, forces may reposition, agents may file extra reports, and a country you look at gets its first intelligence reading. Off: the game only calls the model when you do something.</td>
-</tr>
-<tr>
-<td><strong>Background requests a day, at most</strong></td>
-<td>30 by default. Background AI also stops by itself once less than a tenth of your day is left.</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta the section does more.</b> <b>Used today, by task</b> opens the
-day's count task by task; an <b>Emergency AI stop</b> box holds <b>Cancel all AI requests</b>,
-which stops every AI call the game can still abort; and NPC votes in an institution are a second
-thing, beside the Stats refresh, that can add a request to a skip when they fall due.</p><h3 id="generation-behaviour">Generation behaviour</h3>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Setting</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Limit AI generation</strong></td>
-<td><strong>Off by default.</strong> On, the game stops waiting and falls back to canned events when the model goes quiet — five minutes of silence part-way through an answer, or fifteen with no answer at all. It measures <strong>silence</strong>, not elapsed time: a model that is still writing is never interrupted. Worth turning on for a local model, or if you have had turns hang.</td>
-</tr>
-<tr>
-<td><strong>Generate long time skips in segments</strong></td>
-<td><strong>Off by default.</strong> On, skips of more than a few months are generated as several shorter requests merged into one round — slower and costlier, but far less likely to time out on a hosted provider. See <a href="/wiki/time/">time and turns</a>.</td>
-</tr>
-<tr>
-<td><strong>AI lookup functions</strong></td>
-<td>On by default, but only used while Save AI requests is off. The model can call functions — exact power and region names, a region&#39;s neighbours, the war ledger, a chat — in up to three extra requests per task, and two inside a time skip. Needs a provider that supports function calling.</td>
-</tr>
-<tr>
-<td><strong>Show time skip events as they are written</strong></td>
-<td><strong>On by default.</strong> A skip opens the Events panel and fills it as the model writes. Off: the round appears at the end. The turn is the same either way, and Gemini arrives all at once regardless.</td>
-</tr>
-<tr>
-<td><strong>Batch background AI tasks</strong></td>
-<td>Anthropic only, off by default. History consolidation runs through the Message Batches API at about half the price and lands a little later.</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta, Player focus sits here too</b> — how much of each time skip is
-about your own country, stored with the game rather than the device. See
-<a href="/wiki/time/#player-focus">time and turns</a>. So does <b>Stop when my events fail</b>, off
-by default: on, a skip that has an event about your country refused, or an order of yours left
-without an outcome, stops before anything is saved and lists what failed, so you can retry those
-events, retry the whole skip, or keep it and move on.</p><h2 id="general">General</h2>
-<p><strong>UI language</strong> translates the interface. Applying it reloads the page. Twenty-two languages ship
-fully translated — Arabic, Bengali, Chinese, Dutch, French, German, Hindi, Indonesian, Italian,
-Japanese, Korean, Persian, Polish, Portuguese, Russian, Spanish, Swedish, Thai, Turkish,
-Ukrainian, Urdu and Vietnamese — and the list marks them. In those, the interface costs no AI
-requests at all; only content a scenario&#39;s author or a player wrote (scenario names, polity
-names, custom events) is sent to your model to translate, once. Other languages are still
-offered, translated by your model as panels are met.</p>
-<p><strong>AI chat language</strong> is separate: it is the language leaders and events are written in. You can
-run an English interface with French diplomacy, or the reverse.</p>
-<p><strong>Fullscreen</strong> is under Display, and <strong>Reduce motion</strong> under Accessibility. Reduce motion turns on
-both camera switches in the Map section at once — turn it on first if the game feels busy or you
-are prone to motion sickness.</p>
-<p><strong>Privacy</strong> holds the two things the game tells other services about you, with a link to the
-<a href="/privacy/">privacy policy</a>:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Switch</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Show what I am playing on Discord</strong></td>
-<td>Desktop app only, on by default. Discord shows the country you play, the scenario and the in-game date to people who can see your activity.</td>
-</tr>
-<tr>
-<td><strong>Count my visits</strong></td>
-<td><strong>Off unless you say yes.</strong> Lets Google Analytics and Umami count that you played and which version; Google Analytics sets cookies. If your browser asks sites not to track you, it stays off until you answer yourself. Only shown where the build counts visits.</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta</b>, Display also has <b>Show the vault door every time</b>, off by
-default: the door shows the first time the game opens after an update, and with this on, at every
-start. Reduce motion also follows your system's own reduced-motion setting (the switch then shows
-on and cannot be turned off here), lands a region's new colour at once instead of sweeping it in,
-and lets the vault door simply fade away.</p><h2 id="sound">Sound</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>The game has a soundtrack: music by Scott Buckley, released under CC BY 4.0, which Settings credits
-along with every piece it ships. The menu, a game opening, a game being played and the War Room
-each have their own; a scenario may bring tracks of its own from the community hub&#39;s music list.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Setting</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Music</strong></td>
-<td>On by default. Nothing plays until your first click, tap or key press, and the music stops while the window is hidden.</td>
-</tr>
-<tr>
-<td><strong>Music volume</strong></td>
-<td>0 to 100%, 25% by default.</td>
-</tr>
-<tr>
-<td><strong>Sound effects</strong></td>
-<td>On by default — the vault door&#39;s among them.</td>
-</tr>
-<tr>
-<td><strong>Downloaded music</strong></td>
-<td>How many scenario tracks are kept on this device, and how much room they take. <strong>Clear</strong> deletes them; a scenario that plays one again downloads it again.</td>
-</tr>
-</tbody></table></div>
-<p>While a scenario&#39;s own track plays, <strong>Now playing</strong> names it and who made it.</p>
-<h2 id="map">Map</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Option</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Basemap</strong></td>
-<td>The imagery under the political colours. <em>Scenario default</em> uses whatever the scenario&#39;s author chose; fourteen others override it. A scenario with a map of its own keeps it, and the list is greyed out. See <a href="/wiki/world-map/#basemaps">the world map</a>.</td>
-</tr>
-<tr>
-<td><strong>Country label font</strong></td>
-<td>Empty uses the scenario&#39;s font. Any font installed on your computer works.</td>
-</tr>
-<tr>
-<td><strong>Hide country labels</strong></td>
-<td>Removes country names from the map.</td>
-</tr>
-<tr>
-<td><strong>3D Globe</strong></td>
-<td>Sphere instead of a flat map, with a real day/night terminator. Marked experimental. A scenario whose map is a flat sheet can switch the globe off, and the switch then says so.</td>
-</tr>
-<tr>
-<td><strong>3D Terrain</strong></td>
-<td>Elevation with heavy exaggeration. Marked experimental, and flat map only.</td>
-</tr>
-<tr>
-<td><strong>Disable idle globe rotation</strong></td>
-<td>Stops the globe turning on its own.</td>
-</tr>
-<tr>
-<td><strong>Disable camera movement during events</strong></td>
-<td>Stops the camera flying to each event during the <a href="/wiki/events/">staged reveal</a>.</td>
-</tr>
-</tbody></table></div>
-<p>Switching the globe on or off shows the game&#39;s loading screen while the map redraws from nothing.</p>
-<p class="beta-note"><b>On beta the Map section has more.</b> <b>Map mode</b> switches between
-<b>Political</b> and <b>Diplomatic</b>, which colours each country by where it stands with you —
-your puppets, allies, friends, hostile countries and enemies at war; every time the game opens it
-starts on Political. In a game, <b>Basemap</b> picks among the maps the scenario offers, the
-starting one first, and the pick is kept for that game on this device; from the main menu it is
-<b>Use my default basemap</b> and <b>Default basemap</b>, a built-in map every game starts on
-wherever its scenario offers it. In the desktop app, <b>Detailed maps</b> lists the scenario's
-large terrain maps you are missing or have an older version of, with <b>Download…</b>, and
-<b>Browse and download maps…</b> opens your basemaps, your detailed maps and the community's. <b>Seasons and weather</b> (on by default) tints the map by
-the season and shows its weather, and <b>Weather effects</b> under it (on by default, off by
-default in Low memory) draws the rain, snow, frost and fog. <b>Performance mode</b> is
-<b>Auto</b>, <b>Low memory</b> or <b>Full</b>: Auto picks Low memory in the Android app, on a
-touch screen with no mouse, and on a device with 4 GB of memory or less, and a change applies
-after the game is reloaded.</p><h2 id="advanced">Advanced</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Setting</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Per-task models</strong></td>
-<td>Point a task at one entry in the list: a cheap model for background tasks, a strong one for the jump itself. The task tries its pick first, then the list from the top. The single most effective way to cut cost without making turns worse.</td>
-</tr>
-<tr>
-<td><strong>Record AI telemetry</strong></td>
-<td>Keeps every AI call — prompt, answer, model, tokens, latency, validation verdict — for the <strong>AI debug console</strong> (200 across sessions). Off: the console sees this session only.</td>
-</tr>
-<tr>
-<td><strong>Rate AI generations</strong></td>
-<td>Off by default. A small 1–10 bar after each time skip, Game Master edit and interactive event, stored beside the call in the console. Feedback for you, not sent anywhere.</td>
-</tr>
-<tr>
-<td><strong>Let other devices connect</strong></td>
-<td>Under <strong>Network</strong>, desktop only. The server answers this machine only until you turn it on. See <a href="/wiki/self-hosting/">hosting a server</a>.</td>
-</tr>
-<tr>
-<td><strong>Keep a diagnostics log</strong></td>
-<td>Under <strong>Diagnostics</strong>. On by default. <strong>📋 Copy log</strong>, <strong>💾 Save log file</strong>, or <strong>💾 Save log file + game</strong> to send with a bug report; the 💾 <strong>Save logging file</strong> button on a failed turn or advisor reply saves the same file with that failure attached. <strong>🔎 View log</strong> reads it in place and <strong>Clear</strong> empties it. Off means nothing is recorded and the stored log is thrown away.</td>
-</tr>
-<tr>
-<td><strong>Detailed logging</strong></td>
-<td>Off by default. See below — <strong>please turn it on if you are going to report a bug</strong>.</td>
-</tr>
-</tbody></table></div>
-<p class="beta-note"><b>On beta</b>, with Let other devices connect on, a second switch — <b>Let
-other devices send AI calls through this server</b> — lets a browser on another device reach a
-model running on this computer (LM Studio, Ollama) that refuses calls from other sites. And a
-<b>Storage</b> section, on the desktop, says how many community downloads are kept and how much
-room they take, with <b>Clear download cache</b>; past 1 GB the ones used longest ago are removed
-on their own.</p><h2 id="what-to-change-first">What to change first</h2>
-<ol>
-<li><strong>Set up your AI provider.</strong> Nothing else matters until this is done.</li>
-<li><strong>Look at AI requests</strong> if you are on a free key — the defaults are chosen for one, and the
-counter tells you what a turn costs.</li>
-<li><strong>Turn on Limit AI generation</strong> if you are running a local model.</li>
-<li><strong>Try the 3D globe.</strong> It is the better way to look at the world, and it costs little.</li>
-<li><strong>Leave 3D terrain off</strong> unless you specifically want it — it is the most expensive thing in
-the game to render.</li>
-<li><strong>Reduce motion</strong> if the interface feels restless.</li>
-</ol>
-<h2 id="where-settings-are-stored">Where settings are stored</h2>
-<p>All of it lives in your browser&#39;s local storage, or in the desktop app&#39;s own profile. Settings
-are therefore <strong>per device and per install</strong>, not per save — moving a campaign to another machine
-does not carry your API key with it, which is deliberate.</p>
-<p>It also means <strong>the beta build keeps entirely separate settings from the stable one</strong>. Installing
-beta does not inherit your stable API key; you will need to paste it in again.</p>
-<h2 id="detailed-logging">Detailed logging</h2>
-<p><strong>☰ → Settings → Advanced → Diagnostics → Detailed logging</strong>, off by default.</p>
-<p>The ordinary log is a running record of what you did — saves opened, orders queued, turns taken —
-and anything that went wrong. Detailed logging records <strong>everything</strong>, and it is the difference between a bug report someone can act on and one that just says the game misbehaved.</p>
-<h3 id="please-turn-it-on-before-reporting-a-bug">Please turn it on before reporting a bug</h3>
-<p>If you are about to report something — especially anything about the advisor, diplomacy or a turn
-going wrong — switch it on, reproduce the problem, then save the log as a file and attach it. A
-maintainer can very often find the cause immediately from a detailed log and not at all from a
-normal one.</p>
-<h3 id="what-it-adds">What it adds</h3>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Normal</th>
-<th>Detailed</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Detail per entry</td>
-<td>600 characters</td>
-<td>20,000</td>
-</tr>
-<tr>
-<td>Stack frames</td>
-<td>1</td>
-<td>8</td>
-</tr>
-</tbody></table></div>
-<p>Both keep up to 5,000 entries and 1 MB; the difference is what gets recorded, not how much is
-kept.</p>
-<p>And it records what the normal log leaves out:</p>
-<ul>
-<li><strong>Every message to and from your advisor</strong>, in full.</li>
-<li><strong>Every diplomatic message</strong>, in full, with who said it to whom.</li>
-<li><strong>Letters the advisor drafted</strong>, and the notes countries send you.</li>
-<li><strong>Every AI task and what it answered</strong>, and why an answer was rejected.</li>
-<li><strong>What each turn changed in the world.</strong></li>
-<li><strong>Every server request and every save</strong>, with sizes.</li>
-<li><strong>Which panels you opened</strong>, and the game&#39;s routine console messages.</li>
-</ul>
-<p>The conversations are deliberate. The bugs people actually report about diplomacy are about the
-<em>content</em> of an exchange — &quot;it forgot what I told it&quot;, &quot;it replied as the wrong country&quot;, &quot;it
-drafted a letter and sent something else&quot; — and a log that records only that an exchange happened
-cannot settle any of them.</p>
-<h3 id="what-it-means-for-your-privacy">What it means for your privacy</h3>
-<p>It quotes considerably more of your campaign than the normal log: your conversations, in full.
-That is all fiction you or the model wrote, but it is yours, so read the log before you paste it
-somewhere public.</p>
-<p><strong>API keys are never recorded.</strong> Nothing on this path reads a key deliberately, and every entry is
-run through a redaction pass as it is written — not at export time — so a key that arrives by
-accident inside a provider error or a URL is scrubbed before it is ever stored.</p>
-<p>Both switches persist across restarts and across campaigns.</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/interface/">The interface</a> — the rest of the screen.</li>
-<li><a href="/wiki/ai-providers/">AI providers and models</a> — choosing a model properly.</li>
-<li><a href="/wiki/troubleshooting/">Troubleshooting</a> — when a setting does not fix it.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/advisor/"><span>← Previous</span><b>The advisor</b></a>
-        <a class="next" href="/wiki/cheats/"><span>Next →</span><b>Cheats &amp; GM console</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Settings
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Ställ in modeller, kartvisning, sekretess och diagnostik.</span><span data-help-lang="en" lang="en">Configure models, map presentation, privacy and diagnostic records.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#workspace">Hitta en inställning</a></li><li class="d2"><a href="#models">Modeller och anrop</a></li><li class="d2"><a href="#display-and-privacy">Allmänt, karta och sekretess</a></li><li class="d2"><a href="#detailed-logging">Diagnostik och telemetri</a></li><li class="d2"><a href="#storage">Enhetsinställningar och nätverksåtkomst</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#workspace">Find a setting</a></li><li class="d2"><a href="#models">Models and requests</a></li><li class="d2"><a href="#display-and-privacy">General, map and privacy</a></li><li class="d2"><a href="#detailed-logging">Diagnostics and telemetry</a></li><li class="d2"><a href="#storage">Device settings and network access</a></li></ul></nav>
+    <section id="workspace" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="workspace">
+<h2>Hitta en inställning</h2>
+<p>Öppna spelmenyn och sedan Inställningar. De fyra avsnitten är <strong>Allmänt</strong>, <strong>Karta</strong>, <strong>AI</strong> och <strong>Avancerad</strong>. Spelhantering öppnar biblioteket. Verktyg öppnar Fusk, tidslinjen och AI-felsökningskonsolen.</p>
+<p>Börja med <a href="/wiki/ai-setup/">modellanslutningen</a>. Använd <a href="/wiki/world-map/#basemaps">kartinställningarna</a> för utseendet och guiden för <a href="/wiki/self-hosting/">egen server</a> för åtkomst från en annan enhet.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="workspace">
+<h2>Find a setting</h2>
+<p>Open the game menu, then Settings. Its four sections are <strong>General</strong>, <strong>Map</strong>, <strong>AI</strong> and <strong>Advanced</strong>. Game Management opens the library, while Tools opens Cheats, the timeline and the AI debug console.</p>
+<p>Start with <a href="/wiki/ai-setup/">model setup</a>. Use <a href="/wiki/world-map/#basemaps">map settings</a> for appearance and <a href="/wiki/self-hosting/">self-hosting</a> for another device’s access.</p>
+</div>
+</section>
+<section id="models" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="models">
+<h2>Modeller och anrop</h2>
+<p>AI-inställningarna skiljer sparade anslutningar från modellposter. Poster kan dela en anslutning och bilda en reservordning. <strong>Modeller per uppgift</strong>, under Avancerad, väljer vilken post en uppgift prövar först. OpenAI-kompatibla anslutningar har dessutom <strong>Strikt verktygsschema</strong>.</p>
+<p>AI-avsnittet har också reglage för anropsbudget och generering: väntetidsgränser, uppdelade långa tidshopp, uppslagsfunktioner, löpande händelsevisning och bakgrundsbatchning. Reglagen ger inte kontot en större kvot hos leverantören och innebär inte att varje interaktion kostar ett enda anrop. I en historisk rollfigurskampanj avvisas ett misslyckat modellår i stället för att ersättas med en färdig förskriven rollfigurstur. Undersök felet innan du försöker igen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="models">
+<h2>Models and requests</h2>
+<p>AI settings separate saved connections from model entries. Entries can share a connection and form a fallback order. <strong>Per-task models</strong>, in Advanced, selects the entry a task tries first. OpenAI-compatible connections additionally offer <strong>Strict tool schema</strong>.</p>
+<p>The AI section also contains request-budget controls and generation preferences: waiting limits, segmented long skips, lookup functions, live event display and background batching. Their availability does not give an account a larger provider allowance or make each interaction cost one call. For a historical character campaign, a failed model year is rejected rather than replaced with a completed canned character turn. Diagnose the failure before retrying.</p>
+</div>
+</section>
+<section id="display-and-privacy" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="display-and-privacy">
+<h2>Allmänt, karta och sekretess</h2>
+<p>Allmänt har separata reglage för gränssnittsspråk och språk för AI-chatt, helskärm och <strong>Minska rörelse</strong>. Minska rörelse stänger av både jordglobens rotation i vila och kamerans rörelse under händelser. Karta har baskarta, teckensnitt för landsetiketter, etikettvisning, jordglob och terräng.</p>
+<p>Sekretessreglagen beror på bygget. Besöksräkning kräver samtycke där den finns. Discord-aktivitet är en separat skrivbordsfunktion. Ett bygge som saknar båda funktionerna har inga sådana reglage att ändra.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="display-and-privacy">
+<h2>General, map and privacy</h2>
+<p>General contains separate interface and AI-chat language controls, fullscreen and <strong>Reduce motion</strong>. Reduce motion switches off idle globe rotation and event-camera movement together. Map contains basemap, country-label font, label visibility, globe and terrain controls.</p>
+<p>Privacy controls depend on the build. Visit counting requires consent where it is available. Discord activity is a separate desktop capability. A build that supports neither has no such switch to change.</p>
+</div>
+</section>
+<section id="detailed-logging" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="detailed-logging">
+<h2>Diagnostik och telemetri</h2>
+<p>Avancerad → Diagnostik har <strong>För en diagnostiklogg</strong>, <strong>Detaljerad loggning</strong> och funktioner för att läsa, rensa, kopiera eller spara loggen. Detaljerad loggning är av som standard. Slå på den, återskapa problemet och spara sedan filen. Den kan innehålla hela samtal, modellförfrågningar och svar, sparaktivitet och felstackar. Läs exporten innan du delar den.</p>
+<p>AI-telemetri har ett separat reglage för felsökningskonsolen. Beständig inspelning behåller de senaste <strong>200</strong> anropen mellan sessioner. När den är av visar konsolen den aktuella sessionen. <a href="/wiki/troubleshooting/#reporting-a-bug">Felsökningen</a> beskriver vad en rapport bör innehålla.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="detailed-logging">
+<h2>Diagnostics and telemetry</h2>
+<p>Advanced → Diagnostics has <strong>Keep a diagnostics log</strong>, <strong>Detailed logging</strong>, and controls to read, clear, copy or save the log. Detailed logging is off by default. Turn it on, reproduce the problem, then save the file. It can include full conversations, model requests and replies, save activity and error stacks. Read the export before sharing it.</p>
+<p>AI telemetry is a separate switch for the debug console. Persistent recording retains the latest <strong>200</strong> calls across sessions; with it off, the console shows the current session. <a href="/wiki/troubleshooting/#reporting-a-bug">Troubleshooting</a> explains what to include in a report.</p>
+</div>
+</section>
+<section id="storage" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="storage">
+<h2>Enhetsinställningar och nätverksåtkomst</h2>
+<p>Anslutningsinställningarna använder den här klientens lokala lagring. Kartinställningarna hör också till enhetsprofilen. Kontrollera dem igen när du flyttar en kampanj till en annan webbläsare eller installation. En kampanjexport kan innehålla en diagnostisk inställningsrapport. Den överför inte dina konfigurerade anslutningar.</p>
+<p>Nätverksavsnittet visas utanför det statiska webbbygget. Delningsreglagen beror på den lokala servern och kan låsas av serverkonfigurationen. Läs varningen innan du låter en annan enhet nå samma bibliotek.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="storage">
+<h2>Device settings and network access</h2>
+<p>Connection settings use this client’s local storage. Map preferences also belong to the device profile. Check them again when moving a campaign to another browser or installation. A campaign export can include a diagnostic settings report; that is not a transfer of your configured connections.</p>
+<p>The Network section is shown outside the static web build. Its sharing controls depend on the local server and can be locked by server configuration. Read the warning before allowing another device to reach the same library.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/advisor/"><span>← Föregående</span><b>Rådgivaren</b></a>
+        <a class="next" href="/wiki/cheats/"><span>Nästa →</span><b>Fusk</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/advisor/"><span>← Previous</span><b>Advisor</b></a>
+        <a class="next" href="/wiki/cheats/"><span>Next →</span><b>Cheats</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -629,27 +256,71 @@ accident inside a provider error or a URL is scrubbed before it is ever stored.<
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Installera och starta Attainder — Guide till Attainder" data-title-en="Install and launch Attainder — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Installing Open Historia — Open Historia Wiki</title>
+  <title>Installera och starta Attainder — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/install/" />
-  <meta name="description" content="Download and install on Windows, macOS, Linux and Android, or play straight away in your browser." />
+  <meta name="description" content="Installera och starta en historisk kampanj lokalt." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/install/" />
-  <meta property="og:title" content="Installing Open Historia — Open Historia Wiki" />
-  <meta property="og:description" content="Download and install on Windows, macOS, Linux and Android, or play straight away in your browser." />
+  <meta property="og:title" content="Installera och starta Attainder — Guide till Attainder" />
+  <meta property="og:description" content="Installera och starta en historisk kampanj lokalt." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Installing Open Historia — Open Historia Wiki" />
-  <meta name="twitter:description" content="Download and install on Windows, macOS, Linux and Android, or play straight away in your browser." />
+  <meta name="twitter:title" content="Installera och starta Attainder — Guide till Attainder" />
+  <meta name="twitter:description" content="Installera och starta en historisk kampanj lokalt." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,271 +81,172 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/" class="on" aria-current="page">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Installing Open Historia
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Installera och starta Attainder
     </nav>
-    <h1>Installing Open Historia</h1>
-    <p class="tagline">Download and install on Windows, macOS, Linux and Android, or play straight away in your browser.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#which-one-do-i-want">Which one do I want?</a></li><li class="d2"><a href="#desktop">Desktop</a></li><li class="d3"><a href="#windows">Windows</a></li><li class="d3"><a href="#macos">macOS</a></li><li class="d3"><a href="#linux">Linux</a></li><li class="d3"><a href="#first-launch">First launch</a></li><li class="d3"><a href="#updating">Updating</a></li><li class="d3"><a href="#the-beta-build">The beta build</a></li><li class="d2"><a href="#browser">Browser</a></li><li class="d2"><a href="#android">Android</a></li><li class="d2"><a href="#from-source">From source</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>There are four ways to run Open Historia. All of them are free, and none of them need an
-account.</p>
-<h2 id="which-one-do-i-want">Which one do I want?</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Best for</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Desktop app</strong></td>
-<td>Almost everyone</td>
-<td>The full game. Installs like any other program and keeps itself up to date; the world map downloads itself on first launch.</td>
-</tr>
-<tr>
-<td><strong>Browser</strong></td>
-<td>Trying it out right now</td>
-<td>Nothing to install. Slower, and the map is streamed rather than stored.</td>
-</tr>
-<tr>
-<td><strong>Android app</strong></td>
-<td>Playing on a phone</td>
-<td>The whole game on the phone, world map included. It plays without a connection, apart from your AI provider.</td>
-</tr>
-<tr>
-<td><strong>From source</strong></td>
-<td>Contributors</td>
-<td>Node.js and a terminal. See <a href="/wiki/self-hosting/">hosting a server</a>.</td>
-</tr>
-</tbody></table></div>
-<p>The desktop app is the recommended one. The browser build is genuinely playable but it is the
-lightest of the four, and on iPhone and iPad it is the only option.</p>
-<h2 id="desktop">Desktop</h2>
-<p>Downloads live on the
-<a href="https://github.com/Open-Historia/open-historia/releases/tag/desktop-stable"><code>desktop-stable</code> release</a>.</p>
-<h3 id="windows">Windows</h3>
-<p>Download <strong><code>Open-Historia-Setup.exe</code></strong> and run it. Open Historia lands in your Start
-Menu like any other application — there is no Node.js to install, no setup script and no
-terminal window.</p>
-<p>The installer is not code-signed yet, so Windows SmartScreen will warn you the first time.
-Choose <strong>More info → Run anyway</strong>.</p>
-<h3 id="macos">macOS</h3>
-<p>Download the zip that matches your Mac — <strong><code>Open-Historia-mac-arm64.zip</code></strong> for Apple Silicon
-(M1 and later) or <strong><code>Open-Historia-mac-x64.zip</code></strong> for Intel — then unzip it and drag
-<strong>Open Historia</strong> to your Applications folder.</p>
-<p>The app is not code-signed, so on first launch macOS will refuse to open it by double-click.
-Right-click the app and choose <strong>Open</strong>, then confirm. You only have to do this once.</p>
-<p>If macOS says instead that the app is <em>damaged</em>, it has quarantined the download. Clear that in
-Terminal and open the app again:</p>
-<pre><code>xattr -dr com.apple.quarantine &quot;/Applications/Open Historia.app&quot;
-</code></pre>
-<h3 id="linux">Linux</h3>
-<p>On Debian, Ubuntu and derivatives, install the <code>.deb</code>:</p>
-<pre><code>sudo apt install ./Open-Historia-amd64.deb
-</code></pre>
-<p>It lands in your applications menu like any other program. The <code>.deb</code> is the better choice
-where it works: it installs to <code>/opt</code> with a root-owned <code>chrome-sandbox</code>, so Chromium&#39;s sandbox
-stays switched on.</p>
-<p>On any other distribution, use the AppImage:</p>
-<pre><code>chmod +x Open-Historia-x86_64.AppImage
-./Open-Historia-x86_64.AppImage
-</code></pre>
-<p>Nothing is installed system-wide.</p>
-<h3 id="first-launch">First launch</h3>
-<p>The world map is not bundled with the installer — it is about 290 MB of map files, which would
-make every download enormous. The app fetches it the first time you open it and stores it
-locally, so this happens once. A <strong>Setting up Open Historia</strong> window shows the download&#39;s
-progress while it works. After that the game starts offline.</p>
-<p class="beta-note"><b>On beta a failed map download can be retried.</b> If the download does
-not finish, the window says how many map files are missing and offers <b>Try again</b> or
-<b>Continue without the map</b>.</p><h3 id="updating">Updating</h3>
-<p>There is nothing to run by hand: the desktop app keeps itself up to date, and your saves,
-scenarios and settings are kept through every update.</p>
-<ul>
-<li><strong>When you open it</strong>, the app first looks for a newer version. If one is waiting, an
-<strong>Updating Open Historia</strong> window downloads and installs it, and the game reopens on the new
-version by itself. <strong>Open the game now</strong> lets you play on the version you have instead; the
-update then installs when you close the game. The app waits only a few seconds for an answer:
-if you are offline or the answer is slow, the game simply opens.</li>
-<li><strong>While you play</strong>, a newer version shows as a banner: <em>A new version of Open Historia is
-ready.</em> <strong>Update now</strong> fetches it in the background and <strong>Restart now</strong> finishes it. Fetched
-but not restarted, it is in place the next time you open the game.</li>
-<li><strong>Only what changed is downloaded.</strong> An update fetches just the pieces of the app that changed,
-typically a few megabytes rather than the whole installer. A release that needs a newer engine
-underneath comes as the full installer instead, and installs itself silently, with no wizard.</li>
-<li><strong>On macOS</strong> the app updates itself by those pieces only. When a release needs the full
-installer, the banner offers its download instead: unzip it and replace the app in
-Applications.</li>
-</ul>
-<p>You can always download the newest build yourself and install it over the top.</p>
-<p class="beta-note"><b>On beta updates start faster, and you can look for one yourself.</b> An
-update that follows an earlier one checks the files you already have against the list that update
-left, in a second or two, instead of reading every one of them; the first update after installing
-from the installer still reads them all once. <b>☰ → Help → Check for updates</b> looks for a new
-version at any time.</p><h3 id="the-beta-build">The beta build</h3>
-<p>Newer features reach the
-<a href="https://github.com/Open-Historia/open-historia/releases/tag/desktop-beta"><code>desktop-beta</code> pre-release</a>
-first. It installs <strong>alongside</strong> the official app as <em>Open Historia Beta</em> — its own Start Menu
-entry, a BETA-badged icon, its own saves and settings — and updates itself from that page, the
-same way, never onto the official build. It downloads its world map the first time it opens, like
-the official app; the beta&#39;s is about 150 MB. The files are named <code>Open-Historia-Beta-Setup.exe</code>,
-<code>Open-Historia-Beta-mac-arm64.zip</code> / <code>-x64.zip</code>, <code>Open-Historia-Beta-amd64.deb</code> and
-<code>Open-Historia-Beta-x86_64.AppImage</code>, and the website offers each one under its stable download.</p>
-<p>The official app recommends it. The first time it opens after you install it, and the first time
-after each update, it asks <em>Do you want to download the beta version for the best experience?</em>
-<strong>Download the beta</strong> opens the beta&#39;s download — on Windows the installer itself, elsewhere its
-release page — and <strong>Not now</strong> leaves the question until the next update. The <strong>Updating Open
-Historia</strong> window offers the same download while an update installs.</p>
-<p>Pages and sections marked <em>beta</em> in this wiki describe that build.</p>
-<h2 id="browser">Browser</h2>
-<p>Go to <strong><a href="/play/">openhistoria.com/play/</a></strong>. The game loads and you can start immediately.</p>
-<p>What is different in the browser:</p>
-<ul>
-<li>Games and scenarios are stored in your browser&#39;s storage, not in files. Clearing site data
-clears your campaigns. The game will ask for persistent storage permission — grant it.</li>
-<li>The map files load from openhistoria.com with the rest of the page. If the map is blank, see
-<a href="/wiki/troubleshooting/">Troubleshooting</a>.</li>
-<li>There is no account and no sync: your games stay in this browser. To play one somewhere else,
-export it and import it there; see <a href="/wiki/saves/">saves and rollback</a>.</li>
-<li>Providers that refuse direct browser requests need a relay, which the browser build does not
-have. Gemini and Anthropic work directly; see <a href="/wiki/ai-providers/">AI providers</a>.</li>
-<li>The website runs the stable release; there is no beta in the browser. When a new version of
-the site goes up, a banner offers to reload onto it — <em>Reload to get the latest fixes. Your
-games are saved.</em></li>
-</ul>
-<p>It works on phones and tablets, including iPhone and iPad. Expect it to be slower than the
-desktop app, and add it to your Home Screen for a fullscreen window.</p>
-<h2 id="android">Android</h2>
-<p>Download <strong><code>open-historia.apk</code></strong> from the
-<a href="https://github.com/Open-Historia/open-historia/releases/tag/android"><code>android</code> release</a> and
-open it to install. Android will ask you to allow installing from your browser — this is normal
-for an app distributed outside the Play Store. It needs Android 6.0 or newer.</p>
-<p>The app carries the whole game: your saves and scenarios, the scenario workshop and the world map
-are all on the phone, and it plays in airplane mode from the first launch. Your AI provider and
-the community hub are the only things that use the network. There is nothing to run on a PC
-alongside it, and a model served on your own network, such as Ollama or LM Studio, can answer it.</p>
-<p>It updates itself. When a newer build is published, a banner says <em>A new version of Open Historia
-is ready</em>; <strong>Update now</strong> downloads it, and opening the finished download installs it over the
-app with your games kept.</p>
-<p class="beta-note"><b>On beta the app updates as it opens.</b> A newer build found when the app
-starts downloads straight away under an <b>Updating Open Historia</b> cover — <b>Not now</b> plays
-first — and Android then asks to install it. The first time, Android asks you to allow installs
-from Open Historia: allow it, then go back.</p><p><strong>The beta app.</strong> A second app, <em>Open Historia Beta</em>, installs beside the stable one: download
-<strong><code>open-historia-beta.apk</code></strong> from the
-<a href="https://github.com/Open-Historia/open-historia/releases/tag/android-beta"><code>android-beta</code> pre-release</a>.
-It has its own icon, the compass with a BETA banner, and its own saves — a game started in one
-does not appear in the other, though Export and Import carry games and scenarios across — and it
-updates itself from its own release, never to the stable build.</p>
-<p>Had the Open Historia app from before 23 September 2026? Uninstall it first. The app is signed
-with a new key, and Android will not install it over the old one; uninstalling deletes the old
-app&#39;s saves on that phone.</p>
-<p>See <a href="/wiki/mobile/">playing on your phone</a> for more.</p>
-<h2 id="from-source">From source</h2>
-<p>You need Node.js <code>^20.19.0</code> or <code>&gt;=22.12.0</code>.</p>
-<pre><code>git clone https://github.com/Open-Historia/open-historia.git
-cd open-historia
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Install and launch Attainder
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Installera och starta Attainder</span><span data-help-lang="en" lang="en">Install and launch Attainder</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Installera och starta en historisk kampanj lokalt.</span><span data-help-lang="en" lang="en">Install and launch a local historical campaign.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#local-start">Starta från projektets källkod</a></li><li class="d2"><a href="#map-and-data">Kartfiler och ditt bibliotek</a></li><li class="d2"><a href="#platforms">Skrivbords-, webb- och Androidbyggen</a></li><li class="d2"><a href="#updates-and-license">Uppdateringar och erkännanden</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#local-start">Start from the project checkout</a></li><li class="d2"><a href="#map-and-data">Map files and your library</a></li><li class="d2"><a href="#platforms">Desktop, web and Android builds</a></li><li class="d2"><a href="#updates-and-license">Updates and attribution</a></li></ul></nav>
+    <section id="local-start" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="local-start">
+<h2>Starta från projektets källkod</h2>
+<p>Den dokumenterade vägen för Attainder använder Node.js 24, npm och en installerad, inloggad Codex CLI eller Claude Code. Kör följande i en terminal:</p>
+<pre><code class="language-sh">git clone https://github.com/sp1e/Attainder.git
+cd Attainder
 npm ci
-npm run dev
+node scripts/fetch-map-assets.mjs --ensure
+npm run build
+node scripts/launch-dynasties.mjs
 </code></pre>
-<p>That starts the Vite dev server. To run the desktop shell instead, <code>npm run build</code> then
-<code>npm run electron</code>. The map binaries are not in the Git repository — they are release assets,
-fetched by <code>node scripts/fetch-map-assets.mjs</code>. The default branch is the stable release; the
-beta&#39;s code is on the <code>beta</code> branch.</p>
-<p>A copy run from source does not update itself, and there is no update script. To update it,
-pull the newest code, install again and rebuild:</p>
-<pre><code>git pull
+<p>På Windows kan du efter den första byggningen dubbelklicka på <code>Start-Attainder.cmd</code>. Startaren öppnar <code>http://127.0.0.1:4167</code>. Anslut en modell och välj sedan en historisk start och om du vill följa riket eller familjen.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="local-start">
+<h2>Start from the project checkout</h2>
+<p>The documented Attainder route uses Node.js 24, npm, and an installed, signed-in Codex CLI or Claude Code. In a terminal, run:</p>
+<pre><code class="language-sh">git clone https://github.com/sp1e/Attainder.git
+cd Attainder
 npm ci
-node scripts/fetch-map-assets.mjs
+node scripts/fetch-map-assets.mjs --ensure
+npm run build
+node scripts/launch-dynasties.mjs
 </code></pre>
-<p>The last line downloads only the map files that are missing or out of date. Then start it as
-before (<code>npm run build</code> first for the desktop shell).</p>
-<p>Full details are in
-<a href="https://github.com/Open-Historia/open-historia/tree/main/docs"><code>docs/</code></a>, and
-<a href="/wiki/self-hosting/">hosting a server</a> covers running it for other devices on your network.</p>
-<h2 id="next">Next</h2>
-<p>Whichever way you installed, the game is not much use until it has a model to talk to.
-Go to <a href="/wiki/ai-setup/">connecting an AI provider</a>.</p>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/"><span>← Previous</span><b>Wiki home</b></a>
-        <a class="next" href="/wiki/ai-setup/"><span>Next →</span><b>Connect an AI</b></a>
+<p>On Windows, after the first build you can double-click <code>Start-Attainder.cmd</code>. The launcher opens <code>http://127.0.0.1:4167</code>. Connect a model, then choose a historical start and whether to follow the realm or the family.</p>
+</div>
+</section>
+<section id="map-and-data" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="map-and-data">
+<h2>Kartfiler och ditt bibliotek</h2>
+<p>Hämta kartfilerna före byggningen: byggningen kopierar dem till <code>dist/</code>. Den dokumenterade hämtningen är cirka 290 MB. Saknade filer gör att kartförfrågningar misslyckas. Du kan köra hämtningskommandot igen när filer saknas eller är inaktuella.</p>
+<p>Nya utcheckningar lagrar kampanjer i <code>play-data/</code> och startloggar i <code>reports/launcher/</code>. <code>ATTAINDER_DATA_HOME</code> väljer en annan dataplats. Det äldre namnet <code>TIDES_DATA_HOME</code> fungerar också. Säkerhetskopiera biblioteket och <a href="/wiki/saves/">exportera viktiga kampanjer</a> innan du ersätter en installation.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="map-and-data">
+<h2>Map files and your library</h2>
+<p>Fetch the map files before building: the build copies them into <code>dist/</code>. The documented download is about 290 MB; missing files lead to failed map requests. The fetch command can be run again when files are missing or outdated.</p>
+<p>Fresh checkouts keep campaigns in <code>play-data/</code> and launcher logs in <code>reports/launcher/</code>. <code>ATTAINDER_DATA_HOME</code> selects another data home; the older <code>TIDES_DATA_HOME</code> name is still accepted. Back up your library and <a href="/wiki/saves/">export important campaigns</a> before replacing an installation.</p>
+</div>
+</section>
+<section id="platforms" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="platforms">
+<h2>Skrivbords-, webb- och Androidbyggen</h2>
+<p>Använd källkodsstarten ovan för den dokumenterade installationen. Om du väljer ett skrivbords-, webb- eller Androidpaket kontrollerar du vilken Attainder-version utgivaren har tagit med.</p>
+<p>En statisk webbplats kan inte starta den lokala CLI-anslutningen på din dator. Inställningarna har konfiguration för API-leverantörer. Läs om <a href="/wiki/ai-setup/">modellanslutning</a>, <a href="/wiki/mobile/">mobilens begränsningar</a> och <a href="/wiki/self-hosting/">egen server</a> för de tillgängliga anslutningarna.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="platforms">
+<h2>Desktop, web and Android builds</h2>
+<p>Use the source launch above for the documented setup. If you choose a desktop, web or Android package, check which Attainder version its publisher includes.</p>
+<p>A static website cannot start the local CLI bridge on your computer. API-provider configuration is available through settings. Read <a href="/wiki/ai-setup/">model setup</a>, <a href="/wiki/mobile/">mobile limitations</a> and <a href="/wiki/self-hosting/">self-hosting</a> for the available connections.</p>
+</div>
+</section>
+<section id="updates-and-license" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="updates-and-license">
+<h2>Uppdateringar och erkännanden</h2>
+<p>För en källkodsutcheckning installerar du uppdaterade beroenden, hämtar aktuella kartfiler och bygger om innan du startar den nya koden. Den ärvda automatiska uppdateraren använder utgivningsflöden uppströms. Den är ingen garanti för Attainder-uppdateringar. Behåll en säkerhetskopia när du byter version.</p>
+<p>Attainder är ett självständigt derivat av Open Historia. Koden behåller <strong>AGPL-3.0-or-later</strong> och uppströms upphovsrättsmeddelanden. Delning av scenarier använder <strong>CC BY 4.0</strong>. Separat hänvisade kartor, bilder och annat material behåller sina egna villkor.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="updates-and-license">
+<h2>Updates and attribution</h2>
+<p>For a source checkout, install the updated dependencies, refresh map assets and rebuild before launching the new code. The inherited automatic updater targets upstream release feeds; it is not an Attainder update guarantee. Keep a backup before changing versions.</p>
+<p>Attainder is an independent derivative of Open Historia. The code retains <strong>AGPL-3.0-or-later</strong> and upstream copyright notices. Scenario sharing uses <strong>CC BY 4.0</strong>; separately referenced maps, artwork and other material retain their own terms.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/"><span>← Föregående</span><b>Guidens startsida</b></a>
+        <a class="next" href="/wiki/ai-setup/"><span>Nästa →</span><b>Modellanslutning</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/"><span>← Previous</span><b>Guide home</b></a>
+        <a class="next" href="/wiki/ai-setup/"><span>Next →</span><b>Model setup</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -337,27 +258,71 @@ Go to <a href="/wiki/ai-setup/">connecting an AI provider</a>.</p>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {
