@@ -44,14 +44,14 @@ const TITLE_EN = "Hugh Capet is crowned king";
 
 const fileJson = async (path) => (path === NATIVE_PACK_PATHS.code ? { ...readPublic(path), ...SAMPLE_CODE } : readPublic(path));
 
-// The code layer as it will be when en.json is complete: every entry of
-// catalog-sv.json as a key, mapped to itself behind a marker (a pattern keeps
-// its slots, so it matches as the real translation will). What en.json
-// already has wins.
+// The code layer by its keys alone: every entry of catalog-sv.json mapped to
+// itself behind a marker (a pattern keeps its slots, so it matches as the real
+// translation does). The marker wins over en.json, so these tests ask which
+// Swedish keys answer for a text and do not depend on the English wording.
 const MARKER = "EN:";
 const markerCodePack = () => ({
-  ...Object.fromEntries(readPublic("/lang/attainder/catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
   ...readPublic(NATIVE_PACK_PATHS.code),
+  ...Object.fromEntries(readPublic("/lang/attainder/catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
 });
 
 // ---- the native book ----
@@ -230,10 +230,10 @@ test("English mode: the native book translates the page in two tiers and asks no
   const title = addText(TITLE);
   const strong = addText("Riket går i krig vid Karls sida");
   const gap = addText("Hovet har inget silver kvar");
-  addText("Mål", { native: true });
+  addText("Sjöfågel", { native: true });
   // Swedish the detector does not recognise: a gap inside a native view, the
   // English interface for all the translator knows outside one.
-  const unmarked = addText("Under beskydd", { native: true });
+  const unmarked = addText("Plommon i korg", { native: true });
   addText("Fly till landsbygden");
   // A Swedish entry the English interface also writes.
   const stateInside = addText("stat", { native: true });
@@ -252,7 +252,7 @@ test("English mode: the native book translates the page in two tiers and asks no
   assert.equal(title.nodeValue, TITLE_EN, "an entry applies everywhere");
   assert.equal(strong.nodeValue, "The realm goes to war at Charles's side", "and so does a strong pattern");
   assert.equal(gap.nodeValue, "Hovet har inget silver kvar", "what the book lacks stays Swedish");
-  assert.equal(unmarked.nodeValue, "Under beskydd");
+  assert.equal(unmarked.nodeValue, "Plommon i korg");
   assert.equal(stateInside.nodeValue, "state", "the Swedish word inside a native view");
   assert.equal(statOutside.nodeValue, "stat", "the interface's own word outside one");
   assert.equal(free.nodeValue, "Sändebud", "data-no-translate is still skipped");
@@ -265,7 +265,7 @@ test("English mode: the native book translates the page in two tiers and asks no
   const state = window.__ohI18n;
   assert.deepEqual([state.language, state.mode, state.packed], ["en", "native", false]);
   assert.equal(typeof state.rescan, "function");
-  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Mål", "Under beskydd"],
+  assert.deepEqual([...state.missing].sort(), ["Hovet har inget silver kvar", "Plommon i korg", "Sjöfågel"],
     "outside a native view only text the detector reads as Swedish is a gap; inside one every unknown string is");
   assert.equal(state.pending.size, 0);
 
@@ -278,8 +278,8 @@ test("English mode: the native book translates the page in two tiers and asks no
   // reading, weak patterns included, and nothing listed for what it lacks.
   assert.equal(nativeReading("Karl dog 814"), "Charles died 814");
   assert.equal(nativeReading("Sändebud"), "Envoy");
-  assert.equal(nativeReading("Drottningen av Navarra"), "Drottningen av Navarra");
-  assert.equal(state.missing.has("Drottningen av Navarra"), false, "a searched field is not a rendered gap");
+  assert.equal(nativeReading("Plommonträdets skugga"), "Plommonträdets skugga");
+  assert.equal(state.missing.has("Plommonträdets skugga"), false, "a searched field is not a rendered gap");
   assert.equal(nativeReading(null), null);
   enqueueStrings(["Declare war on France", "A new scenario"]);
   enqueueContentStrings({ name: "The Long Peace", description: "A scenario about a long peace." });

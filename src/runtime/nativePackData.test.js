@@ -23,11 +23,10 @@ import { SHARED_WITH_INTERFACE, translateInTier } from "./translatorMode.js";
 // Rome settlement note).
 const KNOWN_STALE = [];
 
-// Catalog entries (catalog-sv.json) that en.json does not translate yet. The
-// pack is still {} on this branch, so this is the size of the catalog; the
-// translation slice lowers it to 0. A catalog rebuild changes it with the
-// catalog, and a translation that lands must lower it here.
-const EXPECTED_MISSING = 3169;
+// Catalog entries (catalog-sv.json) that en.json does not translate. Every
+// entry is translated, so new Swedish text in code needs its English in
+// en.json before this passes.
+const EXPECTED_MISSING = 0;
 
 const REPO = new URL("../../", import.meta.url);
 const readText = (relative) => fs.readFileSync(new URL(relative, REPO), "utf8").replace(/\r\n/g, "\n");
@@ -133,16 +132,15 @@ test("en.json has no wrong slot, no empty text and no key outside the catalog, a
   assert.equal(report.translated + report.missing.length, report.total);
 });
 
-// The code layer of the native pack as it will be when en.json is complete.
-// en.json is written in a later slice, and "which Swedish keys answer for this
-// text?" cannot wait for it: every entry of catalog-sv.json is a key here,
-// mapped to itself behind a marker ("EN:{{name}} föds"). A pattern keeps its
-// slots, so it compiles and matches as the real translation will. A
-// translation en.json already has wins.
+// The code layer of the native pack by its keys alone. "Which Swedish keys
+// answer for this text?" should not depend on the English wording: every entry
+// of catalog-sv.json is a key here, mapped to itself behind a marker
+// ("EN:{{name}} föds"). A pattern keeps its slots, so it compiles and matches
+// as the real translation does. The marker wins over en.json.
 const MARKER = "EN:";
 const markerCodePack = () => ({
-  ...Object.fromEntries(readLang("catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
   ...readLang("en.json"),
+  ...Object.fromEntries(readLang("catalog-sv.json").entries.map((entry) => [entry, `${MARKER}${entry}`])),
 });
 
 // The whole native book: the research pairs, the package text and every key of
