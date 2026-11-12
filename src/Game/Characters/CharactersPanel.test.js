@@ -1496,6 +1496,19 @@ function seededView(id) {
   const { data } = JSON.parse(readFileSync(new URL(`../../../server/seed/historical/${id}/scenario.json`, import.meta.url), "utf8"));
   return getCharacterPresentation(createHistoricalCharacterSystem({ historicalScenario: data.world.historicalScenario, date: data.game.startDate, polityId: data.game.country, seed: 321 }));
 }
+const facts = (tree, type) => findAll(tree, (node) => node.type === type).map(textOf);
+
+test("a dead person's card gives the date and the cause of death; a living one gives neither", () => {
+  const view = seededView("charlemagne-800");
+  Object.assign(view.people.find((person) => person.id === "karl-den-yngre"), { diedAt: "0802-12-25", deathReason: "Föll i en duell" });
+  const dead = mountPeople({ selectedId: "karl-den-yngre", view }).tree;
+  const terms = facts(dead, "dt"), values = facts(dead, "dd");
+  assert.ok(terms.includes("Avliden"));
+  assert.equal(values[terms.indexOf("Dödsorsak")], "Föll i en duell");
+  const living = facts(mountPeople({ selectedId: "pippin-av-italien", view }).tree, "dt");
+  assert.equal(living.includes("Avliden") || living.includes("Dödsorsak"), false);
+});
+
 const survivalTags = (tree) => findAll(tree, (node) => node.type === "span" && textOf(node) === "Överlevnad osäker");
 const families = (view) => {
   const { FamiliesView } = loadPanel(view, { panelState: false });

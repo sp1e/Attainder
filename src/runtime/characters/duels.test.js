@@ -88,6 +88,9 @@ test('forbidding the duel stresses the heir and turns the heir against the ruler
   assert.equal(cause.amount, -20);
   assert.equal(after.people[RIVAL].diedAt, null);
   assert.equal(duels(after)[0].status, 'resolved');
+  const choice = after.log.at(-1);
+  assert.equal(choice.type, 'choice');
+  assert.deepEqual(choice.participants, [...new Set(choice.participants)], 'the chronicle names each person once');
 });
 
 test('the fighter wins by the hashed roll against the prowess chance, and a loser who lives is injured and resentful', () => {
