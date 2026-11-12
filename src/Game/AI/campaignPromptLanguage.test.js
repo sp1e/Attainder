@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildPromptContext, buildWorldSummary } from './promptContext.js';
+import { buildPromptContext, buildWorldSummary, playerPolityLabel } from './promptContext.js';
 import { isCharacterCampaign } from '../../runtime/characterLanguage.js';
 import { createDynastyWorld } from '../../runtime/dynastyScenario.js';
 import { languageDirective } from '../../runtime/i18n.js';
@@ -74,4 +74,13 @@ test('a world that cannot be read leaves the directive out and says so in the de
 
 test('callAI uses the campaign directive for the interface mode and leaves the other modes as they were', () => {
   assert.match(mainSource, /const directive = languageMode === "none" \? ""\s*: languageMode === "chat" \? chatLanguageDirective\(\)\s*: await campaignLanguageDirective\(\);/);
+});
+
+test('a character campaign names its player polity with the id beside it, and other campaigns keep the stored value', () => {
+  const world = { characterSystem: {}, polityOverrides: { 'carolingian-realm': { name: 'Karls rike (karolingiska riket)', code: 'carolingian-realm' } } };
+  assert.equal(playerPolityLabel(world, 'carolingian-realm'), 'Karls rike (karolingiska riket) (id: carolingian-realm)');
+  assert.equal(playerPolityLabel(world, 'unknown-realm'), 'unknown-realm', 'a polity without a record keeps its id');
+  assert.equal(playerPolityLabel({ polityOverrides: world.polityOverrides }, 'carolingian-realm'), 'carolingian-realm', 'no character system, no change');
+  assert.equal(playerPolityLabel({}, 'GBR'), 'GBR');
+  assert.equal(playerPolityLabel(world, ''), 'Unknown polity');
 });

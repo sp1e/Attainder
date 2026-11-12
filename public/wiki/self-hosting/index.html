@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Kör en egen server — Guide till Attainder" data-title-en="Run your own server — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Hosting a Server — Open Historia Wiki</title>
+  <title>Kör en egen server — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/self-hosting/" />
-  <meta name="description" content="Run Open Historia on your own machine, play offline, or reach it from your phone on the same network." />
+  <meta name="description" content="Bygg den lokala servern, hantera dess data och förstå vad nätverksåtkomst tillåter." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/self-hosting/" />
-  <meta property="og:title" content="Hosting a Server — Open Historia Wiki" />
-  <meta property="og:description" content="Run Open Historia on your own machine, play offline, or reach it from your phone on the same network." />
+  <meta property="og:title" content="Kör en egen server — Guide till Attainder" />
+  <meta property="og:description" content="Bygg den lokala servern, hantera dess data och förstå vad nätverksåtkomst tillåter." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hosting a Server — Open Historia Wiki" />
-  <meta name="twitter:description" content="Run Open Historia on your own machine, play offline, or reach it from your phone on the same network." />
+  <meta name="twitter:title" content="Kör en egen server — Guide till Attainder" />
+  <meta name="twitter:description" content="Bygg den lokala servern, hantera dess data och förstå vad nätverksåtkomst tillåter." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,274 +81,168 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/" class="on" aria-current="page">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Hosting a Server
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Kör en egen server
     </nav>
-    <h1>Hosting a Server</h1>
-    <p class="tagline">Run Open Historia on your own machine, play offline, or reach it from your phone on the same network.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#what-you-get">What you get</a></li><li class="d2"><a href="#running-it">Running it</a></li><li class="d2"><a href="#connecting-from-another-device">Connecting from another device</a></li><li class="d3"><a href="#read-this-before-you-open-it-up">Read this before you open it up</a></li><li class="d2"><a href="#environment-variables">Environment variables</a></li><li class="d2"><a href="#running-as-a-service">Running as a service</a></li><li class="d2"><a href="#the-map-data">The map data</a></li><li class="d2"><a href="#where-your-files-are">Where your files are</a></li><li class="d2"><a href="#privacy">Privacy</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>The desktop app already runs a local server — that is how it works. This page is about running
-that server deliberately: to play entirely offline, to reach your campaign from another device,
-or to keep everything on hardware you control.</p>
-<p><strong>Hosting a server is not multiplayer.</strong> It lets <em>you</em> reach <em>your</em> game from another device. It
-does not let two people play the same campaign. If you connect from your phone and your laptop at
-once, you are two windows onto one single-player game, and you will fight each other for it.</p>
-<p class="beta-note"><b>Multiplayer is on beta, and needs no server of yours.</b> The main menu's
-<b>Lobbies</b> tab hosts the game you have open, from the desktop app, under an invite code.
-Friends join with <b>Join a private lobby</b> from the beta desktop app or the beta Android app,
-need the lobby's scenario in their library, and each take a country nobody else plays. The host's
-computer runs the game and pays for its AI with the host's key. Players connect straight to the
-host's computer, found through public relay servers, so the host and each player can see each
-other's network address: share the code only with people you trust. Some strict networks, many
-mobile carriers among them, cannot connect this way.</p><h2 id="what-you-get">What you get</h2>
-<ul>
-<li><strong>Fully offline play.</strong> After install, nothing needs the internet — map, rendering, scenarios,
-editor and interface are all local. Only the AI needs a connection, and not even that if you
-run a <a href="/wiki/ai-setup/">local model</a>.</li>
-<li><strong>Your data on your disk.</strong> Saves and scenarios are files you can back up.</li>
-<li><strong>Play from the sofa.</strong> Start a campaign on your PC, carry on from a tablet.</li>
-</ul>
-<h2 id="running-it">Running it</h2>
-<p>If you installed the desktop app, you are already running it. To run the server on its own from
-a source checkout:</p>
-<pre><code>git clone https://github.com/Open-Historia/open-historia.git
-cd open-historia
-npm ci
-node scripts/fetch-map-assets.mjs
-npm run build
-node server/server.js
-</code></pre>
-<p>It listens on <strong>port 3000</strong>. Open <code>http://localhost:3000</code>. The server serves the game that
-<code>npm run build</code> made, so build again after you pull a newer version.</p>
-<p>That is the stable build. For the beta, run <code>git checkout beta</code> before <code>npm ci</code>.</p>
-<p>Node.js <code>^20.19.0</code> or <code>&gt;=22.12.0</code> is required on the server machine. Client devices need only a
-browser.</p>
-<h2 id="connecting-from-another-device">Connecting from another device</h2>
-<p><strong>The server answers only the machine it runs on</strong> until you say otherwise. There are two ways to
-open it up:</p>
-<ul>
-<li><strong>In the game:</strong> ☰ → Settings → Advanced → Network → <strong>Let other devices connect</strong>. It takes
-effect immediately, without a restart, is remembered, and shows the address to type on the
-other device.</li>
-<li><strong>From the environment,</strong> for a headless box: <code>OH_HOST=0.0.0.0 node server/server.js</code> for every
-interface, or <code>OH_HOST=192.168.1.9</code> for one. When <code>OH_HOST</code> is set it wins, and the in-game
-switch says the environment owns the decision.</li>
-</ul>
-<p>Then open the address it gives you — <code>http://192.168.x.x:3000</code> — from the other device.</p>
-<p class="beta-note"><b>On beta the server answers only to names it knows</b>: localhost, IP
-addresses and this computer's own name. That stops a web page from reaching your server by
-pointing a name of its own at it. To reach it by any other name — one on your network, or one in
-front of a reverse proxy — list the name in <code>OH_ALLOWED_HOSTS</code>, comma-separated.</p><p>Writes from a page served by a <em>different</em> origin are blocked either way, which is what stops a
-web page you visit from editing your saves. To allow them:</p>
-<pre><code>OH_ALLOW_CROSS_ORIGIN=1 node server/server.js
-</code></pre>
-<h3 id="read-this-before-you-open-it-up">Read this before you open it up</h3>
-<p><strong>The game&#39;s API has no password.</strong> There is no login, no token and no permission model.</p>
-<p>Once it is open, <strong>anyone who can reach port 3000 can read, change and delete your games and
-scenarios.</strong> On a home network behind a router that is generally fine. It is not fine on a
-shared, public or untrusted network, and it is emphatically not fine exposed directly to the
-internet. Turn the switch off again when you are done.</p>
-<p>Two things soften it: requests from other devices are rate-limited (1,200 a minute by default),
-and the <strong>AI relay</strong> — which forwards requests to providers that refuse browser calls — still
-answers only this machine, so your computer cannot be used as an open proxy by anything on the
-network. Set <code>OH_ALLOW_REMOTE_RELAY=1</code> if you do want a device on your network to relay its AI
-calls through this server.</p>
-<p>If you want to reach your game from outside your home, use a private network overlay —
-<strong>Tailscale</strong>, <strong>ZeroTier</strong> or a WireGuard tunnel — rather than forwarding port 3000. Those give
-you the same access without publishing an unauthenticated API to the world.</p>
-<p>If you must expose it, put it behind a reverse proxy such as nginx or Caddy with authentication
-in front.</p>
-<h2 id="environment-variables">Environment variables</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Variable</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>PORT</code></td>
-<td>Port to listen on. Default <code>3000</code>.</td>
-</tr>
-<tr>
-<td><code>OH_HOST</code></td>
-<td>Address to bind. Unset: this machine only, unless the in-game switch says otherwise. <code>0.0.0.0</code> for every interface. Overrides the switch.</td>
-</tr>
-<tr>
-<td><code>OH_DATA_DIR</code></td>
-<td>Where writable state lives — saves, scenarios, uploads. Relocate the whole library with this.</td>
-</tr>
-<tr>
-<td><code>OH_ALLOW_CROSS_ORIGIN</code></td>
-<td>Set to <code>1</code> to accept writes from a page on another origin.</td>
-</tr>
-<tr>
-<td><code>OH_ALLOW_REMOTE_RELAY</code></td>
-<td>Set to <code>1</code> to let other devices relay AI calls through this server.</td>
-</tr>
-<tr>
-<td><code>OH_RATE_LIMIT</code></td>
-<td>Requests a minute allowed from each other device. Default <code>1200</code>. This machine is exempt.</td>
-</tr>
-<tr>
-<td><code>OH_RELAY_TIMEOUT_MS</code></td>
-<td>How long the AI relay waits for a generation to finish. Default ten minutes.</td>
-</tr>
-<tr>
-<td><code>OH_ASSETS_DIR</code></td>
-<td>Where the map binaries are read from.</td>
-</tr>
-<tr>
-<td><code>OH_VISIT_COUNT</code></td>
-<td>Set to <code>0</code> and the pages this server serves never load a visit counter and never ask.</td>
-</tr>
-<tr>
-<td><code>OH_DISCORD_PRESENCE</code></td>
-<td>Set to <code>0</code> and the server never tells Discord what you are playing.</td>
-</tr>
-<tr>
-<td><code>OH_ALLOWED_HOSTS</code></td>
-<td>Beta only. Extra names the server answers to, comma-separated; <code>*</code> answers every name.</td>
-</tr>
-</tbody></table></div>
-<h2 id="running-as-a-service">Running as a service</h2>
-<p><strong>Linux — systemd.</strong> Create <code>/etc/systemd/system/open-historia.service</code>:</p>
-<pre><code>[Unit]
-Description=Open Historia Game Server
-After=network.target
-
-[Service]
-Type=simple
-User=your-user
-WorkingDirectory=/path/to/open-historia
-ExecStart=/usr/bin/node server/server.js
-Restart=on-failure
-Environment=PORT=3000
-Environment=OH_HOST=0.0.0.0
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>Then <code>sudo systemctl enable --now open-historia</code>. Drop the <code>OH_HOST</code> line if only that machine
-should reach it — and read the warning above if you keep it.</p>
-<p><strong>macOS</strong> — a <code>launchd</code> plist in <code>~/Library/LaunchAgents/</code>.</p>
-<p><strong>Windows</strong> — Task Scheduler, triggered at logon, running <code>node server/server.js</code> in the project
-directory.</p>
-<h2 id="the-map-data">The map data</h2>
-<p>The map binaries — the world&#39;s vector tiles, its regions and its cities, about 290 MB on the
-stable build and about 150 MB on beta — are not in the Git repository. They are release assets,
-fetched and checked against their checksums by:</p>
-<pre><code>node scripts/fetch-map-assets.mjs
-</code></pre>
-<p>Without them the map is blank. Run it again after pulling a newer version: it downloads only what
-changed. The desktop app does this for you on first launch.</p>
-<h2 id="where-your-files-are">Where your files are</h2>
-<p>Under the data directory: your games, your scenarios, uploaded basemaps and flags, map editor
-documents, and the manifests that index them. Back up the directory and you have backed up
-everything.</p>
-<p>Do not edit save files by hand while the game is running. Use the <a href="/wiki/cheats/">cheats panel</a>
-for changing a campaign — it goes through the same validation the game does.</p>
-<h2 id="privacy">Privacy</h2>
-<p>No accounts, and no game data leaves your machine. Your AI provider key is stored locally and
-sent only to the provider you configured.</p>
-<p>Nothing counts your visits until you say yes. A game page opened on this computer asks whether
-it may count visits with Google Analytics and Umami, and loads neither unless you agree;
-<strong>Settings → General → Privacy → Count my visits</strong> changes the answer, and <code>OH_VISIT_COUNT=0</code>
-stops the question altogether. A page opened from another device over the network is never
-counted. The count carries no game data.</p>
-<p>If Discord is running on the same computer, the server tells it what you are playing, so your
-profile reads &quot;Playing Open Historia&quot; with your country, scenario and date. <strong>Show what I am
-playing on Discord</strong>, in the same Privacy section, turns it off.</p>
-<p>Importing a scenario from the Community Hub downloads its checked copy from GitHub, and GitHub&#39;s
-count of those downloads is what the hub shows as installs — the game reports nothing of its own.
-(Versions before October 2026 pinged an anonymous counter on every import;
-<code>OH_IMPORT_COUNTER_URL</code>, which switched that off, no longer does anything.)</p>
-<h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/mobile/">Playing on your phone</a> — the Android app, which needs no server at all.</li>
-<li><a href="/wiki/saves/">Saves and rollback</a> — what is in the data directory.</li>
-<li><a href="/wiki/ai-setup/">Connecting an AI provider</a> — running a model locally too.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/community-hub/"><span>← Previous</span><b>The community hub</b></a>
-        <a class="next" href="/wiki/mobile/"><span>Next →</span><b>Playing on your phone</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Run your own server
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Kör en egen server</span><span data-help-lang="en" lang="en">Run your own server</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Bygg den lokala servern, hantera dess data och förstå vad nätverksåtkomst tillåter.</span><span data-help-lang="en" lang="en">Build the local server, manage its data and understand what network access permits.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#run">Kör det byggda spelet</a></li><li class="d2"><a href="#network">Anslut en annan enhet medvetet</a></li><li class="d2"><a href="#models">Modellåtkomst från en annan skärm</a></li><li class="d2"><a href="#data-and-service">Data, konfiguration och obevakad start</a></li><li class="d2"><a href="#privacy">Nätverkstrafik och ärvda tjänster</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#run">Run the built game</a></li><li class="d2"><a href="#network">Connect another device deliberately</a></li><li class="d2"><a href="#models">Model access from another screen</a></li><li class="d2"><a href="#data-and-service">Data, configuration and unattended launch</a></li><li class="d2"><a href="#privacy">Network activity and inherited services</a></li></ul></nav>
+    <section id="run" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="run">
+<h2>Kör det byggda spelet</h2>
+<p>Följ <a href="/wiki/install/">installationen</a> för att installera beroenden, hämta kartan och bygga spelet. <code>node server/server.js</code> serverar <code>dist/</code> på port <code>3000</code> om inte <code>PORT</code> anger något annat. Öppna <code>http://127.0.0.1:3000</code> på samma dator. Bygg om när klientkoden ändras.</p>
+<p>Attainder-startaren är en separat genväg. Den väljer port <code>4167</code>, binder uttryckligen till <code>127.0.0.1</code> och väljer sin <code>play-data/</code>-katalog. Dess <code>OH_HOST</code>-inställning har företräde framför nätverksreglaget.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="run">
+<h2>Run the built game</h2>
+<p>Follow <a href="/wiki/install/">installation</a> to install dependencies, fetch the map and build the game. <code>node server/server.js</code> serves <code>dist/</code> on port <code>3000</code> unless <code>PORT</code> overrides it. Open <code>http://127.0.0.1:3000</code> on that computer. Rebuild when the client code changes.</p>
+<p>The Attainder launcher is a separate convenience route: it selects port <code>4167</code>, explicitly binds <code>127.0.0.1</code> and selects its <code>play-data/</code> directory. Its <code>OH_HOST</code> setting takes precedence over the network switch.</p>
+</div>
+</section>
+<section id="network" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="network">
+<h2>Anslut en annan enhet medvetet</h2>
+<p>Den vanliga servern binder till den egna datorn om inte nätverksdelning aktiveras. På värddatorn kan nätverksreglaget slå på åtkomst och visa lokala adresser. <code>OH_HOST</code> kan i stället välja bindning, exempelvis <code>0.0.0.0</code>. När variabeln är satt låser den detta val. Använd den visade värdadressen och porten från den andra enheten.</p>
+<p>Detta API har inget lösenord. Alla som når den öppnade servern kan läsa, ändra eller radera dess spel. Håll den på ett betrott nätverk eller bakom autentiserad privat åtkomst. Ursprungskontrollen blockerar skrivningar från orelaterade webbsidor men autentiserar inte en nätverksklient. En annan skärm når samma bibliotek. Det är inget dokumenterat system för flerspelarlobbyer.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="network">
+<h2>Connect another device deliberately</h2>
+<p>The ordinary server binds to this computer unless network sharing is enabled. On the host, the network control can enable access and display local addresses. <code>OH_HOST</code> can instead select a binding, such as <code>0.0.0.0</code>; when set, it locks that decision. Use the displayed host address and port from the other device.</p>
+<p>This API has no password. Anyone able to reach the exposed server can read, change or delete its games. Keep it on a trusted network or behind authenticated private access. The origin guard blocks unrelated browser writes; it does not authenticate a network client. Opening another screen is access to the same library, not a documented multiplayer lobby system.</p>
+</div>
+</section>
+<section id="models" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="models">
+<h2>Modellåtkomst från en annan skärm</h2>
+<p>CLI-anslutningen till Codex och Claude accepterar bara förfrågningar från den egna datorn. LAN-åtkomst gör inte denna anslutning tillgänglig för en telefon. Inställningar för API-leverantörer är en annan transport, och klienten kan behöva en egen konfiguration. Även det allmänna AI-reläet är lokalt som standard. <code>OH_ALLOW_REMOTE_RELAY=1</code> tillåter uttryckligen fjärranrop genom reläet. Det tar inte bort CLI-anslutningens begränsning.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="models">
+<h2>Model access from another screen</h2>
+<p>The Codex/Claude CLI bridge accepts only loopback requests. Enabling LAN access does not make that bridge available to a phone. API-provider settings are another transport; a client may need its own configuration. The general AI relay is also local-only by default. <code>OH_ALLOW_REMOTE_RELAY=1</code> deliberately permits remote relay calls; it does not remove the CLI bridge restriction.</p>
+</div>
+</section>
+<section id="data-and-service" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="data-and-service">
+<h2>Data, konfiguration och obevakad start</h2>
+<p><code>OH_DATA_DIR</code> väljer serverns skrivbara bibliotek. Utan variabeln använder den direktstartade servern <code>server/data</code>. Startaren väljer en annan projektdataplats enligt <a href="/wiki/install/#map-and-data">installationen</a>. Säkerhetskopiera katalogen och använd <a href="/wiki/saves/">kampanjexporter</a> för flyttbara kopior. Redigera inte aktiva kampanjfiler för hand.</p>
+<p>För en obevakad tjänst använder du en tjänstehanterare eller schemalagd aktivitet som kör <code>node server/server.js</code> i den byggda utcheckningen, med avsedd datakatalog, port och värdmiljö. Ange arbetskatalog och kontobehörigheter uttryckligen. <code>OH_RATE_LIMIT</code> ändrar minutgränsen för fjärrklienter, vars standard är <code>1200</code>. <code>OH_ALLOW_CROSS_ORIGIN=1</code> lättar på ursprungskontrollen för skrivningar och ska inte behövas för den vanliga sidan från samma ursprung.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="data-and-service">
+<h2>Data, configuration and unattended launch</h2>
+<p><code>OH_DATA_DIR</code> selects the writable server library; without it, the direct server uses <code>server/data</code>. The launcher chooses a different project data home as described on <a href="/wiki/install/#map-and-data">installation</a>. Back up that directory and use <a href="/wiki/saves/">campaign exports</a> for portable copies. Do not hand-edit live campaign files.</p>
+<p>For an unattended service, use a service manager or scheduled task that runs <code>node server/server.js</code> in the built checkout, with the intended data directory, port and host environment. Keep the working directory and account permissions explicit. <code>OH_RATE_LIMIT</code> changes the remote per-minute limit (default <code>1200</code>); <code>OH_ALLOW_CROSS_ORIGIN=1</code> relaxes the write-origin guard and should not be needed for the ordinary same-origin page.</p>
+</div>
+</section>
+<section id="privacy" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="privacy">
+<h2>Nätverkstrafik och ärvda tjänster</h2>
+<p>Modellanrop skickar kampanjens sammanhang till den valda modelltransporten. Gemenskapshämtningar och uppdateringsflöden använder externa tjänster. Läs <a href="/wiki/settings/">inställningarna</a> och granska diagnostikexporter innan du delar dem.</p>
+<p>Sekretessreglagen beror på bygget. Räkna mina besök visas där besöksräkning finns och kräver samtycke. Discord-aktivitet är en separat skrivbordsfunktion där den stöds. Källkoden behåller Open Historias meddelanden om AGPL-3.0-or-later.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="privacy">
+<h2>Network activity and inherited services</h2>
+<p>Model calls send campaign context to the selected model transport. Community downloads and update feeds use external services. Review <a href="/wiki/settings/">settings</a> and read a diagnostic export before sharing it.</p>
+<p>Privacy switches depend on the build: Count my visits appears where visit counting is available and requires consent; Discord activity is a separate desktop feature where supported. The source retains Open Historia’s AGPL-3.0-or-later notices.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/community-hub/"><span>← Föregående</span><b>Gemenskapshubb</b></a>
+        <a class="next" href="/wiki/mobile/"><span>Nästa →</span><b>Mobil</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/community-hub/"><span>← Previous</span><b>Community Hub</b></a>
+        <a class="next" href="/wiki/mobile/"><span>Next →</span><b>Mobile</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -340,27 +254,71 @@ count of those downloads is what the hub shows as installs — the game reports 
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { buildPromptRegionCatalog } from './promptRegionCatalog.js';
-import { buildWorldSummary, filterToRenderedRegions } from './promptContext.js';
+import { buildWorldSummary, filterToRenderedRegions, playerPolityLabel } from './promptContext.js';
 import { normalizeWorldState } from '../../runtime/gameState.js';
 import { buildLookupContext, executeLookup } from './lookupTools.js';
 
@@ -41,7 +41,7 @@ const loaderEnd = promptSource.indexOf('\n', loaderAt);
 const promptAt = promptSource.indexOf('export const buildPromptContext = async');
 assert.ok(loaderAt >= 0 && promptAt > loaderAt);
 const promptCode = `${promptSource.slice(loaderAt, loaderEnd)}\n${promptSource.slice(promptAt).replace('export const buildPromptContext', 'const buildPromptContext')}\nreturn buildPromptContext;`;
-const assemblePrompt = new Function('buildPromptRegionCatalog', 'loadRegionCatalog', 'normalizeArray', 'normalizeString', 'buildWorldSummary', promptCode)(selectCatalog, loadRegionCatalog, normalizeArray, normalizeString, buildWorldSummary);
+const assemblePrompt = new Function('buildPromptRegionCatalog', 'loadRegionCatalog', 'normalizeArray', 'normalizeString', 'buildWorldSummary', 'playerPolityLabel', promptCode)(selectCatalog, loadRegionCatalog, normalizeArray, normalizeString, buildWorldSummary, playerPolityLabel);
 
 const lookupAt = gameplaySource.indexOf('const buildTaskLookups =');
 const lookupEnd = gameplaySource.indexOf('// The places a text names', lookupAt);

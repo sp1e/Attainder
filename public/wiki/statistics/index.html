@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Statistik och kampanjresurser — Guide till Attainder" data-title-en="Statistics and campaign resources — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>National Statistics — Open Historia Wiki</title>
+  <title>Statistik och kampanjresurser — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/statistics/" />
-  <meta name="description" content="The stat sheet: strategic indices, population, GDP and the rest — where the numbers come from and how to track them." />
+  <meta name="description" content="Läs bedömda landsvärden tillsammans med dynastins faktiska resurser." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/statistics/" />
-  <meta property="og:title" content="National Statistics — Open Historia Wiki" />
-  <meta property="og:description" content="The stat sheet: strategic indices, population, GDP and the rest — where the numbers come from and how to track them." />
+  <meta property="og:title" content="Statistik och kampanjresurser — Guide till Attainder" />
+  <meta property="og:description" content="Läs bedömda landsvärden tillsammans med dynastins faktiska resurser." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="National Statistics — Open Historia Wiki" />
-  <meta name="twitter:description" content="The stat sheet: strategic indices, population, GDP and the rest — where the numbers come from and how to track them." />
+  <meta name="twitter:title" content="Statistik och kampanjresurser — Guide till Attainder" />
+  <meta name="twitter:description" content="Läs bedömda landsvärden tillsammans med dynastins faktiska resurser." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,487 +81,170 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/" class="on" aria-current="page">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> National Statistics
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Statistik och kampanjresurser
     </nav>
-    <h1>National Statistics</h1>
-    <p class="tagline">The stat sheet: strategic indices, population, GDP and the rest — where the numbers come from and how to track them.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#national-stability">National stability</a></li><li class="d2"><a href="#strategic-indices">Strategic indices</a></li><li class="d2"><a href="#intelligence-service">Intelligence service</a></li><li class="d2"><a href="#population-and-economy">Population and economy</a></li><li class="d2"><a href="#military-power">Military power</a></li><li class="d2"><a href="#there-is-no-treasury">There is no treasury</a></li><li class="d2"><a href="#where-the-numbers-come-from">Where the numbers come from</a></li><li class="d2"><a href="#reading-someone-else39s">Reading someone else&#39;s</a></li><li class="d2"><a href="#the-politics-tab">The Politics tab</a></li><li class="d2"><a href="#the-ranking-tab">The Ranking tab</a></li><li class="d2"><a href="#a-record-not-a-snapshot">A record, not a snapshot</a></li><li class="d3"><a href="#tracked-history">Tracked history</a></li><li class="d3"><a href="#advanced-statistics">Advanced Statistics</a></li><li class="d3"><a href="#the-diplomacy-block">The diplomacy block</a></li><li class="d3"><a href="#territory-overseas-and-landless">Territory, overseas and landless</a></li><li class="d2"><a href="#scenario-stat-sheets">Scenario stat sheets</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>Every country has a <strong>stat sheet</strong> — relations, agreements and conflicts, then leader,
-government, stability, six strategic indices, population and a set of economic figures. Open it
-from the <strong>Stats</strong> tab of the advisor drawer (the <strong>Advisor</strong> button, bottom right). It has two
-tabs, <strong>🤝 Diplomacy</strong> and <strong>📈 Economy</strong>.</p>
-<p>It retargets to <strong>whatever country you last clicked on the map</strong>, so it works as a dossier on
-anyone, not just yourself.</p>
-<p class="beta-note"><b>On beta the sheet has a panel of its own.</b> Stats has left the advisor
-drawer. Your flag at the bottom right, above the advisor's button, opens the <b>Country</b> panel
-(on a phone, your country's name in the date pill does), and so does <b>Stats</b> on any country's
-card. It has four tabs — <b>🏛 Politics</b>, <b>🤝 Diplomacy</b>, <b>📈 Economy</b> and
-<b>🏆 Ranking</b> — and opens on Politics. Under the country's name it shows its tags and, once
-the game has ranked it, whether it is a <b>Major power</b>, <b>Regional power</b> or <b>Minor
-power</b>.</p><p><img src="/wiki/img/statistics-sheet.jpg" alt="A country stat sheet">
-<em>Poland&#39;s sheet. Note the intelligence service at 40 — the default for a country nobody has assessed.</em></p>
-<h2 id="national-stability">National stability</h2>
-<p>A single 0–100 figure for how firmly the government holds the country together, with a colour
-band:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Stability</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>70–100</td>
-<td>Green — solid</td>
-</tr>
-<tr>
-<td>40–69</td>
-<td>Amber — strained</td>
-</tr>
-<tr>
-<td>Below 40</td>
-<td>Red — in trouble</td>
-</tr>
-</tbody></table></div>
-<p>Stability is the number to watch when you are pushing your own country hard. Wars, austerity,
-purges and humiliations all cost it, and a country in the red is one where events start
-happening <em>to</em> the government rather than because of it.</p>
-<h2 id="strategic-indices">Strategic indices</h2>
-<p>Six measures, each 0–100:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th>Index</th>
-<th>What it measures</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>⚑</td>
-<td><strong>Sovereignty</strong></td>
-<td>How much the country actually decides for itself</td>
-</tr>
-<tr>
-<td>🌾</td>
-<td><strong>Food autonomy</strong></td>
-<td>Whether it can feed itself</td>
-</tr>
-<tr>
-<td>⚡</td>
-<td><strong>Energy autonomy</strong></td>
-<td>Whether it can power itself</td>
-</tr>
-<tr>
-<td>🏦</td>
-<td><strong>Economic independence</strong></td>
-<td>How far it is at the mercy of others economically</td>
-</tr>
-<tr>
-<td>🛡</td>
-<td><strong>Internal security</strong></td>
-<td>Control over its own territory and population</td>
-</tr>
-<tr>
-<td>🤝</td>
-<td><strong>International reputation</strong></td>
-<td>How far it is trusted abroad</td>
-</tr>
-</tbody></table></div>
-<p>These are the strategic picture in six numbers. A country with high GDP and low food and energy
-autonomy is rich and vulnerable; one with high internal security and low sovereignty is a
-well-run client state.</p>
-<p><strong>International reputation</strong> is not just a display value — it is a real world field that other
-countries respond to. See <a href="/wiki/countries/">countries and identity</a>.</p>
-<h2 id="intelligence-service">Intelligence service</h2>
-<p>A separate 0–100 rating for the country&#39;s intelligence apparatus, shown on the same sheet. It is
-never written by the model as part of the economic figures. A service nobody has assessed reads
-40, an ordinary one; opening a country&#39;s <strong>📈 Economy</strong> tab asks for a first reading of it, as
-background AI, so only while <strong>Background AI</strong> is on (Settings → AI → AI requests).</p>
-<p>After that it moves through events, and every time skip is shown your service&#39;s rating so that
-it can. The skip is told to raise it a few points at a time for what you ordered and the turn
-actually delivered — a training academy opening its doors, a new bureau standing up, a funding
-increase taking effect, a codebreaking programme bearing fruit — and to lower it for a purge, a
-mass defection, a network rolled up by a rival or deep cuts. An order only just given moves
-nothing, and no single measure is meant to jump it by tens of points.</p>
-<p>It is the governing statistic for <a href="/wiki/espionage/">espionage</a>, and worth raising deliberately
-before you start relying on agents.</p>
-<h2 id="population-and-economy">Population and economy</h2>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Field</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Population</strong></td>
-<td>Total population</td>
-</tr>
-<tr>
-<td><strong>GDP</strong></td>
-<td>With growth rate shown beneath</td>
-</tr>
-<tr>
-<td><strong>GDP per capita</strong></td>
-<td>With the country&#39;s currency</td>
-</tr>
-<tr>
-<td><strong>Inflation</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Unemployment</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Public debt</strong></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Budget balance</strong></td>
-<td>Surplus or deficit</td>
-</tr>
-</tbody></table></div>
-<p>Plus a <strong>GDP breakdown</strong> bar splitting output between <strong>agriculture</strong>, <strong>industry</strong> and
-<strong>services</strong>, validated to add up to 100.</p>
-<p>Large numbers are displayed compactly — 30,000,000,000 shows as 30.0B — with the currency symbol
-preserved.</p>
-<p class="beta-note"><b>On beta, war moves these figures too.</b> The men a country raises for a
-battlefield leave its population and those who come home are given back, so a war costs it the
-men who do not; and a blockade takes a share of its GDP and points off its budget balance. See
-<a href="/wiki/military/#men-money-and-military-power">men, money and military power</a>.</p><h2 id="military-power">Military power</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p>Under the economy, the <strong>⚔ Military</strong> card gives the country&#39;s <strong>Military power</strong> — what it
-weighs in a land war, counted from its people and what its forces have to spend, never from the
-land it holds — and the figures that power is read through, each as a bar out of 100:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Figure</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Troop quality</strong></td>
-<td>How well its soldiers fight</td>
-</tr>
-<tr>
-<td><strong>Technology</strong></td>
-<td>What they fight with</td>
-</tr>
-<tr>
-<td><strong>Spending</strong></td>
-<td>What its forces have to spend, against other countries&#39;</td>
-</tr>
-<tr>
-<td><strong>Manpower share</strong></td>
-<td>The share of its people who can be put under arms, in per cent (12 unless its scenario or the country itself says otherwise)</td>
-</tr>
-<tr>
-<td><strong>War weariness</strong></td>
-<td>How weary of war it is, in amber once it is weary at all</td>
-</tr>
-<tr>
-<td><strong>War resources</strong></td>
-<td>What it has left to fight with besides its men, where the scenario&#39;s wars use them</td>
-</tr>
-<tr>
-<td><strong>Land</strong>, <strong>Naval</strong>, <strong>Air</strong></td>
-<td>What it can do on land, at sea and in the air</td>
-</tr>
-</tbody></table></div>
-<p>A figure in colour is the country&#39;s own, from its scenario or its sheet; one in grey is what every
-country has, which is 50 on the 0–100 figures. The thin mark on a bar is where every country
-stands. A scenario can switch countries&#39; own figures off, and then the card says that every
-country fights with the same.</p>
-<p>The figures are rated by the AI against every other country&#39;s, twenty countries to a request. A
-scenario&#39;s designer can rate them all at once and ship them with the scenario; a country nobody
-rated is rated the first time the game needs it — when its Military card is opened, when the
-ranking is by military power, or when it goes to war — as background AI.</p>
-<p><strong>How they move.</strong> Every time skip is shown your figures and those of the countries at war with
-you, and told to move them only by what happened. Training and exercises raise troop quality;
-modernising, research and new weapons raise technology; a bigger defence budget raises spending;
-conscription, mobilisation or a larger standing army raise manpower and land; new warships raise
-naval and new aircraft air. Heavy losses, purges, cuts, demobilisation and neglect lower them.
-It is told to size each change to what the period delivered: a month a point or two, a year of
-real effort several, a decade of determined rearmament twenty or more. An order only just given
-moves nothing yet.</p>
-<p>What each figure does in a war is on
-<a href="/wiki/military/#men-money-and-military-power">men, money and military power</a>.</p>
-<h2 id="there-is-no-treasury">There is no treasury</h2>
-<p>This is the important thing to understand about economics in Open Historia: <strong>the economy is a
-description, not a bank account.</strong></p>
-<p>There is no pot of money you spend, no per-turn income to allocate, and no build costs to pay.
-GDP, debt and budget balance describe your country&#39;s situation and inform how the world treats
-your decisions — a country with 140% public debt and a deficit will find an expensive
-rearmament programme going badly — but you never &quot;afford&quot; anything by clicking.</p>
-<p>You change the economy the way a government does: by ordering policy and living with the
-consequences. See <a href="/wiki/orders/">giving orders</a>.</p>
-<p class="beta-note"><b>On beta, the economy pays for the war.</b> Still nothing you spend by
-hand: what a country's forces have to spend is worked out from its GDP, more with a budget in
-surplus and less with a deficit or a heavy debt, and its economy refills the war resources its
-fortifications use up, less under a blockade. See
-<a href="/wiki/war/">war</a>.</p><h2 id="where-the-numbers-come-from">Where the numbers come from</h2>
-<p>Stat sheets are generated on demand for the country you are looking at, from the actual world
-state, and cached so that reopening the panel does not regenerate them. The <strong>↻</strong> control
-refreshes one; <strong>Shift</strong>+click rebuilds its baseline from scratch.</p>
-<p class="beta-note"><b>On beta, ↻ opens a choice.</b> <b>Refresh</b> uses a request only if
-something has changed since the last assessment (on a scenario's own sheet, always one), and on
-the standard sheet <b>Rebuild baseline from scratch</b> uses one request to replace the numbers
-with a fresh assessment of the country as it stands, after you confirm it. Only the
-<b>📈 Economy</b> tab builds a sheet the moment you open it; <b>🏛 Politics</b> and
-<b>🤝 Diplomacy</b> leave a missing one to background AI, and going down the <b>🏆 Ranking</b>
-asks for nothing.</p><p>On a brand-new game the world is still writing its backstory for the first few moments. Open
-Stats then and the sheet waits for it — <em>&quot;Waiting for the world to finish updating, then
-compiling national statistics…&quot;</em> — rather than running a second AI call alongside it and
-describing a world with no history yet.</p>
-<p>They then move through events. When a turn changes a country&#39;s circumstances, the event carries
-the statistical change with it — and only the fields that actually changed, so everything else
-keeps its previous value.</p>
-<p>That includes <strong>who leads</strong>: a leader overthrown in an event has their successor written to the
-sheet in the same breath.</p>
-<p class="beta-note"><b>On beta, a scenario can say how many people a country begins with.</b>
-In the Workshop's Countries panel, <b>Population when the scenario begins</b> sets the figure its
-troops are raised from and its statistics begin from. And every country you come into conflict
-with — on a battlefield with you, or in the path of a route you draw — has the figures a war reads
-of it (its people, GDP, budget balance and debt) worked out in one request for up to eight
-countries at a time, as background AI.</p><h2 id="reading-someone-else39s">Reading someone else&#39;s</h2>
-<p>Click any country, open Stats. You get the same sheet for them.</p>
-<p>Two caveats. What you see is the world&#39;s view of that country, not privileged information — for
-that you need <a href="/wiki/espionage/">espionage</a>. And generating a sheet for a country you are
-interested in is itself the trigger that gets them an intelligence rating assessed, if they did
-not have one.</p>
-<h2 id="the-politics-tab">The Politics tab</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p><strong>🏛 Politics</strong> is the country&#39;s government as the world knows it: its form, its <strong>Head of
-state</strong> and <strong>Head of government</strong>, and the party or coalition in power. Beneath that, a ring
-shows its <strong>Political landscape</strong>, each party&#39;s support, or, where it is not governed through
-elections, its <strong>Power structure</strong>, who holds the influence. Clicking a slice opens that party or
-bloc: its leader, its public priorities and its foreign-policy outlook. Then its <strong>National priorities</strong>, the
-<strong>Institutions</strong> it belongs to, and whatever your agents have reported of its politics.</p>
-<p>Where <a href="/wiki/territory/#groups">groups</a> are on, it also lists the groups holding ground on the
-country&#39;s territory; a row flies the map to the area it controls.</p>
-<h2 id="the-ranking-tab">The Ranking tab</h2>
-<p class="beta-note"><b>Beta channel only.</b></p><p><strong>🏆 Ranking</strong> sets the countries of the game side by side by one figure at a time: <strong>Population</strong>,
-<strong>Economy</strong>, <strong>Wealth per person</strong>, <strong>Military power</strong>, <strong>Land held</strong>, <strong>Stability</strong>,
-<strong>Reputation</strong>, and <strong>War weariness</strong> once anyone is weary. A scenario with a sheet of its own
-ranks by its own values instead, beside military power, land, reputation and weariness.</p>
-<p>Each row has the country&#39;s rank, flag and figure, with your own country outlined; click a row and
-the panel turns to that country. The first 25 are shown, and <strong>Show every country</strong> lists the rest.</p>
-<p>A figure that comes from a stat sheet only covers the countries that have one — your own, those
-you track, those you have opened, those you came into conflict with. The rest are left out, and
-the tab says how many, rather than ranking a guess. Ranking by military power has the AI rate the
-countries nobody has rated yet.</p>
-<h2 id="a-record-not-a-snapshot">A record, not a snapshot</h2>
-<p>The sheet can keep a history, so it is a record of the campaign rather than a snapshot. Everything
-above is under <strong>📈 Economy</strong>; <strong>🤝 Diplomacy</strong> is below.</p>
-<h3 id="tracked-history">Tracked history</h3>
-<p>The sheet re-generates itself as the campaign runs, so you can watch a country&#39;s debt climb or
-its energy autonomy recover across a decade instead of re-reading a number. <strong>Historical
-tracking</strong>, at the foot of the Economy tab, sets it up.</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Refresh interval</strong></td>
-<td>Manual only, or every <strong>3, 6, 12 or 24 months</strong> of game time</td>
-</tr>
-<tr>
-<td><strong>Countries tracked at once</strong></td>
-<td><strong>8</strong></td>
-</tr>
-<tr>
-<td><strong>History kept</strong></td>
-<td>Up to <strong>1200</strong> samples</td>
-</tr>
-</tbody></table></div>
-<p>Your own country is always included once an interval is set. Everything else you add yourself
-from the tracked-countries list; there is a <strong>✕</strong> on each to stop tracking it again.</p>
-<p class="beta-note"><b>On beta, tracking is on from the start.</b> A game tracks your country
-every 6 months unless you turn it off, and asks for its first sheet after a time skip if it has
-none yet.
-<b>Refresh status</b> says when each tracked country was last refreshed, and <b>Assess now</b> builds
-the first sheet of one that has none, which the automatic refresh otherwise skips.</p><h3 id="advanced-statistics">Advanced Statistics</h3>
-<p>Once there is history to draw, <strong>Advanced statistics</strong> at the foot of the Economy tab opens a
-full-screen chart over it. Pick a metric and it plots every snapshot taken, dated in game time:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Group</th>
-<th>Metrics</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Headline economy</strong></td>
-<td>GDP · GDP per capita · Population</td>
-</tr>
-<tr>
-<td><strong>Economic conditions</strong></td>
-<td>GDP growth · Inflation · Unemployment · Public debt · Budget balance</td>
-</tr>
-<tr>
-<td><strong>Strategic indices</strong></td>
-<td>National stability, and all six indices above</td>
-</tr>
-<tr>
-<td><strong>GDP sectors</strong></td>
-<td>Agriculture · Industry · Services, as a share of GDP</td>
-</tr>
-</tbody></table></div>
-<p>A scenario with a sheet of its own charts its own sections and values instead.</p>
-<p><img src="/wiki/img/stats-advanced.jpg" alt="Advanced statistics">
-<em>Six years of British GDP, with the 2020 collapse and the rebound. The range buttons narrow it to
-the last year, five or ten.</em></p>
-<p>You can put up to <strong>four</strong> metrics on one chart, as long as they share a scale — tick a metric on
-a different scale and the chart switches to it rather than drawing a meaningless second axis. The
-range buttons across the top limit it to the last <strong>1, 5 or 10 years</strong> of game time.</p>
-<p>Money is charted in a <strong>2026-EUR equivalent</strong> so that countries with different currencies can be
-compared on one axis. Ancient scenarios chart correctly too — BC dates run backwards through the
-missing year zero, so a campaign starting in 218 BC plots in the right order.</p>
-<h3 id="the-diplomacy-block">The diplomacy block</h3>
-<p>Every sheet carries a <strong>🤝 Diplomacy</strong> section, which is where the
-<a href="/wiki/war/">relation ledgers</a> actually become visible. Three counts across the top — relations,
-active agreements, conflicts — and then the detail:</p>
-<p><strong>Bilateral relations.</strong> Every tracked relationship this country has, scored <strong>−100 to +100</strong>,
-each with a one-line summary, a meter, and a badge the game derives from the score — friendly,
-cordial, neutral, cautious, strained, hostile or rival. This is the single most useful screen in
-the game for working out who someone&#39;s real friends are before you approach them.</p>
-<p><img src="/wiki/img/stats-diplomacy.jpg" alt="Bilateral relations on the stat sheet">
-<em>The United Kingdom&#39;s relations, sorted best to worst. The summary line is why the number is
-what it is.</em></p>
-<p><strong>Formal agreements</strong> and <strong>current conflicts</strong> follow underneath: the treaty register with each
-agreement&#39;s type, parties, status and the date it last changed, and then who this country is
-currently fighting, taken from the war ledger.</p>
-<p><img src="/wiki/img/stats-agreements.jpg" alt="The treaty register">
-<em>Agreements are listed active first. A suspended treaty stays on the register rather than
-disappearing — the relationship still has a history.</em></p>
-<p>An empty list means no record exists, which is <strong>not</strong> the same as neutrality — a pair of
-countries that have never interacted simply has nothing written down yet.</p>
-<p class="beta-note"><b>On beta the block says more.</b> A <b>Subordination</b> card says what you
-know of a <a href="/wiki/war/#puppets-and-overlords">puppet arrangement</a> the country is part
-of, and an overlord's <b>Subordinate states</b> are listed with their kind. Each conflict says who
-is fighting alongside, why it began, and links to <b>See how it began on the timeline</b>; it
-shows each side's war weariness and, in a war of your own, <b>Propose peace</b>. Below them,
-<b>War reports</b> keeps the after-action report of each of your wars fought out on a battlefield,
-with <b>Read the report</b>. See <a href="/wiki/war/">war</a>.</p><h3 id="territory-overseas-and-landless">Territory, overseas and landless</h3>
-<p><strong>Countries with overseas territories</strong> get a per-capita figure twice: for the core and
-integrated territory, and for the <strong>whole polity</strong> including dependencies. The two can differ
-sharply, and the sheet shows both rather than picking one.</p>
-<p><strong>Landless polities work.</strong> A government-in-exile, a rebel movement or an organisation with no
-mapped territory gets a valid sheet.</p>
-<p><strong>Population follows the land.</strong> When territory changes hands, its people and economy go with
-it, so the game keeps track of how much of a country sits in each piece of its territory. For a
-country with up to 24 such pieces, the model estimates that split once, from where people
-actually live, never from how many map regions or how much area a piece covers. The game checks
-the answer and keeps it, asking again only when a piece changes size. Sprawling historical
-empires are split by the game&#39;s own weights instead. A piece of territory also keeps its own
-income level, so Puerto Rico is not credited with mainland American productivity. And a country
-holding part of another&#39;s land is assessed on <strong>that part only</strong>: Russia holding Crimea is not
-handed the whole of Ukraine&#39;s population.</p>
-<h2 id="scenario-stat-sheets">Scenario stat sheets</h2>
-<p>The standard sheet is written for the modern world. A scenario can replace it entirely: in the
-scenario editor&#39;s <strong>Stats</strong> tab, under <strong>National Stats</strong>, <strong>Customize full sheet</strong> turns the
-standard layout into the scenario&#39;s own — sections and statistics you can rename, reorder, delete
-or add, each with a type (number, percentage, currency/value), a unit, a range, decimals, an icon,
-a colour and a line of <strong>AI guidance</strong> on what the value means in this world and what kinds of
-events should move it. A Bronze Age scenario can track grain stores and chariots instead of GDP
-and unemployment. The sheet is scenario data, so it travels with exports; <strong>Use standard sheet</strong>
-goes back. Its Economy tab is then called <strong>📊 National</strong>.</p>
-<p class="beta-note"><b>On beta, a scenario's own sheet keeps a second layer.</b> Under the values
-its players see, every country also carries the four figures a war reads — its people, GDP,
-budget balance and public debt — written in the same request as the sheet and moved by the same
-time skips, so its troops have people to be raised from. Its players never see them. The
-intelligence service and the ⚔ Military card show on such a sheet too.</p><p class="beta-note"><b>On beta the advisor reads your stat sheet</b> — and the world's war,
-relation and treaty ledgers — so it can answer about your figures rather than estimating them.</p><h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/countries/">Countries and identity</a> — reputation, tags and leaders.</li>
-<li><a href="/wiki/advisor/">The advisor</a> — asking someone to interpret all this for you.</li>
-<li><a href="/wiki/espionage/">Espionage</a> — the intelligence rating in practice.</li>
-<li><a href="/wiki/military/">Military</a> — what the military figures do in a war.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/projects/"><span>← Previous</span><b>Projects &amp; operations</b></a>
-        <a class="next" href="/wiki/countries/"><span>Next →</span><b>Countries &amp; identity</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Statistics and campaign resources
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Statistik och kampanjresurser</span><span data-help-lang="en" lang="en">Statistics and campaign resources</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Läs bedömda landsvärden tillsammans med dynastins faktiska resurser.</span><span data-help-lang="en" lang="en">Read assessed country figures alongside the dynasty’s actual resources.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#open">Öppna ett lands statistik</a></li><li class="d2"><a href="#figures">Läs standardvärdena</a></li><li class="d2"><a href="#refresh">Bedömning och uppdatering</a></li><li class="d2"><a href="#history">Följ historik och jämför utveckling</a></li><li class="d2"><a href="#diplomacy">Läs historik och territoriell omfattning</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#open">Open a country’s statistics</a></li><li class="d2"><a href="#figures">Read the standard figures</a></li><li class="d2"><a href="#refresh">Assessment and refresh</a></li><li class="d2"><a href="#history">Track history and compare trends</a></li><li class="d2"><a href="#diplomacy">Read records and territorial scope</a></li></ul></nav>
+    <section id="open" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="open">
+<h2>Öppna ett lands statistik</h2>
+<p>Öppna rådgivarpanelen och välj statistikfliken. Den aktuella vyn har sektioner för diplomati och ekonomi. När den är öppen byter bladet till det land du väljer på kartan.</p>
+<p>Bladet är en bedömning av kampanjvärlden. Dess ekonomiska uppskattningar är skilda från dynastins regelstyrda statskassa, familjekassa, årsintäkt och handlingsutrymme. Läs de förbrukningsbara resurserna i överblicken för rike och familjer innan du bekräftar en karaktärshandling.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="open">
+<h2>Open a country’s statistics</h2>
+<p>Open the advisor drawer and select its statistics tab. The current view has diplomacy and economy sections. While it is open, selecting a country on the map retargets the sheet to that country.</p>
+<p>The sheet assesses the campaign world. Its economic estimates are separate from the dynasty’s rule-bound treasury, family purse, annual revenue and action capacity. Read those spendable resources in the realm and families overview before confirming a character action.</p>
+</div>
+</section>
+<section id="figures" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="figures">
+<h2>Läs standardvärdena</h2>
+<p>Standardbladet visar nationell stabilitet och strategiska index på en skala 0–100 samt ett värde för underrättelsetjänsten. Indexen omfattar suveränitet, självförsörjning med livsmedel, självförsörjning med energi, ekonomiskt oberoende, inre säkerhet och internationellt anseende.</p>
+<p>Ekonomisektionen visar befolkning, BNP, BNP per person, tillväxt, inflation, arbetslöshet, offentlig skuld, budgetsaldo och fördelningen mellan jordbruk, industri och tjänster. Monetära värden visas som motsvarande 2026-EUR för jämförelse, med den inhemska valutan angiven separat. Det är simulerade uppskattningar, även i en historisk kampanj.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="figures">
+<h2>Read the standard figures</h2>
+<p>The standard sheet shows national stability and strategic indices on a 0–100 scale, plus an intelligence-service rating. The indices cover sovereignty, food autonomy, energy autonomy, economic independence, internal security and international reputation.</p>
+<p>The economy section shows population, GDP, GDP per person, growth, inflation, unemployment, public debt, budget balance and the agriculture/industry/services split. Monetary accounting uses a 2026-EUR equivalent for comparison, with the domestic currency identified separately. These are simulation estimates, including in a historical campaign.</p>
+</div>
+</section>
+<section id="refresh" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="refresh">
+<h2>Bedömning och uppdatering</h2>
+<p>Spelet sparar bedömda statistikblad och återanvänder dem. Uppdatering begär en ny bedömning. Håll ned Shift när du klickar för att begära en ny grundbedömning. Om bedömningen misslyckas visar statistikvyn felet och erbjuder ett nytt försök. Att öppna statistiken kan också utlösa en bedömning av underrättelsetjänsten.</p>
+<p>Kontrollera bedömningens datum innan du jämför med ett nyligen fattat beslut. Läs <a href="/wiki/ai-setup/">AI-inställning</a> om en leverantör inte är tillgänglig. Ett scenario kan ange en egen statistikdefinition som ersätter ekonomins standardblad med egna mått.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="refresh">
+<h2>Assessment and refresh</h2>
+<p>The game stores assessed sheets and reuses them. Refresh requests an update; holding Shift while clicking asks for a fresh baseline. If assessment fails, the statistics view shows the error and offers another attempt. Opening statistics can also trigger an intelligence-service assessment.</p>
+<p>Check a reading’s date before comparing it with a recent decision. Read <a href="/wiki/ai-setup/">AI setup</a> if a provider is unavailable. A scenario may supply its own statistics definition, replacing the standard economy layout with its own measures.</p>
+</div>
+</section>
+<section id="history" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="history">
+<h2>Följ historik och jämför utveckling</h2>
+<p>Historisk uppföljning erbjuder manuell uppdatering eller intervall på 3, 6, 12 eller 24 spelmånader, med högst 8 bevakade länder. När ett intervall är aktiverat finns ditt eget land kvar i listan. Automatisk uppdatering behöver ett grundlagt statistikblad. Använd den vanliga statistikvyn för att skapa en saknad grundbedömning. Högst 1200 historikvärden behålls per serie.</p>
+<p>Avancerad statistik ritar tillgängliga historikvärden. Välj högst 4 mått med gemensam skala och visa hela historiken eller de senaste 1, 5 eller 10 spelåren. Om du väljer en annan skala ändras urvalet i stället för att ytterligare en axel läggs till.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="history">
+<h2>Track history and compare trends</h2>
+<p>Historical tracking offers manual refresh or intervals of 3, 6, 12 or 24 game months, with up to 8 tracked countries. An enabled interval keeps your own country on the list. Automatic refresh needs an initialized sheet; use the normal statistics view to establish a missing baseline. Up to 1200 history samples are retained per series.</p>
+<p>Advanced statistics plots available samples. Select up to 4 metrics on a shared scale and choose the whole history or the last 1, 5 or 10 game years. Selecting a different scale changes the selection rather than adding another axis.</p>
+</div>
+</section>
+<section id="diplomacy" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="diplomacy">
+<h2>Läs historik och territoriell omfattning</h2>
+<p>Diplomatisektionen listar bilaterala relationer, avtal och aktuella konflikter från den sparade världen. En saknad relation betyder att det inte finns någon registrerad uppgift, snarare än ett uttryckligt neutralt förhållande. Läs avtalsstatus och krigsstatus var för sig. Se <a href="/wiki/war/">Krig och relationer</a>.</p>
+<p>Läs omfattningen för befolkning och värden per person när ett land har flera territoriella delar. Bladet kan skilja hela landet från kärnterritorium eller integrerat territorium. Den aktuella vyn saknar separata flikar för politik, rangordning, krigströtthet och fredserbjudanden.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="diplomacy">
+<h2>Read records and territorial scope</h2>
+<p>The diplomacy section lists bilateral relations, agreements and current conflicts from the saved world. A missing relation means there is no tracked record, rather than an explicit neutral relationship. Read agreement status and war status separately. See <a href="/wiki/war/">War and relations</a>.</p>
+<p>Read population and per-person scope labels when a country has several territorial components. The sheet can distinguish the whole country from core or integrated territory. The current view has no separate politics, ranking, war-weariness or peace-offer tabs.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/projects/"><span>← Föregående</span><b>Projekt</b></a>
+        <a class="next" href="/wiki/countries/"><span>Nästa →</span><b>Länder</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/projects/"><span>← Previous</span><b>Projects</b></a>
+        <a class="next" href="/wiki/countries/"><span>Next →</span><b>Countries</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -553,27 +256,71 @@ relation and treaty ledgers — so it can answer about your figures rather than 
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {

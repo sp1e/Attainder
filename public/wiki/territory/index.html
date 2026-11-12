@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="sv" data-help-lang="sv" data-title-sv="Territorium, kontroll och anspråk — Guide till Attainder" data-title-en="Territory, control and claims — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,23 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Territory: Control and Claims — Open Historia Wiki</title>
+  <title>Territorium, kontroll och anspråk — Guide till Attainder</title>
+  <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
+  <script>
+(function () {
+  var root = document.documentElement, own = null, game = null;
+  try {
+    own = localStorage.getItem("wiki_language");
+    game = localStorage.getItem("ui_language");
+  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
+  var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
+  var own = clean(wikiLanguage);
+  var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
+  return chosen === "en" ? "en" : "sv";
+})(own, game);
+  root.setAttribute("data-help-lang", lang);
+  root.lang = lang;
+  var title = root.getAttribute("data-title-" + lang);
+  if (title) document.title = title;
+})();
+  </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/territory/" />
-  <meta name="description" content="Who holds the ground and who says it should be theirs — two separate things, drawn differently on the map." />
+  <meta name="description" content="Skilj mellan vem som kontrollerar en region, suveränitet och territoriella anspråk." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/territory/" />
-  <meta property="og:title" content="Territory: Control and Claims — Open Historia Wiki" />
-  <meta property="og:description" content="Who holds the ground and who says it should be theirs — two separate things, drawn differently on the map." />
+  <meta property="og:title" content="Territorium, kontroll och anspråk — Guide till Attainder" />
+  <meta property="og:description" content="Skilj mellan vem som kontrollerar en region, suveränitet och territoriella anspråk." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Territory: Control and Claims — Open Historia Wiki" />
-  <meta name="twitter:description" content="Who holds the ground and who says it should be theirs — two separate things, drawn differently on the map." />
+  <meta name="twitter:title" content="Territorium, kontroll och anspråk — Guide till Attainder" />
+  <meta name="twitter:description" content="Skilj mellan vem som kontrollerar en region, suveränitet och territoriella anspråk." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -61,228 +81,158 @@
   <div class="wrap nav">
     <a class="brand" href="/"><img class="mark" src="/icon-192.png" alt="" width="28" height="28" /> Open Historia</a>
     <nav class="nav-links">
-      <a href="/#features">Features</a>
-      <a class="nav-keep" href="/wiki/">Wiki</a>
-      <a href="/#download">Download</a>
+      <a href="/#features"><span data-help-lang="sv" lang="sv">Funktioner</span><span data-help-lang="en" lang="en">Features</span></a>
+      <a class="nav-keep" href="/wiki/">Guide</a>
+      <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-cta" href="/play/">▶ Play</a>
+      <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Search the wiki…" aria-label="Search the wiki" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
-        <li class="sec"><ul><li><a href="/wiki/">Wiki home</a></li></ul></li>
+        <li class="sec"><ul><li><a href="/wiki/"><span data-help-lang="sv" lang="sv">Guidens startsida</span><span data-help-lang="en" lang="en">Guide home</span></a></li></ul></li>
         <li class="sec">
-          <span>Getting started</span>
-          <ul><li><a href="/wiki/install/">Install</a></li><li><a href="/wiki/ai-setup/">Connect an AI</a></li><li><a href="/wiki/how-to-play/">How to play</a></li><li><a href="/wiki/first-campaign/">Your first campaign</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Kom igång</span><span data-help-lang="en" lang="en">Getting started</span></span>
+          <ul><li><a href="/wiki/install/"><span data-help-lang="sv" lang="sv">Installation</span><span data-help-lang="en" lang="en">Install</span></a></li><li><a href="/wiki/ai-setup/"><span data-help-lang="sv" lang="sv">Modellanslutning</span><span data-help-lang="en" lang="en">Model setup</span></a></li><li><a href="/wiki/how-to-play/"><span data-help-lang="sv" lang="sv">Så spelar du</span><span data-help-lang="en" lang="en">How to play</span></a></li><li><a href="/wiki/first-campaign/"><span data-help-lang="sv" lang="sv">Din första kampanj</span><span data-help-lang="en" lang="en">Your first campaign</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Playing</span>
-          <ul><li><a href="/wiki/new-game/">Starting a game</a></li><li><a href="/wiki/interface/">The interface</a></li><li><a href="/wiki/world-map/">The world map</a></li><li><a href="/wiki/time/">Time &amp; turns</a></li><li><a href="/wiki/orders/">Giving orders</a></li><li><a href="/wiki/events/">Events &amp; history</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spela</span><span data-help-lang="en" lang="en">Playing</span></span>
+          <ul><li><a href="/wiki/new-game/"><span data-help-lang="sv" lang="sv">Starta en kampanj</span><span data-help-lang="en" lang="en">Start a campaign</span></a></li><li><a href="/wiki/interface/"><span data-help-lang="sv" lang="sv">Gränssnitt</span><span data-help-lang="en" lang="en">Interface</span></a></li><li><a href="/wiki/world-map/"><span data-help-lang="sv" lang="sv">Världskarta</span><span data-help-lang="en" lang="en">World map</span></a></li><li><a href="/wiki/time/"><span data-help-lang="sv" lang="sv">Tid</span><span data-help-lang="en" lang="en">Time</span></a></li><li><a href="/wiki/orders/"><span data-help-lang="sv" lang="sv">Handlingar</span><span data-help-lang="en" lang="en">Actions</span></a></li><li><a href="/wiki/events/"><span data-help-lang="sv" lang="sv">Händelser</span><span data-help-lang="en" lang="en">Events</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Game systems</span>
-          <ul><li><a href="/wiki/diplomacy/">Diplomacy</a></li><li><a href="/wiki/war/">Relations, treaties &amp; war</a></li><li><a href="/wiki/territory/" class="on" aria-current="page">Territory</a></li><li><a href="/wiki/military/">Military &amp; combat</a></li><li><a href="/wiki/war-room/">The War Room <em>beta</em></a></li><li><a href="/wiki/war-at-sea/">War at sea <em>beta</em></a></li><li><a href="/wiki/espionage/">Espionage</a></li><li><a href="/wiki/projects/">Projects &amp; operations</a></li><li><a href="/wiki/statistics/">National statistics</a></li><li><a href="/wiki/countries/">Countries &amp; identity</a></li><li><a href="/wiki/cities/">Cities &amp; structures</a></li><li><a href="/wiki/advisor/">The advisor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Spelsystem</span><span data-help-lang="en" lang="en">Game systems</span></span>
+          <ul><li><a href="/wiki/diplomacy/"><span data-help-lang="sv" lang="sv">Diplomati</span><span data-help-lang="en" lang="en">Diplomacy</span></a></li><li><a href="/wiki/war/"><span data-help-lang="sv" lang="sv">Krig och relationer</span><span data-help-lang="en" lang="en">War and relations</span></a></li><li><a href="/wiki/territory/" class="on" aria-current="page"><span data-help-lang="sv" lang="sv">Territorium</span><span data-help-lang="en" lang="en">Territory</span></a></li><li><a href="/wiki/military/"><span data-help-lang="sv" lang="sv">Militär</span><span data-help-lang="en" lang="en">Military</span></a></li><li><a href="/wiki/war-room/"><span data-help-lang="sv" lang="sv">Krigsrummet</span><span data-help-lang="en" lang="en">War Room</span></a></li><li><a href="/wiki/war-at-sea/"><span data-help-lang="sv" lang="sv">Krig till sjöss</span><span data-help-lang="en" lang="en">War at sea</span></a></li><li><a href="/wiki/espionage/"><span data-help-lang="sv" lang="sv">Spionage</span><span data-help-lang="en" lang="en">Espionage</span></a></li><li><a href="/wiki/projects/"><span data-help-lang="sv" lang="sv">Projekt</span><span data-help-lang="en" lang="en">Projects</span></a></li><li><a href="/wiki/statistics/"><span data-help-lang="sv" lang="sv">Statistik</span><span data-help-lang="en" lang="en">Statistics</span></a></li><li><a href="/wiki/countries/"><span data-help-lang="sv" lang="sv">Länder</span><span data-help-lang="en" lang="en">Countries</span></a></li><li><a href="/wiki/cities/"><span data-help-lang="sv" lang="sv">Städer</span><span data-help-lang="en" lang="en">Cities</span></a></li><li><a href="/wiki/advisor/"><span data-help-lang="sv" lang="sv">Rådgivaren</span><span data-help-lang="en" lang="en">Advisor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Tools</span>
-          <ul><li><a href="/wiki/settings/">Settings</a></li><li><a href="/wiki/cheats/">Cheats &amp; GM console</a></li><li><a href="/wiki/saves/">Saves &amp; rollback</a></li><li><a href="/wiki/editor/">The map editor</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Verktyg</span><span data-help-lang="en" lang="en">Tools</span></span>
+          <ul><li><a href="/wiki/settings/"><span data-help-lang="sv" lang="sv">Inställningar</span><span data-help-lang="en" lang="en">Settings</span></a></li><li><a href="/wiki/cheats/"><span data-help-lang="sv" lang="sv">Fusk</span><span data-help-lang="en" lang="en">Cheats</span></a></li><li><a href="/wiki/saves/"><span data-help-lang="sv" lang="sv">Sparfiler</span><span data-help-lang="en" lang="en">Saves</span></a></li><li><a href="/wiki/editor/"><span data-help-lang="sv" lang="sv">Redigerare</span><span data-help-lang="en" lang="en">Editor</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Sharing &amp; hosting</span>
-          <ul><li><a href="/wiki/community-hub/">The community hub</a></li><li><a href="/wiki/self-hosting/">Hosting a server</a></li><li><a href="/wiki/mobile/">Playing on your phone</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Dela och drifta</span><span data-help-lang="en" lang="en">Sharing and hosting</span></span>
+          <ul><li><a href="/wiki/community-hub/"><span data-help-lang="sv" lang="sv">Gemenskapshubb</span><span data-help-lang="en" lang="en">Community Hub</span></a></li><li><a href="/wiki/self-hosting/"><span data-help-lang="sv" lang="sv">Egen server</span><span data-help-lang="en" lang="en">Self-hosting</span></a></li><li><a href="/wiki/mobile/"><span data-help-lang="sv" lang="sv">Mobil</span><span data-help-lang="en" lang="en">Mobile</span></a></li></ul>
         </li>
         <li class="sec">
-          <span>Reference</span>
-          <ul><li><a href="/wiki/ai-providers/">AI providers &amp; models</a></li><li><a href="/wiki/troubleshooting/">Troubleshooting</a></li></ul>
+          <span><span data-help-lang="sv" lang="sv">Referens</span><span data-help-lang="en" lang="en">Reference</span></span>
+          <ul><li><a href="/wiki/ai-providers/"><span data-help-lang="sv" lang="sv">Modeller och leverantörer</span><span data-help-lang="en" lang="en">Models and providers</span></a></li><li><a href="/wiki/troubleshooting/"><span data-help-lang="sv" lang="sv">Felsökning</span><span data-help-lang="en" lang="en">Troubleshooting</span></a></li></ul>
         </li>
       </ul>
   </aside>
 
   <main class="wiki-main">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Wiki</a> <span aria-hidden="true">/</span> Territory: Control and Claims
+    <nav class="breadcrumbs" data-help-lang="sv" lang="sv" aria-label="Brödsmulenavigering">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Territorium, kontroll och anspråk
     </nav>
-    <h1>Territory: Control and Claims</h1>
-    <p class="tagline">Who holds the ground and who says it should be theirs — two separate things, drawn differently on the map.</p>
-    
-    <nav class="wiki-toc" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#control">Control</a></li><li class="d2"><a href="#claims-and-disputes">Claims and disputes</a></li><li class="d2"><a href="#groups">Groups</a></li><li class="d2"><a href="#playing-the-difference">Playing the difference</a></li><li class="d2"><a href="#regions-and-owners">Regions and owners</a></li><li class="d2"><a href="#what-territory-does-for-you">What territory does for you</a></li><li class="d2"><a href="#landless-countries">Landless countries</a></li><li class="d2"><a href="#the-sovereignty-layer">The sovereignty layer</a></li><li class="d2"><a href="#next">Next</a></li></ul></nav>
-    <p>The map is divided into <strong>regions</strong>. Every region has someone who administers it, and possibly
-other countries who say it should be theirs. Those are two different things, and the map draws
-them differently.</p>
-<h2 id="control">Control</h2>
-<p>Whoever administers a region owns it as far as the map is concerned: the region is painted in
-their colour, it counts as their territory, and their units sit on it without asking.</p>
-<p>Control moves when an event says it moves. On the stable build that is the only route (beta adds
-battlefields and peace terms, below). A time skip produces an event
-narrating a conquest, an annexation, a treaty cession or a peaceful hand-over, and the border
-change ships attached to that event. There is no separate &quot;conquer&quot; button, and no event can
-describe territory changing hands without actually changing it — the narration and the mechanical
-change are the same object.</p>
-<p>After the skip, the game checks the turn&#39;s wording against the map: a place an event names in
-plain words — a city, an alias, a region — is found on the scenario&#39;s actual geography, captured
-towns change hands, and contested ones are striped. The game does this itself, at no
-request. Ground handed to a country that does not exist yet founds it.</p>
-<p>A scenario can also set a <strong>tempo</strong> for the map — at most so many regions changing hands per 30
-days. A skip that moves more than that has the rest held back, and the next skip is told the
-front moves this far and to carry the rest on.</p>
-<p>You can also move control by hand from the <a href="/wiki/cheats/">cheats panel</a>, which is the
-game-master route rather than the gameplay one.</p>
-<p class="beta-note"><b>On beta, troops take the ground a battlefield fights over.</b> Where a
-land war is fought on a <a href="/wiki/war-room/">battlefield</a>, the ground changes hands only
-where troops take it: each troop paints the ground it crosses in its side's colour, and a capture
-the story writes for a region on that battlefield is left out, so the troops take it or they do
-not. A region counts as taken once its new holder holds more than 60% of it, and changes colour on
-the map once all of it is held. Ground taken on a battlefield is drawn as its holder's, not in the
-stripes of a dispute; its card says who controls it and whose it lawfully is.</p><p class="beta-note"><b>On beta, more of the story reaches the map.</b> A country the story founds
-as another dissolves, such as a republic replacing an empire, takes the old country's land. An
-annexation you ordered reaches the map once a turn tells of it happening, when the place it names
-is unambiguous. And a war that ends <a href="/wiki/war/#ending-a-war-peace-on-terms">on terms</a>
-settles the ground as the terms say, even from a ceasefire or an armistice: what each side holds
-becomes its own, or every region goes back to whose it lawfully was.</p><p><img src="/wiki/img/territory-dispute.jpg" alt="Disputed territory on the map">
-<em>Western Sahara, between Morocco and Mauritania, drawn in faint diagonal stripes — a region more than one country claims.</em></p>
-<h2 id="claims-and-disputes">Claims and disputes</h2>
-<p>A region can carry a list of <strong>claimants</strong> — up to <strong>four</strong> countries that assert it is theirs.</p>
-<p>A region with claimants is <strong>disputed</strong>, and it renders <strong>striped</strong>: the administrator&#39;s colour
-combined with each claimant&#39;s. This is how you read a contested border at a glance.</p>
-<p>Claims are their own layer. They do not affect who administers the ground, they do not change
-what your units can do, and they are not a countdown to anything. They are the game&#39;s record of
-who is aggrieved — and a standing invitation for the world to do something about it.</p>
-<p>Claims are added and withdrawn the same way control moves: through events. If you want a claim
-recognised or dropped, that is a diplomatic outcome you have to argue for.</p>
-<p>Scenario authors can also mark disputes directly when drawing a map. World-level claims override
-whatever the scenario&#39;s geometry says, so a campaign can develop new disputes over time without
-the underlying map being edited. A dispute that ends stays ended on the map.</p>
-<h2 id="groups">Groups</h2>
-<p>Not every force that holds ground is a country. A <strong>group</strong> — an insurgency, a cartel, a militia,
-a zombie outbreak — controls an area of regions that stay their countries&#39;: no border moves. The
-map outlines the group&#39;s whole area and tints it in the group&#39;s colour, and a region&#39;s card says
-<strong>Group control</strong> with the group&#39;s name and what it is. The AI founds, spreads, pushes back and
-erases groups as events call for it, and a town a government takes back from one is released
-from its area. A scenario&#39;s author sets them up in the <a href="/wiki/editor/">map editor</a>.</p>
-<h2 id="playing-the-difference">Playing the difference</h2>
-<p>The gap between control and claim is most of what makes borders interesting.</p>
-<ul>
-<li><strong>Taking ground does not settle it.</strong> Conquering a claimed region leaves the claim standing;
-the previous holder still says it is theirs, and so does the map.</li>
-<li><strong>Claims are diplomatic leverage.</strong> A neighbour with a live claim against a third country is a
-neighbour with a reason to work with you.</li>
-<li><strong>Dropping a claim is a real concession</strong> and can be traded for something. It is one of the
-more valuable things you can offer in a negotiation, because it costs you nothing material and
-costs your pride a great deal.</li>
-<li><strong>Stripes on your own territory are a warning.</strong> Someone is building a case.</li>
-</ul>
-<h2 id="regions-and-owners">Regions and owners</h2>
-<p>A region&#39;s owner is a country with one stable identity. Renaming a country changes its label, not
-who it is: every region, flag, tag, colour, war record and standing goal follows it, so a
-country does not split in two the turn after it is renamed. In the map editor, typing a country
-name that does not exist yet brings that country into existence. See
-<a href="/wiki/countries/">countries and identity</a>.</p>
-<p>The <strong>Region Inspector</strong> in the cheats panel inspects any region — who controls it, who is
-sovereign, who claims it, its name and properties — and lets you edit control and make legal
-transfers.</p>
-<h2 id="what-territory-does-for-you">What territory does for you</h2>
-<p>Territory is not a resource you spend. There is no per-province income to collect and no
-buildings to place on it. What it gives you is:</p>
-<ul>
-<li><strong>Standing.</strong> A larger, more coherent country is treated as a more consequential one. (On beta
-its military strength is never counted from its land: see
-<a href="/wiki/military/#men-money-and-military-power">men, money and military power</a>.)</li>
-<li><strong>Position.</strong> Units travel at <a href="/wiki/military/">era-appropriate speeds</a>; where your border is
-determines what you can reach quickly.</li>
-<li><strong>Statistics.</strong> Population, economy and the strategic indices reflect what you hold. See
-<a href="/wiki/statistics/">national statistics</a>.</li>
-<li><strong>Grievances.</strong> Yours and other people&#39;s.</li>
-</ul>
-<p>Losing territory is correspondingly not a stockpile draining — it is a country becoming less
-consequential, more surrounded, and more likely to be pushed further.</p>
-<h2 id="landless-countries">Landless countries</h2>
-<p>A country can hold no territory at all and still exist, act and be talked to — governments in
-exile, movements, organisations. You can play one. See
-<a href="/wiki/countries/">countries and identity</a> for how they work.</p>
-<h2 id="the-sovereignty-layer">The sovereignty layer</h2>
-<p>Between control and claims sits a third layer. The game separates <strong>control</strong> (who administers the ground) from <strong>sovereignty</strong> (who lawfully owns
-it), so occupation, exiled governments and unrecognised annexations are all representable:
-&quot;control is not sovereignty&quot;.</p>
-<p>Sovereignty is stored sparsely — ordinary territory has no entry, because control and sovereignty
-agree. A row appears only where they diverge, which is exactly the interesting case.</p>
-<p>Three explicit operations move control without touching who lawfully owns the ground:</p>
-<div class="table-scroll"><table>
-<thead>
-<tr>
-<th>Operation</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>contest</code></td>
-<td>Mark the ground as fought over</td>
-</tr>
-<tr>
-<td><code>control</code></td>
-<td>Hand de-facto administration to someone</td>
-</tr>
-<tr>
-<td><code>clear_contest</code></td>
-<td>Settle it again</td>
-</tr>
-</tbody></table></div>
-<p>Each can be applied to a single region or to a country&#39;s whole territory at once. Transferring
-lawful <strong>sovereignty</strong> is a separate act — that is what a treaty does, and it is why an
-occupation can run for years without the map ever conceding the point.</p>
-<p>The Region Inspector shows all three layers for any region, plus how each came to be that way,
-and the map shows the displaced controller and sovereign on contested and occupied ground. A
-wartime capture is recorded as a change of <strong>control</strong>, not a cession.</p>
-<p class="beta-note"><b>On beta, a puppet is not a fact about land.</b> A
-<a href="/wiki/war/#puppets-and-overlords">puppet</a> keeps its own territory and sovereignty;
-subordination lives in its own ledger. And a structure an event credits to a country with no
-land goes to whoever holds the ground it stands on.</p><h2 id="next">Next</h2>
-<ul>
-<li><a href="/wiki/military/">Military and combat</a> — taking ground.</li>
-<li><a href="/wiki/war-room/">The War Room</a> — where troops take ground on a battlefield, on beta.</li>
-<li><a href="/wiki/war/">Relations, treaties and war</a> — the ledgers that formalise who is fighting whom.</li>
-<li><a href="/wiki/editor/">The map editor</a> — drawing regions and disputes yourself.</li>
-</ul>
-
-    <nav class="wiki-pager" aria-label="Pagination">
-        <a class="prev" href="/wiki/war/"><span>← Previous</span><b>Relations, treaties &amp; war</b></a>
-        <a class="next" href="/wiki/military/"><span>Next →</span><b>Military &amp; combat</b></a>
+<nav class="breadcrumbs" data-help-lang="en" lang="en" aria-label="Breadcrumb navigation">
+      <a href="/">Open Historia</a> <span aria-hidden="true">/</span> <a href="/wiki/">Guide</a> <span aria-hidden="true">/</span> Territory, control and claims
+    </nav>
+    <h1><span data-help-lang="sv" lang="sv">Territorium, kontroll och anspråk</span><span data-help-lang="en" lang="en">Territory, control and claims</span></h1>
+    <p class="tagline"><span data-help-lang="sv" lang="sv">Skilj mellan vem som kontrollerar en region, suveränitet och territoriella anspråk.</span><span data-help-lang="en" lang="en">Distinguish who holds a region from sovereignty and territorial claims.</span></p>
+    <nav class="wiki-toc" data-help-lang="sv" lang="sv" aria-label="På den här sidan"><b>På den här sidan</b><ul><li class="d2"><a href="#layers">Läs de tre lagren</a></li><li class="d2"><a href="#changes">Läs förändringen på kartan</a></li><li class="d2"><a href="#groups">Grupper och historisk osäkerhet</a></li><li class="d2"><a href="#identity">Identitet, resurser och redigering</a></li></ul></nav>
+<nav class="wiki-toc" data-help-lang="en" lang="en" aria-label="On this page"><b>On this page</b><ul><li class="d2"><a href="#layers">Read the three layers</a></li><li class="d2"><a href="#changes">Read the change on the map</a></li><li class="d2"><a href="#groups">Groups and historical uncertainty</a></li><li class="d2"><a href="#identity">Identity, resources and editing</a></li></ul></nav>
+    <section id="layers" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="layers">
+<h2>Läs de tre lagren</h2>
+<p>Välj en region för att läsa vem som kontrollerar den. För en region med känd kontrollinnehavare, där kontrollen skiljer sig från suveräniteten eller ett anspråk finns, visar kortet också suverän, kontrollinnehavare, status och anspråksställare. Ockupation och ett omstritt anspråk kan finnas samtidigt.</p>
+<p>En kontrolländring kan bevara den tidigare rättsliga suveränen. Anspråk registreras separat, med högst fyra anspråksställare per region. Kontrollera uppgifterna innan du behandlar en erövring som en rättslig överlåtelse.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="layers">
+<h2>Read the three layers</h2>
+<p>Select a region to read its current controller. For a region with a known controller, where control differs from sovereignty or a claim exists, the card also shows the sovereign, controller, status and claimants. Occupation and a contested claim can coexist.</p>
+<p>A change of control can preserve the earlier lawful sovereign. Claims are tracked separately, with up to four claimants per region. Check these records before treating a capture as a legal cession.</p>
+</div>
+</section>
+<section id="changes" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="changes">
+<h2>Läs förändringen på kartan</h2>
+<p>Kampanjhändelsers följder kan överlåta territorium, ändra faktisk kontroll, markera en tvist eller avsluta den. Åtgärderna uppdaterar olika lager. Att avsluta en tvist tar inte bort en annan suveräns ställning medan ett främmande land fortfarande kontrollerar regionen.</p>
+<p>Läs händelsens sammanställning av kartändringar och granska regionen efter en tur. Regionens land- och diplomatiknappar använder den aktuella kontrollinnehavaren i stället för originalkartans landsetikett.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="changes">
+<h2>Read the change on the map</h2>
+<p>Campaign event impacts can transfer territory, change de facto control, mark a contest or clear one. These operations update different layers. Clearing a contest does not erase a foreign sovereign’s position while another country still occupies the region.</p>
+<p>Read the event’s map-change summary and inspect the affected region after a turn. The region’s country and diplomacy controls use the current controller rather than the original map’s country label.</p>
+</div>
+</section>
+<section id="groups" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="groups">
+<h2>Grupper och historisk osäkerhet</h2>
+<p>En region kan också visa en kontrollerande grupp och dess namn. Gruppkontroll läses separat från landets kontroll. Använd regionkortet för att skilja uppgifterna åt.</p>
+<p>I historiska kampanjer betecknas ett område utan fastställd kontroll som okänd historisk kontroll. Noteringen anger att underlag saknas. Området markeras inte som ledig mark. Historiska regionnoteringar kan också ange att det handlar om en ungefärlig rekonstruktion.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="groups">
+<h2>Groups and historical uncertainty</h2>
+<p>A region can also show a controlling group and its name. Group control is read separately from country control. Use the region card to distinguish these records.</p>
+<p>In historical campaigns, an area without established control is labelled as unknown historical control. Its note says that the evidence is missing; the area is not marked as free land. Historical region notes can also identify an approximate reconstruction.</p>
+</div>
+</section>
+<section id="identity" class="help-section">
+<div data-help-lang="sv" lang="sv" data-help-section="identity">
+<h2>Identitet, resurser och redigering</h2>
+<p>Ett lands identitet kan vara beständig när visningsnamnet ändras. Läs <a href="/wiki/countries/">Länder</a> om alias och registrerade länder utan territorium. En historisk start som stöds använder fortfarande sin förberedda lista över spelbara länder.</p>
+<p>I en dynastikampanj visar rikets överblick städernas skatt, produktion, oro och guvernörer. Statskassa och årsintäkt är uttryckliga resurser, så det äldre allmänna påståendet att territorium saknar intäkter beskriver inte det här flödet. Direkta ändringar med regiongranskaren hör till <a href="/wiki/cheats/">Fusk</a>. Scenariots geometri ändras i <a href="/wiki/editor/">Redigeraren</a>.</p>
+</div>
+<div data-help-lang="en" lang="en" data-help-section="identity">
+<h2>Identity, resources and editing</h2>
+<p>A country’s identity can remain stable when its displayed name changes. Read <a href="/wiki/countries/">Countries</a> for aliases and landless records. A supported historical start still uses its prepared playable-country list.</p>
+<p>In a dynasty campaign, city taxes, production, unrest and governors are shown in the realm overview. Treasury and annual revenue are explicit resources, so the older general claim that territory has no income does not describe this flow. Direct changes with the region inspector belong to <a href="/wiki/cheats/">Cheats</a>; scenario geometry is edited in the <a href="/wiki/editor/">Editor</a>.</p>
+</div>
+</section>
+    <nav class="wiki-pager" data-help-lang="sv" lang="sv" aria-label="Sidnavigering">
+        <a class="prev" href="/wiki/war/"><span>← Föregående</span><b>Krig och relationer</b></a>
+        <a class="next" href="/wiki/military/"><span>Nästa →</span><b>Militär</b></a>
       </nav>
-    <p class="wiki-stale">Open Historia is under active development on two channels, and this
-      wiki is written by hand — a page can fall behind a release. Last checked against the game on <b>2026-10-25</b> · main <code>6e6239c4</code> · beta <code>d7e8fa85</code>. If something
-      here does not match what you see in the game, trust the game and
-      <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">say so on Discord</a>.</p>
+<nav class="wiki-pager" data-help-lang="en" lang="en" aria-label="Page navigation">
+        <a class="prev" href="/wiki/war/"><span>← Previous</span><b>War and relations</b></a>
+        <a class="next" href="/wiki/military/"><span>Next →</span><b>Military</b></a>
+      </nav>
+    <p class="wiki-stale"><span data-help-lang="sv" lang="sv">Om instruktionerna skiljer sig från ditt spel anger du spelversion och vilken vy det gäller när du rapporterar problemet.</span><span data-help-lang="en" lang="en">If these instructions differ from your game, include the game version and the affected screen when reporting the issue.</span>
+      <a href="https://github.com/sp1e/Attainder/issues" target="_blank" rel="noopener">github.com/sp1e/Attainder/issues</a></p>
   </main>
 </div>
 
 <footer>
   <div class="wrap">
-    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · AGPL-3.0 licensed ·
-    <a href="/">Home</a> ·
-    <a href="/wiki/">Wiki</a> ·
+    <img class="mark" src="/icon-192.png" alt="" width="22" height="22" loading="lazy" /> <b>Open Historia</b> · <span data-help-lang="sv" lang="sv">Licensierat enligt AGPL-3.0</span><span data-help-lang="en" lang="en">AGPL-3.0 licensed</span> ·
+    <a href="/"><span data-help-lang="sv" lang="sv">Startsida</span><span data-help-lang="en" lang="en">Home</span></a> ·
+    <a href="/wiki/">Guide</a> ·
     <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://discord.gg/QaqAK7fQAg" target="_blank" rel="noopener">Discord</a> ·
-    <a href="/privacy/">Privacy</a> ·
-    <a href="/privacy/#choices" data-consent-open>Privacy choices</a> ·
-    <a href="/sitemap.xml">Sitemap</a>
-    <p class="foot-legal">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
+    <a href="/privacy/"><span data-help-lang="sv" lang="sv">Integritet</span><span data-help-lang="en" lang="en">Privacy</span></a> ·
+    <a href="/privacy/#choices" data-consent-open><span data-help-lang="sv" lang="sv">Integritetsval</span><span data-help-lang="en" lang="en">Privacy choices</span></a> ·
+    <a href="/sitemap.xml"><span data-help-lang="sv" lang="sv">Webbplatskarta</span><span data-help-lang="en" lang="en">Sitemap</span></a>
+    <p class="foot-legal" data-help-lang="sv" lang="sv">Open Historia är ett oberoende projekt med öppen källkod och är inte anslutet till, rekommenderat, sponsrat, godkänt eller auktoriserat av Pax Historia. Pax Historia deltar inte i utvecklingen, driften eller distributionen av Open Historia. Pax Historia™ och alla tillhörande varumärken, handelsnamn och logotyper tillhör uteslutande Pax Historia.</p>
+<p class="foot-legal" data-help-lang="en" lang="en">Open Historia is an independent, open-source project and is not affiliated with, endorsed, sponsored, approved, or authorized by Pax Historia. Pax Historia has no involvement in the development, operation, or distribution of Open Historia. Pax Historia™ and all associated trademarks, trade names, and logos are the exclusive property of Pax Historia.</p>
   </div>
 </footer>
 
 <script>
-// Client-side search over a generated index — no dependency, no server, no network call.
-// The index is small enough (a few tens of KB) that a plain substring scan is instant.
+// The language switch and client-side search over a generated index: no dependency, no
+// server, no network call beyond the index itself. The index holds one entry per page and
+// language, and is small enough that a plain substring scan is instant.
 (function () {
+  var TEXT = {"sv":{"placeholder":"Sök i guiden…","label":"Sök i guiden","none":"Inga träffar","guide":"Guide"},"en":{"placeholder":"Search the guide…","label":"Search the guide","none":"No matches","guide":"Guide"}};
+  var root = document.documentElement;
+  var buttons = document.querySelectorAll("[data-help-set]");
   var input = document.getElementById("wikiSearch");
   var list = document.getElementById("wikiResults");
-  if (!input || !list) return;
   var index = null, pending = false;
+
+  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+
+  // Titles and section names come from JSON and go into innerHTML.
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
 
   function load() {
     if (index || pending) return;
@@ -294,27 +244,71 @@ land goes to whoever holds the ground it stands on.</p><h2 id="next">Next</h2>
   }
 
   function render() {
+    if (!input || !list) return;
+    var lang = current();
     var q = input.value.trim().toLowerCase();
     if (!q || !index) { list.hidden = true; list.innerHTML = ""; return; }
     var hits = [];
     for (var i = 0; i < index.length && hits.length < 12; i++) {
       var page = index[i];
-      if (page.haystack.indexOf(q) === -1) continue;
+      if (page.lang !== lang || page.haystack.indexOf(q) === -1) continue;
       // A title match is what the reader almost always meant, so float those first.
       hits.push({ page: page, rank: page.title.toLowerCase().indexOf(q) === -1 ? 1 : 0 });
     }
     hits.sort(function (a, b) { return a.rank - b.rank; });
     if (hits.length === 0) {
-      list.innerHTML = "<li class='none'>No matches</li>";
+      list.innerHTML = "<li class='none'>" + esc(TEXT[lang].none) + "</li>";
     } else {
       list.innerHTML = hits.map(function (h) {
-        return "<li><a href='" + h.page.url + "'>" + h.page.title +
-               "<span>" + (h.page.section || "Wiki") + "</span></a></li>";
+        return "<li><a href='" + esc(h.page.url) + "'>" + esc(h.page.title) +
+               "<span>" + esc(h.page.section || TEXT[lang].guide) + "</span></a></li>";
       }).join("");
     }
     list.hidden = false;
   }
 
+  // Everything that follows the language and is not plain markup: the document title, the
+  // pressed state of the switch, the search box's attributes and the open result list.
+  function apply(lang) {
+    root.setAttribute("data-help-lang", lang);
+    root.lang = lang;
+    var title = root.getAttribute("data-title-" + lang);
+    if (title) document.title = title;
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-help-set") === lang));
+    }
+    if (input) {
+      input.placeholder = TEXT[lang].placeholder;
+      input.setAttribute("aria-label", TEXT[lang].label);
+    }
+    render();
+  }
+
+  // The two renderings of a section differ in length. Keep the section being read where it
+  // is on screen, so the switch does not throw the reader to another passage.
+  function sectionInView() {
+    var sections = document.querySelectorAll(".help-section");
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().bottom > 0) return sections[i];
+    }
+    return null;
+  }
+
+  function choose(lang) {
+    var held = sectionInView();
+    var before = held ? held.getBoundingClientRect().top : 0;
+    // Only the wiki's own key: the game's choice in Options is not changed from here.
+    try { localStorage.setItem("wiki_language", lang); } catch (error) { /* Storage is blocked: the choice lasts for this page. */ }
+    apply(lang);
+    if (held) window.scrollBy({ top: held.getBoundingClientRect().top - before, behavior: "instant" });
+  }
+
+  for (var b = 0; b < buttons.length; b++) {
+    buttons[b].addEventListener("click", function () { choose(this.getAttribute("data-help-set")); });
+  }
+  apply(current());
+
+  if (!input || !list) return;
   input.addEventListener("focus", load);
   input.addEventListener("input", function () { load(); render(); });
   input.addEventListener("keydown", function (e) {
