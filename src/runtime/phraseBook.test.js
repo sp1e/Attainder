@@ -420,10 +420,21 @@ test("native: a weak pattern takes a value the book reads by another pattern", (
   assert.equal(book.translate("Årets förvaltning är avslutad · Hovhus 1 (genererat) kräver Aachen"),
     "The year’s administration is concluded · Court house 1 (generated) demands Aachen", "and as a part of a list");
   assert.equal(book.translate("Found 12 kräver Aachen"), null, "words and a number the book cannot read are still another sentence");
+  book.setAll({ "{{year}} e.Kr.": "AD {{year}}", "Bysantinska riket": "Byzantine Empire" });
+  assert.equal(book.translate("Bysantinska riket · 800 e.Kr."), "Byzantine Empire · AD 800", "a row is read part by part, not as one year");
 });
 
 test("native, strong tier: a part of a list may be a comma list of entries", () => {
   const book = storyBook();
   assert.equal(book.translate("Karls rike, 800 e.Kr. · Riket", { strongOnly: true }), "Charles’s realm, AD 800 · The realm");
   assert.equal(book.translate("Hovhus 1 (genererat) kräver Aachen · Riket", { strongOnly: true }), "Hovhus 1 (genererat) kräver Aachen · The realm", "a weak pattern still stays inside the Swedish views");
+});
+
+test("native: a weak pattern takes many words when the book knows every value", () => {
+  const book = createPhraseBook({ native: true });
+  book.setAll({ "{{name}}, {{age}} år ({{realm}})": "{{name}}, aged {{age}} ({{realm}})", "Karl den yngre": "Charles the Younger", "Karls rike (karolingiska riket)": "Charles’s realm (Carolingian Empire)" });
+  assert.equal(book.translate("Karl den yngre, 28 år (Karls rike (karolingiska riket))"), "Charles the Younger, aged 28 (Charles’s realm (Carolingian Empire))");
+  assert.equal(book.translate("Gisela, 20 år (Karls rike (karolingiska riket))"), "Gisela, aged 20 (Charles’s realm (Carolingian Empire))", "a short name the languages share");
+  assert.equal(book.translate("En okänd lång rad med ord, 28 år (Karls rike (karolingiska riket))"), null, "an unknown value keeps the word limit");
+  assert.equal(book.translate("Karl den yngre, 28 år (Karls rike (karolingiska riket))", { strongOnly: true }), null);
 });
