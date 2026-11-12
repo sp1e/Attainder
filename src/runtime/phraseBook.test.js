@@ -199,7 +199,8 @@ test("native: a comma list of entries is translated item by item", () => {
   const book = nativeBookOf(cities);
   assert.equal(book.translate("Rom, Aten, Kairo"), "Rome, Athens, Cairo");
   assert.equal(book.translate("Spelbara riken: Rom, Aten"), "Playable realms: Rome, Athens", "as a slot's value too");
-  assert.equal(book.translate("Rom, Aten, Sparta"), null, "one unknown item and it is prose with commas");
+  assert.equal(book.translate("Rom, Aten, Sparta"), "Rome, Athens, Sparta", "an unknown item with the shape of a name stays as it is");
+  assert.equal(book.translate("Rom, Aten, kom hem"), null, "one unknown item in lower case and it is prose with commas");
   assert.equal(book.translate("Rom,Aten"), null, "the separator is a comma and a space");
   assert.equal(book.translate(Array(16).fill("Rom").join(", ")), null, "at most fifteen items");
   assert.equal(book.translate(Array(15).fill("Rom").join(", ")), Array(15).fill("Rome").join(", "));
@@ -375,7 +376,10 @@ test("native: a label and its value are read around the colon", () => {
   assert.equal(book.translate("Guvernör: Vakant"), "Governor: Vacant");
   assert.equal(book.translate("Kelan Namar: sorg"), "Kelan Namar: grief", "a full name before a lowercased label");
   assert.equal(book.translate("Tronföljd: okänd text"), null, "an unknown value with words would hide the gap");
-  assert.equal(book.translate("Chans: sorg"), null, "one unknown word is as likely a label the book lacks");
+  assert.equal(book.translate("Gisela: sorg"), "Gisela: grief", "a name of one word before an entry");
+  assert.equal(book.translate("al-Hakam I: sorg"), "al-Hakam I: grief", "a name may open with a prefix hyphened to a capital");
+  assert.equal(book.translate("Arvsrätt: sorg"), null, "one unknown word with å, ä or ö is as likely a label the book lacks");
+  assert.equal(book.translate("Chans: okänd text"), null, "one unknown word before an unknown value");
   assert.equal(book.translate("Tronföljd: +65", { strongOnly: true }), null, "not outside the Swedish views");
 });
 
@@ -437,4 +441,86 @@ test("native: a weak pattern takes many words when the book knows every value", 
   assert.equal(book.translate("Gisela, 20 år (Karls rike (karolingiska riket))"), "Gisela, aged 20 (Charles’s realm (Carolingian Empire))", "a short name the languages share");
   assert.equal(book.translate("En okänd lång rad med ord, 28 år (Karls rike (karolingiska riket))"), null, "an unknown value keeps the word limit");
   assert.equal(book.translate("Karl den yngre, 28 år (Karls rike (karolingiska riket))", { strongOnly: true }), null);
+});
+
+test("native: a comma list may hold names when the book reads one of its items", () => {
+  const book = nativeBookOf({ Rom: "Rome", Aten: "Athens", "{{name}} (genererad)": "{{name}} (generated)", "Pesten tar {{names}}": "The plague takes {{names}}" });
+  assert.equal(book.translate("Araua Ocllo, Kuntur Rimaq (genererad), Huayna Capac"), "Araua Ocllo, Kuntur Rimaq (generated), Huayna Capac");
+  assert.equal(book.translate("Pesten tar Araua Ocllo, Kuntur Rimaq (genererad), Qori Puma (genererad), Rumi Sunqu (genererad), Huayna Capac"),
+    "The plague takes Araua Ocllo, Kuntur Rimaq (generated), Qori Puma (generated), Rumi Sunqu (generated), Huayna Capac");
+  assert.equal(book.translate("Araua Ocllo, Huayna Capac"), null, "names alone are not the book's text");
+  assert.equal(book.translate("Rom, Aten, Därför"), null, "a capitalised word with å, ä or ö is as likely Swedish the book lacks");
+  assert.equal(book.translate("Rom, Aten, Sparta", { strongOnly: true }), null, "the strong tier takes entries alone");
+});
+
+test("native: a generated name is read without the mark the engine strips", () => {
+  const book = nativeBookOf({
+    "Kung Meri (genererad)": "King Meri (generated)", "Gemål {{g}} (genererad)": "Consort {{g}} (generated)",
+    "{{name}} (genererad)": "{{name}} (generated)", "{{given}}s lära": "{{given}}’s teaching",
+    "{{strength}} grepp över {{value}}": "{{strength}} hook on {{value}}", Starkt: "Strong",
+  });
+  assert.equal(book.translate("Kung Meris lära"), "King Meri’s teaching");
+  assert.equal(book.translate("Starkt grepp över Gemål 1 (genererad)"), "Strong hook on Consort 1 (generated)");
+  assert.equal(book.translate("Okänd Person"), null, "the pattern that holds any name before the mark reads nothing");
+});
+
+test("native: a note the book has whole may follow a name and a period, however long", () => {
+  const note = Array.from({ length: 10 }, (_, index) => `Mening ${index + 1} om spelets regler.`).join(" ");
+  const english = Array.from({ length: 10 }, (_, index) => `Sentence ${index + 1} on the game’s rules.`).join(" ");
+  const book = nativeBookOf({ "Kungariket Asturien": "Kingdom of Asturias", [note]: english });
+  assert.equal(book.translate(`Kungariket Asturien. ${note}`), `Kingdom of Asturias. ${english}`);
+  assert.equal(book.translate(`Okänt rike. ${note}`), null, "the head must be read");
+});
+
+test("native: a pattern does not split a text inside a parenthesis", () => {
+  const book = nativeBookOf({
+    "{{name}}, {{age}} år ({{realm}})": "{{name}}, aged {{age}} ({{realm}})",
+    "{{relation}} ({{name}}, född {{year}})": "{{relation}} ({{name}}, born {{year}})",
+    Dotter: "Daughter", "Bysantinska riket": "Byzantine Empire",
+  });
+  assert.equal(book.translate("Dotter (Bysantinska riket, född 808), 16 år (Bysantinska riket)"), "Daughter (Byzantine Empire, born 808), aged 16 (Byzantine Empire)");
+  assert.equal(book.translate("Gisela, 16 år (Bysantinska riket)"), "Gisela, aged 16 (Byzantine Empire)");
+});
+
+test("native: a reading that leaves a value unread gives way to one that reads every part", () => {
+  const book = nativeBookOf({ "{{label}} avslöjat": "{{label}} exposed", Förgifta: "Poison", "misslyckat och avslöjat": "failed and exposed" });
+  assert.equal(book.translate("Förgifta: misslyckat och avslöjat"), "Poison: failed and exposed");
+});
+
+test("native: a label with a signed change, and a list of them", () => {
+  const book = nativeBookOf({ statskassan: "the treasury", legitimiteten: "legitimacy" });
+  assert.equal(book.translate("statskassan −10"), "the treasury −10");
+  assert.equal(book.translate("statskassan −10, legitimiteten +2"), "the treasury −10, legitimacy +2");
+  assert.equal(book.translate("okänd post −10"), null, "the label must be known");
+});
+
+test("native: a note in parentheses after a name, a label or a record id", () => {
+  const book = nativeBookOf({ Kock: "Cook", Försoning: "Reconciliation", "Barn {{id}}": "Child {{id}}", "Hovhus {{i}} (genererat)": "Court house {{i}} (generated)" });
+  assert.equal(book.translate("Ciran (Kock)"), "Ciran (Cook)");
+  assert.equal(book.translate("Försoning (1516)"), "Reconciliation (1516)");
+  assert.equal(book.translate("Barn person-5 (Hovhus 4 (genererat))"), "Child person-5 (Court house 4 (generated))");
+  assert.equal(book.translate("Ciran (Okänd)"), null, "one side must be known");
+});
+
+test("native: a lowercased label built around a value is read by its pattern", () => {
+  const book = nativeBookOf({ "Guvernör: {{city}}": "Governor: {{city}}" });
+  assert.equal(book.translate("guvernör: Narim"), "governor: Narim");
+});
+
+test("native: the genitive after a name that ends in a digit", () => {
+  const book = nativeBookOf({ "Barn {{id}}": "Child {{id}}", "{{genitive}} gren av {{rootHouse}}": "{{genitive}} branch of {{rootHouse}}", "Karls hus": "Charles’s house" });
+  assert.equal(book.translate("Barn person-123:s gren av Karls hus"), "Child person-123’s branch of Charles’s house");
+  assert.equal(book.translate("Okänd sak 2:s gren av Karls hus"), null, "the book must read the name");
+});
+
+test("native: an entry without its period wins over a pattern", () => {
+  const entries = { "{{title}} av {{seat}}": "{{title}} of {{seat}}", Konstantinopel: "Constantinople", "Patriark av Konstantinopel": "Patriarch of Constantinople" };
+  assert.equal(nativeBookOf(entries).translate("Patriark av Konstantinopel."), "Patriarch of Constantinople.");
+  assert.equal(nativeBookOf(entries).translate("Biskop av Konstantinopel."), "Biskop of Constantinople.", "without the entry the pattern still reads");
+});
+
+test("native: a text whose own parentheses do not pair keeps its pattern", () => {
+  const book = nativeBookOf({ "Pesten tar {{names}}": "The plague takes {{names}}" });
+  assert.equal(book.translate("Pesten tar 1) Rom"), "The plague takes 1) Rom");
+  assert.equal(book.translate("Pesten tar Rom (Aten, Sparta"), "The plague takes Rom (Aten, Sparta");
 });

@@ -82,3 +82,17 @@ Run on main `2339e247` against `node server/server.js` on port 4167 with the pro
 The run found and fixed: the conversation's chronicle line stayed half Swedish (`Karl … bad Karl den yngre om stöd but the answer was no.`), so the engine now writes who asked whom as one sentence per request, with the same Swedish text as before; the border tribes' state `oroligt` had no entry; an engine sentence kept its decimal comma (`−13,8 silver`).
 
 Not covered: an accepted request, a pledge, a secret revealed, a prisoner, a duel, Android.
+
+## Engine text sweep, 12 November 2026
+
+The browser runs above read the text that happened to be on screen. `node scripts/i18n/sweep-engine-text.mjs --check` plays every shipped start in both modes and Hadara for 30 years under two seeds, without a browser or a model, and reads every string the engine writes with the English book (method: the section "The engine text sweep" of `docs/i18n.md`).
+
+| Run | Strings | Gaps |
+| --- | --- | --- |
+| 10 years, one seed, before the fixes | 5,850 | 23 |
+| 30 years, two seeds, after the first fixes | 19,977 | 19 |
+| 30 years, two seeds, final | 19,976 | 0 |
+
+The sweep found and fixed: a one-word name before an illness or a grief (`Gisela: smittkoppor`), a name with a prefix (`al-Hakam I`), the long court note after a realm's name, generated names in a list of the dead, a generated name without its mark (`Kung Meris lära`, `Starkt grepp över Gemål 1 (genererad)`), a pattern that cut a foreign child's name inside its parenthesis (`Dotter (Bysantinska riket, född 808), 16 år …`), the genitive after a record id in a cadet branch's name, and three codes the filter read as text.
+
+Not covered: text a model writes, the upstream views outside the character system, and a branch named after a person, which keeps the Swedish genitive in English (`Gislas branch of …`).
