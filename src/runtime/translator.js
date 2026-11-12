@@ -274,7 +274,7 @@ const noteUnknown = (trimmed, tier) => {
 // Which part of the book answers for text under this element: all of it,
 // except in native mode outside the Swedish-native views (tierFor).
 const tierAt = (element) =>
-  tierFor(mode, mode === "native" && Boolean(element?.closest?.(NATIVE_TEXT_SELECTOR)));
+  tierFor(mode, Boolean(element?.closest?.(NATIVE_TEXT_SELECTOR)));
 
 // The translation of a whole value with its surrounding whitespace kept, or
 // null when there is none.

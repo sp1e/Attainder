@@ -106,6 +106,10 @@ export const unknownTextFate = (mode, text, { packed = false, tier = "strong", l
   if (typeof text !== "string") return "none";
   if (mode === "native") return tier === "full" || looksSwedish(text) ? "missing" : "none";
   if (mode !== "pack" || !ENGLISH_WORDS.test(text)) return "none";
+  // In Swedish a Swedish-native view holds no gap of the pack and nothing for
+  // the model: its text is already the player's language, with or without a
+  // letter the detector knows ("Kampanjens identitet").
+  if (tier === "native-view" && isSwedish(language)) return "none";
   if (packed) return looksSwedish(text) ? "none" : "missing";
   return mayQueueForModel(mode, text, language) ? "model" : "none";
 };
@@ -115,8 +119,10 @@ export const unknownTextFate = (mode, text, { packed = false, tier = "strong", l
 // and strong patterns do, so a short Swedish pattern cannot rewrite the
 // English interface ("Hot dog stand" under "{{name}} dog {{date}}"). A pack is
 // keyed by the interface's own English and always applies whole.
-export const tierFor = (mode, insideNativeText) =>
-  mode === "native" && !insideNativeText ? "strong" : "full";
+export const tierFor = (mode, insideNativeText) => {
+  if (mode === "native") return insideNativeText ? "full" : "strong";
+  return mode === "pack" && insideNativeText ? "native-view" : "full";
+};
 
 // The options book.translate takes for a tier.
 export const translateOptions = (tier) => (tier === "strong" ? { strongOnly: true } : undefined);
