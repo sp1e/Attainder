@@ -35,8 +35,10 @@ const assertCapped = (before, after) => {
   assert.deepEqual(after.log, full.slice(cut), 'the log is the suffix from the 120th public entry');
   assert.equal(after.log.filter((entry) => entry.public).length, CHARACTER_LOG_LIMIT);
   assert.equal(after.log[0].public, true, 'the kept log starts at a public entry');
+  // The presentation lists each person of an entry once (#216 left older entries with the same person twice).
+  const shown = (entry) => ({ ...entry, participants: [...new Set(entry.participants)] });
   assert.deepEqual(getCharacterPresentation(after).log,
-    full.filter((entry) => entry.public).slice(-CHARACTER_LOG_LIMIT).reverse(), 'the presentation log is unchanged');
+    full.filter((entry) => entry.public).slice(-CHARACTER_LOG_LIMIT).reverse().map(shown), 'the presentation log is unchanged');
 };
 
 test('the presentation and the cap share one limit of 120 public entries', () => {
