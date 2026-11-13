@@ -1,0 +1,492 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T00:00:00Z",
+  "title": "Design System: Attainder interface draft",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Oak-gall ink",
+        "tonalRamp": [
+          "#14100c",
+          "#1f1913",
+          "#2c241b",
+          "#4a3f31"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Oak-gall ink, raised",
+        "tonalRamp": [
+          "#14100c",
+          "#1f1913",
+          "#2c241b",
+          "#4a3f31"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Oak-gall ink, lit",
+        "tonalRamp": [
+          "#14100c",
+          "#1f1913",
+          "#2c241b",
+          "#4a3f31"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "#14100c",
+          "#1f1913",
+          "#2c241b",
+          "#4a3f31"
+        ]
+      },
+      "vellum": {
+        "role": "neutral",
+        "displayName": "Vellum",
+        "tonalRamp": [
+          "#9a8d75",
+          "#c4b79c",
+          "#efe6d2"
+        ]
+      },
+      "vellum-2": {
+        "role": "neutral",
+        "displayName": "Vellum, secondary",
+        "tonalRamp": [
+          "#9a8d75",
+          "#c4b79c",
+          "#efe6d2"
+        ]
+      },
+      "vellum-3": {
+        "role": "neutral",
+        "displayName": "Vellum, faint",
+        "tonalRamp": [
+          "#9a8d75",
+          "#c4b79c",
+          "#efe6d2"
+        ]
+      },
+      "minium": {
+        "role": "tertiary",
+        "displayName": "Minium",
+        "tonalRamp": [
+          "#3c0e06",
+          "#e0573a",
+          "#ffd9cc"
+        ]
+      },
+      "minium-ink": {
+        "role": "tertiary",
+        "displayName": "Minium ink"
+      },
+      "minium-pale": {
+        "role": "tertiary",
+        "displayName": "Pale minium"
+      },
+      "minium-deep": {
+        "role": "tertiary",
+        "displayName": "Deep minium"
+      },
+      "verdigris": {
+        "role": "tertiary",
+        "displayName": "Verdigris"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Carolingian purple vellum",
+        "tonalRamp": [
+          "#5a2449",
+          "#7c3765"
+        ]
+      },
+      "accent-2": {
+        "role": "secondary",
+        "displayName": "Carolingian purple vellum, lit",
+        "tonalRamp": [
+          "#5a2449",
+          "#7c3765"
+        ]
+      },
+      "metal": {
+        "role": "primary",
+        "displayName": "Gold leaf"
+      },
+      "metal-ink": {
+        "role": "primary",
+        "displayName": "Gold-leaf ink"
+      },
+      "realm": {
+        "role": "secondary",
+        "displayName": "Carolingian realm dye"
+      },
+      "egypt-accent": {
+        "role": "secondary",
+        "displayName": "Egyptian faience",
+        "tonalRamp": [
+          "#0f5a63",
+          "#1b7f86"
+        ]
+      },
+      "egypt-accent-2": {
+        "role": "secondary",
+        "displayName": "Egyptian faience, lit",
+        "tonalRamp": [
+          "#0f5a63",
+          "#1b7f86"
+        ]
+      },
+      "egypt-metal": {
+        "role": "primary",
+        "displayName": "Egyptian gold"
+      },
+      "egypt-realm": {
+        "role": "secondary",
+        "displayName": "Egyptian realm dye"
+      },
+      "angevin-accent": {
+        "role": "secondary",
+        "displayName": "Angevin red",
+        "tonalRamp": [
+          "#7a1e25",
+          "#a2303a"
+        ]
+      },
+      "angevin-accent-2": {
+        "role": "secondary",
+        "displayName": "Angevin red, lit",
+        "tonalRamp": [
+          "#7a1e25",
+          "#a2303a"
+        ]
+      },
+      "angevin-metal": {
+        "role": "primary",
+        "displayName": "Angevin gold"
+      },
+      "angevin-realm": {
+        "role": "secondary",
+        "displayName": "Angevin realm dye"
+      },
+      "aztec-accent": {
+        "role": "secondary",
+        "displayName": "Aztec turquoise",
+        "tonalRamp": [
+          "#0d6b62",
+          "#159182"
+        ]
+      },
+      "aztec-accent-2": {
+        "role": "secondary",
+        "displayName": "Aztec turquoise, lit",
+        "tonalRamp": [
+          "#0d6b62",
+          "#159182"
+        ]
+      },
+      "aztec-metal": {
+        "role": "primary",
+        "displayName": "Aztec amber"
+      },
+      "aztec-realm": {
+        "role": "secondary",
+        "displayName": "Aztec realm dye"
+      },
+      "own-land-light": {
+        "role": "neutral",
+        "displayName": "Own-land light"
+      },
+      "map-ground": {
+        "role": "neutral",
+        "displayName": "Map ground"
+      },
+      "sea": {
+        "role": "neutral",
+        "displayName": "Sea"
+      },
+      "sea-shallows": {
+        "role": "neutral",
+        "displayName": "Shallows"
+      },
+      "sea-shore": {
+        "role": "neutral",
+        "displayName": "Shoreline"
+      },
+      "border-ink": {
+        "role": "neutral",
+        "displayName": "Border ink"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The title in the head of the left panel."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The realm's name in the bar; the selected person's name and the notice title sit just under it."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "A matter's title in the list."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and rows, with lining tabular numerals."
+      },
+      "fine": {
+        "displayName": "Fine",
+        "purpose": "Explanations, choice descriptions and small facts in vellum-2."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "The six numbers in the bar."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Cinzel section headings in panels, cards and popovers, and the caption on the thread."
+      },
+      "label-action": {
+        "displayName": "Action label",
+        "purpose": "The primary button only."
+      },
+      "land-name": {
+        "displayName": "Land name",
+        "purpose": "Realm names on the map, uppercase, scaled with the zoom by map.js."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel",
+        "value": "0 14px 40px rgba(0, 0, 0, 0.45)",
+        "purpose": "The two side panels over the map."
+      },
+      {
+        "name": "popover",
+        "value": "0 12px 30px rgba(0, 0, 0, 0.55)",
+        "purpose": "The reasons popover under a figure."
+      },
+      {
+        "name": "notice",
+        "value": "0 18px 50px rgba(0, 0, 0, 0.6)",
+        "purpose": "The notice after a year turn."
+      },
+      {
+        "name": "medallion",
+        "value": "0 3px 10px rgba(0, 0, 0, 0.55)",
+        "purpose": "Portraits on the thread."
+      },
+      {
+        "name": "selection-ring",
+        "value": "0 0 0 3px var(--accent-2), 0 3px 10px rgba(0, 0, 0, 0.55)",
+        "purpose": "The selected medallion."
+      },
+      {
+        "name": "land-lettering",
+        "value": "0 1px 2px #000, 0 0 6px #000",
+        "purpose": "Text shadow for place names, seat labels and border peoples on the map."
+      },
+      {
+        "name": "land-name",
+        "value": "0 1px 2px rgba(0, 0, 0, 0.9), 0 0 14px rgba(0, 0, 0, 0.75)",
+        "purpose": "Text shadow for realm names on the map."
+      },
+      {
+        "name": "map-sign",
+        "value": "drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8))",
+        "purpose": "Filter on the seat and court signs."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing curve (--ease), for state changes, the medallion lift, the panel slide and the raid pulse."
+      },
+      {
+        "name": "state",
+        "value": "0.2s",
+        "purpose": "Ground and border changes on buttons, choices and medallion rings."
+      },
+      {
+        "name": "medallion-lift",
+        "value": "0.25s",
+        "purpose": "A hovered portrait rises 2px."
+      },
+      {
+        "name": "panel-slide",
+        "value": "0.9s",
+        "purpose": "The side panels leave and return at a year turn."
+      },
+      {
+        "name": "raid-pulse",
+        "value": "2.4s",
+        "purpose": "The ring around a raid's diamond, repeating; off with reduced motion."
+      },
+      {
+        "name": "fly-to",
+        "value": "2200ms",
+        "purpose": "The map camera's flight to a clicked place (map.js)."
+      },
+      {
+        "name": "fly-home",
+        "value": "2000ms",
+        "purpose": "The map camera's return to the home view (map.js)."
+      },
+      {
+        "name": "raster-fade",
+        "value": "200ms",
+        "purpose": "Imagery tile fade (map.js)."
+      }
+    ],
+    "breakpoints": []
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one gold action in a view: the year turn.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Nästa år</button>",
+      "css": ".ds-btn-primary { font: 700 1.05rem/1 var(--caps); letter-spacing: 0.06em; padding: 0.75rem 1.4rem; background: var(--metal); border: 1px solid var(--metal); color: var(--metal-ink); border-radius: 2px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease); } .ds-btn-primary:hover { filter: brightness(1.08); } .ds-btn-primary:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; }"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "The default action inside panels and the year strip.",
+      "html": "<button class=\"ds-btn\" type=\"button\">Samtala</button>",
+      "css": ".ds-btn { font: 1.0625rem/1.4 var(--serif); padding: 0.45rem 0.9rem; border-radius: 2px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease); color: var(--vellum); border: 1px solid var(--rule); background: var(--ink-2); } .ds-btn:hover { background: var(--ink-3); border-color: var(--vellum-3); } .ds-btn:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; } .ds-btn:disabled { color: var(--vellum-3); cursor: not-allowed; background: transparent; }"
+    },
+    {
+      "name": "Quiet button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Menu and undo in the bar.",
+      "html": "<button class=\"ds-btn-quiet\" type=\"button\">Meny</button>",
+      "css": ".ds-btn-quiet { font: 1.0625rem/1.4 var(--serif); padding: 0.45rem 0.9rem; border-radius: 2px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease); color: var(--vellum-2); border: 1px solid transparent; background: transparent; } .ds-btn-quiet:hover { color: var(--vellum); background: var(--ink-2); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; }"
+    },
+    {
+      "name": "Danger button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "An action that harms someone.",
+      "html": "<button class=\"ds-btn-danger\" type=\"button\">Avsätt</button>",
+      "css": ".ds-btn-danger { font: 1.0625rem/1.4 var(--serif); padding: 0.45rem 0.9rem; border-radius: 2px; cursor: pointer; transition: background 0.2s var(--ease), border-color 0.2s var(--ease); color: #ffd9cc; border: 1px solid var(--minium); background: var(--ink-2); } .ds-btn-danger:hover { background: #3c0e06; } .ds-btn-danger:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; }"
+    },
+    {
+      "name": "Open matter with choices",
+      "kind": "card",
+      "refersTo": "matter-open",
+      "description": "A matter that needs the player, opened to its choices.",
+      "html": "<div class=\"ds-matter\"><div class=\"ds-matter-head\"><i class=\"ds-matter-face\"></i><h3>Lösen för Odo</h3><span class=\"ds-matter-due\">Senast 25 mars 803</span></div><div class=\"ds-matter-body\"><p>Odo sitter fången. Hans hus erbjuder silver.</p><button class=\"ds-choice\" type=\"button\"><b>Ta emot lösen</b><span>Odo friges.</span><em>+30 silver</em></button><button class=\"ds-choice\" type=\"button\" disabled><b>Kräv mer</b><span>Huset får ett motbud.</span><em>Ingen kansler kan förhandla.</em></button></div></div>",
+      "css": ".ds-matter { width: 22rem; border: 1px solid var(--vellum-3); background: var(--ink-3); color: var(--vellum); font: 1.0625rem/1.4 var(--serif); } .ds-matter-head { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.7rem; padding: 0.55rem 0.8rem; } .ds-matter-face { grid-row: span 2; align-self: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 1px solid var(--vellum-3); background: var(--ink-3); } .ds-matter h3 { margin: 0; font-weight: 600; font-size: 1.4rem; line-height: 1.2; } .ds-matter-due { font-size: 0.88rem; color: var(--minium); font-weight: 600; } .ds-matter-body { padding: 0 0.8rem 0.8rem; } .ds-matter-body p { margin: 0 0 0.5rem; color: var(--vellum-2); max-width: 38ch; line-height: 1.3; } .ds-choice { display: grid; width: 100%; margin-top: 0.35rem; padding: 0.45rem 0.7rem; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 1px solid var(--rule); background: var(--ink); border-radius: 2px; transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease); } .ds-choice:hover:not(:disabled) { border-color: var(--metal); background: #1a140d; transform: translateX(2px); } .ds-choice:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; } .ds-choice b { font-weight: 600; font-size: 1.05rem; } .ds-choice span { font-size: 0.86rem; color: var(--vellum-2); line-height: 1.3; } .ds-choice em { font-style: normal; font-weight: 600; font-size: 0.82rem; color: var(--vellum); } .ds-choice:disabled { cursor: not-allowed; color: var(--vellum-3); } .ds-choice:disabled em { color: var(--vellum-3); font-style: italic; }"
+    },
+    {
+      "name": "Panel head",
+      "kind": "custom",
+      "refersTo": "panel-head",
+      "description": "The period accent band at the top of a side panel.",
+      "html": "<header class=\"ds-panel-head\"><h2>Kräver dig</h2><span>4 ärenden</span></header>",
+      "css": ".ds-panel-head { width: 23rem; display: flex; align-items: baseline; justify-content: space-between; padding: 0.9rem 1.1rem 0.8rem; background: var(--accent); border-bottom: 1px solid var(--accent-2); color: var(--vellum); font-family: var(--serif); } .ds-panel-head h2 { margin: 0; font: 600 2rem/1 var(--serif); } .ds-panel-head span { font-size: 0.95rem; }"
+    },
+    {
+      "name": "Medallions on the thread",
+      "kind": "custom",
+      "refersTo": "medallion",
+      "description": "Ruler, heir and a generated court member, joined by the thread's lines.",
+      "html": "<div class=\"ds-thread\"><button class=\"ds-med ds-med-ruler\" type=\"button\"><i class=\"ds-face\"></i><span class=\"ds-who\">Karl</span><span class=\"ds-role ds-crown\">Kejsare</span></button><button class=\"ds-med ds-med-heir\" type=\"button\" aria-pressed=\"true\"><i class=\"ds-face\"></i><span class=\"ds-flag\">1</span><span class=\"ds-who\">Karl den yngre</span><span class=\"ds-role\">Arvinge</span></button><button class=\"ds-med\" type=\"button\"><i class=\"ds-face\"></i><span class=\"ds-who\">Ansgar</span><span class=\"ds-role\">Kansler</span><span class=\"ds-gen\">genererad</span></button></div>",
+      "css": ".ds-thread { display: flex; align-items: flex-start; padding: 0.8rem 0.5rem; background: var(--ink); color: var(--vellum); font-family: var(--serif); } .ds-med { position: relative; display: grid; justify-items: center; width: 4.9rem; padding: 0; border: 0; background: none; text-align: center; font: inherit; color: inherit; cursor: pointer; } .ds-med + .ds-med::before { content: \"\"; position: absolute; top: 1.7rem; right: calc(50% + 1.75rem); width: calc(100% - 3.5rem); border-top: 2px dashed var(--vellum-3); } .ds-med.ds-med-heir::before { border-top: 2px solid var(--metal); width: calc(100% - 4.1rem); } .ds-face { width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid var(--vellum-3); background: var(--ink-3); box-shadow: 0 3px 10px rgba(0, 0, 0, 0.55); transition: transform 0.25s var(--ease), border-color 0.2s; } .ds-med:hover .ds-face { transform: translateY(-2px); border-color: var(--vellum); } .ds-med:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; } .ds-med-ruler { width: 6rem; } .ds-med-ruler .ds-face { width: 4.6rem; height: 4.6rem; border: 3px solid var(--metal); margin-top: -0.55rem; } .ds-med-heir .ds-face { border-color: var(--metal); } .ds-med[aria-pressed=\"true\"] .ds-face { border-color: var(--vellum); box-shadow: 0 0 0 3px var(--accent-2), 0 3px 10px rgba(0, 0, 0, 0.55); } .ds-who { margin-top: 0.3rem; font-size: 0.82rem; line-height: 1.1; max-width: 5.4rem; } .ds-role { margin-top: 0.15rem; font: 600 0.62rem/1 var(--caps); letter-spacing: 0.1em; color: var(--vellum-2); } .ds-role.ds-crown { color: var(--metal); } .ds-gen { margin-top: 0.1rem; font: italic 400 0.7rem/1 var(--serif); color: var(--vellum-3); } .ds-flag { position: absolute; top: -0.15rem; left: calc(50% + 0.9rem); min-width: 1.15rem; height: 1.15rem; padding: 0 0.25rem; border-radius: 0.6rem; background: var(--minium); color: #1a0a05; font: 700 0.75rem/1.15rem var(--serif); }"
+    },
+    {
+      "name": "Area tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "The six areas in the year strip; the current one has a gold underline.",
+      "html": "<nav class=\"ds-tabs\"><button type=\"button\" aria-current=\"page\">Kräver dig<sup>4</sup></button><button type=\"button\">Personer</button><button type=\"button\">Familjer</button></nav>",
+      "css": ".ds-tabs { display: flex; align-items: center; gap: 0.15rem; padding: 0 0.8rem; height: 4.1rem; background: rgba(20, 16, 12, 0.95); border-top: 1px solid var(--rule); } .ds-tabs button { font: 1.0625rem/1.4 var(--serif); padding: 0.5rem 0.75rem; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--vellum-2); white-space: nowrap; cursor: pointer; } .ds-tabs button:hover { color: var(--vellum); } .ds-tabs button[aria-current] { color: var(--vellum); border-bottom-color: var(--metal); } .ds-tabs button:focus-visible { outline: 2px solid var(--metal); outline-offset: 2px; } .ds-tabs sup { margin-left: 0.3rem; padding: 0 0.3rem; border-radius: 0.5rem; background: var(--minium); color: #1a0a05; font-weight: 700; font-size: 0.72rem; vertical-align: 0.25em; }"
+    },
+    {
+      "name": "Order input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Where the player writes an order in his own words.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Jag försöker vinna Ansgars stöd\" aria-label=\"Vad vill du göra?\">",
+      "css": ".ds-input { width: 16rem; padding: 0.5rem 0.65rem; font: 1.0625rem/1.4 var(--serif); color: var(--vellum); caret-color: var(--metal); background: var(--ink); border: 1px solid var(--rule); border-radius: 2px; } .ds-input::placeholder { color: var(--vellum-3); font-style: italic; } .ds-input:focus { border-color: var(--metal); outline: none; }"
+    },
+    {
+      "name": "Section label and tags",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "A Cinzel section heading over the tags that mark a person as documented or generated.",
+      "html": "<div class=\"ds-labelled\"><h3>Rådet och ämbeten</h3><div class=\"ds-tags\"><span>Dokumenterad person; spelvärden är genererade</span><span>Plikttrogen</span></div></div>",
+      "css": ".ds-labelled { width: 20rem; padding: 0.9rem 1rem; background: var(--ink); font-family: var(--serif); } .ds-labelled h3 { margin: 0 0 0.4rem; font: 600 0.74rem/1 var(--caps); letter-spacing: 0.12em; color: var(--vellum-2); padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); } .ds-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; } .ds-tags span { font-size: 0.8rem; padding: 0.1rem 0.45rem; border: 1px solid var(--rule); color: var(--vellum-2); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Genealogical Roll",
+    "overview": "This system records a design draft of Attainder's play screen under `docs/design/ui-draft`. The owner has reacted to the draft. The game does not use it yet, and the interface under `src/Game` is an older look that this file does not describe.\n\nThe court is drawn as a lineage on the land it rules. A satellite map with relief fills the screen. Over it lie a top bar, a thread of portrait medallions in the order of succession, a panel at the left edge for what needs the player, a panel at the right edge for the selected person or realm, and a strip along the bottom for the six areas and the months ahead. The land between the panels stays visible.\n\nThe base is the same for every start: oak-gall ink panels, vellum text, minium for what is urgent and verdigris for what is well. Each start adds a period accent and its own gold. The faces are the game's own, EB Garamond and Cinzel, served from the draft's folder.",
+    "keyCharacteristics": [
+      "One view: map, court, open matters, selection and the year ahead are on screen together.",
+      "Ink panels at the edges, square, with 1px rules. People are round.",
+      "Gold marks the crown, the heir's line and the one primary action.",
+      "Small Cinzel capitals label sections; EB Garamond carries names, text and figures.",
+      "The map is MapLibre GL with Esri imagery, elevation relief, a sea drawn from Natural Earth's land, and a snow line that follows the season.",
+      "Desktop only. The root size scales with the viewport width, so the layout keeps its proportions from a laptop to the owner's 2560×1440 screen."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Leaf Rule",
+        "body": "Gold marks the crown, the succession and the one primary action, and it shows where the player's hand is. It never fills a panel or a card.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Signals Rule",
+        "body": "Minium means urgent or bad and verdigris means well. Neither is used for decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Period Accent Rule",
+        "body": "The start's period changes the panel heads, the selection ring, the gold and the player's realm dye. Ink, vellum, minium and verdigris are the same in every start.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inscription Rule",
+        "body": "Cinzel is for small labels, the primary action and names on the land. Names of people, titles, text and figures are EB Garamond.",
+        "section": "typography"
+      },
+      {
+        "name": "The Italic Is A Caveat Rule",
+        "body": "Italic marks what is uncertain or absent: the generated mark under a medallion, a vacant office, a choice's reason for being unavailable, a placeholder, a border people's name on the map.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lettering On The Land Rule",
+        "body": "Text on the map has a dark text shadow and no box. The one boxed label is a raid, which is urgent.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the land visible between the panels. Panels stay at the edges: 23rem at the left, 20.5rem at the right.",
+      "Do start every matter in a person: a portrait on the card and a count on that person's medallion.",
+      "Do keep one gold button per view.",
+      "Do mark a generated person in italic `vellum-3` under the medallion and as a tag in the card.",
+      "Do let a figure open its reasons, with a dotted underline under its caption as the sign.",
+      "Do give text on the map a dark text shadow.",
+      "Do honour reduced motion: no pulse, no transitions, an instant year turn."
+    ],
+    "donts": [
+      "Don't round panels or cards. Circles are for people.",
+      "Don't set names, text or figures in Cinzel.",
+      "Don't use minium or verdigris for decoration.",
+      "Don't let the period accent reach body text, borders or buttons.",
+      "Don't add drawn cloud shadows over the map. They were tried as gradients and removed; the relief carries the life.",
+      "Don't box a label on the map unless it is urgent.",
+      "Don't replace the map with a drawn stand-in. It is the game's own engine with real geometry."
+    ]
+  }
+}
