@@ -154,6 +154,13 @@ Left as found:
 - The fatal duel moves `healthRngState`: the grief draws its rolls from it. Item 8 of `docs/superpowers/specs/2026-11-10-duel-design.md` says no stream moves.
 - The 404 of the section above: `loadStatSheetDefinition` (`src/runtime/statsSheet.js:37`) asks the server for the scenario's `stats` asset, and none of the shipped packages has one. The catalog marks it absent (`assetStatus.stats` is false), but the function asks the server so that a stale catalog cannot hide an upload from the Scenario Editor. The game then uses the default sheet.
 
+Fixed on 13 November 2026, with unit tests and no browser rerun yet:
+
+- After a decision the notice names the chosen option and the gravest outcome logged before the decision: `Let the duel go ahead · Charles the Younger has died`, and `Forbid the duel` alone when nothing else happened.
+- A fatal duel writes the `duel` memory that names both fighters, and `Forbid the duel` writes a `duel_forbidden` memory that the opinion cites. The dead loser's kin still get no opinion of the winner, and no rival forms; that needs a ruling of its own.
+- A house with nobody alive leaves the Families view. The state keeps its record, with its city and estates; what becomes of those is undecided.
+- The duel spec now says that the grief after a death draws from the health stream.
+
 Not covered: a duel left open past its deadline, which the engine lets go ahead (`No one forbade the duel in time, and the heir went to fight.`), and Android.
 
 ## Engine text sweep, 12 November 2026
