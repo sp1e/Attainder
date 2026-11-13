@@ -92,6 +92,21 @@ const setLibraryState = (nextState) => {
   emitLibraryState();
 };
 
+// The active game's row follows its own game.json: a turn writes the date and round without a catalog reload,
+// and the top bar reads both from this row. The token, features and scenario are unchanged, so nothing is re-synced.
+const followActiveGameWrite = (event) => {
+  const game = event?.detail?.game;
+  const active = libraryState.activeGame;
+  if (!active || !game || typeof game !== "object") return;
+  const currentDate = String(game.gameDate ?? "").trim();
+  const round = Number.isFinite(Number(game.round)) && Number(game.round) > 0 ? Math.trunc(Number(game.round)) : 1;
+  if (currentDate === active.currentDate && round === active.round) return;
+  const activeGame = { ...active, currentDate, round };
+  libraryState = { ...libraryState, activeGame, games: libraryState.games.map((entry) => (entry.id === active.id ? activeGame : entry)) };
+  emitLibraryState();
+};
+if (typeof globalThis.window?.addEventListener === "function") window.addEventListener("oh:game-updated", followActiveGameWrite);
+
 const parseApiResponse = async (response) => {
   let payload = null;
 
