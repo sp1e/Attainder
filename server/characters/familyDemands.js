@@ -80,8 +80,10 @@ function targetOf(state, family, hooks) {
   return ambitionOf(state, state.people[family.headId], hooks) === 'city' ? cityTarget(state, family) : officeTarget(state, family);
 }
 
+// The ruler is nobody's candidate: a demand is put to her.
 function candidateOf(state, family, hooks) {
-  const [candidate] = Object.values(state.people).filter((person) => person.familyId === family.id && hooks.adult(person) && !isImprisoned(state, person.id)).sort((a, b) => skillSum(b) - skillSum(a) || byId(a, b));
+  const rulerId = hooks.ruler()?.id;
+  const [candidate] = Object.values(state.people).filter((person) => person.familyId === family.id && person.id !== rulerId && hooks.adult(person) && !isImprisoned(state, person.id)).sort((a, b) => skillSum(b) - skillSum(a) || byId(a, b));
   return candidate ?? null;
 }
 

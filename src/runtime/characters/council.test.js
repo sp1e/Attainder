@@ -276,6 +276,11 @@ test('a crowned councillor leaves the seat', () => {
 test('the ruler is refused a council seat, and the realm\'s leadership passes her over', () => {
   const refused = run(base(), 'appoint', { officeId: 'spymaster', personId: REP });
   assert.deepEqual([refused.ok, refused.error], [false, 'Välj en annan person.']);
+  const petition = run(base(), 'seek_office', { officeId: 'chancellor' });
+  assert.deepEqual([petition.ok, petition.error], [false, 'Välj ett förvaltningsämbete.'], 'nor may she petition for one');
+  const offered = getAvailableCharacterActions(base()).find((item) => item.type === 'seek_office').fields.find((item) => item.key === 'officeId').options.map((item) => item.value);
+  assert.deepEqual(COUNCIL_SEATS.filter((id) => offered.includes(id)), [], 'and the menu offers her none');
+  assert.ok(offered.length > 0, 'the other offices stay on the menu');
   const governor = Object.values(base().offices).find((office) => office.kind === 'governor' && office.holderId !== REP);
   assert.equal(run(base(), 'appoint', { officeId: governor.id, personId: REP }).ok, true, 'only the council is closed to her');
   // Another house plays, so the realm's leadership fills the vacant seat itself at the year turn.
