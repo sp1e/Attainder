@@ -86,6 +86,8 @@ test('forbidding the duel stresses the heir and turns the heir against the ruler
   assert.equal(after.people[HEIR].stress, stress + 20);
   const cause = after.relations[`${HEIR}:karl`].causes.find((item) => item.label === 'Förbjuden duell');
   assert.equal(cause.amount, -20);
+  const memory = after.memories.find((item) => item.id === cause.causeId);
+  assert.deepEqual([memory?.type, memory?.title, memory?.participants], ['duel_forbidden', 'Förbjuden duell', [HEIR, 'karl']], 'the opinion cites a memory of the refusal');
   assert.equal(after.people[RIVAL].diedAt, null);
   assert.equal(duels(after)[0].status, 'resolved');
   const choice = after.log.at(-1);
@@ -114,6 +116,8 @@ test('a loser who falls dies of the duel, and the heir can be the one who falls'
   resolveDuel(state, story, 'allow', [], actionHooks(state));
   assert.equal(heir.diedAt, state.date);
   assert.equal(heir.deathReason, 'Föll i en duell');
+  const memory = state.memories.find((item) => item.type === 'duel');
+  assert.deepEqual([memory?.title, memory?.participants], [`${rival.name} besegrar Karl den yngre i en duell`, [RIVAL, HEIR]], 'the fight is remembered when the loser falls');
   assert.equal(story.status, 'resolved');
   normalizeCharacterSystem(plain(state));
 });

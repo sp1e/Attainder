@@ -86,7 +86,8 @@ function fight(state, story, fighter, events, hooks) {
   const event = hooks.logEvent(events, 'duel', `${winner.name} besegrar ${loser.name} i en duell`, `${winner.name} vinner duellen mot ${loser.name}. ${outcome}`, [winner.id, loser.id]);
   winner.stress = Math.max(0, winner.stress - WIN_STRESS);
   if (heirWins && fighter.id === story.heirId) addPrestige(state, PRESTIGE);
-  if (dies) { hooks.kill([loser.id], events, 'Föll i en duell'); return; }
+  // The memory comes before the death, so the court remembers who won the fight the loser died of.
+  if (dies) { hooks.memory('duel', event.title, [winner.id, loser.id], { causeId: event.id }); hooks.kill([loser.id], events, 'Föll i en duell'); return; }
   inflictInjury(state, loser, events, { sourceKind: 'duel', causeId: event.id, relatedPersonId: winner.id, rolls: { severity: 2, scar: hashRoll(`${story.id}|scar`), outcome: hashRoll(`${story.id}|recovery`) } });
   const note = hooks.memory('duel', event.title, [winner.id, loser.id], { causeId: event.id }).id;
   hooks.opinionCause(loser.id, winner.id, DEFEAT.value, DEFEAT.label, note, DEFEAT.years);
@@ -98,7 +99,8 @@ export function resolveDuel(state, story, choiceId, events, hooks) {
   const heir = state.people[story.heirId];
   if (choiceId === 'forbid') {
     heir.stress = Math.min(200, heir.stress + FORBID_STRESS);
-    hooks.opinionCause(heir.id, story.actorId, FORBIDDEN.value, FORBIDDEN.label, `duel:${story.id}`, FORBIDDEN.years);
+    const note = hooks.memory('duel_forbidden', FORBIDDEN.label, [heir.id, story.actorId]).id;
+    hooks.opinionCause(heir.id, story.actorId, FORBIDDEN.value, FORBIDDEN.label, note, FORBIDDEN.years);
     return;
   }
   const champion = choiceId === 'champion' ? championFor(state, story, hooks) : null;
