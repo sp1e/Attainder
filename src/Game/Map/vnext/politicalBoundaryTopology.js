@@ -97,6 +97,61 @@ export const stitchSegments = (segments, precision) => {
 };
 
 /**
+ * Join directed segments head to tail. No segment is ever turned round, so a
+ * chain keeps whatever lies to the right of its segments on its right: a realm's
+ * outline is drawn inside the realm through `line-offset`.
+ */
+export const stitchDirectedSegments = (segments, precision) => {
+  const leaving = new Map();
+  const arrivals = new Map();
+  for (let index = 0; index < segments.length; index += 1) {
+    const from = pointKey(segments[index].a);
+    const to = pointKey(segments[index].b);
+    const entries = leaving.get(from);
+    if (entries) entries.push(index);
+    else leaving.set(from, [index]);
+    arrivals.set(to, (arrivals.get(to) ?? 0) + 1);
+  }
+  const visited = new Uint8Array(segments.length);
+  const chains = [];
+  const walk = (startIndex) => {
+    const line = [coordinateOf(segments[startIndex].a, precision)];
+    let index = startIndex;
+    while (index !== undefined && !visited[index]) {
+      visited[index] = 1;
+      line.push(coordinateOf(segments[index].b, precision));
+      const next = (leaving.get(pointKey(segments[index].b)) ?? []).filter((candidate) => !visited[candidate]);
+      index = next.length === 1 ? next[0] : undefined;
+    }
+    chains.push(line);
+  };
+  // Open chains from their heads, then from junctions, and closed rings last.
+  const startsAt = (index, test) => !visited[index] && test(pointKey(segments[index].a));
+  const passes = [
+    (key) => !arrivals.has(key),
+    (key) => arrivals.get(key) !== 1 || leaving.get(key).length !== 1,
+    () => true,
+  ];
+  for (const test of passes) {
+    for (let index = 0; index < segments.length; index += 1) {
+      if (startsAt(index, test)) walk(index);
+    }
+  }
+  return chains;
+};
+
+// Twice the signed area of a ring in lng/lat: positive when counter-clockwise.
+const ringTurning = (ring) => {
+  let sum = 0;
+  for (let index = 0; index < ring.length; index += 1) {
+    const from = ring[index];
+    const to = ring[(index + 1) % ring.length];
+    sum += Number(from?.[0]) * Number(to?.[1]) - Number(to?.[0]) * Number(from?.[1]);
+  }
+  return Number.isFinite(sum) ? sum : 0;
+};
+
+/**
  * Build geometry-only frontier topology once per authored map. Ownership is
  * deliberately absent from this index so later political changes can be
  * classified without re-reading millions of polygon vertices.
@@ -142,6 +197,10 @@ export const buildPoliticalBoundaryTopology = (
   const b = [];
   const region1 = [];
   const region2 = [];
+  // 1 when region1 lies to the right of a -> b, -1 when to the left, 0 when it has no one side: a ring without
+  // area, or an edge two parts of the same region share. Geometry only: a realm's outline is drawn inside the
+  // realm, and this says which side that is.
+  const side1 = [];
   const extra = new Map();
   let skippedFeatureCount = 0;
 
@@ -156,8 +215,12 @@ export const buildPoliticalBoundaryTopology = (
       continue;
     }
     for (const polygon of polygons) {
-      for (const ring of polygon ?? []) {
+      for (let ringIndex = 0; ringIndex < (polygon?.length ?? 0); ringIndex += 1) {
+        const ring = polygon[ringIndex];
         if (!Array.isArray(ring) || ring.length < 2) continue;
+        // Walking an exterior ring counter-clockwise, or a hole clockwise, keeps the region on the left.
+        const turning = ringTurning(ring);
+        const regionOnLeft = (turning > 0) === (ringIndex === 0);
         let previous = internPoint(ring[0]);
         for (let vertex = 1; vertex < ring.length; vertex += 1) {
           const current = internPoint(ring[vertex]);
@@ -175,7 +238,10 @@ export const buildPoliticalBoundaryTopology = (
             b.push(hi);
             region1.push(featureIndex);
             region2.push(-1);
-          } else if (region1[existing] !== featureIndex && region2[existing] !== featureIndex) {
+            side1.push(turning === 0 ? 0 : (previous === lo) !== regionOnLeft ? 1 : -1);
+          } else if (region1[existing] === featureIndex) {
+            side1[existing] = 0;
+          } else if (region2[existing] !== featureIndex) {
             if (region2[existing] === -1) region2[existing] = featureIndex;
             else {
               const more = extra.get(existing);
@@ -234,6 +300,8 @@ export const buildPoliticalBoundaryTopology = (
   const recoveredB = [];
   const recoveredRegion1 = [];
   const recoveredRegion2 = [];
+  const recoveredEdge1 = [];
+  const recoveredEdge2 = [];
   const recoveredSeen = new Set();
   for (const [key, entries] of grid) {
     if (entries.length < 2) continue;
@@ -267,6 +335,8 @@ export const buildPoliticalBoundaryTopology = (
         recoveredB.push(overlap.b);
         recoveredRegion1.push(firstRegion);
         recoveredRegion2.push(secondRegion);
+        recoveredEdge1.push(edge);
+        recoveredEdge2.push(other);
       }
     }
   }
@@ -284,11 +354,14 @@ export const buildPoliticalBoundaryTopology = (
     b,
     region1,
     region2,
+    side1: Int8Array.from(side1),
     extra,
     recoveredA,
     recoveredB,
     recoveredRegion1,
     recoveredRegion2,
+    recoveredEdge1,
+    recoveredEdge2,
     stats: {
       regionCount: features.length,
       edgeCount: a.length,
@@ -438,21 +511,145 @@ const boundaryFeatureForGroup = (ownerKey, group, precision) => {
   };
 };
 
-const buildTopologySegments = (topology) => {
+// A realm's outline. A key names one feature: the kind of edge and the realm it bounds.
+const OUTLINE_KEY_PREFIX = "\u001e";
+const outlineKey = (kind, owner) => `${OUTLINE_KEY_PREFIX}${kind}\u001f${owner}`;
+
+const ownerOfRegion = (topology, ownershipOverrides, regionIndex) => {
+  const id = topology.regionIds[regionIndex];
+  return toCountryName(ownershipOverrides?.[id] ?? topology.baseOwners[regionIndex] ?? "");
+};
+
+/**
+ * The realms one base edge bounds, each with the edge directed so that realm is
+ * on its right. An edge is a `frontier` when no realm lies beyond it and a
+ * `side` when another does. A recovered overlap gives nothing: the two base
+ * edges it came from carry the outline. Nor does an edge without a side.
+ */
+const outlineEntriesForSegment = (segment, topology, ownershipOverrides) => {
+  if (!segment.side) return [];
+  const ownerOf = (regionIndex) => ownerOfRegion(topology, ownershipOverrides, regionIndex);
+  // The side is known for the first region; a second lies across the edge. Any further region (regions laid over
+  // each other) counts as a neighbour of both and gets no line of its own.
+  const [first, second = -1, ...rest] = segment.regionIndexes;
+  const firstOwner = ownerOf(first);
+  const restOwners = rest.map(ownerOf);
+  const beyond = second >= 0 ? [ownerOf(second), ...restOwners] : (segment.matched ?? []).map(ownerOf);
+  const entries = [];
+  const add = (owner, others, ownerOnRight) => {
+    if (!owner || others.includes(owner)) return;
+    entries.push({
+      key: outlineKey(others.some(Boolean) ? "side" : "frontier", owner),
+      a: ownerOnRight ? segment.a : segment.b,
+      b: ownerOnRight ? segment.b : segment.a,
+    });
+  };
+  add(firstOwner, beyond, segment.side > 0);
+  if (second >= 0) add(ownerOf(second), [firstOwner, ...restOwners], segment.side < 0);
+  return entries;
+};
+
+const outlineFeatureForGroup = (key, segments, precision) => {
+  if (!segments?.size) return null;
+  const [kind, owner] = key.slice(OUTLINE_KEY_PREFIX.length).split("\u001f");
+  const coordinates = stitchDirectedSegments([...segments.values()], precision);
+  if (!coordinates.length) return null;
+  return {
+    type: "Feature",
+    id: stableId("polity-outline", `${kind}\u001f${owner}`),
+    properties: {
+      class: kind === "side" ? "polity-side" : "polity-frontier",
+      ownerKey: owner,
+      owners: owner,
+      ownerList: [owner],
+      owner0: owner,
+      owner1: "",
+      owner2: "",
+      owner3: "",
+    },
+    geometry: { type: "MultiLineString", coordinates },
+  };
+};
+
+const sameOutlineEntries = (left, right) => left.length === right.length
+  && left.every((entry, index) => entry.key === right[index].key && entry.a === right[index].a && entry.b === right[index].b);
+
+// File one segment under the realms it bounds now; `changedKeys` collects the outline features to rebuild.
+const fileSegmentOutline = (state, segment, ownershipOverrides, changedKeys = null) => {
+  const previous = state.segmentOutline.get(segment.id) ?? [];
+  const next = outlineEntriesForSegment(segment, state.topology, ownershipOverrides);
+  if (sameOutlineEntries(previous, next)) return;
+  for (const entry of previous) {
+    state.outlineGroups.get(entry.key)?.delete(segment.id);
+    changedKeys?.add(entry.key);
+  }
+  for (const entry of next) {
+    let group = state.outlineGroups.get(entry.key);
+    if (!group) {
+      group = new Map();
+      state.outlineGroups.set(entry.key, group);
+    }
+    group.set(segment.id, { a: entry.a, b: entry.b });
+    changedKeys?.add(entry.key);
+  }
+  if (next.length) state.segmentOutline.set(segment.id, next);
+  else state.segmentOutline.delete(segment.id);
+};
+
+// Replace, or drop, the published feature of one group and record it in the patch.
+const publishGroupFeature = (state, key, feature, removeIds, upsert) => {
+  const oldFeature = state.features.get(key);
+  if (!feature) {
+    state.features.delete(key);
+    if (oldFeature?.id != null) removeIds.push(String(oldFeature.id));
+    return;
+  }
+  state.features.set(key, feature);
+  upsert.push(feature);
+};
+
+// The regions each single-region edge overlaps without sharing its vertices.
+const matchedRegionsByEdge = (topology) => {
+  const matched = new Map();
+  const add = (edge, region) => {
+    if (!Number.isInteger(edge)) return;
+    const regions = matched.get(edge);
+    if (regions) regions.push(region);
+    else matched.set(edge, [region]);
+  };
+  for (let index = 0; index < (topology?.recoveredA?.length ?? 0); index += 1) {
+    add(topology.recoveredEdge1?.[index], topology.recoveredRegion2[index]);
+    add(topology.recoveredEdge2?.[index], topology.recoveredRegion1[index]);
+  }
+  return matched;
+};
+
+const buildTopologySegments = (topology, { outlines = false } = {}) => {
   const segments = new Map();
   const regionToSegments = Array.from({ length: topology?.regionIds?.length ?? 0 }, () => []);
-  const register = (id, regionIndexes, aPoint, bPoint) => {
+  // With outlines an edge of one region is a segment too: it may be a realm's edge against nobody.
+  const matchedByEdge = outlines ? matchedRegionsByEdge(topology) : null;
+  const register = (id, regionIndexes, aPoint, bPoint, edge = -1) => {
     const indexes = [...new Set((regionIndexes ?? []).filter((value) => Number.isInteger(value) && value >= 0))];
-    if (indexes.length < 2) return;
+    if (indexes.length < (outlines && edge >= 0 ? 1 : 2)) return;
     const segment = { id, regionIndexes: indexes, a: aPoint, b: bPoint };
+    const watched = [...indexes];
+    if (outlines && edge >= 0) {
+      segment.side = topology.side1?.[edge] ?? 0;
+      const matched = indexes.length === 1 ? matchedByEdge.get(edge) : null;
+      if (matched) {
+        segment.matched = [...new Set(matched)].filter((regionIndex) => regionIndex !== indexes[0]);
+        watched.push(...segment.matched);
+      }
+    }
     segments.set(id, segment);
-    for (const regionIndex of indexes) regionToSegments[regionIndex]?.push(id);
+    for (const regionIndex of watched) regionToSegments[regionIndex]?.push(id);
   };
 
   for (let edge = 0; edge < (topology?.a?.length ?? 0); edge += 1) {
     const second = topology.region2[edge];
     const more = topology.extra.get(edge);
-    if (second === -1 && !more) continue;
+    if (second === -1 && !more && !outlines) continue;
     const regionIndexes = [topology.region1[edge]];
     if (second !== -1) regionIndexes.push(second);
     if (more) regionIndexes.push(...more);
@@ -461,6 +658,7 @@ const buildTopologySegments = (topology) => {
       regionIndexes,
       [topology.pointX[topology.a[edge]], topology.pointY[topology.a[edge]]],
       [topology.pointX[topology.b[edge]], topology.pointY[topology.b[edge]]],
+      edge,
     );
   }
 
@@ -481,9 +679,13 @@ const buildTopologySegments = (topology) => {
  * owner classification of existing frontier segments changes between political
  * revisions. Runtime updates therefore touch segments incident to changed
  * regions instead of rescanning the entire authored map.
+ *
+ * With `outlines` the state also keeps each realm's outline: the edges with the
+ * realm on one side only, as `polity-frontier` and `polity-side` features whose
+ * lines run with the realm on the right. A historical campaign asks for them.
  */
-export const createPoliticalBoundaryState = (topology, ownershipOverrides = {}) => {
-  const { segments, regionToSegments } = buildTopologySegments(topology);
+export const createPoliticalBoundaryState = (topology, ownershipOverrides = {}, { outlines = false } = {}) => {
+  const { segments, regionToSegments } = buildTopologySegments(topology, { outlines });
   const groups = new Map();
   const segmentGroupKey = new Map();
   const features = new Map();
@@ -510,14 +712,25 @@ export const createPoliticalBoundaryState = (topology, ownershipOverrides = {}) 
     if (feature) features.set(key, feature);
   }
 
-  return {
+  const state = {
     topology,
     segments,
     regionToSegments,
     groups,
     segmentGroupKey,
     features,
+    outlines: Boolean(outlines),
+    outlineGroups: new Map(),
+    segmentOutline: new Map(),
   };
+  if (state.outlines) {
+    for (const segment of segments.values()) fileSegmentOutline(state, segment, ownershipOverrides);
+    for (const [key, group] of state.outlineGroups) {
+      const feature = outlineFeatureForGroup(key, group, topology.precision);
+      if (feature) features.set(key, feature);
+    }
+  }
+  return state;
 };
 
 export const politicalBoundaryStateCollection = (state) => ({
@@ -561,9 +774,11 @@ export const updatePoliticalBoundaryState = (
   }
 
   const changedGroups = new Set();
+  const changedOutlines = new Set();
   for (const segmentId of segmentIds) {
     const segment = state.segments.get(segmentId);
     if (!segment) continue;
+    if (state.outlines) fileSegmentOutline(state, segment, ownershipOverrides, changedOutlines);
     const previousKey = state.segmentGroupKey.get(segmentId) ?? "";
     const owners = segmentOwners(segment, state.topology, ownershipOverrides);
     const nextKey = owners.length >= 2 ? owners.join("\u001f") : "";
@@ -592,21 +807,13 @@ export const updatePoliticalBoundaryState = (
   const upsert = [];
   for (const key of changedGroups) {
     const group = state.groups.get(key);
-    const oldFeature = state.features.get(key);
-    if (!group?.segments?.size) {
-      state.groups.delete(key);
-      state.features.delete(key);
-      if (oldFeature?.id != null) removeIds.push(String(oldFeature.id));
-      continue;
-    }
-    const feature = boundaryFeatureForGroup(key, group, state.topology.precision);
-    if (!feature) {
-      state.features.delete(key);
-      if (oldFeature?.id != null) removeIds.push(String(oldFeature.id));
-      continue;
-    }
-    state.features.set(key, feature);
-    upsert.push(feature);
+    if (!group?.segments?.size) state.groups.delete(key);
+    publishGroupFeature(state, key, boundaryFeatureForGroup(key, group, state.topology.precision), removeIds, upsert);
+  }
+  for (const key of changedOutlines) {
+    const group = state.outlineGroups.get(key);
+    if (!group?.size) state.outlineGroups.delete(key);
+    publishGroupFeature(state, key, outlineFeatureForGroup(key, group, state.topology.precision), removeIds, upsert);
   }
 
   return {
@@ -614,6 +821,7 @@ export const updatePoliticalBoundaryState = (
     stats: {
       changedSegmentCount: segmentIds.size,
       changedGroupCount: changedGroups.size,
+      changedOutlineCount: changedOutlines.size,
       boundaryGroupCount: state.features.size,
     },
   };

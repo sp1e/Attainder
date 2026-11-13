@@ -27,11 +27,16 @@ export const MAP_LAYER_ORDER = [
   "group-areas-tint",
   // A historical campaign draws relief over the fills, so mountains read through a realm's colour.
   "relief-over-fills",
+  // ...and each realm's outline inside its edge: a band of its colour and a thin rim.
+  "polity-outline-band",
+  "polity-outline-light",
 
   // Sovereign frontiers are presentation, but must remain above every
   // political fill and below every semantic object/label layer.
   "polity-boundaries-shadow",
   "polity-boundaries",
+  // The player's own realm has a heavier edge, over the borders it runs along.
+  "polity-own-edge",
   // ...and its outline sits above the sovereign borders it may run along.
   "group-areas-outline-casing",
   "group-areas-outline",

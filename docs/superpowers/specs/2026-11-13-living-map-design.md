@@ -20,7 +20,7 @@ A historical campaign opens on land the player can read as land: coasts, mountai
 
 - Non-historical scenarios keep today's look.
 - No change to scenario packages, saves, region geometry or the ownership rules.
-- The tilted camera, realm outlines against unclaimed land, a painted sea, a seasonal snow line and rulers at their seats come in later slices.
+- The tilted camera, a painted sea, a seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2.
 
 ## Slice 1: the land shows
 
@@ -38,6 +38,30 @@ Rulings, each with what it costs if wrong:
 9. **A scenario with a map of its own gets no relief.** The elevation tiles are the Earth's.
 
 Everything lives in one small module, `src/Game/Map/historicalCartography.js`, so the look has one place and its numbers have tests.
+
+## Slice 2: a realm has an edge
+
+After slice 1 a realm of the AD 800 package is a wash with no edge: the game draws a border only where two realms meet. The measurement behind this slice, on the four released packages:
+
+| Package | Regions | Owned | Edges between two realms | Realm edges with no realm beyond |
+|---|---|---|---|---|
+| `charlemagne-800` | 1,426 | 11 | 18 | 2,216 |
+| `john-1200` | 1,425 | 6 | 4 | 629 |
+| `egypt-3000bc` | 1,421 | 1 | 0 | 30 |
+| `world-1500` | 1,422 | 2 | 0 | 216 |
+
+So 99 in 100 of a realm's edge segments had no line at all. The unowned regions of these packages do not share vertices with each other, so the topology cannot tell a coast from land nobody is known to rule. The rule therefore does not try.
+
+Rulings, each with what it costs if wrong:
+
+10. **A realm's outline is every edge with the realm on one side and not on the other.** Where no other realm lies beyond, the edge is a *frontier*; where another realm does, it is the realm's *side* of a shared border. Coast and unclaimed land are both frontier. Cost if wrong: a coast and a land frontier look the same, and a later slice with land data can split them.
+11. **The outline is drawn inside the realm.** Each outline segment is stored with the realm on its right, from the winding of the region's ring, so `line-offset` moves the colour inward. A band in the realm's colour, wide and blurred, lies just inside the edge, with a thin line of the same colour at its outer rim. The colour of one realm never spills over a neighbour or the sea. Cost if wrong: a ring whose winding cannot be read (zero area) puts its band on the wrong side of that ring.
+12. **A frontier gets the dark line a border already has.** The two existing border layers draw it, so a realm's edge looks the same against a neighbour and against the wild. A realm's side of a shared border is left to the band; the border between the two already has its line.
+13. **The player's own realm has a heavier edge**: a darker, wider line around the whole of it, drawn over the borders. The player's realm is the owner named by `game.country`. Cost if wrong: one layer to remove.
+14. **Only a historical campaign asks for outlines.** The map tells the cartography worker at `initialize`; other scenarios get the same features, byte for byte, as before.
+15. **An ownership change redraws the outline in the same patch as the border.** The outline hides with the border while the change animates, through the same filter.
+
+The topology gains two geometry facts and no ownership: which side of each edge its first region lies on, and which two edges a recovered overlap came from. An edge of a single region that overlaps a region of the same owner is interior and gets no outline.
 
 ## Checks
 
