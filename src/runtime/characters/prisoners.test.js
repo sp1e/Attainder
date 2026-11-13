@@ -425,6 +425,7 @@ test('a ransom offer appears at a found plot seed; accept pays 40 silver and rel
   assert.deepEqual(view.choices.map((choice) => choice.id), ['accept', 'refuse']);
   for (const choice of view.choices) assert.deepEqual(Object.keys(choice).sort(), ['cost', 'description', 'disabledReason', 'id', 'label', 'stress']);
   assert.deepEqual(view.choices.map((choice) => choice.disabledReason), ['', '']);
+  assert.match(view.choices[1].description, /\(åsikt om dig −10\)\.$/, 'a minus sign, as the other cards write it');
   const done = ok(run(next, 'resolve_story', { storyId: story.id, choiceId: 'accept' }));
   assert.equal(done.realm.treasury, next.realm.treasury + RANSOM);
   assert.equal(done.families[NAMARS].treasury, next.families[NAMARS].treasury - RANSOM);

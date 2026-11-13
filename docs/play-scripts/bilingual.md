@@ -106,12 +106,55 @@ Before the run the save of the test campaign got three changes, so that the outc
 The run found and fixed:
 
 - The model copied Swedish names into English prose: the imprisonment story read `Karl gave the order`, and two events of the year named `Karls rike (karolingiska riket)`. The prompts carry the Swedish campaign data. In English each character prompt and the year prompt now carry `englishNames`, which maps every Swedish name in the prompt to the name the player reads, and the data clause tells the model to write those names. The Swedish prompts are unchanged. In the browser a conversation with Bertha sent two requests to the model, and both carried `englishNames` with 16 names, among them `"Karl (Karl den store)": "Charles (Charlemagne)"` and `"Karls rike (karolingiska riket)": "Charles’s realm (Carolingian Empire)"`. Bertha's reply and two replies of Rikulf (generated) read English with no Swedish name. None of the three named a person, so this run did not see the model write `Charles`.
-- A portrait or family badge without a picture showed `K(` for Charles and `O(` for Odo (generated): the initials came from the Swedish name and took the bracket of an epithet. They now come from the name the player reads and skip a part in brackets. After the fix the browser showed `O` for Odo (generated), `A` for Ansgar (generated) under Decisions, `Lo` for Louis of Aquitaine and `Ch` on the house badges. Swedish changes too: Odo (genererad) shows `O` where it showed `O(`.
+- A portrait or family badge without a picture showed `K(` for Charles and `O(` for Odo (generated): the initials came from the Swedish name and took the bracket of an epithet. They now come from the name the player reads and skip a part in brackets. After the fix the browser showed `O` for Odo (generated), `A` for Ansgar (generated) under Decisions, `Lo` for Louis of Aquitaine and `Ch` on the house badges. Since #214 a numbered court house keeps its number: `C1` for Court house 1 (generated). Swedish changes too: Odo (genererad) shows `O` where it showed `O(`.
 - Two accessible names kept the Swedish campaign name: the campaign card's menu button (`More for Karls rike (karolingiska riket), 800 e.Kr. · The realm`) and the flag fallback (`Karls rike (karolingiska riket) flag unavailable`). Both now read the name through the English book and draw again when the book arrives (`useTranslatorUpdates`). The build's React Compiler keeps the result of a call until one of its arguments changes, so `readNative(text, updates)` takes the count of the book's updates as an argument. After the fix the browser read `More for Charles’s realm (Carolingian Empire), AD 800 · The realm` and `Charles’s realm (Carolingian Empire) flag unavailable`. The start picker's search rows use the same reading; this run did not test the search.
 
-At each year request the console showed a 404 for `/api/scenarios/charlemagne-800/assets/stats`; this run did not trace it.
+At each year request the console showed a 404 for `/api/scenarios/charlemagne-800/assets/stats`; the next section traces it.
 
-Not covered: `Send a champion`, `Forbid the duel`, `Reject the offer`, `Release` and `Execute`, a duel the heir loses, Android.
+Not covered: Android. The next section runs the other duel, ransom and prisoner branches.
+
+## Duel, ransom and prisoner branches, 12 November 2026
+
+Run on branch `docs/bilingual-browser-run-4` (from main `75baeba6`) against `node server/server.js` on port 4167 with the production build, in English, without a model, on the campaign of the section above. Four clicks on `Undo last turn` took the save back to revision 25, 25 December AD 802, with the duel and the ransom still open. Each branch started there. After each one, `Undo last turn` brought the save back to revision 25, and a comparison of the save file found no other difference.
+
+Three branches need an outcome the saved rolls do not give. Every member of Charles's house has prowess 4, so `Send a champion` stays closed, and the saved duel's rolls let the heir win at any prowess. For those branches the save got one change each, made at revision 25 with the server stopped: Pippin of Italy's prowess 4 → 5 for the champion, and for the lost duels a new id for the duel story, which seeds its rolls (`duel-karl-den-yngre-0802-12-15` injures the heir, `duel-karl-den-yngre-0802-12-20` kills the heir). For each changed save the engine predicted the outcome before the browser ran it, and the browser showed that outcome.
+
+| Step | Result |
+| --- | --- |
+| Families | Badges `C1`, `C2` and `C3` for Court house 1–3 (generated), `Ch` for Charles’s house. The accessible name of the flag above the map read Swedish until the English book arrived, then `Charles’s realm (Carolingian Empire) flag unavailable` |
+| Decisions | `Send a champion` closed, in italics: `No one in the family fights better than the heir.` `Forbid the duel` read `0 silver · +20 for the heir`; `Reject the offer` read `(opinion of you -10)` |
+| `Reject the offer` | Notice `Ransom for Odo (generated)`; the Decisions badge went from 4 to 3. Annals: `Reject the offer. Odo (generated) stays in prison…`; Memories: `The ransom offer was rejected` |
+| `Release`, after the rejection | Notice `Odo (generated) is released`; `No prisoners are held right now.`; focus on the heading `Schemes and secrets`. Annals: `Odo (generated) is let out of prison.` Odo's opinion of your representative `-57`, with `Ransom rejected: -10` and `Released from prison: +10` |
+| `Execute`, after the rejection | `Do you want to execute Odo (generated)? This cannot be undone.` with `Yes, execute` and `Keep the prisoner`. Notice `Odo (generated) is executed · Odo (generated) has died`. Overview: Dread `20 / 100`, `The nobility is wary`. Court house 1 (generated): `Representative: None`, `Political support +5`. Annals: `Executed. Personal wealth goes to the family…` |
+| `Forbid the duel` | Notice `Charles the Younger challenges Ansgar (generated) to a duel`. Annals: `Forbid the duel. No fight…` with `Charles (Charlemagne) · Charles (Charlemagne)`. Charles the Younger: Stress `20 / 100`, opinion of your representative `-12`, with `Same family: +8` and `Forbidden duel: -20` |
+| `Send Pippin of Italy as champion`, Pippin at prowess 5 | The button read `15 silver · Stress 0`. Notice `Ansgar (generated): injury · Charles the Younger challenges Ansgar (generated) to a duel`. Annals and Memories: `Pippin of Italy defeats Ansgar (generated) in a duel`. Ansgar (generated): `Injured`, Health `88 / 100`, Stress `10 / 100`, `Injury` `Ongoing`. Charles’s house: shared treasury 54 → 39 |
+| `Let the duel go ahead`, the heir loses | Notice `Charles the Younger: injury · Charles the Younger challenges Ansgar (generated) to a duel`. Annals: `Ansgar (generated) defeats Charles the Younger in a duel` / `Ansgar (generated) wins the duel against Charles the Younger. Charles the Younger is injured.` Charles the Younger: `Injured`, Health `90 / 100`, Stress `10 / 100`, still the lawful heir |
+| `Let the duel go ahead`, the heir dies | Notice `Charles (Charlemagne): grief · Charles the Younger challenges Ansgar (generated) to a duel`. Annals: `Charles the Younger has died` / `Fell in a duel. Personal wealth goes to Charles (Charlemagne); the family’s shared estates remain.` Lawful heir: `Pippin of Italy`. Charles (Charlemagne): `Grief after the death of someone close`, Stress `20 / 100` |
+
+The console showed no errors, only the map's warning about a shared hillshade source.
+
+The run found and fixed (#216):
+
+- The Annals named the ruler twice under every decision the ruler answers (`Charles (Charlemagne) · Charles (Charlemagne)`): the engine logged both the story's actor and the person who acts. It now logs each person once.
+- `Reject the offer` wrote the opinion change with a hyphen (`-10`). It now writes `−10`, as the other cards do.
+- A dead person's card showed the date of death without the cause the engine stores. The card now shows `Cause of death`, for example `Fell in a duel`.
+
+Left as found:
+
+- The notice joins the titles of the turn's last two public events, and the engine logs a decision after its outcome. After the heir's death the notice named the grief and the challenge, not the death; after `Forbid the duel` it named only the challenge.
+- After a duel decision the focus moved to `Connect a model` at the top of the panel.
+- `Forbid the duel` writes no memory, though Charles the Younger's opinion lists `Forbidden duel: -20`.
+- A fatal duel writes no memory of the fight. After killing the heir, Ansgar (generated) had no memories, an opinion of 0 and no rival.
+- A duel injury opens no care decision.
+- `Send a champion` needs a member of the family with more prowess than the heir. Charles's house has none, so the option stays closed in this campaign.
+- Executing the only member of Court house 1 (generated) left the house with `Representative: None` and `Political support +5`.
+- A memory whose cause is an entry of the Annals reads `Follows from: an earlier decision`.
+- The execute confirmation says `This cannot be undone.`, and `Undo last turn` undoes it.
+- The prisoner field of the action cards prints the stored date (`Odo (generated) · prisoner since 0801-12-25`), while Intrigue writes `Prisoner since 25 December AD 801`.
+- The fatal duel moves `healthRngState`: the grief draws its rolls from it. Item 8 of `docs/superpowers/specs/2026-11-10-duel-design.md` says no stream moves.
+- The 404 of the section above: `loadStatSheetDefinition` (`src/runtime/statsSheet.js:37`) asks the server for the scenario's `stats` asset, and none of the shipped packages has one. The catalog marks it absent (`assetStatus.stats` is false), but the function asks the server so that a stale catalog cannot hide an upload from the Scenario Editor. The game then uses the default sheet.
+
+Not covered: a duel left open past its deadline, which the engine lets go ahead (`No one forbade the duel in time, and the heir went to fight.`), and Android.
 
 ## Engine text sweep, 12 November 2026
 
