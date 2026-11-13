@@ -83,9 +83,16 @@ test('a view gives every name it may show, then the extra names', () => {
   const view = { people: [{ name: 'Karl' }, {}], families: [{ name: 'Karolingerna', hostPolityName: 'Bysans' }], identity: { realmName: 'Karls rike' },
     cities: [{ name: 'Aachen' }], religions: [{ name: 'Kristendom' }], tribes: [{ name: 'Sorber' }],
     foreignRealms: [{ name: 'Córdoba', seatName: 'Córdoba stad', rulerName: 'al-Hakam I', heirName: 'Abd al-Rahman', faithName: 'Islam' }] };
-  assert.deepEqual(viewNames(view, ['Ansgar']), ['Karl', undefined, 'Karolingerna', 'Bysans', 'Karls rike', 'Aachen', 'Kristendom', 'Sorber',
+  assert.deepEqual(viewNames(view, ['Ansgar']), ['Karl', undefined, undefined, undefined, 'Karolingerna', 'Bysans', 'Karls rike', 'Aachen', 'Kristendom', 'Sorber',
     'Córdoba', 'Córdoba stad', 'al-Hakam I', 'Abd al-Rahman', 'Islam', 'Ansgar']);
   assert.deepEqual(viewNames(undefined), [undefined]);
+});
+
+test('a house that has left the families view keeps its English reading through its dead members', () => {
+  const reader = (name) => ({ 'Hovhus 1 (genererat)': 'Court house 1 (generated)' })[name] ?? name;
+  const view = { people: [{ name: 'Odo', familyName: 'Hovhus 1 (genererat)' }], families: [], cities: [] };
+  assert.deepEqual(englishNameData(viewNames(view), 'English', reader, { people: view.people }),
+    { englishNames: { 'Hovhus 1 (genererat)': 'Court house 1 (generated)' } });
 });
 
 test('the year prompt ends with the names the player reads in English and has none in Swedish', () => {
