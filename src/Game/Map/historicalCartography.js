@@ -155,3 +155,33 @@ export const buildOwnEdgePaint = (visible) => ({
 export const ownEdgeFilter = (owner) => (owner
   ? ["all", OUTLINE_CLASS_FILTER, ["==", ["get", "owner0"], owner]]
   : ["==", ["get", "class"], "polity-no-realm"]);
+
+// Slice 3: the camera leans. On the flat map of a historical campaign the camera may lean and turn, so the mountains the
+// elevation tiles raise are seen from the side. The globe keeps its camera: its sun and its idle turning assume a camera
+// that looks straight down.
+export const HISTORICAL_REST_PITCH = 42;
+// Steeper, and the horizon fills with far tiles.
+export const HISTORICAL_MAX_PITCH = 55;
+// The stock value was chosen for a camera that never leaned; seen from the side it makes needles of a mountain range.
+export const STOCK_TERRAIN_EXAGGERATION = 15;
+export const HISTORICAL_TERRAIN_EXAGGERATION = 8;
+
+export const cameraMayLean = ({ historical = false, globe = false } = {}) => Boolean(historical && !globe);
+
+/** The `<Map>` props that let the camera lean and turn, or the stock ones that hold it still. */
+export const cameraHandlers = (lean) => (lean
+  ? { dragRotate: true, touchPitch: true, pitchWithRotate: true, maxPitch: HISTORICAL_MAX_PITCH }
+  : { dragRotate: false, touchPitch: false, pitchWithRotate: false });
+
+/** The pitch a campaign opens with and the compass returns to. */
+export const restPitch = (lean) => (lean ? HISTORICAL_REST_PITCH : 0);
+
+export const terrainExaggeration = (historical) => (historical ? HISTORICAL_TERRAIN_EXAGGERATION : STOCK_TERRAIN_EXAGGERATION);
+
+/** Whether the camera is turned from north or its pitch is not the resting one. */
+export function cameraOffRest(camera, rest = 0) {
+  const pitch = Number(camera?.pitch ?? 0), bearing = Number(camera?.bearing ?? 0);
+  if (!camera) return rest !== 0;
+  const fromNorth = Math.abs(((bearing % 360) + 540) % 360 - 180);
+  return fromNorth > 0.5 || Math.abs(pitch - rest) > 1;
+}

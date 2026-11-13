@@ -20,7 +20,7 @@ A historical campaign opens on land the player can read as land: coasts, mountai
 
 - Non-historical scenarios keep today's look.
 - No change to scenario packages, saves, region geometry or the ownership rules.
-- The tilted camera, a painted sea, a seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2.
+- A painted sea, a seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2 and the leaning camera slice 3.
 
 ## Slice 1: the land shows
 
@@ -62,6 +62,20 @@ Rulings, each with what it costs if wrong:
 15. **An ownership change redraws the outline in the same patch as the border.** The outline hides with the border while the change animates, through the same filter.
 
 The topology gains two geometry facts and no ownership: which side of each edge its first region lies on, and which two edges a recovered overlap came from. An edge of a single region that overlaps a region of the same owner is interior and gets no outline.
+
+## Slice 3: the camera leans
+
+The map of a historical campaign was seen from straight above. The game already deforms the ground with the elevation tiles (Settings, 3D terrain, on by default on a desktop), but the camera could not lean, so the mountains never stood up. A run in the browser with the camera leaned by hand showed that every layer the game draws holds: the fills, the outlines, the realm names of the text renderer, cities and units. `fitBounds` and `flyTo`, which the game uses to show an event or a search result, keep the camera's pitch.
+
+Rulings, each with what it costs if wrong:
+
+16. **In a historical campaign on the flat map the camera may lean and turn.** The right mouse button, or Ctrl and a drag, turns and leans it; two fingers lean it on a touch screen. The pitch stops at 55 degrees: steeper, and the horizon fills with far tiles. On the globe the camera stays as it was, because the globe's sun and its idle turning assume a camera that looks straight down. Cost if wrong: one function.
+17. **A campaign opens leaned by 42 degrees**, north up, on the framing it already had. Cost if wrong: one constant.
+18. **The ground is raised 8 times in a historical campaign**, not 15. Fifteen was chosen for a camera that never leaned; seen from the side it makes needles of the Alps. Cost if wrong: one constant.
+19. **A compass brings the view back.** It stands over the search button while the camera is turned or its pitch is not the resting one, its needle shows north, and a press returns to north and to 42 degrees. Its label is the interface string `Reset`, which every language pack already carries, so the slice adds no player text. Cost if wrong: one small component.
+20. **When leaning stops being allowed, the camera is laid flat.** A player who switches to the globe would otherwise be left with a view he cannot change.
+
+Not in this slice: the sea floor still rises and falls with the elevation tiles, which shows as a step at the edge of the continental shelf. The painted sea of a later slice covers it.
 
 ## Checks
 

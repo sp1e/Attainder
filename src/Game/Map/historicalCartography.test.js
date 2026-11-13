@@ -12,6 +12,10 @@ import {
   BOUNDARY_LINE_CLASS_FILTER, OUTLINE_BAND_LAYER_ID, OUTLINE_CLASS_FILTER, OUTLINE_FALLBACK_COLOR, OUTLINE_LIGHT_LAYER_ID, OWN_EDGE_LAYER_ID,
   buildOutlineBandPaint, buildOutlineLightPaint, buildOwnEdgePaint, buildRealmColorExpression, ownEdgeFilter,
 } from "./historicalCartography.js";
+import {
+  HISTORICAL_MAX_PITCH, HISTORICAL_REST_PITCH, HISTORICAL_TERRAIN_EXAGGERATION, STOCK_TERRAIN_EXAGGERATION,
+  cameraHandlers, cameraMayLean, cameraOffRest, restPitch, terrainExaggeration,
+} from "./historicalCartography.js";
 
 const read = (name) => fs.readFileSync(new URL(name, import.meta.url), "utf8");
 
@@ -244,4 +248,67 @@ test("an outline layer mounted late is put back in its place in the stack", () =
     assert.match(layer.slice(0, layer.indexOf("/>")), /beforeId=\{map\?\.getLayer\?\.\("polity-boundaries-shadow"\) \? "polity-boundaries-shadow" : undefined\}/);
   }
   assert.match(nations, /if \(!historical \|\| !customFlag\) return undefined;[\s\S]{0,400}getLayer\(OWN_EDGE_LAYER_ID\)\) enforceMapLayerOrder\(mapInstance\);/);
+});
+
+// Slice 3: the camera leans.
+test("the camera may lean in a historical campaign on the flat map, and nowhere else", () => {
+  assert.equal(cameraMayLean({ historical: true, globe: false }), true);
+  assert.equal(cameraMayLean({ historical: true, globe: true }), false);
+  assert.equal(cameraMayLean({ historical: false, globe: false }), false);
+  assert.equal(cameraMayLean(), false);
+});
+
+test("without lean the map keeps the three stock handler props, and with it the pitch has a ceiling", () => {
+  assert.deepEqual(cameraHandlers(false), { dragRotate: false, touchPitch: false, pitchWithRotate: false });
+  assert.deepEqual(cameraHandlers(true), { dragRotate: true, touchPitch: true, pitchWithRotate: true, maxPitch: 55 });
+  assert.equal(HISTORICAL_MAX_PITCH, 55);
+});
+
+test("a leaning campaign rests at 42 degrees and raises the ground 8 times, not 15", () => {
+  assert.equal(HISTORICAL_REST_PITCH, 42);
+  assert.ok(HISTORICAL_REST_PITCH < HISTORICAL_MAX_PITCH);
+  assert.equal(restPitch(true), 42);
+  assert.equal(restPitch(false), 0);
+  assert.equal(STOCK_TERRAIN_EXAGGERATION, 15);
+  assert.equal(HISTORICAL_TERRAIN_EXAGGERATION, 8);
+  assert.equal(terrainExaggeration(true), 8);
+  assert.equal(terrainExaggeration(false), 15);
+  assert.equal(terrainExaggeration(undefined), 15);
+});
+
+test("the camera is off its rest when it is turned from north or its pitch is not the resting one", () => {
+  assert.equal(cameraOffRest({ bearing: 0, pitch: 42 }, 42), false);
+  assert.equal(cameraOffRest({ bearing: 0.4, pitch: 42.8 }, 42), false);
+  assert.equal(cameraOffRest({ bearing: 359.8, pitch: 42 }, 42), false, "a hair west of north is north");
+  assert.equal(cameraOffRest({ bearing: -0.3, pitch: 41.2 }, 42), false);
+  assert.equal(cameraOffRest({ bearing: 12, pitch: 42 }, 42), true);
+  assert.equal(cameraOffRest({ bearing: -170, pitch: 42 }, 42), true);
+  assert.equal(cameraOffRest({ bearing: 0, pitch: 0 }, 42), true);
+  assert.equal(cameraOffRest({ bearing: 0, pitch: 0 }, 0), false);
+  assert.equal(cameraOffRest({}, 0), false);
+  assert.equal(cameraOffRest(undefined, 42), true, "no camera read is not the resting view of a leaning map");
+});
+
+test("the map takes its handlers, its terrain and its opening pitch from the rules", () => {
+  const world = read("./World.jsx"), nations = read("./Nations.jsx"), compass = read("./CameraCompass.jsx");
+  assert.match(world, /const lean = cameraMayLean\(\{ historical, globe: isGlobe \}\);/);
+  assert.match(world, /\{\.\.\.cameraHandlers\(lean\)\}/);
+  assert.doesNotMatch(world, /dragRotate=\{false\}/);
+  assert.match(world, /exaggeration: terrainExaggeration\(historical\),/);
+  assert.match(world, /\{lean && <CameraCompass rest=\{restPitch\(lean\)\} \/>\}/);
+  assert.match(world, /layCameraFlat\(/);
+  assert.equal(nations.split("pitch: openingPitch").length - 1, 2, "both opening framings");
+  assert.match(nations, /const openingPitch = restPitch\(cameraMayLean\(\{ historical, globe: isGlobe \}\)\);/);
+  assert.doesNotMatch(nations, /bearing: 0,?\s+pitch: 0/);
+  assert.match(compass, /aria-label="Reset"/);
+  assert.match(compass, /easeTo\(\{ bearing: 0, pitch: rest, duration: 500 \}\)/);
+  assert.match(compass, /cameraOffRest\(/);
+});
+
+test("whether the camera may lean is part of the map's key, and the compass waits for the camera to move", () => {
+  const world = read("./World.jsx"), compass = read("./CameraCompass.jsx");
+  assert.match(world, /const basemapRenderKey = lean \? `\$\{stockRenderKey\}:lean` : stockRenderKey;/);
+  assert.ok(world.indexOf("const lean = cameraMayLean(") < world.indexOf("const stockRenderKey = buildBasemapRenderKey("), "lean is known before the key");
+  assert.match(compass, /instance\.on\("move", read\);/);
+  assert.doesNotMatch(compass, /\n\s+read\(\);/, "no reading at mount: the opening framing has not run yet");
 });

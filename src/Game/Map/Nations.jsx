@@ -54,8 +54,10 @@ import {
   buildOutlineLightPaint,
   buildOwnEdgePaint,
   buildRealmColorExpression,
+  cameraMayLean,
   historicalFillOpacityAtZoom,
   ownEdgeFilter,
+  restPitch,
 } from "./historicalCartography.js";
 import { toCountryName } from "../../runtime/ownerNames.js";
 import {
@@ -943,6 +945,8 @@ const WorldMap = ({ isGlobe = false }) => {
   }, [polityLabelCollections, useLivePolityLabels]);
 
   const initialCameraBounds = worldState?.initialCameraBounds;
+  // A historical campaign on the flat map opens leaned (historicalCartography.js).
+  const openingPitch = restPitch(cameraMayLean({ historical, globe: isGlobe }));
   // Start a campaign with its player polity inside the composition instead of
   // blindly centring longitude zero (which wastes half a wide screen on the
   // Atlantic in European scenarios). This runs only while the camera is still
@@ -974,7 +978,7 @@ const WorldMap = ({ isGlobe = false }) => {
         const canvas = mapInstance.getCanvas?.();
         const padding = Math.max(24, Math.min(110, Math.round(Math.min(canvas?.clientWidth || 390, canvas?.clientHeight || 844) * 0.12)));
         initialFramingAppliedRef.current = true;
-        mapInstance.fitBounds(initialCameraBounds, { padding, maxZoom: 7, duration: 0, bearing: 0, pitch: 0 });
+        mapInstance.fitBounds(initialCameraBounds, { padding, maxZoom: 7, duration: 0, bearing: 0, pitch: openingPitch });
         return;
       }
       const player = String(game?.country ?? "").trim().toLocaleLowerCase();
@@ -1005,7 +1009,7 @@ const WorldMap = ({ isGlobe = false }) => {
         center: [lng, Math.max(-70, Math.min(70, lat - 5))],
         zoom: responsiveZoom,
         bearing: 0,
-        pitch: 0,
+        pitch: openingPitch,
       });
     }).catch(() => {
       initialFramingAppliedRef.current = true;
@@ -1014,7 +1018,7 @@ const WorldMap = ({ isGlobe = false }) => {
     return () => {
       cancelled = true;
     };
-  }, [isGlobe, map, polityLabelCollections, polityOverrides, initialCameraBounds]);
+  }, [isGlobe, map, polityLabelCollections, polityOverrides, initialCameraBounds, openingPitch]);
 
   // On custom maps the stock modern-country labels are replaced wholesale by the
   // owner labels (no more "Russia"/"Ukraine" floating over the Soviet Union).
