@@ -1,5 +1,7 @@
 /*! Open Historia — GPU ownership frontier-distance flood presentation © 2026 Open Historia contributors, AGPL-3.0-or-later (see LICENSE). */
 
+import { opaqueTransitionColors } from "../historicalCartography.js";
+
 export const OWNERSHIP_FLOOD_LAYER_ID = "ownership-transition-flood";
 export const MAX_ACTIVE_OWNERSHIP_FLOOD_FIELDS = 8;
 
@@ -219,8 +221,9 @@ const materializeField = (gl, raw) => {
     durationMs: Math.max(1, Number(raw?.durationMs) || 480),
     delayMs: Math.max(0, Number(raw?.delayMs) || 0),
     feather: Math.max(0.002, Math.min(0.28, Number(raw?.feather) || 0.028)),
-    fromRgb: parseCssRgb(raw?.fromColor),
-    toRgb: parseCssRgb(raw?.toColor),
+    // A side without a fill borrows the other side's colour: this layer cannot draw nothing.
+    fromRgb: parseCssRgb(opaqueTransitionColors(raw?.fromColor, raw?.toColor).from),
+    toRgb: parseCssRgb(opaqueTransitionColors(raw?.fromColor, raw?.toColor).to),
     texture,
     buffer,
   };
@@ -229,6 +232,8 @@ const materializeField = (gl, raw) => {
 export const createOwnershipFloodCustomLayer = ({
   id = OWNERSHIP_FLOOD_LAYER_ID,
   onError = null,
+  // The fill opacity the flood must match at each zoom; a historical campaign has a thinner one.
+  opacityAtZoom = politicalFillOpacityAtZoom,
 } = {}) => ({
   id,
   type: "custom",
@@ -419,7 +424,7 @@ void main() {
       gl.enableVertexAttribArray(this._locations.position);
       gl.enableVertexAttribArray(this._locations.uv);
 
-      const opacity = politicalFillOpacityAtZoom(this._map?.getZoom?.());
+      const opacity = opacityAtZoom(this._map?.getZoom?.());
       gl.uniform1f(this._locations.opacity, opacity);
 
       for (const field of this._fields) {

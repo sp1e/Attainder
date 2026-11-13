@@ -24,6 +24,14 @@ test("political fills and borders remain below cities markers and units", () => 
   }
 });
 
+test("the historical relief lies over every fill and under the borders", () => {
+  for (const fill of ["custom-regions-fill-far", "custom-regions-fill", "custom-regions-repair-fill", "regions-fill", "custom-regions-disputed-vnext", "group-areas-tint"]) {
+    assert.ok(index("relief-over-fills") > index(fill), `relief is above ${fill}`);
+  }
+  assert.ok(index("relief-over-fills") < index("polity-boundaries-shadow"));
+  assert.ok(index("relief-over-fills") < index("polity-boundaries"));
+});
+
 test("sovereign polity boundaries remain above political fills", () => {
   assert.ok(index("polity-boundaries-shadow") > index("custom-regions-disputed-vnext"));
   assert.ok(index("polity-boundaries") > index("polity-boundaries-shadow"));

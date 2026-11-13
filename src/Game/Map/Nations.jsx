@@ -33,6 +33,18 @@ import {
   holdUntilSourceLoaded,
 } from "./regionsSourceMemory.js";
 import { publishPolityIndex } from "../../runtime/placeSearch.js";
+import { useBrowserOnline } from "../../runtime/networkStatus.js";
+import {
+  HISTORICAL_FILL_COLOR,
+  HISTORICAL_FILL_OPACITY,
+  RELIEF_OVER_FILLS_LAYER_ID,
+  RELIEF_OVER_FILLS_PAINT,
+  RELIEF_OVER_FILLS_SOURCE,
+  RELIEF_OVER_FILLS_SOURCE_ID,
+  UNOWNED_HISTORICAL_FILL,
+  buildHistoricalFillOpacity,
+  historicalFillOpacityAtZoom,
+} from "./historicalCartography.js";
 import { toCountryName } from "../../runtime/ownerNames.js";
 import {
   loadCountryLabelCollections,
@@ -510,6 +522,7 @@ const WorldMap = ({ isGlobe = false }) => {
     worldState,
     worldKnown,
     historical,
+    background: scenarioBackground,
     customRegions: customFlag,
     regionOwnershipOverrides,
     regionClaimants,
@@ -520,6 +533,7 @@ const WorldMap = ({ isGlobe = false }) => {
     labelHaloColor,
     labelTextColor,
   } = useWorldState();
+  const online = useBrowserOnline();
   const mapDisplaySettings = {
     hideCountryLabels: useMapSetting(MAP_SETTING_KEYS.hideCountryLabels),
     disableCurvedCountryLabels: useMapSetting(MAP_SETTING_KEYS.disableCurvedCountryLabels),
@@ -1355,6 +1369,12 @@ const WorldMap = ({ isGlobe = false }) => {
       return rgb ? `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})` : NEUTRAL_LAND_COLOR;
     },
     [resolveOwnerRgb],
+  );
+  // The fill a region is given through feature-state. In a historical campaign land nobody is known to rule has none,
+  // so the terrain shows (historicalCartography.js).
+  const ownershipFillCss = useCallback(
+    (owner) => (owner || !historical ? ownerColorCss(owner) : UNOWNED_HISTORICAL_FILL),
+    [ownerColorCss, historical],
   );
 
   const workerLabelNames = useMemo(() => {
@@ -2470,17 +2490,17 @@ const WorldMap = ({ isGlobe = false }) => {
       if (
         !next
         || cachedTarget.overrides !== regionOwnershipOverrides
-        || cachedTarget.colorCss !== ownerColorCss
+        || cachedTarget.colorCss !== ownershipFillCss
       ) {
         next = new Map();
         for (const [regionId, owner] of Object.entries(regionOwnershipOverrides)) {
-          next.set(String(regionId), ownerColorCss(owner));
+          next.set(String(regionId), ownershipFillCss(owner));
         }
         // Read-only below: the diff never writes to it, appliedAfterSync is its
         // own Map. Anything that starts mutating it must drop the cache too.
         ownershipFillTargetRef.current = {
           overrides: regionOwnershipOverrides,
-          colorCss: ownerColorCss,
+          colorCss: ownershipFillCss,
           fills: next,
         };
       }
@@ -2559,7 +2579,7 @@ const WorldMap = ({ isGlobe = false }) => {
   }, [
     customFlag,
     map,
-    ownerColorCss,
+    ownershipFillCss,
     ownershipPresentationHoldEpoch,
     regionOwnershipOverrides,
     repairedRegionIdSet,
@@ -2620,8 +2640,8 @@ const WorldMap = ({ isGlobe = false }) => {
       ...feature,
       properties: {
         ...(feature.properties ?? {}),
-        fromColor: ownerColorCss(feature?.properties?.fromOwner),
-        toColor: ownerColorCss(feature?.properties?.toOwner),
+        fromColor: ownershipFillCss(feature?.properties?.fromOwner),
+        toColor: ownershipFillCss(feature?.properties?.toOwner),
       },
     }));
     sweep.regionIds = [...new Set(enrichedFeatures
@@ -2787,6 +2807,7 @@ const WorldMap = ({ isGlobe = false }) => {
           if (!mapInstance.getLayer?.(OWNERSHIP_FLOOD_LAYER_ID)) {
             floodLayer = createOwnershipFloodCustomLayer({
               onError: (error) => console.warn("Ownership flood custom layer failed:", error),
+              ...(historical ? { opacityAtZoom: historicalFillOpacityAtZoom } : {}),
             });
             const beforeId = mapInstance.getLayer?.("polity-boundaries-shadow")
               ? "polity-boundaries-shadow"
@@ -2886,7 +2907,7 @@ const WorldMap = ({ isGlobe = false }) => {
           // so worker/source scheduling can never expose the target state early.
           sourceReady.setData?.(sliceData);
           enforceMapLayerOrder(mapInstance);
-          mapInstance.setPaintProperty("ownership-transition-sweep-fill", "fill-opacity", POLITICAL_FILL_OPACITY);
+          mapInstance.setPaintProperty("ownership-transition-sweep-fill", "fill-opacity", historical ? HISTORICAL_FILL_OPACITY : POLITICAL_FILL_OPACITY);
           mapInstance.setPaintProperty(
             "ownership-transition-sweep-fill",
             "fill-color",
@@ -2972,8 +2993,9 @@ const WorldMap = ({ isGlobe = false }) => {
     }
   }, [
     customActive,
+    historical,
     map,
-    ownerColorCss,
+    ownershipFillCss,
     ownershipTransitionQueueEpoch,
     publishOwnershipPresentation,
     repairedRegionIdSet,
@@ -3122,13 +3144,17 @@ const WorldMap = ({ isGlobe = false }) => {
       : { "fill-opacity": 0 },
     [customActive],
   );
+  // A historical campaign's wash thins as the camera comes closer (historicalCartography.js).
   const transitionAwareFillOpacity = useMemo(() => (customFlag
-    ? buildPoliticalFillOpacity([
+    ? (historical
+      ? buildHistoricalFillOpacity(["boolean", ["feature-state", "ownershipTransitionHidden"], false])
+      : buildPoliticalFillOpacity([
         "boolean",
         ["feature-state", "ownershipTransitionHidden"],
         false,
-      ])
-    : 0), [customFlag]);
+      ]))
+    : 0), [customFlag, historical]);
+  const customFillColor = historical ? HISTORICAL_FILL_COLOR : CUSTOM_FILL_COLOR;
   const customFarFillOpacity = transitionAwareFillOpacity;
   const customAuthoredFillOpacity = transitionAwareFillOpacity;
 
@@ -3372,10 +3398,10 @@ const WorldMap = ({ isGlobe = false }) => {
               : undefined}
           filter={canonicalCustomFarStockGeometryFilter}
           paint={{
-            "fill-color": CUSTOM_FILL_COLOR,
+            "fill-color": customFillColor,
             "fill-opacity": customFarFillOpacity,
             "fill-antialias": false,
-            "fill-outline-color": CUSTOM_FILL_COLOR,
+            "fill-outline-color": customFillColor,
           }}
         />
         <Layer
@@ -3384,10 +3410,10 @@ const WorldMap = ({ isGlobe = false }) => {
           beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
           filter={canonicalCustomAuthoritativeGeometryFilter}
           paint={{
-            "fill-color": CUSTOM_FILL_COLOR,
+            "fill-color": customFillColor,
             "fill-opacity": customAuthoredFillOpacity,
             "fill-antialias": false,
-            "fill-outline-color": CUSTOM_FILL_COLOR,
+            "fill-outline-color": customFillColor,
           }}
         />
         {/* Only the province strokes disappear at overview zoom. Keep the
@@ -3423,10 +3449,10 @@ const WorldMap = ({ isGlobe = false }) => {
               : undefined}
           filter={customFarStockGeometryFilter}
           paint={{
-            "fill-color": CUSTOM_FILL_COLOR,
+            "fill-color": customFillColor,
             "fill-opacity": customFarFillOpacity,
             "fill-antialias": false,
-            "fill-outline-color": CUSTOM_FILL_COLOR,
+            "fill-outline-color": customFillColor,
           }}
         />
         <Layer
@@ -3435,10 +3461,10 @@ const WorldMap = ({ isGlobe = false }) => {
           beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
           filter={customAuthoritativeGeometryFilter}
           paint={{
-            "fill-color": CUSTOM_FILL_COLOR,
+            "fill-color": customFillColor,
             "fill-opacity": customAuthoredFillOpacity,
             "fill-antialias": false,
-            "fill-outline-color": CUSTOM_FILL_COLOR,
+            "fill-outline-color": customFillColor,
           }}
         />
         <Layer
@@ -3489,6 +3515,23 @@ const WorldMap = ({ isGlobe = false }) => {
       )}
 
       <GroupAreaLayers data={groupAreaData} visible={Boolean(customActive && worldKnown)} hasMapLayer={hasMapLayer} />
+
+      {/* A historical campaign draws relief over the fills and under the borders. It stands after the fills in this
+          tree, so it mounts above them before any reorder. The tiles are remote, so it waits for a connection, and a
+          scenario with a map of its own has no Earth under it to shade. */}
+      {historical && customFlag && online && !scenarioBackground && (
+      <Source
+        id={RELIEF_OVER_FILLS_SOURCE_ID}
+        {...RELIEF_OVER_FILLS_SOURCE}
+      >
+        <Layer
+          id={RELIEF_OVER_FILLS_LAYER_ID}
+          type="hillshade"
+          beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
+          paint={RELIEF_OVER_FILLS_PAINT}
+        />
+      </Source>
+      )}
 
       <Source id="polity-boundaries-source" type="geojson" data={EMPTY_FEATURE_COLLECTION} tolerance={0.25}>
         <Layer
