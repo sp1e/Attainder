@@ -41,6 +41,7 @@ const style = {
     terrain: dem(), shade: dem(), relief: dem(),
     polities: { type: "geojson", data: "data/polities-800.geojson" },
     sea: { type: "geojson", data: "data/sea.geojson" },
+    lakes: { type: "geojson", data: "data/lakes.geojson" },
   },
   layers: [
     { id: "ground", type: "background", paint: { "background-color": "#0a2233" } },
@@ -68,6 +69,8 @@ const style = {
       "line-width": ["interpolate", ["exponential", 1.6], ["zoom"], 3, 5, 6, 16, 9, 40], "line-blur": ["interpolate", ["linear"], ["zoom"], 3, 5, 6, 14, 9, 30],
       "line-offset": ["interpolate", ["exponential", 1.6], ["zoom"], 3, -2, 6, -6, 9, -16] } },
     { id: "sea-deep", type: "color-relief", source: "relief", paint: { "color-relief-color": DEEP, "color-relief-opacity": 1 } },
+    { id: "lake-water", type: "fill", source: "lakes", paint: { "fill-color": "#1b6076", "fill-antialias": true } },
+    { id: "lake-shore", type: "line", source: "lakes", paint: { "line-color": "#8fcfc6", "line-opacity": 0.6, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.4, 6, 0.9, 9, 1.5] } },
     { id: "sea-shore", type: "line", source: "sea", paint: { "line-color": "#d9ecd9", "line-opacity": 0.7, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.6, 6, 1.1, 9, 1.8] } },
   ],
   sky: { "sky-color": "#0e1a26", "horizon-color": "#d9c49a", "fog-color": "#cbb891", "fog-ground-blend": 0.55, "horizon-fog-blend": 0.75, "sky-horizon-blend": 0.85, "atmosphere-blend": 0.75 },
@@ -75,8 +78,12 @@ const style = {
 
 export const HOME = { center: [14.4, 43.4], zoom: 4.08, pitch: 46, bearing: -6 };
 
+let homeZoom = HOME.zoom;
+
 export function createMap(container) {
-  const map = new maplibregl.Map({ container, style, ...HOME, minZoom: 2.6, maxZoom: 8.5, maxPitch: 66, attributionControl: { compact: true }, dragRotate: true });
+  // A narrower window frames the same neighbourhood from further out.
+  homeZoom = HOME.zoom + Math.max(-0.7, Math.min(0, 0.8 * Math.log2(window.innerWidth / 2560)));
+  const map = new maplibregl.Map({ container, style, ...HOME, zoom: homeZoom, minZoom: 2.6, maxZoom: 8.5, maxPitch: 66, attributionControl: { compact: true }, dragRotate: true });
   map.on("load", () => map.setTerrain({ source: "terrain", exaggeration: 7 }));
   return map;
 }
@@ -92,7 +99,7 @@ export function setRealmAccent(color) {
   for (const id of ["realm-band", "realm-edge-light"]) theMap.setPaintProperty(id, "line-color", colorExpr());
 }
 export const flyTo = (center, zoom = 5.4) => center && theMap?.flyTo({ center, zoom, pitch: 52, bearing: -4, duration: 2200, essential: false });
-export const flyHome = () => theMap?.flyTo({ ...HOME, duration: 2000 });
+export const flyHome = () => theMap?.flyTo({ ...HOME, zoom: homeZoom, duration: 2000 });
 
 // Realm names lie on the land, along each realm's long axis.
 const NAMES = {
@@ -125,7 +132,7 @@ export function addPlaces(map, places, { court, pending, onRealm, onCourt, faceO
   });
   // Names grow with the land up to a point, then fade as the player comes close to the ground.
   const scale = () => {
-    const zoom = map.getZoom(), k = Math.pow(1.75, Math.min(zoom, 5.4) - HOME.zoom), fade = Math.max(0, Math.min(1, (6.3 - zoom) / 0.8));
+    const zoom = map.getZoom(), k = Math.pow(1.75, Math.min(zoom, homeZoom + 1.3) - homeZoom) * Math.pow(1.75, (homeZoom - HOME.zoom) * 0.6), fade = Math.max(0, Math.min(1, (6.3 - zoom) / 0.8));
     for (const [el, size] of names) { el.style.fontSize = `${(size * k).toFixed(3)}rem`; el.style.opacity = fade.toFixed(2); }
   };
   const far = () => map.getContainer().classList.toggle("far", map.getZoom() < 5.3);

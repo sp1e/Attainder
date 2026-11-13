@@ -18,6 +18,7 @@ Open http://127.0.0.1:4270/index.html. The map needs a network connection for it
 - `data/court-802.json` is an export of a test campaign through `getCharacterPresentation` (Karls rike, 25 December AD 802): people, skills, open decisions with their choices, offices and neighbours.
 - Imagery is Esri World Imagery and elevation is the Mapzen terrain tiles on AWS, the same services the game uses.
 - The coast is Natural Earth's 1:50m land, from `server/seed/historical/sources/ne_50m_land.geojson`. The polity surfaces are clipped to it and `data/sea.geojson` is its complement, so a realm's tint ends at the coast and low land stays land. Elevation deepens the open water and draws the snow line.
+- `data/lakes.geojson` holds 151 natural lakes from Natural Earth's 1:50m lakes (public domain, fetched on 13 November 2026 from the `nvkelso/natural-earth-vector` repository). Reservoirs and five lakes that twentieth-century dams made are left out, so those show the satellite image's own water.
 
 ## What is not
 
@@ -25,6 +26,5 @@ Open http://127.0.0.1:4270/index.html. The map needs a network connection for it
 - The faces are the 24 stand-in portraits the game ships, assigned by hand so that each member of this court has one of their own. The game reuses six of them for this court today.
 - The year turn passes the months and the seasons and invents no events.
 - Each figure in the bar opens what the game's view holds for it today. Revenue, prestige and readiness say which rows the view lacks.
-- Lakes show the satellite image's own dark water: the repository holds Natural Earth's land and no lakes layer.
 - Realm names are placed by hand for this start, and small realms are named under their seat.
 - The accent switch previews the period accent only; the map and the court stay Carolingian.
