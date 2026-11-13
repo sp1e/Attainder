@@ -7,6 +7,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { transformSync } from "esbuild";
 import { actionHooks, applyRealmDissolution, createCharacterSystem, estimateCharacterAction, estimateConversation, estimateEnvoyRequest, executeCharacterCommand, getAvailableCharacterActions, getCharacterPresentation, getEnvoyBrief } from "../../runtime/characters/index.js";
 import { createHistoricalCharacterSystem } from "../../runtime/characters/scenarioSeed.js";
+import { DUEL_DEATH, duelStep, hashRoll, winChance } from "../../runtime/characters/duels.js";
+import { characterTransitionEvents } from "../../runtime/characterWorld.js";
 import { REASONS as ODDS_REASONS } from "../../runtime/characters/actionOdds.js";
 import * as realDates from "../../runtime/gameDates.js";
 import { CONVERSATION_REQUESTS } from "../../runtime/characters/conversation.js";
@@ -2480,4 +2482,41 @@ test("the upstream views that show world events mark a character-system event's 
 
   // Never the whole card or a list: the date, the tags and the buttons beside the text are the English interface.
   for (const code of [timeline, country, gameMaster]) assert.doesNotMatch(code, /data-native-text/);
+});
+
+// Karl's court where the heir has challenged the head of Hovhus 1. `wanted` picks a story id whose hashed rolls give that outcome.
+function duelCourt(wanted) {
+  const state = createHistoricalCharacterSystem({ historicalScenario: JSON.parse(JSON.stringify(CHARLEMAGNE.world.historicalScenario)), date: CHARLEMAGNE.game.startDate, polityId: "carolingian-realm", mode: "realm", seed: 777 });
+  const [heir, rival] = ["karl-den-yngre", "generated-courtier-1"];
+  state.relations[`${heir}:${rival}`] ??= { fromId: heir, toId: rival, bonds: [], causes: [] };
+  state.relations[`${heir}:${rival}`].causes.push({ id: "fixture", amount: -60, label: "Prov", causeId: "fixture", startAt: state.date, expiresAt: null });
+  duelStep(state, [], actionHooks(state));
+  const story = state.stories.find((item) => item.type === "duel_challenge");
+  for (let n = 0; wanted; n += 1) {
+    const id = `${story.id}-${n}`;
+    if (wanted(hashRoll(`${id}|win`), hashRoll(`${id}|wound`), state.people[heir], state.people[rival])) { story.id = id; break; }
+  }
+  return { state, story };
+}
+// The panel's notice after the player clicks a choice of the duel, with the real engine behind the command.
+async function duelNotice(choiceId, wanted = null) {
+  const { state, story } = duelCourt(wanted);
+  const driver = createHookDriver();
+  const { default: Panel } = loadPanel(getCharacterPresentation(state), { react: driver.react, globals: {
+    window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+  runtime: { submitCharacterCommand: async (command) => { const result = executeCharacterCommand(state, { ...command, expectedRevision: state.revision }); return { ...result, events: characterTransitionEvents(state, result, command.id) }; } } });
+  const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+  let tree = draw(); await settle(); tree = draw();
+  const button = findAll(tree, (node) => node.type === "button" && node.props.id === `char-choice-${story.id}-${choiceId}`)[0];
+  assert.ok(button, "the choice button renders");
+  await withWarnings(async () => { button.props.onClick(); await settle(); });
+  return textOf(findAll(draw(), (node) => node.props?.role === "status" && node.props.className === "char-feedback")[0]);
+}
+
+test("a decision's notice names the choice and its gravest outcome", async () => {
+  const heirFalls = (win, wound, heir, rival) => win >= winChance(heir, rival) && wound < DUEL_DEATH;
+  assert.equal(await duelNotice("allow", heirFalls), "Låt duellen ske · Karl den yngre har avlidit");
+  const heirWounded = (win, wound, heir, rival) => win >= winChance(heir, rival) && wound >= DUEL_DEATH;
+  assert.match(await duelNotice("allow", heirWounded), /^Låt duellen ske · .+ besegrar Karl den yngre i en duell$/);
+  assert.equal(await duelNotice("forbid"), "Förbjud duellen");
 });
