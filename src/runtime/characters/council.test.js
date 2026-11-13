@@ -263,13 +263,40 @@ test('service follows loyalty, opinion and personality', () => {
   assert.equal(serviceOf(state, 'spymaster', hooks), null);
 });
 
-test('a crowned councillor keeps the seat at no opinion of herself and cannot reward herself', () => {
+test('a crowned councillor leaves the seat', () => {
+  const state = plain(base());
+  state.offices.spymaster.holderId = SERA;
+  const crowned = ok(run(state, 'abdicate', {}));
+  assert.equal(crowned.offices.ruler.holderId, SERA);
+  assert.equal(crowned.offices.spymaster.holderId, null);
+  assert.deepEqual(crowned.offices.spymaster.history.at(-1), { personId: null, date: crowned.date, reason: 'Frivillig abdikation' });
+  assert.equal(crowned.memories.some((memory) => memory.type === 'dismissal'), false, 'leaving the seat for the throne is no dismissal');
+});
+
+test('the ruler is refused a council seat, and the realm\'s leadership passes her over', () => {
+  const refused = run(base(), 'appoint', { officeId: 'spymaster', personId: REP });
+  assert.deepEqual([refused.ok, refused.error], [false, 'Välj en annan person.']);
+  const petition = run(base(), 'seek_office', { officeId: 'chancellor' });
+  assert.deepEqual([petition.ok, petition.error], [false, 'Välj ett förvaltningsämbete.'], 'nor may she petition for one');
+  const offered = getAvailableCharacterActions(base()).find((item) => item.type === 'seek_office').fields.find((item) => item.key === 'officeId').options.map((item) => item.value);
+  assert.deepEqual(COUNCIL_SEATS.filter((id) => offered.includes(id)), [], 'and the menu offers her none');
+  assert.ok(offered.length > 0, 'the other offices stay on the menu');
+  const governor = Object.values(base().offices).find((office) => office.kind === 'governor' && office.holderId !== REP);
+  assert.equal(run(base(), 'appoint', { officeId: governor.id, personId: REP }).ok, true, 'only the council is closed to her');
+  // Another house plays, so the realm's leadership fills the vacant seat itself at the year turn.
+  const state = base({ mode: 'family', familyId: NAMARS });
+  state.offices.general.holderId = null;
+  const next = ok(advanceCharacters(state, addGameMonths(state.date, 12), { id: `council-year-${++counter}` }));
+  assert.ok(next.offices.general.holderId);
+  assert.notEqual(next.offices.general.holderId, next.offices.ruler.holderId);
+});
+
+test('a ruler an older save left in a seat counts no opinion of herself and cannot reward herself', () => {
   const state = plain(base());
   state.offices.spymaster.holderId = SERA;
   assert.equal(serviceOf(state, 'spymaster', actionHooks(state)), 70);
-  const crowned = ok(run(state, 'abdicate', {}));
-  assert.equal(crowned.offices.ruler.holderId, SERA);
-  assert.equal(crowned.offices.spymaster.holderId, SERA);
+  const crowned = plain(ok(run(state, 'abdicate', {})));
+  crowned.offices.spymaster.holderId = SERA;
   assert.equal(serviceOf(crowned, 'spymaster', actionHooks(crowned)), crowned.people[SERA].loyalty);
   const refused = run(crowned, 'reward_councillor', { officeId: 'spymaster' });
   assert.equal(refused.ok, false);
@@ -299,9 +326,10 @@ test('the reward menu leaves out the ruler\'s own seat', () => {
   const state = plain(base());
   state.offices.spymaster.holderId = SERA;
   assert.deepEqual(rewardSeats(state), ['chancellor', 'general', 'spymaster']);
-  const crowned = ok(run(state, 'abdicate', {}));
-  assert.equal(crowned.offices.spymaster.holderId, SERA);
-  assert.deepEqual(rewardSeats(crowned), ['chancellor', 'general']);
+  const crowned = plain(ok(run(state, 'abdicate', {})));
+  assert.deepEqual(rewardSeats(crowned), ['chancellor', 'general'], 'her old seat stands vacant');
+  crowned.offices.spymaster.holderId = SERA;
+  assert.deepEqual(rewardSeats(crowned), ['chancellor', 'general'], 'and an older save\'s ruler in a seat is left out');
 });
 
 test('a regent in a seat cannot reward herself', () => {

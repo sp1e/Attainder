@@ -18,11 +18,13 @@ export function englishNames(names, language, readName = nativeReading) {
 }
 
 /**
- * The names a prompt may hold from a character view: people; families and the polities that host them; the realm;
+ * The names a prompt may hold from a character view: people and their houses (a house that has died out is still named by
+ * its dead); families and the polities that host them; the realm;
  * its cities, religions and border tribes; each foreign realm with its seat, ruler, heir and faith; then `extra`.
  */
 export const viewNames = (view, extra = []) => [
   ...(view?.people || []).map((person) => person?.name),
+  ...(view?.people || []).map((person) => person?.familyName),
   ...(view?.families || []).flatMap((family) => [family?.name, family?.hostPolityName]),
   view?.identity?.realmName,
   ...[view?.cities, view?.religions, view?.tribes].flatMap((list) => (list || []).map((entry) => entry?.name)),

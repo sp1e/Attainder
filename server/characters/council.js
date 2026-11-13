@@ -43,7 +43,18 @@ function rewardBar(person, hooks) {
   return isRuler(person, hooks) ? REFUSALS.ruler : '';
 }
 
-// A crowned councillor keeps the seat. The engine's opinion of oneself is 100, which says nothing of how she serves, so the ruler counts 0.
+/** The new ruler leaves her council seats: crown calls this. The seat stands vacant with the accession as its reason, and nobody is dismissed. */
+export function vacateRulerSeats(state, personId, reason) {
+  for (const officeId of COUNCIL_SEATS) {
+    const office = state.offices[officeId];
+    if (!personId || office?.holderId !== personId) continue;
+    office.holderId = null;
+    office.history.push({ personId: null, date: state.date, reason });
+  }
+}
+
+// The ruler holds no council seat: crown empties it, and appoint and the realm's own appointments pass her over. The engine's opinion of oneself
+// is 100, which says nothing of how she serves, so a ruler or regent found in a seat (an older save) counts 0.
 function opinionOfRuler(person, hooks) {
   const ruler = hooks.ruler();
   return ruler && !isRuler(person, hooks) ? hooks.getPersonalOpinion(person.id, ruler.id) : 0;

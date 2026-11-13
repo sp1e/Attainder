@@ -32,6 +32,16 @@ const TABS = [
 ];
 // Commands whose refusal is shown under their own card, so the panel banner stays quiet.
 const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
+// A decision's notice: the choice, then its gravest outcome (a death before a wound). The engine logs the decision after its
+// outcome, under the question's title, so the outcomes are the rows before that one.
+const decisionNotice = (story, choiceId, events) => {
+  const label = story?.choices?.find((choice) => choice.id === choiceId)?.label;
+  if (!label) return "";
+  const decided = events.map((event) => event.title).lastIndexOf(story.title);
+  const outcomes = (decided < 0 ? events : events.slice(0, decided)).filter((event) => event.title !== story.title);
+  const lead = outcomes.find((event) => event.importance === "major") ?? outcomes[0];
+  return lead ? `${label} · ${lead.title}` : label;
+};
 const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
@@ -457,7 +467,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
   }, [open, busy]);
   const view = useMemo(() => state ? getCharacterPresentation(state) : null, [state]);
   const pending = entries(view?.stories).filter((story) => ["open", "pending", "active"].includes(story.status));
-  const perform = useCallback(async (operation, annual = false, withModel = annual, quiet = false) => {
+  const perform = useCallback(async (operation, annual = false, withModel = annual, quiet = false, summary = null) => {
     if (busyRef.current) return undefined;
     busyRef.current = true;
     setBusy(true); setAnnualBusy(withModel); setError(""); setNotice("");
@@ -467,7 +477,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
       result = await operation();
       if (!result?.ok) { if (!quiet) setError(playerText(result?.error, withModel ? YEAR_FAILED : ACTION_FAILED)); }
       else {
-        setNotice(result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen.");
+        setNotice(summary?.(result.events || []) || (result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen."));
         if (annual) {
           setYearEvents(result.events || []);
           setInterruption(result.interruption || null);
@@ -490,7 +500,11 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
     catch (reason) { setError(playerText(reason?.message, "Handlingen kunde inte genomföras. Försök igen.")); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
   }, [refresh]);
-  const command = (type, payload) => perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, INLINE_REFUSALS.includes(type));
+  const command = (type, payload) => {
+    const story = type === "resolve_story" ? pending.find((item) => item.id === payload?.storyId) : null;
+    return perform(() => submitCharacterCommand({ type, payload, expectedRevision: view?.revision, id: `ui-${crypto.randomUUID()}` }), false, false, INLINE_REFUSALS.includes(type),
+      story && ((events) => decisionNotice(story, payload.choiceId, events)));
+  };
   const setTalk = (id) => (update) => setTalks((current) => ({ ...current, [id]: typeof update === "function" ? update(current[id] || []) : update }));
   const onKeyDown = (event) => {
     event.stopPropagation();

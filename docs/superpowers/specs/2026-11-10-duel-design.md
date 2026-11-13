@@ -16,11 +16,11 @@ Nothing in the engine lets two people fight each other. Prowess (`skills.prowess
 6. **Three choices.**
    - `allow`, "Låt duellen ske": the heir fights.
    - `champion`, "Sänd en kämpe": the free adult of the controlled family with the highest prowess above the heir's, other than the heir and the representative, fights instead, for 15 silver from the family. Disabled without such a person or the silver.
-   - `forbid`, "Förbjud duellen": no fight; the heir gains 20 stress and −20 "Förbjuden duell" towards the representative for 10 years.
+   - `forbid`, "Förbjud duellen": no fight; the heir gains 20 stress and −20 "Förbjuden duell" towards the representative for 10 years. A memory of the refusal (`duel_forbidden`) carries the opinion.
    - Nobody answering in time counts as `allow`: the heir goes ahead.
 7. **The fight.** The fighter wins with a chance of 0.5 + 0.05 × (fighter's prowess − rival's prowess), held inside 0.15 to 0.85. The loser dies with a chance of 0.25 ("Föll i en duell"), and is otherwise injured (an `injury` condition, severity 2).
 8. **No draws.** Both rolls come from a hash of the story id (`<id>|win`, `<id>|wound`), so the outcome of a given challenge is fixed and no random stream moves. The injury takes its severity and rolls from the same hash; `createCondition` in `health.js` accepts injected rolls and draws when given none, as before.
-9. **Aftermath.** The winner loses 10 stress. A surviving loser gets −30 "Duellen" towards the winner for 20 years. An heir who wins in person raises the realm's prestige by 5. A public event names winner, loser and the outcome.
+9. **Aftermath.** The winner loses 10 stress. A surviving loser gets −30 "Duellen" towards the winner for 20 years. An heir who wins in person raises the realm's prestige by 5. A public event names winner, loser and the outcome, and a `duel` memory names both fighters whether the loser lives or falls. The dead loser's kin get no opinion of the winner from the duel; that needs its own ruling, because −30 would let the next heir challenge the winner in turn.
 10. **Falling away.** The story closes without effect when the heir or rival dies or is imprisoned, or the representative changes.
 11. **Frequency.** Over 300 years of Charlemagne seeds 777, 321 and 5, with nobody answering (so every challenge went ahead), the court saw 3, 2 and 5 duels, and every save loaded.
 12. **No version change.** `rulesVersion` and `contentVersion` stay `hadara-1.0.0`. Saves need no migration: a court story has the shape every story has.
@@ -33,6 +33,7 @@ Nothing in the engine lets two people fight each other. Prowess (`skills.prowess
 - No challenge in Hadara, at −24, or against a brother in the heir's own house.
 - The court waits five years after a challenge (59 months: none; 60: one).
 - Forbidding stresses the heir by 20 and gives −20 "Förbjuden duell" towards the ruler.
-- A fight the heir wins by the hashed roll injures the rival (severity 2) and gives −30 "Duellen"; a fight the heir loses on a fatal roll kills the heir ("Föll i en duell"). Neither moves a stream.
+- A fight the heir wins by the hashed roll injures the rival (severity 2) and gives −30 "Duellen"; a fight the heir loses on a fatal roll kills the heir ("Föll i en duell") and leaves a `duel` memory. The fight moves no stream; the grief after a death draws from the health stream as any death does.
+- Forbidding writes the `duel_forbidden` memory the opinion cites.
 - The champion is disabled without a better fighter or 15 silver; Pippin fights in the heir's place and the family pays.
 - An unanswered challenge goes ahead; a challenge whose rival died closes without a fight.

@@ -535,12 +535,38 @@ test('the year turn takes the lost orders first and ends with the pressure and t
   assert.ok(events.some((event) => event.title === 'Sammanbrott vid hovet'));
 });
 
-test('a dissolved realm takes no pressure and opens no breakdown', () => {
+test('a dissolved realm takes no pressure and opens no breakdown, and the lost orders still fall due', () => {
   const state = plain(base());
   state.realm.alive = false;
   state.people[REP].stress = 120;
   state.reign.lostOrders = 2;
   const before = plain(state);
   courtAnnualStep(state, [], actionHooks(state));
-  assert.deepEqual(state, before);
+  assert.deepEqual(state, { ...before, actionPoints: Math.max(0, before.actionPoints - 2), reign: { ...before.reign, lostOrders: 0 } });
+});
+
+// The head of another house withdraws from court for a year, which costs her two of next year's orders.
+function withdrawnHead() {
+  const { state, story } = underNpc();
+  return resolve(state, story.id, 'withdraw');
+}
+const months = (state, count) => ok(advanceCharacters(state, addGameMonths(state.date, count), { id: `months-${++counter}` }));
+
+test('a new ruler on the throne leaves a family head\'s lost orders to fall due', () => {
+  let state = months(withdrawnHead(), 1);
+  const before = state.offices.ruler.holderId;
+  actionHooks(state).kill([before], [], 'Ett prov');
+  assert.notEqual(state.offices.ruler.holderId, before);
+  assert.equal(actionHooks(state).activeRepresentative().id, HEAD);
+  assert.equal(state.reign.lostOrders, 2);
+  state = months(state, 11);
+  assert.deepEqual([state.actionPoints, state.reign.lostOrders], [2, 0]);
+});
+
+test('lost orders fall due after the realm has ended', () => {
+  const state = withdrawnHead();
+  actionHooks(state).crown(null, [], 'Ett prov');
+  assert.equal(state.realm.alive, false);
+  const next = months(state, 12);
+  assert.deepEqual([next.actionPoints, next.reign.lostOrders], [2, 0]);
 });

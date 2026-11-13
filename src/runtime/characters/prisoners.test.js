@@ -886,3 +886,30 @@ test('a free guardian still acts for a household whose minor head sits in prison
   state.prisoners.push({ id: `prisoner-${++state.sequence}`, personId: 'person-0-4', captorFamilyId: NAMARS, since: state.date, ransom: RANSOM, status: 'held', closedAt: null, reason: null });
   assert.equal(getCharacterPresentation(state).representative?.id, 'person-0-1');
 });
+
+// A house nobody lives in is no political actor: the view leaves it out, and the state keeps its record.
+const killHouse = (state, familyId) => actionHooks(state).kill(Object.values(state.people).filter((person) => person.familyId === familyId && !person.diedAt).map((person) => person.id), [], 'Prov');
+const listedHouses = (state) => getCharacterPresentation(state).families.map((family) => family.id);
+
+test('executing the last member of a house takes the house out of the families view', () => {
+  const state = base();
+  const [last, ...others] = Object.values(state.people).filter((person) => person.familyId === NAMARS && !person.diedAt);
+  actionHooks(state).kill(others.map((person) => person.id), [], 'Prov');
+  const record = seize(state, last.id);
+  const done = ok(run(state, 'execute_prisoner', { prisonerId: record.id }));
+  assert.equal(done.families[NAMARS].headId, null, 'the state keeps the house, without a head');
+  assert.deepEqual(listedHouses(done), [ARELS, 'family-eshmun', 'family-safra']);
+  normalizeCharacterSystem(copy(done));
+});
+
+test('a realm campaign drops its first dynasty once it has died out, and a family campaign keeps its own house', () => {
+  const realm = base();
+  killHouse(realm, ARELS);
+  assert.notEqual(realm.people[realm.offices.ruler.holderId]?.familyId, ARELS, 'another house holds the throne');
+  assert.deepEqual(listedHouses(realm), [NAMARS, 'family-eshmun', 'family-safra']);
+  const family = createCharacterSystem({ seed: 321, mode: 'family', familyId: NAMARS });
+  killHouse(family, NAMARS);
+  const view = getCharacterPresentation(family);
+  assert.equal(view.status.ended, true);
+  assert.deepEqual(view.families.map((house) => house.id), [ARELS, NAMARS, 'family-eshmun', 'family-safra'], 'the ended campaign still names its family');
+});
