@@ -182,11 +182,11 @@ test('reignMonths counts whole months on the game calendar', () => {
   assert.equal(at('-0300-01-31', '-0300-02-27'), 0);
 });
 
-test('crown opens a new reign with no goals', () => {
+test('crown opens a new reign with no goals, and the player\'s lost orders carry over', () => {
   const state = base(), hooks = actionHooks(state);
   recordDeed(state, 'cruel'); grantLegitimacy(state, 'goals', 6); state.reign.lostOrders = 2;
   hooks.crown(state.people[HEIR], [], 'Ett prov', 40, false);
-  assert.deepEqual(state.reign, { rulerId: HEIR, startedAt: state.date, lawful: false, deeds: NO_DEEDS, goals: [], sources: { accession: 40, goals: 0, prestige: 0 }, lostOrders: 0 });
+  assert.deepEqual(state.reign, { rulerId: HEIR, startedAt: state.date, lawful: false, deeds: NO_DEEDS, goals: [], sources: { accession: 40, goals: 0, prestige: 0 }, lostOrders: 2 });
   assert.equal(state.realm.legitimacy, 40);
   assert.deepEqual(legitimacySources(state), [{ label: 'Tronföljd', value: 40 }]);
   validateReign(state);

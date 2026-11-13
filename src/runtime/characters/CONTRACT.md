@@ -200,7 +200,7 @@ Commands added in Phase 2 and their origins:
 
 ## Phase 3 state, streams and commands
 
-`EXTENSIONS_VERSION` is 3. Saves migrate additively. `state.reign` holds the ruler, the start date, goals, deeds, prestige sources and `lostOrders`. `state.nicknames`, `state.familyDemands` and `state.factions` are lists.
+`EXTENSIONS_VERSION` is 3. Saves migrate additively. `state.reign` holds the ruler, the start date, goals, deeds, prestige sources and `lostOrders`. An accession starts the record over and keeps `lostOrders`, which fall due at the next year turn also when the realm has ended. The ruler holds no council seat: `crown` empties it, and `appoint` and the realm's own appointments pass the ruler over. `state.nicknames`, `state.familyDemands` and `state.factions` are lists.
 
 Commands: `set_reign_goal` and `reward_councillor`. Story types: `stress_breakdown`, `family_demand` and `faction_ultimatum`, all dispatched through `COURT_STORY_TYPES` in `court.js`.
 

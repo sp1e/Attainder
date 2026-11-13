@@ -1,7 +1,7 @@
 import { addGameMonths, astronomicalYear, compareGameDates, normalizeGameDate, parseGameDate } from '../gameDates.js';
 import { ARCHETYPES } from './content.js';
 
-// The reign record: who rules, since when and what the reign has added up to. It lives in state.reign as { rulerId, startedAt, lawful, deeds, goals, sources, lostOrders } and starts over at each accession (beginReign).
+// The reign record: who rules, since when and what the reign has added up to. It lives in state.reign as { rulerId, startedAt, lawful, deeds, goals, sources, lostOrders } and starts over at each accession (beginReign), except lostOrders: those are the player's and carry over.
 // realm.legitimacy stays one number with all its writers. `sources` counts what accession, goals and prestige added; legitimacySources shows the rest as `Styre och händelser`, so the rows always add up.
 // A reign sets at most two goals at a time and tries each goal once (REIGN_GOALS). A goal is the ruler's: its deed and its stress follow state.reign.rulerId, also during a regency. A new reign starts with no goals.
 // This module imports only gameDates.js and content.js, so extensions.js can fill the record without joining the cycle of actionResolution.js, npcPlots.js and schemes.js. The goals that read the council and the dread get their values through `hooks`. Nothing here draws randomness.
@@ -81,7 +81,7 @@ export function defaultReign(state) {
 
 /** Writes a fresh record, which drops the goals of the old reign with it. `person` is null when nobody takes the throne. */
 export function beginReign(state, person, { lawful, legitimacy }) {
-  state.reign = openReign(person?.id ?? null, state.date, lawful, legitimacy);
+  state.reign = { ...openReign(person?.id ?? null, state.date, lawful, legitimacy), lostOrders: state.reign?.lostOrders ?? 0 };
 }
 
 /** Counts a deed of the reigning ruler. An unknown key, such as the tag `duty`, is no deed. */

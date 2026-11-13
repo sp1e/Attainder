@@ -283,7 +283,8 @@ Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 
 - Phase 3, model boundary: `buildCharacterPromptContext` adds `court: view.court` and one rule paragraph.
 - Phase 3, panel: `CourtSections.jsx`, with the reign card, `Rådet`, `Krav från familjerna` and `Faktioner`.
 - Tuned constants: `DISCONTENT_THRESHOLD` 15, demand base chance 34. On eight seeds over ten years every system fires, and an ultimatum fires on seven.
-- Phase 3 limitations: a forced abdication does not end a realm campaign; a player can infer an NPC's ambition from traits; `general.loyalty` stays in `militaryReadiness`; an NPC accession wipes a family head's `lostOrders`; a ruler keeps a council seat after accession; no opening ruler has a sibling, so the spec's "ruler's brother" appears once Mira reigns with Neri alive.
+- Phase 3 decision: a forced abdication does not end a realm campaign. Realm mode follows the government and family mode follows the family (`docs/superpowers/plans/2026-11-04-phase-3-court-and-power.md` and the forced-abdication ruling in `phase-3-decisions.md`).
+- Phase 3 limitations: a player can infer an NPC's ambition from traits; `general.loyalty` stays in `militaryReadiness`; no opening ruler has a sibling, so the spec's "ruler's brother" appears once Mira reigns with Neri alive.
 
 Phases 0, 1 and 2 are on `main`. PR #4 squash-merged Phase 2 as `ef0ab7c` on 3 November 2026, and `phase-2/intrigue` keeps its 28 individual commits. Development moved to the owner's private desktop on 4 November 2026. Campaign saves from the earlier computer stayed there.
 

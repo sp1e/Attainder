@@ -38,9 +38,10 @@ const COURT_STORIES = Object.freeze({
 
 /** Runs after npcPlotStep and returns the paid chancellor delta for annual accounting. A dissolved realm pays 0. */
 export function courtAnnualStep(state, events, hooks) {
+  // A breakdown's lost orders are the player's, so they fall due also after the realm has ended.
+  lostOrdersStep(state);
   // The neighbors live on after the player's realm falls.
   if (!state.realm.alive) { foreignRealmStep(state, events, hooks); return 0; }
-  lostOrdersStep(state);
   loyaltyDriftStep(state, hooks);
   const contribution = chancellorStep(state, hooks);
   dreadYearStep(state, hooks);
