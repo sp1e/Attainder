@@ -27,8 +27,8 @@ const SEA = ["interpolate", ["linear"], ["elevation"],
   0, "#c7dcc4", 1.5, "rgba(199,220,196,0)"];
 // 25 December: snow lies on the high ground.
 const snow = (line) => ["interpolate", ["linear"], ["elevation"],
-  line, "rgba(240,244,248,0)", line + 600, "rgba(240,244,248,0.35)", line + 1400, "rgba(246,249,252,0.86)", 4600, "rgba(255,255,255,0.95)"];
-const WINTER_LINE = 900, SUMMER_LINE = 2800;
+  line, "rgba(244,247,250,0)", line + 350, "rgba(244,247,250,0.55)", line + 900, "rgba(248,250,252,0.92)", 4600, "rgba(255,255,255,0.97)"];
+const WINTER_LINE = 700, SUMMER_LINE = 3100;
 const SNOW = snow(WINTER_LINE);
 // Far out the realms read as a political map; close in the land shows through and the border bands carry the colour.
 const WASH = ["interpolate", ["linear"], ["zoom"], 3, 0.56, 4.4, 0.34, 6.6, 0.14];

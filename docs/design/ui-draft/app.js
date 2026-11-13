@@ -34,7 +34,9 @@ const court = await (await fetch("data/court-802.json")).json();
 const places = await (await fetch("data/places-800.json")).json();
 const person = (id) => court.people.find((p) => p.id === id);
 const state = { selected: court.heirId, area: "needs", open: null, decided: {}, history: [], date: court.date, turning: false, listOpen: false, confirm: null, why: false };
-const pending = () => court.stories.filter((s) => !state.decided[s.id]).sort((a, b) => a.due.localeCompare(b.due));
+// A matter whose deadline has passed is closed: in the game its stated fallback applies.
+const expired = (story) => story.due <= state.date && state.date !== court.date;
+const pending = () => court.stories.filter((s) => !state.decided[s.id] && !expired(s)).sort((a, b) => a.due.localeCompare(b.due));
 const soon = (iso) => iso.slice(5) < "06-25" && iso.slice(0, 4) === String(Number(state.date.slice(0, 4)) + 1).padStart(4, "0");
 const roleOf = (p) => p.id === court.rulerId ? p.roles[0] : p.id === court.heirId ? "Arvinge" : p.imprisoned ? "Fånge" : p.roles[0] || "";
 const ordersLeft = () => Math.max(0, court.economy.actionPoints - Object.values(state.decided).filter((c) => /handling/.test(c.cost)).length);
@@ -87,10 +89,10 @@ function renderThread() {
 function areaNeeds() {
   const open = pending(), active = state.open ?? open[0]?.id;
   const rows = court.stories.slice().sort((a, b) => a.due.localeCompare(b.due)).map((story) => {
-    const done = state.decided[story.id];
+    const lapsed = !state.decided[story.id] && expired(story), done = state.decided[story.id] || (lapsed ? { label: "" } : null);
     const head = el("button", { type: "button", "aria-expanded": String(!done && active === story.id), onclick: () => { if (!done) { state.open = story.id; renderPanel(); } } }, [
       el("span", { class: "faces" }, (ABOUT[story.type] || []).map(mini)), el("h3", { text: plain(story.title) }),
-      el("span", { class: `due${!done && soon(story.due) ? " soon" : ""}`, text: done ? `Avgjort: ${done.label}` : `Senast ${day(story.due)}` }),
+      el("span", { class: `due${!done && soon(story.due) ? " soon" : ""}`, text: lapsed ? `Fristen gick ut ${day(story.due)}; utan val gäller spelets fria alternativ` : done ? `Avgjort: ${done.label}` : `Senast ${day(story.due)}` }),
     ]);
     const body = el("div", { class: "body" }, [
       el("p", { text: story.text }),
