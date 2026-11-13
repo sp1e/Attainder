@@ -73,7 +73,7 @@ const style = {
   sky: { "sky-color": "#0e1a26", "horizon-color": "#d9c49a", "fog-color": "#cbb891", "fog-ground-blend": 0.55, "horizon-fog-blend": 0.75, "sky-horizon-blend": 0.85, "atmosphere-blend": 0.75 },
 };
 
-export const HOME = { center: [10.6, 44.4], zoom: 4.35, pitch: 47, bearing: -7 };
+export const HOME = { center: [14.4, 43.4], zoom: 4.08, pitch: 46, bearing: -6 };
 
 export function createMap(container) {
   const map = new maplibregl.Map({ container, style, ...HOME, minZoom: 2.6, maxZoom: 8.5, maxPitch: 66, attributionControl: { compact: true }, dragRotate: true });
@@ -96,9 +96,9 @@ export const flyHome = () => theMap?.flyTo({ ...HOME, duration: 2000 });
 
 // Realm names lie on the land, along each realm's long axis.
 const NAMES = {
-  "carolingian-realm": { at: [3.4, 47.3], turn: -17, size: 1.55, text: "Karls rike", own: true },
+  "carolingian-realm": { at: [3.4, 47.3], turn: -17, size: 1.7, text: "Karls rike", own: true },
   "byzantine-empire": { at: [31.2, 39.2], turn: 5, size: 1.15, text: "Bysantinska riket" },
-  "abbasid-caliphate": { at: [26.8, 29.6], turn: -9, size: 0.78, text: "Abbasidiska kalifatet" },
+  "abbasid-caliphate": { at: [36.4, 30.4], turn: -4, size: 1.2, text: "Abbasidiska kalifatet" },
   "aghlabid-emirate": { at: [8.2, 33.3], turn: 7, size: 0.85, text: "Aghlabidiska emiratet" },
 };
 const node = (tag, className, html) => { const el = document.createElement(tag); el.className = className; if (html) el.innerHTML = html; return el; };

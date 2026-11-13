@@ -24,6 +24,7 @@ Open http://127.0.0.1:4270/index.html. The map needs a network connection for it
 - Choosing an answer changes this page only. No rule runs, and nothing is saved.
 - The faces are the 24 stand-in portraits the game ships, assigned by hand so that each member of this court has one of their own. The game reuses six of them for this court today.
 - The year turn passes the months and the seasons and invents no events.
-- The revenue figure opens only what the game's view holds today: the total and each city's tax.
+- Each figure in the bar opens what the game's view holds for it today. Revenue, prestige and readiness say which rows the view lacks.
+- Lakes show the satellite image's own dark water: the repository holds Natural Earth's land and no lakes layer.
 - Realm names are placed by hand for this start, and small realms are named under their seat.
 - The accent switch previews the period accent only; the map and the court stay Carolingian.

@@ -54,10 +54,14 @@ function renderBar() {
   const pop = (label, rows, note) => el("div", { class: "pop", role: "dialog", "aria-label": label }, [el("h3", { text: label }),
     el("dl", { class: "facts" }, rows.flatMap(([k, v, neg]) => [el("dt", { text: k }), el("dd", { class: neg ? "neg" : "", text: v })])), el("p", { class: "fine", text: note })]);
   $("stats").replaceChildren(...[
-    stat("Skattkammare", [sv(e.treasury), el("small", { text: " silver" })]),
+    why("treasury", "Skattkammare", [sv(e.treasury), el("small", { text: " silver" })]),
     why("revenue", "Årsintäkt", sv(e.annualRevenue), e.annualRevenue < 0 ? "down" : ""),
-    stat("Handlingar i år", [pips, `${left} av ${e.actionPoints}`]),
-    why("legitimacy", "Legitimitet", [String(e.legitimacy), el("small", { text: " / 100" })]), stat("Prestige", String(court.prestige)), stat("Beredskap", `${e.militaryReadiness} %`),
+    why("orders", "Handlingar i år", [pips, `${left} av ${e.actionPoints}`]),
+    why("legitimacy", "Legitimitet", [String(e.legitimacy), el("small", { text: " / 100" })]), why("prestige", "Prestige", String(court.prestige)), why("readiness", "Beredskap", `${e.militaryReadiness} %`),
+    state.why === "treasury" && pop("Silver i dag", [["Rikets skattkammare", sv(e.treasury)], [`${person(court.rulerId).family}`, sv(e.familyTreasury, 0)]], "Statskassan betalar rikets handlingar, familjekassan husets egna."),
+    state.why === "orders" && pop("Årets handlingar", [["Kvar", `${left} av ${e.actionPoints}`], ...Object.entries(state.decided).filter(([, c]) => /handling/.test(c.cost)).map(([id, c]) => [plain(court.stories.find((s) => s.id === id).title), "−1", true])], "En handling räcker till ett eget drag eller till vissa svar. De fylls på vid årsskiftet."),
+    state.why === "prestige" && pop("Prestige", [["I dag", String(court.prestige)]], "Spelet visar i dag bara talet. Vad det vilar på saknas i vyn och behöver läggas till."),
+    state.why === "readiness" && pop("Militär beredskap", [["I dag", `${e.militaryReadiness} %`], ["Överbefälhavare", court.offices.find((o) => o.kind === "general")?.holderName ? plain(court.offices.find((o) => o.kind === "general").holderName) : "vakant", !court.offices.find((o) => o.kind === "general")?.holderId]], "Befäl och stöd påverkar talet. Posterna var för sig saknas i vyn och behöver läggas till."),
     state.why === "legitimacy" && pop("Legitimiteten vilar på", court.legitimacy.sources.map((s) => [s.label, signed(s.value), s.value < 0]), court.dreadLabel),
     state.why === "revenue" && pop("Årsintäkten i dag", [...court.cities.map((c) => [`Skatt från ${c.name}`, `+${sv(c.taxIncome)}`]), ["Produktion", `${sv(e.productionMultiplier * 100, 0)} %`], ["Summa före årets beslut", sv(e.annualRevenue), e.annualRevenue < 0]],
       "Spelet visar i dag bara summan och stadens skatt. Utgiftsposterna saknas i vyn och behöver läggas till."),
