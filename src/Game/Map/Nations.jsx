@@ -1,5 +1,5 @@
 /*! Open Historia — portions (custom-regions tier-2 rendering) © 2026 Nicholas Krol, AGPL-3.0-or-later (see LICENSE). */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { markPolitiesReady } from "../../runtime/mapReadiness.js";
 import { Layer, Source, useMap } from "react-map-gl/maplibre";
 import { onRegionSelected, onOceanClicked, dismissRegionPopup } from "../Selection/Regions";
@@ -9,7 +9,9 @@ import {
   getInteractionMode,
   clearInteractionMode,
   deployUnit,
+  getPlayerCode,
   placeUnitAdmin,
+  subscribeUnits,
 } from "./unitsController.js";
 import { recordMapTrace, recordMapWork } from "../../runtime/mapPerfTrace.js";
 import { logDebugEvent } from "../../runtime/debugLog.js";
@@ -35,15 +37,25 @@ import {
 import { publishPolityIndex } from "../../runtime/placeSearch.js";
 import { useBrowserOnline } from "../../runtime/networkStatus.js";
 import {
+  BOUNDARY_LINE_CLASS_FILTER,
   HISTORICAL_FILL_COLOR,
   HISTORICAL_FILL_OPACITY,
+  OUTLINE_BAND_LAYER_ID,
+  OUTLINE_CLASS_FILTER,
+  OUTLINE_LIGHT_LAYER_ID,
+  OWN_EDGE_LAYER_ID,
   RELIEF_OVER_FILLS_LAYER_ID,
   RELIEF_OVER_FILLS_PAINT,
   RELIEF_OVER_FILLS_SOURCE,
   RELIEF_OVER_FILLS_SOURCE_ID,
   UNOWNED_HISTORICAL_FILL,
   buildHistoricalFillOpacity,
+  buildOutlineBandPaint,
+  buildOutlineLightPaint,
+  buildOwnEdgePaint,
+  buildRealmColorExpression,
   historicalFillOpacityAtZoom,
+  ownEdgeFilter,
 } from "./historicalCartography.js";
 import { toCountryName } from "../../runtime/ownerNames.js";
 import {
@@ -1044,6 +1056,18 @@ const WorldMap = ({ isGlobe = false }) => {
   const visibleBoundaryFilter = useMemo(() => dirtyPoliticalOwners.length
     ? ["!", ["any", ...dirtyPoliticalOwners.map((owner) => ["in", owner, ["get", "ownerList"]])]]
     : ["all"], [dirtyPoliticalOwners]);
+  // A historical campaign's border source also carries each realm's outline (historicalCartography.js). The border
+  // lines skip a realm's side of a border; the outline layers read only the outline. Both hide with a changing owner.
+  const boundaryLineFilter = useMemo(
+    () => (historical ? ["all", BOUNDARY_LINE_CLASS_FILTER, visibleBoundaryFilter] : visibleBoundaryFilter),
+    [historical, visibleBoundaryFilter],
+  );
+  const outlineFilter = useMemo(() => ["all", OUTLINE_CLASS_FILTER, visibleBoundaryFilter], [visibleBoundaryFilter]);
+  const playerCode = useSyncExternalStore(subscribeUnits, getPlayerCode);
+  const playerEdgeFilter = useMemo(
+    () => ["all", ownEdgeFilter(toCountryName(playerCode)), visibleBoundaryFilter],
+    [playerCode, visibleBoundaryFilter],
+  );
 
 
   const rawLivePolityPointLabelData = worldKnown && customFlag && useLivePolityLabels
@@ -1429,6 +1453,11 @@ const WorldMap = ({ isGlobe = false }) => {
   }, [customRegionMeta.records, labelEpoch, polityOverrides, regionOwnershipOverrides]);
   const workerLabelNamesRef = useRef(workerLabelNames);
   workerLabelNamesRef.current = workerLabelNames;
+  // The colour of each realm's outline, by the owner its lines carry.
+  const realmColorExpression = useMemo(
+    () => buildRealmColorExpression(historical ? Object.keys(workerLabelNames).map((owner) => [owner, ownerColorCss(owner)]) : []),
+    [historical, ownerColorCss, workerLabelNames],
+  );
 
   const sourceObjectsRef = useRef({ boundary: null });
   const updateBoundarySourceFromPatch = useCallback((patch) => {
@@ -2056,6 +2085,8 @@ const WorldMap = ({ isGlobe = false }) => {
       type: "initialize",
       regionsUrl: regionsGeojsonFetchUrl,
       projection: isGlobe ? "globe" : "mercator",
+      // A historical campaign draws each realm's outline, not only the borders between realms.
+      outlines: historical,
       ownershipOverrides,
       regionClaimants: claimants,
       labelNames,
@@ -2077,6 +2108,7 @@ const WorldMap = ({ isGlobe = false }) => {
     boundaryWorkerEpoch,
     clearDerivedCartography,
     customFlag,
+    historical,
     regionsGeojsonFetchUrl,
     regionsGeojsonUrl,
     releaseAllOwnershipPresentation,
@@ -2104,6 +2136,18 @@ const WorldMap = ({ isGlobe = false }) => {
     });
     return () => cancelAnimationFrame(frame);
   }, [groupAreaData, map]);
+
+  // A realm's outline mounts once the campaign is known to be historical. A layer mounted late lands on top of
+  // the stack, over the labels and the units, so the stack is put back in order when the outline is there.
+  useEffect(() => {
+    if (!historical || !customFlag) return undefined;
+    const mapInstance = map?.getMap ? map.getMap() : map;
+    if (!mapInstance) return undefined;
+    const frame = requestAnimationFrame(() => {
+      if (mapInstance.style && mapInstance.getLayer(OWN_EDGE_LAYER_ID)) enforceMapLayerOrder(mapInstance);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [customFlag, historical, map]);
 
   // Opening-screen readiness now includes the authoritative PTR first paint
   // AND targeted geometry-safety settlement. Catalog metadata still publishes
@@ -3534,10 +3578,31 @@ const WorldMap = ({ isGlobe = false }) => {
       )}
 
       <Source id="polity-boundaries-source" type="geojson" data={EMPTY_FEATURE_COLLECTION} tolerance={0.25}>
+        {/* A historical campaign draws each realm's outline inside its edge (historicalCartography.js). */}
+        {historical && customFlag && (
+        <Layer
+          id={OUTLINE_BAND_LAYER_ID}
+          type="line"
+          beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
+          filter={outlineFilter}
+          layout={{ "line-cap": "butt", "line-join": "round" }}
+          paint={buildOutlineBandPaint(realmColorExpression, customActive && worldKnown)}
+        />
+        )}
+        {historical && customFlag && (
+        <Layer
+          id={OUTLINE_LIGHT_LAYER_ID}
+          type="line"
+          beforeId={map?.getLayer?.("polity-boundaries-shadow") ? "polity-boundaries-shadow" : undefined}
+          filter={outlineFilter}
+          layout={{ "line-cap": "butt", "line-join": "round" }}
+          paint={buildOutlineLightPaint(realmColorExpression, customActive && worldKnown)}
+        />
+        )}
         <Layer
           id="polity-boundaries-shadow"
           type="line"
-          filter={visibleBoundaryFilter}
+          filter={boundaryLineFilter}
           layout={{ "line-cap": "round", "line-join": "round" }}
           paint={{
             "line-color": "rgba(1, 4, 8, 0.72)",
@@ -3549,7 +3614,7 @@ const WorldMap = ({ isGlobe = false }) => {
         <Layer
           id="polity-boundaries"
           type="line"
-          filter={visibleBoundaryFilter}
+          filter={boundaryLineFilter}
           layout={{ "line-cap": "round", "line-join": "round" }}
           paint={{
             "line-color": "rgba(5, 8, 13, 0.96)",
@@ -3564,6 +3629,15 @@ const WorldMap = ({ isGlobe = false }) => {
             "line-opacity": customActive && worldKnown ? 0.94 : 0,
           }}
         />
+        {historical && customFlag && (
+        <Layer
+          id={OWN_EDGE_LAYER_ID}
+          type="line"
+          filter={playerEdgeFilter}
+          layout={{ "line-cap": "round", "line-join": "round" }}
+          paint={buildOwnEdgePaint(customActive && worldKnown)}
+        />
+        )}
       </Source>
 
       <PolityTextLayer

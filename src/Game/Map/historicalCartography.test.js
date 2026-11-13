@@ -8,6 +8,10 @@ import {
   RELIEF_OVER_FILLS_LAYER_ID, RELIEF_OVER_FILLS_PAINT, RELIEF_OVER_FILLS_SOURCE, RELIEF_OVER_FILLS_SOURCE_ID, UNOWNED_HISTORICAL_FILL,
   HISTORICAL_FILL_OPACITY, applyHistoricalBasemap, buildHistoricalFillOpacity, fallbackBasemapId, historicalFillOpacityAtZoom, opaqueTransitionColors, usesHistoricalDefault,
 } from "./historicalCartography.js";
+import {
+  BOUNDARY_LINE_CLASS_FILTER, OUTLINE_BAND_LAYER_ID, OUTLINE_CLASS_FILTER, OUTLINE_FALLBACK_COLOR, OUTLINE_LIGHT_LAYER_ID, OWN_EDGE_LAYER_ID,
+  buildOutlineBandPaint, buildOutlineLightPaint, buildOwnEdgePaint, buildRealmColorExpression, ownEdgeFilter,
+} from "./historicalCartography.js";
 
 const read = (name) => fs.readFileSync(new URL(name, import.meta.url), "utf8");
 
@@ -137,4 +141,107 @@ test("an ownership change with an unowned side borrows the other side's colour w
   assert.deepEqual(opaqueTransitionColors(UNOWNED_HISTORICAL_FILL, UNOWNED_HISTORICAL_FILL), { from: UNOWNED_HISTORICAL_FILL, to: UNOWNED_HISTORICAL_FILL });
   assert.deepEqual(opaqueTransitionColors("rgba(1, 2, 3, 0.5)", realm), { from: "rgba(1, 2, 3, 0.5)", to: realm }, "a half-transparent colour is a colour");
   assert.deepEqual(opaqueTransitionColors(undefined, realm), { from: "", to: realm });
+});
+
+// Slice 2: a realm has an edge.
+const zoomStops = (expression) => {
+  assert.equal(expression[0], "interpolate");
+  assert.deepEqual(expression[2], ["zoom"], "zoom is the direct input of a top-level interpolate");
+  const stops = [];
+  for (let index = 3; index < expression.length; index += 2) stops.push([expression[index], expression[index + 1]]);
+  return stops;
+};
+const rising = (stops) => stops.every(([zoom, value], index) => index === 0 || (zoom > stops[index - 1][0] && value > stops[index - 1][1]));
+
+test("the outline layers read a realm's two outline classes, and the border lines skip a realm's side", () => {
+  assert.equal(OUTLINE_BAND_LAYER_ID, "polity-outline-band");
+  assert.equal(OUTLINE_LIGHT_LAYER_ID, "polity-outline-light");
+  assert.equal(OWN_EDGE_LAYER_ID, "polity-own-edge");
+  assert.deepEqual(OUTLINE_CLASS_FILTER, ["in", ["get", "class"], ["literal", ["polity-frontier", "polity-side"]]]);
+  assert.deepEqual(BOUNDARY_LINE_CLASS_FILTER, ["!=", ["get", "class"], "polity-side"]);
+});
+
+test("a realm's colour is looked up by the outline's owner, and no realm at all is a plain colour", () => {
+  assert.deepEqual(
+    buildRealmColorExpression([["carolingian-realm", "rgb(1, 2, 3)"], ["papal-states", "rgb(4, 5, 6)"]], "rgb(9, 9, 9)"),
+    ["match", ["get", "owner0"], "carolingian-realm", "rgb(1, 2, 3)", "papal-states", "rgb(4, 5, 6)", "rgb(9, 9, 9)"],
+  );
+  assert.equal(buildRealmColorExpression([], "rgb(9, 9, 9)"), "rgb(9, 9, 9)");
+  assert.equal(buildRealmColorExpression(undefined), OUTLINE_FALLBACK_COLOR);
+  assert.deepEqual(
+    buildRealmColorExpression([["a", "rgb(1, 1, 1)"], ["", "rgb(2, 2, 2)"], ["a", "rgb(3, 3, 3)"]], "x"),
+    ["match", ["get", "owner0"], "a", "rgb(1, 1, 1)", "x"],
+    "an empty owner and a repeated one are left out: a match label must be unique",
+  );
+});
+
+test("the band lies inside the realm: a positive offset about half its width, wider as the camera comes closer", () => {
+  const paint = buildOutlineBandPaint("rgb(1, 2, 3)", true);
+  assert.equal(paint["line-color"], "rgb(1, 2, 3)");
+  const width = zoomStops(paint["line-width"]), offset = zoomStops(paint["line-offset"]), blur = zoomStops(paint["line-blur"]);
+  assert.ok(rising(width) && rising(offset) && rising(blur));
+  for (const [index, [zoom, value]] of offset.entries()) {
+    assert.equal(zoom, width[index][0]);
+    assert.ok(value > 0, "positive is the right of the line, where the realm is");
+    assert.ok(value >= width[index][1] * 0.35 && value <= width[index][1] * 0.5, "the band's outer rim stays at the edge");
+  }
+  assert.ok(paint["line-opacity"] > 0 && paint["line-opacity"] <= 0.7);
+  assert.equal(buildOutlineBandPaint("rgb(1, 2, 3)", false)["line-opacity"], 0);
+});
+
+test("the thin rim is the realm's colour just inside the edge", () => {
+  const paint = buildOutlineLightPaint("rgb(1, 2, 3)", true);
+  assert.equal(paint["line-color"], "rgb(1, 2, 3)");
+  const width = zoomStops(paint["line-width"]), offset = zoomStops(paint["line-offset"]);
+  assert.ok(rising(width) && rising(offset));
+  assert.ok(width.at(-1)[1] <= 2);
+  assert.ok(offset.every(([, value]) => value > 0));
+  assert.equal(buildOutlineLightPaint("rgb(1, 2, 3)", false)["line-opacity"], 0);
+});
+
+test("the player's realm has a heavier edge than a border", () => {
+  const paint = buildOwnEdgePaint(true);
+  const width = zoomStops(paint["line-width"]);
+  assert.ok(rising(width));
+  // The stock border line is 0.92 px at zoom 3 and 1.72 at zoom 9 (Nations.jsx).
+  assert.ok(width.find(([zoom]) => zoom === 3)[1] >= 0.92 * 2);
+  assert.ok(width.find(([zoom]) => zoom === 9)[1] >= 1.72 * 2);
+  assert.equal(buildOwnEdgePaint(false)["line-opacity"], 0);
+  assert.deepEqual(ownEdgeFilter("carolingian-realm"), ["all", OUTLINE_CLASS_FILTER, ["==", ["get", "owner0"], "carolingian-realm"]]);
+  assert.deepEqual(ownEdgeFilter(""), ["==", ["get", "class"], "polity-no-realm"], "no realm, no edge");
+  assert.deepEqual(ownEdgeFilter(undefined), ownEdgeFilter(""));
+});
+
+test("the map asks for outlines only in a historical campaign and draws them on the border source", () => {
+  const nations = read("./Nations.jsx"), worker = read("./vnext/polityBoundariesWorker.js");
+  assert.match(nations, /type: "initialize",[\s\S]{0,400}outlines: historical,/);
+  assert.match(worker, /createPoliticalBoundaryState\(cachedTopology, ownershipOverrides, \{ outlines: boundaryOutlines \}\)/);
+  assert.doesNotMatch(worker, /createPoliticalBoundaryState\(cachedTopology, [A-Za-z]+\)/, "every state is made with the flag");
+  assert.match(worker, /boundaryOutlines = Boolean\(message\.outlines\)/);
+
+  const source = nations.slice(nations.indexOf('<Source id="polity-boundaries-source"'));
+  const block = source.slice(0, source.indexOf("</Source>"));
+  const at = (text) => {
+    const index = block.indexOf(text);
+    assert.ok(index >= 0, `${text} is in the border source`);
+    return index;
+  };
+  assert.ok(at("id={OUTLINE_BAND_LAYER_ID}") < at("id={OUTLINE_LIGHT_LAYER_ID}"));
+  assert.ok(at("id={OUTLINE_LIGHT_LAYER_ID}") < at('id="polity-boundaries-shadow"'));
+  assert.ok(at('id="polity-boundaries"') < at("id={OWN_EDGE_LAYER_ID}"));
+  assert.equal(block.split("filter={boundaryLineFilter}").length - 1, 2, "both border lines skip a realm's side");
+  assert.match(nations, /historical \? \["all", BOUNDARY_LINE_CLASS_FILTER, visibleBoundaryFilter\] : visibleBoundaryFilter/);
+  assert.match(block, /\{historical && customFlag && \(/);
+  assert.match(nations, /toCountryName\(playerCode\)/);
+});
+
+test("an outline layer mounted late is put back in its place in the stack", () => {
+  const nations = read("./Nations.jsx");
+  const source = nations.slice(nations.indexOf('<Source id="polity-boundaries-source"'));
+  const block = source.slice(0, source.indexOf("</Source>"));
+  for (const id of ["OUTLINE_BAND_LAYER_ID", "OUTLINE_LIGHT_LAYER_ID"]) {
+    const layer = block.slice(block.indexOf(`id={${id}}`));
+    assert.match(layer.slice(0, layer.indexOf("/>")), /beforeId=\{map\?\.getLayer\?\.\("polity-boundaries-shadow"\) \? "polity-boundaries-shadow" : undefined\}/);
+  }
+  assert.match(nations, /if \(!historical \|\| !customFlag\) return undefined;[\s\S]{0,400}getLayer\(OWN_EDGE_LAYER_ID\)\) enforceMapLayerOrder\(mapInstance\);/);
 });

@@ -22,6 +22,8 @@ let cachedRegionsUrl = "";
 let cachedMetadata = null;
 let cachedTopology = null;
 let boundaryState = null;
+// A historical campaign asks for each realm's outline as well as the borders between realms.
+let boundaryOutlines = false;
 let labelGeometryByOwner = new Map();
 let labelsByOwner = new Map();
 let labelChangeDebtByOwner = new Map();
@@ -405,7 +407,7 @@ const combinedLabels = () => {
 
 const fullSnapshotFromCurrentCaches = ({ ownershipOverrides = {}, regionClaimants = {}, rebuildLabels = false } = {}) => {
   ensureTopology();
-  if (!boundaryState) boundaryState = createPoliticalBoundaryState(cachedTopology, ownershipOverrides);
+  if (!boundaryState) boundaryState = createPoliticalBoundaryState(cachedTopology, ownershipOverrides, { outlines: boundaryOutlines });
   if (rebuildLabels) {
     // Recovery after an unpublished specialized revision must not assume the
     // renderer saw the worker's prior label cache. Rebuild the complete current
@@ -804,7 +806,7 @@ const initializePoliticalCartography = ({ ownershipOverrides, regionClaimants })
   const topologyStats = ensureTopology();
 
   const boundaryStartedAt = performance.now();
-  boundaryState = createPoliticalBoundaryState(cachedTopology, ownershipOverrides);
+  boundaryState = createPoliticalBoundaryState(cachedTopology, ownershipOverrides, { outlines: boundaryOutlines });
   const boundaryData = politicalBoundaryStateCollection(boundaryState);
   const boundaryMs = performance.now() - boundaryStartedAt;
 
@@ -843,7 +845,7 @@ const updateOwnershipCartography = ({
 }) => {
   const startedAt = performance.now();
   ensureTopology();
-  if (!boundaryState) boundaryState = createPoliticalBoundaryState(cachedTopology, previousOwnershipOverrides);
+  if (!boundaryState) boundaryState = createPoliticalBoundaryState(cachedTopology, previousOwnershipOverrides, { outlines: boundaryOutlines });
 
   // A full recovery snapshot is defined by the worker's last actual ownership
   // state versus the newest canonical ownership snapshot. Do not trust an
@@ -988,6 +990,10 @@ self.onmessage = async ({ data: message }) => {
     let loadStats = null;
     if (type === "initialize") {
       cancelRenderRepairBuild();
+      if (boundaryOutlines !== Boolean(message.outlines)) {
+        boundaryOutlines = Boolean(message.outlines);
+        boundaryState = null;
+      }
       if (message.regions?.features) {
         cachedRegions = message.regions;
         cachedRegionsUrl = "";

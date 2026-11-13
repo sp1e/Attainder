@@ -360,3 +360,41 @@ test("a dispute the world ended stays ended; one it never recorded shows the map
   assert.deepEqual(await disputes(202, { d1: [] }), { d2: ["B"] }, "an ended dispute stays ended");
   assert.deepEqual(await disputes(203, { d1: ["C"] }), { d1: ["C"], d2: ["B"] }, "the world's live list wins");
 });
+
+test("a historical initialize adds each realm's outline to the boundary snapshot, and an update patches it", async () => {
+  const start = async (requestId, extra) => {
+    const out = await send({
+      requestId,
+      type: "initialize",
+      geometryEpoch: `outline-${requestId}`,
+      regions,
+      ownershipOverrides: {},
+      regionClaimants: {},
+      labelNames: { A: "A", B: "B", C: "C" },
+      ...extra,
+    });
+    return out.find((message) => message?.messageType === "cartography-result")?.boundaryPatch?.upsert ?? [];
+  };
+  const classes = (features) => [...new Set(features.map((feature) => feature.properties.class))].sort();
+
+  const outlined = await start(300, { outlines: true });
+  assert.deepEqual(classes(outlined), ["polity-boundary", "polity-frontier", "polity-side"]);
+  const frontierOfC = outlined.find((feature) => feature.properties.class === "polity-frontier" && feature.properties.owner0 === "C");
+  assert.ok(frontierOfC, "each realm has a frontier");
+
+  const update = await send({
+    requestId: 301,
+    type: "update-ownership",
+    geometryEpoch: "outline-300",
+    ownershipOverrides: { c1: "B" },
+    regionClaimants: {},
+    labelNames: { A: "A", B: "B", C: "C" },
+    affectedOwners: ["B", "C"],
+    changedRegionIds: ["c1"],
+  });
+  const patch = update.find((message) => message?.messageType === "cartography-result")?.boundaryPatch;
+  assert.ok(patch?.removeIds?.includes(String(frontierOfC.id)), "a realm that lost its land loses its outline");
+  assert.ok(patch.upsert.some((feature) => feature.properties.class === "polity-frontier" && feature.properties.owner0 === "B"));
+
+  assert.deepEqual(classes(await start(302, {})), ["polity-boundary"], "a plain initialize drops the outlines again");
+});

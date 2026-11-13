@@ -99,3 +99,59 @@ export const RELIEF_OVER_FILLS_PAINT = Object.freeze({
   "hillshade-accent-color": "#3b2a1c",
   "hillshade-illumination-direction": 315,
 });
+
+// Slice 2: a realm has an edge. The cartography worker adds two classes of line to the border source in a historical
+// campaign (vnext/politicalBoundaryTopology.js): `polity-frontier`, a realm's edge with no realm beyond it, and
+// `polity-side`, a realm's side of a border it shares. Both run with the realm on the right, so a positive `line-offset`
+// moves a line into the realm.
+export const OUTLINE_BAND_LAYER_ID = "polity-outline-band";
+export const OUTLINE_LIGHT_LAYER_ID = "polity-outline-light";
+export const OWN_EDGE_LAYER_ID = "polity-own-edge";
+export const OUTLINE_CLASS_FILTER = Object.freeze(["in", ["get", "class"], ["literal", ["polity-frontier", "polity-side"]]]);
+// The border lines draw a border and a frontier. A realm's side of a border lies on that border, which has its line.
+export const BOUNDARY_LINE_CLASS_FILTER = Object.freeze(["!=", ["get", "class"], "polity-side"]);
+export const OUTLINE_FALLBACK_COLOR = "rgb(120, 104, 82)";
+
+/** The colour of the realm an outline belongs to, from `[owner, css]` pairs. */
+export function buildRealmColorExpression(pairs, fallback = OUTLINE_FALLBACK_COLOR) {
+  const seen = new Set(), branches = [];
+  for (const [owner, color] of pairs ?? []) {
+    if (!owner || !color || seen.has(owner)) continue;
+    seen.add(owner);
+    branches.push(owner, color);
+  }
+  return branches.length ? ["match", ["get", "owner0"], ...branches, fallback] : fallback;
+}
+
+const byZoom = (stops) => ["interpolate", ["linear"], ["zoom"], ...stops.flat()];
+// [zoom, width, blur, offset] of the band. The offset is under half the width, so the band's outer rim stays at the edge.
+const OUTLINE_BAND_STOPS = Object.freeze([[1.5, 3, 2.5, 1.2], [3, 8, 6, 3.4], [6, 22, 16, 9.5], [9, 48, 32, 21]]);
+
+/** A wide, soft band of the realm's colour inside its edge. */
+export const buildOutlineBandPaint = (color, visible) => ({
+  "line-color": color,
+  "line-width": byZoom(OUTLINE_BAND_STOPS.map(([zoom, width]) => [zoom, width])),
+  "line-blur": byZoom(OUTLINE_BAND_STOPS.map(([zoom, , blur]) => [zoom, blur])),
+  "line-offset": byZoom(OUTLINE_BAND_STOPS.map(([zoom, , , offset]) => [zoom, offset])),
+  "line-opacity": visible ? 0.6 : 0,
+});
+
+/** A thin line of the realm's colour at the band's outer rim, just inside the dark edge. */
+export const buildOutlineLightPaint = (color, visible) => ({
+  "line-color": color,
+  "line-width": byZoom([[1.5, 0.35], [3, 0.55], [6, 0.95], [9, 1.4]]),
+  "line-offset": byZoom([[1.5, 0.7], [3, 1.2], [6, 2], [9, 3]]),
+  "line-opacity": visible ? 0.9 : 0,
+});
+
+/** The heavier edge of the player's own realm, drawn over the borders. */
+export const buildOwnEdgePaint = (visible) => ({
+  "line-color": "rgba(20, 14, 9, 0.96)",
+  "line-width": byZoom([[1.5, 1.3], [3, 2], [6, 3.4], [9, 5]]),
+  "line-opacity": visible ? 0.92 : 0,
+});
+
+/** The outline of one realm; with no realm, nothing. */
+export const ownEdgeFilter = (owner) => (owner
+  ? ["all", OUTLINE_CLASS_FILTER, ["==", ["get", "owner0"], owner]]
+  : ["==", ["get", "class"], "polity-no-realm"]);

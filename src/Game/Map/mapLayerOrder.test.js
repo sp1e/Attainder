@@ -125,3 +125,13 @@ test("PTR-0 polity text renderer stays above legacy polity labels and below citi
   assert.ok(index("polity-text-renderer") < index("cities-shapes"));
   assert.ok(index("polity-text-renderer") < index("cities-labels"));
 });
+
+test("a realm's outline sits over the relief and under the borders, and the player's edge over them", () => {
+  const index = (id) => MAP_LAYER_ORDER.indexOf(id);
+  for (const id of ["polity-outline-band", "polity-outline-light", "polity-own-edge"]) assert.ok(index(id) >= 0, id);
+  assert.ok(index("relief-over-fills") < index("polity-outline-band"));
+  assert.ok(index("polity-outline-band") < index("polity-outline-light"));
+  assert.ok(index("polity-outline-light") < index("polity-boundaries-shadow"));
+  assert.ok(index("polity-boundaries") < index("polity-own-edge"));
+  assert.ok(index("polity-own-edge") < index("group-areas-outline-casing"));
+});
