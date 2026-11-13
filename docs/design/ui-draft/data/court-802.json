@@ -1,0 +1,762 @@
+{
+ "date": "0802-12-25",
+ "mode": "realm",
+ "realmName": "Karls rike (karolingiska riket)",
+ "rulerId": "karl",
+ "heirId": "karl-den-yngre",
+ "lawLabel": "förstfödslorätt",
+ "economy": {
+  "treasury": 192.58,
+  "annualRevenue": -13.62,
+  "familyTreasury": 54,
+  "familyIncome": 7,
+  "influence": 45,
+  "legitimacy": 59,
+  "militaryReadiness": 36,
+  "productionMultiplier": 0.91,
+  "actionPoints": 4,
+  "taxPolicy": "balanced",
+  "academy": false
+ },
+ "prestige": 10,
+ "dread": {
+  "value": 0,
+  "label": "Ingen fruktar kronan"
+ },
+ "people": [
+  {
+   "id": "karl",
+   "name": "Karl (Karl den store)",
+   "age": 59,
+   "sex": "male",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 5,
+   "health": 98,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": true,
+   "opinion": 100,
+   "roles": [
+    "Kejsare"
+   ],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "karl"
+  },
+  {
+   "id": "karl-den-yngre",
+   "name": "Karl den yngre",
+   "age": 30,
+   "sex": "male",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "karl-den-yngre"
+  },
+  {
+   "id": "pippin-av-italien",
+   "name": "Pippin av Italien",
+   "age": 26,
+   "sex": "male",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "pippin-av-italien"
+  },
+  {
+   "id": "ludvig-av-akvitanien",
+   "name": "Ludvig av Akvitanien",
+   "age": 24,
+   "sex": "male",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": true,
+   "opinion": 18,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "ludvig-av-akvitanien"
+  },
+  {
+   "id": "rotrud",
+   "name": "Rotrud",
+   "age": 24,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "rotrud"
+  },
+  {
+   "id": "berta",
+   "name": "Berta",
+   "age": 23,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.1,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 7,
+   "health": 95,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 10,
+   "portrait": "berta"
+  },
+  {
+   "id": "gisela",
+   "name": "Gisela",
+   "age": 22,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "gisela"
+  },
+  {
+   "id": "teoderada",
+   "name": "Teoderada",
+   "age": 17,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 0,
+   "portrait": "teoderada"
+  },
+  {
+   "id": "hiltrud",
+   "name": "Hiltrud",
+   "age": 15,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 0,
+   "portrait": "hiltrud"
+  },
+  {
+   "id": "ruodhaid",
+   "name": "Ruodhaid",
+   "age": 14,
+   "sex": "female",
+   "family": "Karls hus",
+   "familyId": "royal-house",
+   "skills": {
+    "command": 5,
+    "stewardship": 6,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 100,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Dokumenterad person; spelvärden är genererade",
+   "bornUncertain": false,
+   "opinion": 8,
+   "roles": [],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 0,
+   "portrait": "ruodhaid"
+  },
+  {
+   "id": "generated-courtier-1",
+   "name": "Odo (genererad)",
+   "age": 51,
+   "sex": "male",
+   "family": "Hovhus 1 (genererat)",
+   "familyId": "generated-house-1",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.1,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 98,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Genererad person",
+   "bornUncertain": false,
+   "opinion": -57,
+   "roles": [],
+   "imprisoned": true,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "generated-courtier-1"
+  },
+  {
+   "id": "generated-courtier-2",
+   "name": "Ansgar (genererad)",
+   "age": 50,
+   "sex": "male",
+   "family": "Hovhus 2 (genererat)",
+   "familyId": "generated-house-2",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 98,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Genererad person",
+   "bornUncertain": false,
+   "opinion": 0,
+   "roles": [
+    "Kansler"
+   ],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "generated-courtier-2"
+  },
+  {
+   "id": "generated-courtier-3",
+   "name": "Rikulf (genererad)",
+   "age": 49,
+   "sex": "male",
+   "family": "Hovhus 3 (genererat)",
+   "familyId": "generated-house-3",
+   "skills": {
+    "command": 5,
+    "stewardship": 6.2,
+    "diplomacy": 5,
+    "learning": 5,
+    "intrigue": 4,
+    "prowess": 4
+   },
+   "stress": 0,
+   "health": 98,
+   "traits": [
+    "Plikttrogen"
+   ],
+   "archetype": "Förvaltaren",
+   "origin": "Genererad person",
+   "bornUncertain": false,
+   "opinion": -8,
+   "roles": [
+    "Religiös företrädare"
+   ],
+   "imprisoned": false,
+   "goal": "Skyddar familjens trygghet",
+   "wealth": 30,
+   "portrait": "generated-courtier-3"
+  }
+ ],
+ "stories": [
+  {
+   "id": "character-story-2",
+   "type": "character_event",
+   "title": "En ung begåvning söker stöd",
+   "text": "Teoderada vill ägna mer tid åt studier. Extra undervisning kostar familjen silver och kan få betydelse efter myndighetsdagen.",
+   "due": "0803-12-25",
+   "deadlineText": "",
+   "actorId": "teoderada",
+   "participants": [],
+   "choices": [
+    {
+     "id": "teach",
+     "label": "Betala för extra undervisning",
+     "description": "Lärdom +1; personlig åsikt +10. Stödet kan återgäldas i vuxen ålder.",
+     "cost": "18 familjesilver",
+     "stress": "0",
+     "disabledReason": ""
+    },
+    {
+     "id": "ignore",
+     "label": "Behåll nuvarande utbildning",
+     "description": "Personlig åsikt −3. Den ordinarie utbildningen fortsätter.",
+     "cost": "0 silver",
+     "stress": "0",
+     "disabledReason": ""
+    }
+   ]
+  },
+  {
+   "id": "story-44",
+   "type": "ransom_offer",
+   "title": "Lösen för Odo (genererad)",
+   "text": "Hovhus 1 (genererat) erbjuder 40 silver för att Odo (genererad) ska friges.",
+   "due": "0803-12-25",
+   "deadlineText": "",
+   "actorId": "generated-courtier-1",
+   "participants": [],
+   "choices": [
+    {
+     "id": "accept",
+     "label": "Ta emot lösen",
+     "description": "Hovhus 1 (genererat) betalar 40 silver till statskassan och Odo (genererad) friges. Familjens huvudman minns nåden (åsikt om dig +10).",
+     "cost": "0 silver",
+     "stress": "0",
+     "disabledReason": ""
+    },
+    {
+     "id": "refuse",
+     "label": "Avvisa erbjudandet",
+     "description": "Odo (genererad) sitter kvar. Familjens huvudman tar det illa (åsikt om dig −10).",
+     "cost": "0 silver",
+     "stress": "0",
+     "disabledReason": ""
+    }
+   ]
+  },
+  {
+   "id": "story-46",
+   "type": "family_demand",
+   "title": "Hovhus 2 (genererat) kräver Aachen",
+   "text": "Ansgar (genererad) vill se familjen i Aachen. De andra husen ser vad du svarar.",
+   "due": "0803-12-25",
+   "deadlineText": "Utan svar räknas kravet som avvisat, och familjen tar det hårdare.",
+   "actorId": "generated-courtier-2",
+   "participants": [],
+   "choices": [
+    {
+     "id": "grant",
+     "label": "Bevilja kravet",
+     "description": "Ansgar (genererad) får uppdraget och familjens stöd stiger med 8. Övriga hus tappar 6 i stöd, och deras huvudmän tycker 8 sämre om dig.",
+     "cost": "1 handling",
+     "stress": "0",
+     "disabledReason": ""
+    },
+    {
+     "id": "compensate",
+     "label": "Köp tid med silver",
+     "description": "Familjen avstår för den här gången. Huvudmannen tycker 3 sämre om dig.",
+     "cost": "40 silver ur statskassan och 1 handling",
+     "stress": "0",
+     "disabledReason": ""
+    },
+    {
+     "id": "refuse",
+     "label": "Avvisa kravet",
+     "description": "Familjen tappar 8 i stöd och huvudmannen tycker 12 sämre om dig. Övriga hus vinner 1 i stöd.",
+     "cost": "1 handling",
+     "stress": "0",
+     "disabledReason": ""
+    }
+   ]
+  },
+  {
+   "id": "duel-karl-den-yngre-0802-12-25",
+   "type": "duel_challenge",
+   "title": "Karl den yngre utmanar Ansgar (genererad) på duell",
+   "text": "Karl den yngre kräver upprättelse av Ansgar (genererad) med vapen i hand. Kampförmåga 4 mot 4.",
+   "due": "0803-03-25",
+   "deadlineText": "",
+   "actorId": "karl",
+   "participants": [],
+   "choices": [
+    {
+     "id": "allow",
+     "label": "Låt duellen ske",
+     "description": "Karl den yngre strider själv. Förloraren kan dö eller skadas.",
+     "cost": "0 silver",
+     "stress": "0",
+     "disabledReason": ""
+    },
+    {
+     "id": "champion",
+     "label": "Sänd en kämpe",
+     "description": "En bättre kämpe ur familjen strider i arvingens ställe.",
+     "cost": "15 silver",
+     "stress": "0",
+     "disabledReason": "Ingen i familjen strider bättre än arvingen."
+    },
+    {
+     "id": "forbid",
+     "label": "Förbjud duellen",
+     "description": "Ingen strid. Karl den yngre känner sig förödmjukad och tar illa upp.",
+     "cost": "0 silver",
+     "stress": "+20 för arvingen",
+     "disabledReason": ""
+    }
+   ]
+  }
+ ],
+ "offices": [
+  {
+   "id": "ruler",
+   "name": "Kejsare",
+   "kind": "ruler",
+   "holderId": "karl",
+   "holderName": "Karl (Karl den store)"
+  },
+  {
+   "id": "general",
+   "name": "Överbefälhavare",
+   "kind": "general",
+   "holderId": null,
+   "holderName": null
+  },
+  {
+   "id": "chancellor",
+   "name": "Kansler",
+   "kind": "chancellor",
+   "holderId": "generated-courtier-2",
+   "holderName": "Ansgar (genererad)"
+  },
+  {
+   "id": "priest",
+   "name": "Religiös företrädare",
+   "kind": "priest",
+   "holderId": "generated-courtier-3",
+   "holderName": "Rikulf (genererad)"
+  },
+  {
+   "id": "governor:aachen",
+   "name": "Guvernör: Aachen",
+   "kind": "governor",
+   "holderId": null,
+   "holderName": null
+  },
+  {
+   "id": "spymaster",
+   "name": "Spionmästare",
+   "kind": "council",
+   "holderId": null,
+   "holderName": null
+  }
+ ],
+ "foreign": [
+  {
+   "id": "papal-states",
+   "name": "Kyrkostaten",
+   "seat": "Rom",
+   "ruler": "Leo III",
+   "rulerAge": 52,
+   "heir": null,
+   "opinion": 0,
+   "faith": "Den latinska kyrkan",
+   "otherFaith": false,
+   "distanceKm": 1100
+  },
+  {
+   "id": "kingdom-of-asturias",
+   "name": "Kungariket Asturien",
+   "seat": "Oviedo",
+   "ruler": "Alfonso II den kyske",
+   "rulerAge": 52,
+   "heir": null,
+   "opinion": 0,
+   "faith": "Kyrkan i Asturien",
+   "otherFaith": false,
+   "distanceKm": 1220
+  },
+  {
+   "id": "duchy-of-benevento",
+   "name": "Furstendömet Benevento",
+   "seat": "Benevento",
+   "ruler": "Grimoald III",
+   "rulerAge": 37,
+   "heir": null,
+   "opinion": 0,
+   "faith": "Domkyrkan i Benevento",
+   "otherFaith": false,
+   "distanceKm": 1261
+  },
+  {
+   "id": "emirate-of-cordoba",
+   "name": "Emiratet Córdoba",
+   "seat": "Córdoba",
+   "ruler": "al-Hakam I",
+   "rulerAge": 31,
+   "heir": "Abd al-Rahman II",
+   "opinion": 0,
+   "faith": "En fredagsmoské, ort okänd",
+   "otherFaith": true,
+   "distanceKm": 1670
+  },
+  {
+   "id": "aghlabid-emirate",
+   "name": "Aghlabidiska emiratet",
+   "seat": "Kairouan",
+   "ruler": "Ibrahim ibn al-Aghlab",
+   "rulerAge": 45,
+   "heir": "Ziyadat Allah ibn Ibrahim",
+   "opinion": 0,
+   "faith": "Islam under den abbasidiske kalifen",
+   "otherFaith": true,
+   "distanceKm": 1705
+  },
+  {
+   "id": "byzantine-empire",
+   "name": "Bysantinska riket",
+   "seat": "Konstantinopel",
+   "ruler": "Eirene av Aten",
+   "rulerAge": 50,
+   "heir": "Gemål till Eirene av Aten",
+   "opinion": 0,
+   "faith": "Kyrkan i Konstantinopel",
+   "otherFaith": false,
+   "distanceKm": 2062
+  },
+  {
+   "id": "abbasid-caliphate",
+   "name": "Abbasidiska kalifatet",
+   "seat": "Raqqa och Rafiqa",
+   "ruler": "Harun ar-Rashid",
+   "rulerAge": 36,
+   "heir": "Abdallah al-Maʾmun",
+   "opinion": 0,
+   "faith": "Sunnitisk islam",
+   "otherFaith": true,
+   "distanceKm": 3091
+  },
+  {
+   "id": "tang-empire",
+   "name": "Tangriket",
+   "seat": "Chang'an",
+   "ruler": "Dezong",
+   "rulerAge": 60,
+   "heir": "Li Song",
+   "opinion": 0,
+   "faith": "Buddhismen vid Zhangjingtemplet",
+   "otherFaith": true,
+   "distanceKm": 7932
+  }
+ ],
+ "families": [
+  {
+   "id": "generated-house-1",
+   "name": "Hovhus 1 (genererat)",
+   "headName": "Odo (genererad)",
+   "support": 0,
+   "treasury": 133,
+   "members": 1
+  },
+  {
+   "id": "generated-house-2",
+   "name": "Hovhus 2 (genererat)",
+   "headName": "Ansgar (genererad)",
+   "support": 47,
+   "treasury": 133,
+   "members": 1
+  },
+  {
+   "id": "generated-house-3",
+   "name": "Hovhus 3 (genererat)",
+   "headName": "Rikulf (genererad)",
+   "support": 45,
+   "treasury": 133,
+   "members": 1
+  },
+  {
+   "id": "royal-house",
+   "name": "Karls hus",
+   "headName": "Karl (Karl den store)",
+   "support": 81,
+   "treasury": 54,
+   "members": 10
+  }
+ ],
+ "log": [
+  {
+   "date": "0802-12-25",
+   "title": "Räd från Sorberna"
+  },
+  {
+   "date": "0802-12-25",
+   "title": "En utmaning"
+  },
+  {
+   "date": "0802-12-25",
+   "title": "Hovhus 2 (genererat) kräver Aachen"
+  },
+  {
+   "date": "0802-12-25",
+   "title": "Årets förvaltning är avslutad"
+  },
+  {
+   "date": "0802-12-25",
+   "title": "En ung begåvning söker stöd"
+  },
+  {
+   "date": "0802-12-25",
+   "title": "Hovhus 1 (genererat) kräver Aachen"
+  }
+ ],
+ "prisoners": [
+  {
+   "personId": "generated-courtier-1",
+   "since": "0801-12-25"
+  }
+ ]
+}

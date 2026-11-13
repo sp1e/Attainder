@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="sv" data-epoch="carolingian">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attainder · utkast till spelvy</title>
+<link rel="stylesheet" href="vendor/maplibre-gl.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="map" aria-label="Karta över Europa och Medelhavet år 802"></div>
+<div class="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="scrim" aria-hidden="true"></div>
+
+<header class="bar">
+  <button class="btn quiet" type="button">Meny</button>
+  <h1 id="realm"></h1>
+  <span class="when" id="when"></span>
+  <div class="stats" id="stats"></div>
+  <button class="btn quiet" type="button" id="undo" disabled>Ångra senaste draget</button>
+  <button class="btn primary" type="button" id="next">Nästa år</button>
+</header>
+
+<nav class="thread" id="thread" aria-label="Hovet"></nav>
+
+<aside class="needs" aria-labelledby="needs-title">
+  <header><h2 id="needs-title">Kräver dig</h2><span id="needs-count"></span></header>
+  <ul class="matters scroll" id="matters"></ul>
+</aside>
+
+<aside class="card" id="card" aria-live="polite"></aside>
+
+<div class="epoch" role="group" aria-label="Förhandsvisa epokaccent">
+  <span>Epokaccent</span>
+  <button type="button" data-epoch="carolingian" aria-pressed="true" title="Karolingisk: purpur och bladguld" style="background:#5a2449"></button>
+  <button type="button" data-epoch="egypt" aria-pressed="false" title="Egyptisk: fajans och guld" style="background:#0f5a63"></button>
+  <button type="button" data-epoch="angevin" aria-pressed="false" title="Angevinsk: rött och guld" style="background:#7a1e25"></button>
+  <button type="button" data-epoch="aztec" aria-pressed="false" title="Aztekisk: turkos och bärnsten" style="background:#0d6b62"></button>
+</div>
+
+<footer class="year">
+  <nav class="tabs" id="tabs" aria-label="Spelets delar"></nav>
+  <div class="yearline" id="ruler" aria-label="Året som kommer"></div>
+  <div class="news"><span>Senast i krönikan</span><button class="btn" type="button" id="news"></button></div>
+</footer>
+
+<script src="vendor/maplibre-gl.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

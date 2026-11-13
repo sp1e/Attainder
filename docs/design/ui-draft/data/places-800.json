@@ -1,0 +1,152 @@
+{
+ "cities": [
+  {
+   "id": "aachen",
+   "name": "Aachen",
+   "at": [
+    6.1053,
+    50.7708
+   ],
+   "polity": "carolingian-realm"
+  },
+  {
+   "id": "changan",
+   "name": "Chang'an",
+   "at": [
+    108.9286,
+    34.2583
+   ],
+   "polity": "tang-empire"
+  },
+  {
+   "id": "raqqa",
+   "name": "Raqqa och Rafiqa",
+   "at": [
+    39.007,
+    35.952
+   ],
+   "polity": "abbasid-caliphate"
+  },
+  {
+   "id": "constantinople",
+   "name": "Konstantinopel",
+   "at": [
+    28.9578,
+    41.011
+   ],
+   "polity": "byzantine-empire"
+  },
+  {
+   "id": "gyeongju",
+   "name": "Gyeongju",
+   "at": [
+    129.2117,
+    35.8428
+   ],
+   "polity": "silla"
+  },
+  {
+   "id": "cordoba",
+   "name": "Córdoba",
+   "at": [
+    -4.7667,
+    37.8833
+   ],
+   "polity": "emirate-of-cordoba"
+  },
+  {
+   "id": "kairouan",
+   "name": "Kairouan",
+   "at": [
+    10.0167,
+    35.7
+   ],
+   "polity": "aghlabid-emirate"
+  },
+  {
+   "id": "oviedo",
+   "name": "Oviedo",
+   "at": [
+    -5.8333,
+    43.3667
+   ],
+   "polity": "kingdom-of-asturias"
+  },
+  {
+   "id": "benevento",
+   "name": "Benevento",
+   "at": [
+    14.75,
+    41.1333
+   ],
+   "polity": "duchy-of-benevento"
+  },
+  {
+   "id": "rome",
+   "name": "Rom",
+   "at": [
+    12.4833,
+    41.9
+   ],
+   "polity": "papal-states"
+  }
+ ],
+ "tribes": [
+  {
+   "id": "ad800-tribe-obodrites",
+   "name": "Obodriterna",
+   "at": [
+    11.4667,
+    53.9
+   ]
+  },
+  {
+   "id": "ad800-tribe-wilzi",
+   "name": "Wilzerna",
+   "at": [
+    12.55,
+    52.4167
+   ]
+  },
+  {
+   "id": "ad800-tribe-sorbs",
+   "name": "Sorberna",
+   "at": [
+    12.3333,
+    51.3
+   ]
+  },
+  {
+   "id": "ad800-tribe-bohemians",
+   "name": "Böhmarna",
+   "at": [
+    14.5,
+    49.3333
+   ]
+  },
+  {
+   "id": "ad800-tribe-nordalbingian-saxons",
+   "name": "Nordalbingiska saxarna",
+   "at": [
+    10.2333,
+    54.0667
+   ]
+  },
+  {
+   "id": "ad800-tribe-bretons",
+   "name": "Bretonerna",
+   "at": [
+    -2.833,
+    48.166
+   ]
+  },
+  {
+   "id": "ad800-tribe-emishi",
+   "name": "Emishi",
+   "at": [
+    141.1167,
+    39.1667
+   ]
+  }
+ ]
+}
