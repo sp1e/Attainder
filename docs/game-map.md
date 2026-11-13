@@ -150,6 +150,7 @@ A historical campaign has a look of its own, held in `src/Game/Map/historicalCar
 - `relief-over-fills`, a hillshade on its own `raster-dem` source, sits over the fills and under `polity-boundaries-shadow` (`mapLayerOrder.js`). It is mounted only online.
 - `World.jsx` holds the first `<Map>` until the world store has published, two seconds at most, so the basemap does not change while MapLibre creates the map.
 - A realm has an outline. The map asks the cartography worker for outlines (`outlines: true` at `initialize`), and `politicalBoundaryTopology.js` adds two feature classes to `polity-boundaries-source`: `polity-frontier` (a realm's edge with no realm beyond) and `polity-side` (a realm's side of a shared border). Their lines run with the realm on the right, so `polity-outline-band` and `polity-outline-light` sit inside the realm through `line-offset`. The two border layers also draw `polity-frontier`; `polity-own-edge` draws a heavier line around the player's realm.
+- On the flat map the camera may lean and turn (`cameraHandlers`), a campaign opens leaned by `HISTORICAL_REST_PITCH`, and the ground is raised `HISTORICAL_TERRAIN_EXAGGERATION` times. `CameraCompass.jsx` shows a compass while the camera is off its resting view and returns it there.
 
 Other scenarios take none of this.
 

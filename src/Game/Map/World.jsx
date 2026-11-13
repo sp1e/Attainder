@@ -4,6 +4,7 @@ import { APP_HEIGHT } from "../../runtime/mobileUi.js";
 import Map from "react-map-gl/maplibre";
 import { useCustomBackground } from "./useCustomBackground.js";
 import MapScene from "./MapScene.jsx";
+import CameraCompass from "./CameraCompass.jsx";
 import { loadNatGeoDarkStyle } from "./natGeoDarkStyle.js";
 
 import { recordMapFreeze, recordMapTrace } from "../../runtime/mapPerfTrace.js";
@@ -16,7 +17,9 @@ import {
   esriTileTemplate,
   resolveBasemapId,
 } from "../../runtime/assets.js";
-import { applyHistoricalBasemap, fallbackBasemapId, usesHistoricalDefault } from "./historicalCartography.js";
+import {
+  applyHistoricalBasemap, cameraHandlers, cameraMayLean, fallbackBasemapId, restPitch, terrainExaggeration, usesHistoricalDefault,
+} from "./historicalCartography.js";
 import { configureMapRuntime, ensureBasemapProtocol } from "./mapLibreSetup.js";
 import { MAP_SETTING_KEYS, useMapSettingValue } from "../../runtime/mapSettings.js";
 import { useBrowserOnline } from "../../runtime/networkStatus.js";
@@ -452,6 +455,12 @@ const buildWorldStyle = (basemapId, customBg, backgroundDeclared, isGlobe, terra
   return style;
 };
 
+// Bring a leaned or turned camera back to straight down, north up.
+const layCameraFlat = (map) => {
+  if (!map?.getPitch || !map.jumpTo) return;
+  if (map.getPitch() || map.getBearing()) map.jumpTo({ pitch: 0, bearing: 0 });
+};
+
 function World({ mapRef, projection: requestedProjection, terrainEnabled, onInitialIdle }) {
   // What the scenario allows of its map (world.projection): a flat sheet may
   // not be wrapped round the 3D globe, whatever the player's setting says, and
@@ -543,6 +552,8 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
   // so the map drops ESRI immediately rather than flashing satellite Earth.
   const { background: customBg, declared: bgDeclared, basemap: worldBasemap } = useCustomBackground();
   const isGlobe = projection === "globe";
+  // In a historical campaign on the flat map the camera may lean and turn (historicalCartography.js).
+  const lean = cameraMayLean({ historical, globe: isGlobe });
   // The player's basemap pick (Settings → Map) is local to this browser and
   // reversible. Empty — the default — leaves the scenario author's basemap
   // authoritative; only a real built-in id replaces it, so a stray value left
@@ -699,12 +710,15 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
     styleUsesGlobeCoords,
     terrainEnabled,
   ]);
-  const basemapRenderKey = buildBasemapRenderKey({
+  const stockRenderKey = buildBasemapRenderKey({
     projection,
     basemapId: effectiveBasemap,
     // The historical grade is part of the key: changing it on a live map would be a style swap in place.
     backgroundKind: effectiveBgDeclared ? effectiveCustomBg?.kind || "declared" : historicalDefaultInUse ? "builtin-historical" : "builtin",
   });
+  // Whether a drag may lean the camera is fixed when MapLibre creates the map (`pitchWithRotate`), so it is part of
+  // the key.
+  const basemapRenderKey = lean ? `${stockRenderKey}:lean` : stockRenderKey;
   // Remount once the remote vector style becomes ready. MapLibre style swaps
   // otherwise destroy/recreate style-owned layers under a live React Source
   // tree; a clean remount is both safer and covered by the existing map loader.
@@ -726,10 +740,11 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
       terrainEnabled && online && !effectiveCustomBg && !effectiveBgDeclared
         ? {
             source: "terrain-source",
-            exaggeration: 15,
+            // A historical campaign is seen from the side, where the stock height makes needles of the Alps.
+            exaggeration: terrainExaggeration(historical),
           }
         : null,
-    [terrainEnabled, online, effectiveCustomBg, effectiveBgDeclared],
+    [terrainEnabled, online, effectiveCustomBg, effectiveBgDeclared, historical],
   );
   // R5.1: use one renderer density for the entire session.
   // R5.0 switched between 1x and native DPR around z4.5/z5.0.
@@ -932,10 +947,19 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
     clearTimeout(loadTimerRef.current);
     loadTimerRef.current = setTimeout(() => setLoading(false), 8000);
   }, [noteBasemapTransitionProgress]);
+  // When leaning stops being allowed (the player switches to the globe) the camera is laid flat: he could not do
+  // it himself.
+  const leanRef = useRef(lean);
+  useEffect(() => {
+    leanRef.current = lean;
+    if (!lean) layCameraFlat(mapRef?.current?.getMap?.());
+  }, [lean, mapRef]);
   const handleMapLoad = useCallback(() => {
     recordMapTrace("map:load");
     noteBasemapTransitionProgress(84);
-  }, [noteBasemapTransitionProgress]);
+    // A remounted map starts from the view it remembers, pitch and all.
+    if (!leanRef.current) layCameraFlat(mapRef?.current?.getMap?.());
+  }, [mapRef, noteBasemapTransitionProgress]);
 
   React.useEffect(() => () => {
     emitMapMotion(false);
@@ -1116,9 +1140,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
         ]}
         cursor="default"
         attributionControl={false}
-        dragRotate={false}
-        touchPitch={false}
-        pitchWithRotate={false}
+        {...cameraHandlers(lean)}
         dragPan
         fadeDuration={0}
         collectResourceTiming={false}
@@ -1154,6 +1176,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
         onSourceData={handleSourceData}
       >
         <MapScene isGlobe={isGlobe} />
+        {lean && <CameraCompass rest={restPitch(lean)} />}
       </Map>
       )}
       {isGlobe && (
