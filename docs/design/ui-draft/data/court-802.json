@@ -697,66 +697,940 @@
   {
    "id": "generated-house-1",
    "name": "Hovhus 1 (genererat)",
+   "headId": "generated-courtier-1",
    "headName": "Odo (genererad)",
    "support": 0,
+   "supportReasons": [
+    {
+     "label": "Grundläggande samarbete",
+     "value": 40
+    },
+    {
+     "label": "Familjens intressen och oförrätter",
+     "value": -26
+    },
+    {
+     "label": "Familjeledningens personliga åsikt",
+     "value": -17.1
+    },
+    {
+     "label": "Ämbetsrepresentation",
+     "value": 0
+    },
+    {
+     "label": "Religiöst stöd",
+     "value": 1
+    },
+    {
+     "label": "Familjen innehar tronen",
+     "value": 0
+    },
+    {
+     "label": "Ett rättsligt tronanspråk förbigås",
+     "value": 0
+    }
+   ],
    "treasury": 133,
-   "members": 1
+   "estates": 2,
+   "influence": 45,
+   "members": 1,
+   "statusLabel": "Etablerad",
+   "income": 12
   },
   {
    "id": "generated-house-2",
    "name": "Hovhus 2 (genererat)",
+   "headId": "generated-courtier-2",
    "headName": "Ansgar (genererad)",
    "support": 47,
+   "supportReasons": [
+    {
+     "label": "Grundläggande samarbete",
+     "value": 40
+    },
+    {
+     "label": "Familjens intressen och oförrätter",
+     "value": 0
+    },
+    {
+     "label": "Familjeledningens personliga åsikt",
+     "value": 0
+    },
+    {
+     "label": "Ämbetsrepresentation",
+     "value": 6
+    },
+    {
+     "label": "Religiöst stöd",
+     "value": 1
+    },
+    {
+     "label": "Familjen innehar tronen",
+     "value": 0
+    },
+    {
+     "label": "Ett rättsligt tronanspråk förbigås",
+     "value": 0
+    }
+   ],
    "treasury": 133,
-   "members": 1
+   "estates": 2,
+   "influence": 45,
+   "members": 1,
+   "statusLabel": "Etablerad",
+   "income": 12
   },
   {
    "id": "generated-house-3",
    "name": "Hovhus 3 (genererat)",
+   "headId": "generated-courtier-3",
    "headName": "Rikulf (genererad)",
    "support": 45,
+   "supportReasons": [
+    {
+     "label": "Grundläggande samarbete",
+     "value": 40
+    },
+    {
+     "label": "Familjens intressen och oförrätter",
+     "value": 0
+    },
+    {
+     "label": "Familjeledningens personliga åsikt",
+     "value": -2.4
+    },
+    {
+     "label": "Ämbetsrepresentation",
+     "value": 6
+    },
+    {
+     "label": "Religiöst stöd",
+     "value": 1
+    },
+    {
+     "label": "Familjen innehar tronen",
+     "value": 0
+    },
+    {
+     "label": "Ett rättsligt tronanspråk förbigås",
+     "value": 0
+    }
+   ],
    "treasury": 133,
-   "members": 1
+   "estates": 2,
+   "influence": 45,
+   "members": 1,
+   "statusLabel": "Etablerad",
+   "income": 12
   },
   {
    "id": "royal-house",
    "name": "Karls hus",
+   "headId": "karl",
    "headName": "Karl (Karl den store)",
    "support": 81,
+   "supportReasons": [
+    {
+     "label": "Grundläggande samarbete",
+     "value": 40
+    },
+    {
+     "label": "Familjens intressen och oförrätter",
+     "value": 0
+    },
+    {
+     "label": "Familjeledningens personliga åsikt",
+     "value": 30
+    },
+    {
+     "label": "Ämbetsrepresentation",
+     "value": 0
+    },
+    {
+     "label": "Religiöst stöd",
+     "value": 1
+    },
+    {
+     "label": "Familjen innehar tronen",
+     "value": 10
+    },
+    {
+     "label": "Ett rättsligt tronanspråk förbigås",
+     "value": 0
+    }
+   ],
    "treasury": 54,
-   "members": 10
+   "estates": 2,
+   "influence": 45,
+   "members": 10,
+   "statusLabel": "Etablerad",
+   "income": 12
   }
  ],
  "log": [
   {
    "date": "0802-12-25",
-   "title": "Räd från Sorberna"
+   "type": "tribe_raid",
+   "title": "Räd från Sorberna",
+   "description": "Sorberna plundrar gränsbygden. Riket förlorar 15 silver och anseende.",
+   "participants": []
   },
   {
    "date": "0802-12-25",
-   "title": "En utmaning"
+   "type": "duel_challenge",
+   "title": "En utmaning",
+   "description": "Karl den yngre utmanar Ansgar (genererad) på duell.",
+   "participants": [
+    "karl-den-yngre",
+    "generated-courtier-2"
+   ]
   },
   {
    "date": "0802-12-25",
-   "title": "Hovhus 2 (genererat) kräver Aachen"
+   "type": "family_demand",
+   "title": "Hovhus 2 (genererat) kräver Aachen",
+   "description": "Ansgar (genererad) vill se familjen i Aachen. De andra husen ser vad du svarar.",
+   "participants": [
+    "generated-courtier-2"
+   ]
   },
   {
    "date": "0802-12-25",
-   "title": "Årets förvaltning är avslutad"
+   "type": "year",
+   "title": "Årets förvaltning är avslutad",
+   "description": "Statskassan förändras med −23,6 silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.",
+   "participants": []
   },
   {
    "date": "0802-12-25",
-   "title": "En ung begåvning söker stöd"
+   "type": "story",
+   "title": "En ung begåvning söker stöd",
+   "description": "Teoderada vill ägna mer tid åt studier. Extra undervisning kostar familjen silver och kan få betydelse efter myndighetsdagen. Teoderada är 17 år och befinner sig i sin utbildning.",
+   "participants": [
+    "teoderada",
+    "karl"
+   ]
   },
   {
    "date": "0802-12-25",
-   "title": "Hovhus 1 (genererat) kräver Aachen"
+   "type": "story_expired",
+   "title": "Hovhus 1 (genererat) kräver Aachen",
+   "description": "Ingen svarade i tid. Familjen tappade 10 i stöd, och huvudmannen tycker 15 sämre om härskaren.",
+   "participants": [
+    "generated-courtier-1"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "type": "choice",
+   "title": "En begäran från templet",
+   "description": "Avböj bidraget. Personlig åsikt −8.",
+   "participants": [
+    "generated-courtier-3",
+    "karl"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "type": "health_treatment",
+   "title": "Berta får vård",
+   "description": "En läkekunnig ger omvårdnad. Återhämtningen underlättas, men kvarstående ärr och komplikationer är fortfarande möjliga.",
+   "participants": [
+    "berta"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "type": "health_onset",
+   "title": "Berta: febersjukdom",
+   "description": "Berta får feber och behöver återhämtning.",
+   "participants": [
+    "berta"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "action_narrative",
+   "title": "Odo Seized, but the Court Whispers",
+   "description": "On Christmas Day, 801, a year after the crowning in Rome, Karl gave the order and Odo was taken. The guards moved swiftly and the count was bound and led to a cell before he could rally his followers. The deed itself succeeded: Odo lies imprisoned, his household scattered and his influence broken for now. Yet the arrest did not stay quiet. Servants had seen the soldiers cross the courtyard during the feast, and by nightfall the palace murmured about the king's suspicion and the lack of any open hearing. Odo's kin and friends among the nobles remembered the humiliation, and Odo himself, from behind the bars, cursed Karl's name and swore that the charge was a pretext. Karl kept his composure, and the court dared not speak against him openly, but the bitterness lingered. The king gained safety from one rival at the price of Odo's lasting hatred and a shadow of distrust in the hall.",
+   "participants": [
+    "karl",
+    "generated-courtier-1"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "appointment",
+   "title": "Överbefälhavare blir vakant",
+   "description": "Fängslad",
+   "participants": [
+    "generated-courtier-1"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "imprisonment",
+   "title": "Odo (genererad) fängslas",
+   "description": "Odo (genererad) sätts i fängelse utan dom.",
+   "participants": [
+    "generated-courtier-1",
+    "karl"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "action_resolution",
+   "title": "Fängsla: lyckat men avslöjat",
+   "description": "Utförare: Karl (Karl den store). Mål: Odo (genererad).",
+   "participants": [
+    "karl",
+    "generated-courtier-1"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "conversation",
+   "title": "Pippin av Italien anförtror sig",
+   "description": "Karl (Karl den store) bad Pippin av Italien att berätta en hemlighet och fick ja.",
+   "participants": [
+    "karl",
+    "pippin-av-italien"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "conversation",
+   "title": "Rotrud ger ett löfte",
+   "description": "Karl (Karl den store) bad Rotrud om ett löfte och fick ja.",
+   "participants": [
+    "karl",
+    "rotrud"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "conversation",
+   "title": "Ludvig av Akvitanien ger sitt stöd",
+   "description": "Karl (Karl den store) bad Ludvig av Akvitanien om stöd och fick ja.",
+   "participants": [
+    "karl",
+    "ludvig-av-akvitanien"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "envoy",
+   "title": "Leo III avvisar sändebudet",
+   "description": "Karl (Karl den store) sände bud till Kyrkostaten om försoning men fick nej.",
+   "participants": [
+    "karl"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "conversation",
+   "title": "Karl den yngre avvisar förfrågan",
+   "description": "Karl (Karl den store) bad Karl den yngre om stöd men fick nej.",
+   "participants": [
+    "karl",
+    "karl-den-yngre"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "family_demand",
+   "title": "Hovhus 1 (genererat) kräver Aachen",
+   "description": "Odo (genererad) vill se familjen i Aachen. De andra husen ser vad du svarar.",
+   "participants": [
+    "generated-courtier-1"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "type": "year",
+   "title": "Årets förvaltning är avslutad",
+   "description": "Statskassan förändras med −13,8 silver. Nya personliga beslut, ålder och politiska förhållanden har behandlats.",
+   "participants": []
+  },
+  {
+   "date": "0801-12-25",
+   "type": "story",
+   "title": "En begäran från templet",
+   "description": "Rikulf (genererad) söker familjens bidrag till Den latinska kyrkan. En gåva stärker både samfundets ställning och er personliga förbindelse. Den latinska kyrkan har 55 grundstöd.",
+   "participants": [
+    "generated-courtier-3",
+    "karl"
+   ]
+  },
+  {
+   "date": "0800-12-25",
+   "type": "rest",
+   "title": "Tid för återhämtning",
+   "description": "Karl (Karl den store) återhämtar sig. Stress −30, hälsa +5.",
+   "participants": [
+    "karl"
+   ]
+  },
+  {
+   "date": "0800-12-25",
+   "type": "foundation",
+   "title": "Det historiska hovet tar form",
+   "description": "Karls rike (karolingiska riket). Resurser, succession, familjegrupper, myndighetsålder och hovämbeten följer spelets regler. De beskriver inte belagda historiska värden.",
+   "participants": [
+    "karl"
+   ]
   }
  ],
  "prisoners": [
   {
    "personId": "generated-courtier-1",
-   "since": "0801-12-25"
+   "name": "Odo (genererad)",
+   "family": "Hovhus 1 (genererat)",
+   "since": "0801-12-25",
+   "ransom": 40
+  }
+ ],
+ "actions": [
+  {
+   "type": "rest",
+   "label": "Återhämta dig",
+   "description": "Karl (Karl den store): stress −30 och hälsa +5.",
+   "cost": "10 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "gift",
+   "label": "Ge en personlig gåva",
+   "description": "Förbättra en riktad relation. En gåva per mottagare och år.",
+   "cost": "15 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "hold_feast",
+   "label": "Håll gästabud",
+   "description": "Bjud in alla myndiga personer i riket i en månad. Gästerna kommer närmare och intriger mot dem blir lättare att föra, men fler ser vad som sker.",
+   "cost": "30 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "build_wonder",
+   "label": "Bygg ett underverk",
+   "description": "Ett tioårigt bygge ur statskassan. Det färdiga underverket ger 15 ryktbarhet och håller rikets ryktbarhet uppe så länge riket består.",
+   "cost": "100 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "foreign_marriage",
+   "label": "Gifte med ett grannhus",
+   "description": "Gift bort en person i din familj med en ogift person i ett grannrike. Partnern flyttar till hovet och riket får en allierad, som kan kalla er till krig.",
+   "cost": "30 silver ur statskassan · 1 handling",
+   "disabledReason": "Inget grannhus har en ogift person att erbjuda."
+  },
+  {
+   "type": "fabricate_claim",
+   "label": "Smid ett anspråk",
+   "description": "Låt skrivare förfalska en arvsrätt till gränslandet mot ett grannrike. Anspråket är klart om 2 år, och förfalskningen kan avslöjas.",
+   "cost": "40 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "bribe_tribe",
+   "label": "Betala tribut till gränsfolk",
+   "description": "Köp 5 års fred vid gränsen. Ett betalt folk plundrar inte.",
+   "cost": "20 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "hire_tribe",
+   "label": "Ta gränsfolk i sold",
+   "description": "Krigarna tjänar riket i 3 år, plundrar inte och stärker hären i krig om gränsland.",
+   "cost": "30 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "crush_tribe",
+   "label": "Slå ner gränsfolk",
+   "description": "Ett fälttåg som avgörs genast. En seger håller folket borta i 30 år; ett nederlag kostar män och anseende.",
+   "cost": "50 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "reform_faith",
+   "label": "Reformera eller grunda en tro",
+   "description": "Härskarens hus byter tro och prästerskapet splittras. Familjer som stannar i den gamla tron vänder sig mot härskaren. Nästa reform kan ske först efter 30 år.",
+   "cost": "60 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "build_estate",
+   "label": "Utveckla familjens egendom",
+   "description": "En bestående egendom färdigställs om två år och ger inkomster.",
+   "cost": "45 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "build_support",
+   "label": "Bygg politiskt stöd",
+   "description": "Förhandla med en annan familj. Inflytande +12 och en personlig förbindelse.",
+   "cost": "15 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "seek_office",
+   "label": "Sök ett ämbete",
+   "description": "Rådet väger inflytande, diplomati och härskarens personliga inställning.",
+   "cost": "15 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "educate",
+   "label": "Utse en mentor",
+   "description": "Styr utbildningen av ett barn i familjen. Personligheten förblir delvis osäker.",
+   "cost": "15 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "marry",
+   "label": "Förhandla om äktenskap",
+   "description": "Två myndiga personer behöver vara fria och acceptera förbindelsen.",
+   "cost": "20 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "adopt",
+   "label": "Adoptera en arvinge",
+   "description": "Skapar juridiskt föräldraskap; en annan familj behöver samtycka.",
+   "cost": "25 silver ur familjekassan · 1 handling",
+   "disabledReason": "Ingen behörig deltagare finns."
+  },
+  {
+   "type": "patronize_faith",
+   "label": "Stöd ett religiöst samfund",
+   "description": "Samfundets politiska stöd ökar med 12.",
+   "cost": "20 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "livelihood",
+   "label": "Sök försörjning",
+   "description": "Arbete och handel ger 18 silver. Stress +4.",
+   "cost": "0 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "sell_estate",
+   "label": "Sälj familjeegendom",
+   "description": "Likvida medel nu, lägre inkomster senare.",
+   "cost": "0 silver ur familjekassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "appoint",
+   "label": "Utse en ämbetsinnehavare",
+   "description": "Offentliga rättigheter följer ämbetet. Förbigångna personer och familjer reagerar.",
+   "cost": "15 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "dismiss",
+   "label": "Avsätt en ämbetsinnehavare",
+   "description": "Ämbetet blir vakant. Personens och familjens egna tillgångar består.",
+   "cost": "5 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "tax_policy",
+   "label": "Ändra skattepolitik",
+   "description": "Intäkter, politiskt stöd och lokal oro förändras tillsammans.",
+   "cost": "10 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "banish",
+   "label": "Förvisa en politisk familj",
+   "description": "Förlorade ämbeten och åtkomst skapar bestående oförrätter. Legitimitet −15.",
+   "cost": "30 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "abdicate",
+   "label": "Abdikera enligt successionsordningen",
+   "description": "Nästa lagliga kandidat tar över. Personliga förmågor upphör och spelidentiteten följer kampanjvalet.",
+   "cost": "0 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "reform",
+   "label": "Förvaltningsreform",
+   "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande.",
+   "cost": "30 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "reward_councillor",
+   "label": "Belöna en rådsmedlem",
+   "description": "Stärk en rådsmedlems lojalitet med silver ur statskassan. En belöning per rådsmedlem och år.",
+   "cost": "20 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "set_reign_goal",
+   "label": "Sätt ett mål för regeringen",
+   "description": "Utlys ett mål för regeringen. Ett uppnått mål ger legitimitet och ryktbarhet, ett förfelat mål kostar legitimitet.",
+   "cost": "0 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "release_prisoner",
+   "label": "Frige en fånge",
+   "description": "Fången släpps ur fängelset. Fången och familjens huvudman minns nåden (åsikt om dig +10).",
+   "cost": "0 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  },
+  {
+   "type": "execute_prisoner",
+   "label": "Avrätta en fånge",
+   "description": "Fången avrättas. Fångens släkt tappar förtroendet för dig (åsikt om dig −50) och legitimiteten sjunker med 4 om fången inte är dömd för ett avslöjat brott.",
+   "cost": "0 silver ur statskassan · 1 handling",
+   "disabledReason": ""
+  }
+ ],
+ "succession": {
+  "law": "Äldsta erkända barn, därefter familjen och rådet",
+  "heir": "Karl den yngre",
+  "forecast": {
+   "status": "conditional",
+   "actualRuler": {
+    "id": "karl",
+    "name": "Karl (Karl den store)",
+    "familyId": "royal-house",
+    "familyName": "Karls hus",
+    "age": 59,
+    "archetype": "steward",
+    "archetypeLabel": "Förvaltaren",
+    "ability": {
+     "action": "reform",
+     "label": "Förvaltningsreform",
+     "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande."
+    }
+   },
+   "lawfulRuler": {
+    "id": "karl",
+    "name": "Karl (Karl den store)",
+    "familyId": "royal-house",
+    "familyName": "Karls hus",
+    "age": 59,
+    "archetype": "steward",
+    "archetypeLabel": "Förvaltaren",
+    "ability": {
+     "action": "reform",
+     "label": "Förvaltningsreform",
+     "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande."
+    }
+   },
+   "legalHeir": {
+    "id": "karl-den-yngre",
+    "name": "Karl den yngre",
+    "familyId": "royal-house",
+    "familyName": "Karls hus",
+    "age": 30,
+    "archetype": "steward",
+    "archetypeLabel": "Förvaltaren",
+    "ability": {
+     "action": "reform",
+     "label": "Förvaltningsreform",
+     "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande."
+    }
+   },
+   "expectedRuler": {
+    "id": "karl-den-yngre",
+    "name": "Karl den yngre",
+    "familyId": "royal-house",
+    "familyName": "Karls hus",
+    "age": 30,
+    "archetype": "steward",
+    "archetypeLabel": "Förvaltaren",
+    "ability": {
+     "action": "reform",
+     "label": "Förvaltningsreform",
+     "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande."
+    }
+   },
+   "currentExercising": {
+    "id": "karl",
+    "name": "Karl (Karl den store)",
+    "familyId": "royal-house",
+    "familyName": "Karls hus",
+    "age": 59,
+    "archetype": "steward",
+    "archetypeLabel": "Förvaltaren",
+    "ability": {
+     "action": "reform",
+     "label": "Förvaltningsreform",
+     "description": "Reformera skatteförvaltningen i tre år. Familjerna kräver inflytande."
+    }
+   },
+   "contestedCrown": false,
+   "contestedRegency": false,
+   "currentUsesRegent": false,
+   "requiresRegency": false,
+   "electionFromOutside": false,
+   "election": null,
+   "abilityChanges": false,
+   "basis": "Om bara den nuvarande härskaren avlider vid dagens datum och övriga förhållanden består. Senare dödsfall, nya lagar och maktkamper kan ändra utfallet.",
+   "authority": "Efterträdarens egen förmåga hör till det nya mandatet. Tillgängliga beslut beror också på resurser, aktiva projekt och kampanjens behörighet.",
+   "currentAuthority": "Den faktiska härskaren utövar mandatet.",
+   "identity": {
+    "mode": "realm",
+    "familyId": "royal-house",
+    "familyKeepsThrone": null,
+    "description": "Du följer riket genom den nya faktiska härskaren, även om en annan familj tar över. Ett upplöst rike saknar fortsatt härskarmandat."
+   },
+   "projects": {
+    "ending": [],
+    "otherPersonal": [],
+    "publicConstruction": [],
+    "familyEstates": [],
+    "academyEstablished": false
+   }
+  },
+  "candidates": [
+   {
+    "id": "karl-den-yngre",
+    "name": "Karl den yngre",
+    "familyName": "Karls hus",
+    "age": 30,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "pippin-av-italien",
+    "name": "Pippin av Italien",
+    "familyName": "Karls hus",
+    "age": 26,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "ludvig-av-akvitanien",
+    "name": "Ludvig av Akvitanien",
+    "familyName": "Karls hus",
+    "age": 24,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "rotrud",
+    "name": "Rotrud",
+    "familyName": "Karls hus",
+    "age": 24,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "berta",
+    "name": "Berta",
+    "familyName": "Karls hus",
+    "age": 23,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "gisela",
+    "name": "Gisela",
+    "familyName": "Karls hus",
+    "age": 22,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "teoderada",
+    "name": "Teoderada",
+    "familyName": "Karls hus",
+    "age": 17,
+    "archetypeLabel": "Förvaltaren"
+   },
+   {
+    "id": "hiltrud",
+    "name": "Hiltrud",
+    "familyName": "Karls hus",
+    "age": 15,
+    "archetypeLabel": "Förvaltaren"
+   }
+  ],
+  "propertyRule": "Personlig egendom går till äldsta levande juridiska barn, annars en familjemedlem. Familjeegendom och statskassa behåller sina ägare."
+ },
+ "tribes": [
+  {
+   "id": "ad800-tribe-sorbs",
+   "name": "Sorberna",
+   "distanceKm": 439,
+   "stateLabel": "oroligt",
+   "lastRaidYear": 802
+  },
+  {
+   "id": "ad800-tribe-nordalbingian-saxons",
+   "name": "Nordalbingiska saxarna",
+   "distanceKm": 461,
+   "stateLabel": "oroligt",
+   "lastRaidYear": null
+  },
+  {
+   "id": "ad800-tribe-wilzi",
+   "name": "Wilzerna",
+   "distanceKm": 481,
+   "stateLabel": "oroligt",
+   "lastRaidYear": null
+  },
+  {
+   "id": "ad800-tribe-obodrites",
+   "name": "Obodriterna",
+   "distanceKm": 503,
+   "stateLabel": "oroligt",
+   "lastRaidYear": null
+  },
+  {
+   "id": "ad800-tribe-bohemians",
+   "name": "Böhmarna",
+   "distanceKm": 620,
+   "stateLabel": "oroligt",
+   "lastRaidYear": null
+  },
+  {
+   "id": "ad800-tribe-bretons",
+   "name": "Bretonerna",
+   "distanceKm": 707,
+   "stateLabel": "oroligt",
+   "lastRaidYear": null
+  }
+ ],
+ "cities": [
+  {
+   "id": "aachen",
+   "name": "Aachen",
+   "family": "Karls hus",
+   "governor": "Vakant",
+   "taxIncome": 16.38,
+   "unrest": 8
+  }
+ ],
+ "legitimacy": {
+  "value": 59,
+  "sources": [
+   {
+    "label": "Tronföljd",
+    "value": 65
+   },
+   {
+    "label": "Styre och händelser",
+    "value": -6
+   }
+  ]
+ },
+ "council": [
+  {
+   "officeId": "chancellor",
+   "name": "Kansler",
+   "holderId": "generated-courtier-2",
+   "holderName": "Ansgar (genererad)",
+   "serviceLabel": "stark"
+  },
+  {
+   "officeId": "general",
+   "name": "Överbefälhavare",
+   "holderId": null,
+   "holderName": "Vakant",
+   "serviceLabel": null
+  },
+  {
+   "officeId": "spymaster",
+   "name": "Spionmästare",
+   "holderId": null,
+   "holderName": "Vakant",
+   "serviceLabel": null
+  }
+ ],
+ "dreadLabel": "Ingen fruktar kronan",
+ "demands": [
+  {
+   "id": "demand-45",
+   "familyName": "Hovhus 2 (genererat)",
+   "kindLabel": "Stad",
+   "targetName": "Aachen",
+   "statusLabel": "Obesvarat",
+   "dueAt": "0803-12-25"
+  },
+  {
+   "id": "demand-5",
+   "familyName": "Hovhus 1 (genererat)",
+   "kindLabel": "Stad",
+   "targetName": "Aachen",
+   "statusLabel": "Förfallet",
+   "dueAt": "0802-12-25"
+  }
+ ],
+ "memories": [
+  {
+   "date": "0802-12-25",
+   "title": "Obesvarat krav",
+   "names": [
+    "Odo (genererad)",
+    "Karl (Karl den store)"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "title": "En begäran från templet: Avböj bidraget",
+   "names": [
+    "Rikulf (genererad)",
+    "Karl (Karl den store)"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "title": "Berta får vård",
+   "names": [
+    "Berta"
+   ]
+  },
+  {
+   "date": "0802-12-25",
+   "title": "Berta: febersjukdom",
+   "names": [
+    "Berta"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "title": "Avsatt från Överbefälhavare",
+   "names": [
+    "Odo (genererad)",
+    "Karl (Karl den store)"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "title": "Odo (genererad) fängslas",
+   "names": [
+    "Odo (genererad)",
+    "Karl (Karl den store)"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "title": "Fängsla: lyckat men avslöjat",
+   "names": [
+    "Karl (Karl den store)",
+    "Odo (genererad)"
+   ]
+  },
+  {
+   "date": "0801-12-25",
+   "title": "Pippin av Italien anförtror sig",
+   "names": [
+    "Karl (Karl den store)",
+    "Pippin av Italien"
+   ]
+  }
+ ],
+ "religions": [
+  {
+   "name": "Den latinska kyrkan",
+   "support": 55
   }
  ]
 }

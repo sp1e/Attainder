@@ -26,8 +26,12 @@ const SEA = ["interpolate", ["linear"], ["elevation"],
   -7000, "#06131f", -3500, "#0a2233", -1500, "#0f3247", -400, "#16485e", -120, "#1f6273", -25, "#34868d", -4, "#6fb0a6",
   0, "#c7dcc4", 1.5, "rgba(199,220,196,0)"];
 // 25 December: snow lies on the high ground.
-const SNOW = ["interpolate", ["linear"], ["elevation"],
-  900, "rgba(240,244,248,0)", 1500, "rgba(240,244,248,0.35)", 2300, "rgba(246,249,252,0.86)", 4500, "rgba(255,255,255,0.95)"];
+const snow = (line) => ["interpolate", ["linear"], ["elevation"],
+  line, "rgba(240,244,248,0)", line + 600, "rgba(240,244,248,0.35)", line + 1400, "rgba(246,249,252,0.86)", 4600, "rgba(255,255,255,0.95)"];
+const WINTER_LINE = 900, SUMMER_LINE = 2800;
+const SNOW = snow(WINTER_LINE);
+// Far out the realms read as a political map; close in the land shows through and the border bands carry the colour.
+const WASH = ["interpolate", ["linear"], ["zoom"], 3, 0.56, 4.4, 0.34, 6.6, 0.14];
 
 const style = {
   version: 8,
@@ -42,7 +46,8 @@ const style = {
     { id: "imagery", type: "raster", source: "imagery",
       paint: { "raster-saturation": -0.28, "raster-contrast": 0.12, "raster-brightness-min": 0.06, "raster-brightness-max": 0.9, "raster-fade-duration": 200 } },
     { id: "snow", type: "color-relief", source: "relief", paint: { "color-relief-color": SNOW, "color-relief-opacity": 0.9 } },
-    { id: "realm-wash", type: "fill", source: "polities", paint: { "fill-color": realmColor, "fill-opacity": 0.34, "fill-antialias": false } },
+    { id: "realm-wash", type: "fill", source: "polities", paint: { "fill-color": realmColor, "fill-opacity": WASH, "fill-antialias": false } },
+    { id: "realm-hover", type: "fill", source: "polities", filter: ["==", ["get", "owner"], ""], paint: { "fill-color": "#fff3cf", "fill-opacity": 0.14, "fill-antialias": false } },
     { id: "realm-band", type: "line", source: "polities",
       paint: { "line-color": realmColor, "line-width": ["interpolate", ["exponential", 1.6], ["zoom"], 3, 10, 6, 26, 9, 60],
         "line-blur": ["interpolate", ["linear"], ["zoom"], 3, 8, 6, 18, 9, 36], "line-opacity": 0.75,
@@ -132,7 +137,20 @@ export function addPlaces(map, places, { court, pending, onRealm, onCourt }) {
   map.on("mousemove", "realm-wash", (event) => {
     const owner = event.features?.[0]?.properties.owner;
     map.getCanvas().style.cursor = owner && owner !== "carolingian-realm" ? "pointer" : "";
-    map.setPaintProperty("realm-wash", "fill-opacity", ["case", ["==", ["get", "owner"], owner ?? ""], 0.5, 0.34]);
+    map.setFilter("realm-hover", ["==", ["get", "owner"], owner && owner !== "carolingian-realm" ? owner : ""]);
   });
-  map.on("mouseleave", "realm-wash", () => { map.getCanvas().style.cursor = ""; map.setPaintProperty("realm-wash", "fill-opacity", 0.34); });
+  map.on("mouseleave", "realm-wash", () => { map.getCanvas().style.cursor = ""; map.setFilter("realm-hover", ["==", ["get", "owner"], ""]); });
+}
+
+/** The year on the land: t runs from one 25 December (0) to the next (1). The snow line climbs to summer and comes back. */
+let lastSeason = 0;
+export function setSeason(t) {
+  if (!theMap) return;
+  const now = performance.now();
+  if (t < 1 && now - lastSeason < 70) return;
+  lastSeason = now;
+  const warmth = Math.sin(Math.PI * Math.min(1, Math.max(0, t)));
+  theMap.setPaintProperty("snow", "color-relief-color", snow(Math.round(WINTER_LINE + (SUMMER_LINE - WINTER_LINE) * warmth)));
+  theMap.setPaintProperty("imagery", "raster-saturation", -0.28 + 0.3 * warmth);
+  theMap.setPaintProperty("imagery", "raster-brightness-max", 0.9 + 0.08 * warmth);
 }

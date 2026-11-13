@@ -23,12 +23,18 @@
 
 <nav class="thread" id="thread" aria-label="Hovet"></nav>
 
-<aside class="needs" aria-labelledby="needs-title">
-  <header><h2 id="needs-title">Kräver dig</h2><span id="needs-count"></span></header>
-  <ul class="matters scroll" id="matters"></ul>
+<aside class="needs" aria-labelledby="panel-title">
+  <header><h2 id="panel-title">Kräver dig</h2><span id="panel-count"></span></header>
+  <div class="panel scroll" id="panel-body"></div>
 </aside>
 
 <aside class="card" id="card" aria-live="polite"></aside>
+
+<div class="notice" id="notice" role="status" hidden>
+  <h2>Året har gått</h2>
+  <p>I spelet berättar modellen nu vad som hände under året, och reglerna avgör följderna. Utkastet visar bara årets gång och hittar inte på några händelser.</p>
+  <button class="btn" type="button" id="notice-close">Stäng</button>
+</div>
 
 <div class="epoch" role="group" aria-label="Förhandsvisa epokaccent">
   <span>Epokaccent</span>
