@@ -140,6 +140,18 @@ Two constants (`World.jsx:44`) give the image-source corners:
 
 ---
 
+## 3b. Historical campaigns (`historicalCartography.js`)
+
+A historical campaign has a look of its own, held in `src/Game/Map/historicalCartography.js` (spec `docs/superpowers/specs/2026-11-13-living-map-design.md`):
+
+- With no basemap from the scenario or the player, the fallback is `imagery`. `applyHistoricalBasemap` caps the satellite source at zoom 9 and gives it `HISTORICAL_SATELLITE_PAINT`.
+- A region without an owner gets the fill `rgba(0, 0, 0, 0)` through feature-state, so unclaimed land shows the terrain and can still be clicked.
+- `buildHistoricalFillOpacity` thins a realm's fill as the camera comes closer: 0.50 at zoom 1.5, 0.20 at zoom 8.
+- `relief-over-fills`, a hillshade on its own `raster-dem` source, sits over the fills and under `polity-boundaries-shadow` (`mapLayerOrder.js`). It is mounted only online.
+- `World.jsx` holds the first `<Map>` until the world store has published, two seconds at most, so the basemap does not change while MapLibre creates the map.
+
+Other scenarios take none of this.
+
 ## 4. Region & country layers (`Nations.jsx`)
 
 `Nations.jsx` (the `WorldMap` component) declares four sources. The core idea is a **crossfade**: at low zoom, GADM region *fills* come from a coarse seed GeoJSON (`regionsGeojson`); past z6.5 they hand off to crisp stock vector tiles (`regions.pmtiles`). Author-drawn/edited geometry always comes from the GeoJSON, on top.

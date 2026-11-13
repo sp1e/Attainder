@@ -360,6 +360,9 @@ export function useWorldBackground() {
       basemap: current?.basemap || null,
       noGlobe: Boolean(current?.noGlobe),
       noWrap: Boolean(current?.noWrap),
+      historical: Boolean(current?.historical),
+      // False until the world store has said anything: the first map waits for it (World.jsx).
+      known: Boolean(current),
     };
   });
 
@@ -371,17 +374,18 @@ export function useWorldBackground() {
       const basemap = data?.basemap || null;
       const noGlobe = Boolean(data?.noGlobe);
       const noWrap = Boolean(data?.noWrap);
+      const historical = Boolean(data?.historical);
 
       setState((prev) => {
         const backgroundSame =
           prev.background === background ||
           areEqualStructured(prev.background, background);
 
-        if (backgroundSame && prev.basemap === basemap && prev.noGlobe === noGlobe && prev.noWrap === noWrap) {
+        if (prev.known && backgroundSame && prev.basemap === basemap && prev.noGlobe === noGlobe && prev.noWrap === noWrap && prev.historical === historical) {
           return prev;
         }
 
-        return { background, basemap, noGlobe, noWrap };
+        return { background, basemap, noGlobe, noWrap, historical, known: true };
       });
     };
 

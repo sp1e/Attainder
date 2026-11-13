@@ -25,6 +25,8 @@ export const MAP_LAYER_ORDER = [
   "custom-regions-disputed-vnext",
   // A group's area tints the land it controls, over every fill and stripe.
   "group-areas-tint",
+  // A historical campaign draws relief over the fills, so mountains read through a realm's colour.
+  "relief-over-fills",
 
   // Sovereign frontiers are presentation, but must remain above every
   // political fill and below every semantic object/label layer.

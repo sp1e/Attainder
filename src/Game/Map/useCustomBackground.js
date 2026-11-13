@@ -6,7 +6,8 @@ import { normalizeImageBounds } from "../../../server/mapProjection.js";
 
 export function useCustomBackground() {
   const { background: bgDescriptor, basemap: worldBasemap } = useWorldBackground();
-  const [state, setState] = useState({ background: null, declared: false, basemap: null });
+  // The basemap is known at once, so a scenario that names one does not open on the fallback and swap a moment later.
+  const [state, setState] = useState(() => ({ background: null, declared: false, basemap: worldBasemap || null }));
   const keyRef = useRef("");
 
   const bgKey = bgDescriptor?.kind ? JSON.stringify(bgDescriptor) : "";

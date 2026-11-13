@@ -8,7 +8,6 @@ import { loadNatGeoDarkStyle } from "./natGeoDarkStyle.js";
 
 import { recordMapFreeze, recordMapTrace } from "../../runtime/mapPerfTrace.js";
 import {
-  DEFAULT_BASEMAP_ID,
   TERRAIN_TILE_TEMPLATE,
   basemapMaxZoom,
   basemapOverrideFor,
@@ -17,6 +16,7 @@ import {
   esriTileTemplate,
   resolveBasemapId,
 } from "../../runtime/assets.js";
+import { applyHistoricalBasemap, fallbackBasemapId, usesHistoricalDefault } from "./historicalCartography.js";
 import { configureMapRuntime, ensureBasemapProtocol } from "./mapLibreSetup.js";
 import { MAP_SETTING_KEYS, useMapSettingValue } from "../../runtime/mapSettings.js";
 import { useBrowserOnline } from "../../runtime/networkStatus.js";
@@ -456,7 +456,15 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
   // What the scenario allows of its map (world.projection): a flat sheet may
   // not be wrapped round the 3D globe, whatever the player's setting says, and
   // may not repeat sideways.
-  const { noGlobe, noWrap } = useWorldBackground();
+  const { noGlobe, noWrap, historical, known: worldBackgroundKnown } = useWorldBackground();
+  // The first map waits for the world's first word, two seconds at most. A historical campaign has another basemap
+  // than the stock one, and a map that is replaced while it is still being created logs an error.
+  const [worldWaitOver, setWorldWaitOver] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setWorldWaitOver(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+  const mapMayMount = worldBackgroundKnown || worldWaitOver;
   const projection = noGlobe ? "mercator" : requestedProjection;
   const hasReportedInitialIdleRef = useRef(false);
   const [loading, setLoading] = useState(false);
@@ -553,7 +561,8 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
   const effectiveBasemap = resolveBasemapId({
     overrideId: validBasemapOverride,
     scenarioId: worldBasemap,
-    fallbackId: DEFAULT_BASEMAP_ID,
+    // A historical campaign that names no basemap opens on the land itself (historicalCartography.js).
+    fallbackId: fallbackBasemapId(historical),
   });
   // Snapshot this during render, before a changed map key can unmount the old
   // MapScene/PTR effect during commit. Reading it later inside the effect is too
@@ -658,6 +667,8 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
     terrainEnabled,
   ]);
 
+  // A basemap the scenario or the player chose is drawn as chosen; only the historical default takes the historical grade.
+  const historicalDefaultInUse = usesHistoricalDefault({ historical, online, playerPick: validBasemapOverride, scenarioBasemap: worldBasemap });
   const worldStyle = useMemo(() => {
     if (natGeoDarkActive) {
       return natGeoDarkStyle ?? buildWorldStyle(
@@ -668,7 +679,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
         terrainEnabled,
       );
     }
-    return buildWorldStyle(
+    const style = buildWorldStyle(
       effectiveBasemap,
       effectiveCustomBg,
       effectiveBgDeclared,
@@ -676,7 +687,9 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
       terrainEnabled,
       !online,
     );
+    return historicalDefaultInUse ? applyHistoricalBasemap(style) : style;
   }, [
+    historicalDefaultInUse,
     effectiveBasemap,
     effectiveBgDeclared,
     effectiveCustomBg,
@@ -689,7 +702,8 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
   const basemapRenderKey = buildBasemapRenderKey({
     projection,
     basemapId: effectiveBasemap,
-    backgroundKind: effectiveBgDeclared ? effectiveCustomBg?.kind || "declared" : "builtin",
+    // The historical grade is part of the key: changing it on a live map would be a style swap in place.
+    backgroundKind: effectiveBgDeclared ? effectiveCustomBg?.kind || "declared" : historicalDefaultInUse ? "builtin-historical" : "builtin",
   });
   // Remount once the remote vector style becomes ready. MapLibre style swaps
   // otherwise destroy/recreate style-owned layers under a live React Source
@@ -1088,6 +1102,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
           }}
         />
       )}
+      {mapMayMount && (
       <Map
         key={mapInstanceKey}
         ref={mapRef}
@@ -1140,6 +1155,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
       >
         <MapScene isGlobe={isGlobe} />
       </Map>
+      )}
       {isGlobe && (
         <canvas
           id="oh-globe-lighting"
