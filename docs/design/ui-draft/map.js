@@ -21,10 +21,10 @@ export const REALM_COLORS = {
 };
 const realmColor = ["match", ["get", "owner"], ...Object.entries(REALM_COLORS).flat(), "#8a8172"];
 
-// Sea level is the coast: the relief paints everything at or below it, so a realm's tint ends where the land does.
-const SEA = ["interpolate", ["linear"], ["elevation"],
-  -7000, "#06131f", -3500, "#0a2233", -1500, "#0f3247", -400, "#16485e", -120, "#1f6273", -25, "#34868d", -4, "#6fb0a6",
-  0, "#c7dcc4", 1.5, "rgba(199,220,196,0)"];
+// The coast is Natural Earth's land, the same source the game's regions are cut from, so low land such as Holland stays land.
+// Elevation only deepens the open water.
+const DEEP = ["interpolate", ["linear"], ["elevation"],
+  -7000, "#040d16", -3500, "#071b29", -1500, "#0b2a3b", -400, "rgba(15,54,70,0.9)", -60, "rgba(23,86,106,0)"];
 // 25 December: snow lies on the high ground.
 const snow = (line) => ["interpolate", ["linear"], ["elevation"],
   line, "rgba(244,247,250,0)", line + 350, "rgba(244,247,250,0.55)", line + 900, "rgba(248,250,252,0.92)", 4600, "rgba(255,255,255,0.97)"];
@@ -40,6 +40,7 @@ const style = {
       attribution: "Imagery: Esri, Maxar, Earthstar Geographics. Elevation: Mapzen terrain tiles on AWS." },
     terrain: dem(), shade: dem(), relief: dem(),
     polities: { type: "geojson", data: "data/polities-800.geojson" },
+    sea: { type: "geojson", data: "data/sea.geojson" },
   },
   layers: [
     { id: "ground", type: "background", paint: { "background-color": "#0a2233" } },
@@ -54,17 +55,25 @@ const style = {
         "line-offset": ["interpolate", ["exponential", 1.6], ["zoom"], 3, 4, 6, 11, 9, 26] } },
     { id: "hills", type: "hillshade", source: "shade",
       paint: { "hillshade-exaggeration": 0.62, "hillshade-shadow-color": "#1a1410", "hillshade-highlight-color": "#fff4d6", "hillshade-accent-color": "#3b2a1c", "hillshade-illumination-direction": 315 } },
-    { id: "realm-edge", type: "line", source: "polities",
-      paint: { "line-color": "#1b130c", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 6, 2, 9, 3], "line-opacity": 0.85 } },
+    // The player's frontier is drawn heavier than the borders between other realms.
+    { id: "realm-edge", type: "line", source: "polities", filter: ["!=", ["get", "owner"], "carolingian-realm"],
+      paint: { "line-color": "#1b130c", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 6, 1.6, 9, 2.4], "line-opacity": 0.8 } },
+    { id: "realm-edge-own", type: "line", source: "polities", filter: ["==", ["get", "owner"], "carolingian-realm"],
+      paint: { "line-color": "#1b130c", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 2, 6, 3.4, 9, 5], "line-opacity": 0.92 } },
     { id: "realm-edge-light", type: "line", source: "polities",
       paint: { "line-color": realmColor, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.5, 6, 0.9, 9, 1.4], "line-opacity": 0.95,
         "line-offset": ["interpolate", ["linear"], ["zoom"], 3, 1.2, 6, 2, 9, 3] } },
-    { id: "sea", type: "color-relief", source: "relief", paint: { "color-relief-color": SEA, "color-relief-opacity": 1 } },
+    { id: "sea-base", type: "fill", source: "sea", paint: { "fill-color": "#17566a", "fill-antialias": true } },
+    { id: "sea-shallows", type: "line", source: "sea", paint: { "line-color": "#6cc4b8", "line-opacity": 0.7,
+      "line-width": ["interpolate", ["exponential", 1.6], ["zoom"], 3, 5, 6, 16, 9, 40], "line-blur": ["interpolate", ["linear"], ["zoom"], 3, 5, 6, 14, 9, 30],
+      "line-offset": ["interpolate", ["exponential", 1.6], ["zoom"], 3, -2, 6, -6, 9, -16] } },
+    { id: "sea-deep", type: "color-relief", source: "relief", paint: { "color-relief-color": DEEP, "color-relief-opacity": 1 } },
+    { id: "sea-shore", type: "line", source: "sea", paint: { "line-color": "#d9ecd9", "line-opacity": 0.7, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.6, 6, 1.1, 9, 1.8] } },
   ],
   sky: { "sky-color": "#0e1a26", "horizon-color": "#d9c49a", "fog-color": "#cbb891", "fog-ground-blend": 0.55, "horizon-fog-blend": 0.75, "sky-horizon-blend": 0.85, "atmosphere-blend": 0.75 },
 };
 
-export const HOME = { center: [9.2, 44.6], zoom: 4.35, pitch: 47, bearing: -7 };
+export const HOME = { center: [10.6, 44.4], zoom: 4.35, pitch: 47, bearing: -7 };
 
 export function createMap(container) {
   const map = new maplibregl.Map({ container, style, ...HOME, minZoom: 2.6, maxZoom: 8.5, maxPitch: 66, attributionControl: { compact: true }, dragRotate: true });
@@ -89,18 +98,22 @@ export const flyHome = () => theMap?.flyTo({ ...HOME, duration: 2000 });
 const NAMES = {
   "carolingian-realm": { at: [3.4, 47.3], turn: -17, size: 1.55, text: "Karls rike", own: true },
   "byzantine-empire": { at: [31.2, 39.2], turn: 5, size: 1.15, text: "Bysantinska riket" },
-  "abbasid-caliphate": { at: [41.5, 33.8], turn: 0, size: 1.3, text: "Abbasidiska kalifatet" },
-  "emirate-of-cordoba": { at: [-3.4, 39.4], turn: -12, size: 0.8, text: "Córdoba" },
+  "abbasid-caliphate": { at: [26.8, 29.6], turn: -9, size: 0.78, text: "Abbasidiska kalifatet" },
   "aghlabid-emirate": { at: [8.2, 33.3], turn: 7, size: 0.85, text: "Aghlabidiska emiratet" },
-  "kingdom-of-asturias": { at: [-5.6, 43.05], turn: 0, size: 0.5, text: "Asturien" },
-  "duchy-of-benevento": { at: [15.5, 40.75], turn: -30, size: 0.46, text: "Benevento" },
 };
 const node = (tag, className, html) => { const el = document.createElement(tag); el.className = className; if (html) el.innerHTML = html; return el; };
 // One stroke weight for every map sign. The court is the palace chapel's octagon; a seat is a gate between two towers.
 const SEAT = '<svg viewBox="0 0 24 24" fill="#14100c" stroke="#efe6d2" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l2-1.5L7 9v3h10V9l2-1.5L21 9v12z"/><path d="M10 21v-4a2 2 0 0 1 4 0v4" fill="none"/></svg>';
 const COURT = '<svg viewBox="0 0 24 24" fill="#14100c" stroke="#d4ac3a" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M5 21v-8l3-3h8l3 3v8z"/><path d="M8 10c0-3 2-5 4-5s4 2 4 5"/><path d="M12 5V1.5M10.4 3h3.2M10.5 21v-3.5a1.5 1.5 0 0 1 3 0V21" fill="none"/></svg>';
 
-export function addPlaces(map, places, { court, pending, onRealm, onCourt }) {
+let courtBadge = null;
+/** The court's marker counts what is open. */
+export function setCourtCount(count) { if (courtBadge) { courtBadge.textContent = String(count); courtBadge.hidden = !count; } }
+
+// A small realm is named under its seat; a large one is named across its land.
+const SEAT_REALMS = { "kingdom-of-asturias": "Asturien", "duchy-of-benevento": "Furstendöme", "papal-states": "Kyrkostaten", "emirate-of-cordoba": "Emiratet" };
+
+export function addPlaces(map, places, { court, pending, onRealm, onCourt, faceOf }) {
   theMap = map;
   // The panels cover the edges, so the camera centres on the land between them.
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -120,10 +133,14 @@ export function addPlaces(map, places, { court, pending, onRealm, onCourt }) {
 
   for (const city of places.cities.filter((c) => c.at[0] > -15 && c.at[0] < 60)) {
     const isCourt = city.id === "aachen";
-    const el = node("button", `place${isCourt ? " court" : ""}`, `${isCourt ? COURT : SEAT}<span>${city.name}</span>${isCourt ? `<span class="n">${pending()}</span>` : ""}`);
+    const ruler = !isCourt && faceOf(city.polity), realm = SEAT_REALMS[city.polity];
+    const el = node("button", `place${isCourt ? " court" : ""}`, `${ruler ? `<i class="mini" style="${ruler}"></i>` : isCourt ? COURT : SEAT}<span>${city.name}</span>${realm ? `<small>${realm}</small>` : ""}${isCourt ? `<span class="n">${pending()}</span>` : ""}`);
     el.type = "button"; el.title = isCourt ? "Hovet i Aachen" : `${city.name}, säte`;
+    if (isCourt) courtBadge = el.querySelector(".n");
     el.addEventListener("click", () => { if (isCourt) onCourt(); else onRealm(city.polity); flyTo(city.at, isCourt ? 5.8 : 5.4); });
-    new maplibregl.Marker({ element: el, anchor: "bottom", offset: [0, 14] }).setLngLat(city.at).addTo(map);
+    const east = city.id === "benevento";
+    if (east) el.classList.add("east");
+    new maplibregl.Marker({ element: el, anchor: east ? "left" : "bottom", offset: east ? [-14, 0] : [0, 14] }).setLngLat(city.at).addTo(map);
   }
   for (const tribe of places.tribes.filter((t) => t.at[0] > -15 && t.at[0] < 60)) {
     const raid = tribe.id === "ad800-tribe-sorbs";

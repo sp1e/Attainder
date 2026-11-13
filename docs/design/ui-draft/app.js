@@ -1,6 +1,6 @@
 // The draft's interface. Every name, number and choice comes from data/court-802.json, an export of a real
 // campaign (Karls rike, 25 December AD 802). Choosing here changes this page only; no rule runs.
-import { createMap, flyHome, flyTo, addPlaces, setRealmAccent, setSeason } from "./map.js";
+import { createMap, flyHome, flyTo, addPlaces, setRealmAccent, setSeason, setCourtCount } from "./map.js";
 
 const $ = (id) => document.getElementById(id);
 const el = (tag, attrs = {}, children = []) => {
@@ -25,6 +25,7 @@ const FACES = { karl: "person-3-1", "karl-den-yngre": "person-3-3", "pippin-av-i
 const RULER_FACES = { "byzantine-empire": "eirene-of-athens", "emirate-of-cordoba": "al-hakam-i", "kingdom-of-asturias": "alfonso-ii-asturias", "duchy-of-benevento": "grimoald-iii-benevento",
   "abbasid-caliphate": "harun-ar-rashid", "aghlabid-emirate": "ibrahim-ibn-al-aghlab" };
 const face = (id) => `background-image:url(portraits/${FACES[id] || RULER_FACES[id] || "person-0-1"}.jpg)`;
+const generated = (p) => /\(genererad\)/.test(p.name);
 const SKILLS = [["command", "Befäl"], ["stewardship", "Förvaltning"], ["diplomacy", "Diplomati"], ["learning", "Lärdom"], ["intrigue", "Intrig"], ["prowess", "Kamp"]];
 // The seven areas of today's panel. Decisions live under the first: what needs the player is the overview.
 const AREAS = [["needs", "Kräver dig"], ["people", "Personer"], ["houses", "Familjer"], ["offices", "Ämbeten & tronföljd"], ["intrigue", "Intriger"], ["annals", "Krönika"]];
@@ -48,16 +49,18 @@ function renderBar() {
   if (!state.turning) $("when").textContent = `${day(state.date)} e.Kr. · ${court.mode === "family" ? "Följ familjen" : "Följ riket"}`;
   const pips = el("span", { class: "pips" }, Array.from({ length: e.actionPoints }, (_, i) => el("i", { class: i < left ? "" : "spent" })));
   const stat = (label, value, cls) => el("div", { class: "stat" }, [el("span", { text: label }), el("b", { class: cls }, value)]);
-  const legitimacy = el("button", { class: "stat why", type: "button", "aria-expanded": String(state.why), onclick: () => { state.why = !state.why; renderBar(); } },
-    [el("span", { text: "Legitimitet" }), el("b", {}, [String(e.legitimacy), el("small", { text: " / 100" })])]);
+  const why = (key, label, value, cls) => el("button", { class: "stat why", type: "button", "aria-expanded": String(state.why === key), onclick: () => { state.why = state.why === key ? false : key; renderBar(); } },
+    [el("span", { text: label }), el("b", { class: cls }, value)]);
+  const pop = (label, rows, note) => el("div", { class: "pop", role: "dialog", "aria-label": label }, [el("h3", { text: label }),
+    el("dl", { class: "facts" }, rows.flatMap(([k, v, neg]) => [el("dt", { text: k }), el("dd", { class: neg ? "neg" : "", text: v })])), el("p", { class: "fine", text: note })]);
   $("stats").replaceChildren(...[
     stat("Skattkammare", [sv(e.treasury), el("small", { text: " silver" })]),
-    stat("Årsintäkt", sv(e.annualRevenue), e.annualRevenue < 0 ? "down" : ""),
+    why("revenue", "Årsintäkt", sv(e.annualRevenue), e.annualRevenue < 0 ? "down" : ""),
     stat("Handlingar i år", [pips, `${left} av ${e.actionPoints}`]),
-    legitimacy, stat("Prestige", String(court.prestige)), stat("Beredskap", `${e.militaryReadiness} %`),
-    state.why && el("div", { class: "pop", role: "dialog", "aria-label": "Vad legitimiteten vilar på" }, [el("h3", { text: "Legitimiteten vilar på" }),
-      el("dl", { class: "facts" }, court.legitimacy.sources.flatMap((s) => [el("dt", { text: s.label }), el("dd", { class: s.value < 0 ? "neg" : "", text: signed(s.value) })])),
-      el("p", { class: "fine", text: court.dreadLabel })]),
+    why("legitimacy", "Legitimitet", [String(e.legitimacy), el("small", { text: " / 100" })]), stat("Prestige", String(court.prestige)), stat("Beredskap", `${e.militaryReadiness} %`),
+    state.why === "legitimacy" && pop("Legitimiteten vilar på", court.legitimacy.sources.map((s) => [s.label, signed(s.value), s.value < 0]), court.dreadLabel),
+    state.why === "revenue" && pop("Årsintäkten i dag", [...court.cities.map((c) => [`Skatt från ${c.name}`, `+${sv(c.taxIncome)}`]), ["Produktion", `${sv(e.productionMultiplier * 100, 0)} %`], ["Summa före årets beslut", sv(e.annualRevenue), e.annualRevenue < 0]],
+      "Spelet visar i dag bara summan och stadens skatt. Utgiftsposterna saknas i vyn och behöver läggas till."),
   ].filter(Boolean));
   $("undo").disabled = !state.history.length || state.turning;
   $("next").disabled = state.turning;
@@ -71,7 +74,8 @@ function renderThread() {
     el("span", { class: "face", style: face(p.id) }),
     flags[p.id] && el("span", { class: "flag", text: String(flags[p.id]), "aria-label": `${flags[p.id]} ärenden` }),
     el("span", { class: "who", text: plain(p.name.replace(/ \(Karl den store\)/, "")) }),
-    roleOf(p) && el("span", { class: "role", text: roleOf(p) }),
+    roleOf(p) && el("span", { class: `role${p.id === court.rulerId || p.id === court.heirId ? " crown" : ""}`, text: roleOf(p) }),
+    generated(p) && el("span", { class: "gen", text: "genererad" }),
   ]);
   // The engine's own order of succession: the ruler, then each candidate in turn.
   const order = [court.rulerId, ...court.succession.candidates.map((c) => c.id)];
@@ -92,7 +96,7 @@ function areaNeeds() {
     const lapsed = !state.decided[story.id] && expired(story), done = state.decided[story.id] || (lapsed ? { label: "" } : null);
     const head = el("button", { type: "button", "aria-expanded": String(!done && active === story.id), onclick: () => { if (!done) { state.open = story.id; renderPanel(); } } }, [
       el("span", { class: "faces" }, (ABOUT[story.type] || []).map(mini)), el("h3", { text: plain(story.title) }),
-      el("span", { class: `due${!done && soon(story.due) ? " soon" : ""}`, text: lapsed ? `Fristen gick ut ${day(story.due)}; utan val gäller spelets fria alternativ` : done ? `Avgjort: ${done.label}` : `Senast ${day(story.due)}` }),
+      el("span", { class: `due${!done && soon(story.due) ? " soon" : ""}${lapsed ? " lapsed" : ""}`, text: lapsed ? `Fristen gick ut ${day(story.due)}; utan val gäller spelets fria alternativ` : done ? `Avgjort: ${done.label}` : `Senast ${day(story.due)}` }),
     ]);
     const body = el("div", { class: "body" }, [
       el("p", { text: story.text }),
@@ -124,7 +128,7 @@ function areaNeeds() {
 
 function areaPeople() {
   return [el("ul", { class: "rows" }, court.people.map((p) => el("li", {}, el("button", { type: "button", "aria-pressed": String(state.selected === p.id), onclick: () => select(p.id) }, [
-    mini(p.id), el("span", {}, [el("b", { text: plain(p.name) }), el("small", { text: [`${p.age} år`, plain(p.family), roleOf(p)].filter(Boolean).join(" · ") })]),
+    mini(p.id), el("span", {}, [el("b", { text: plain(p.name) }), el("small", { text: [`${p.age} år`, plain(p.family), roleOf(p), generated(p) && "genererad person"].filter(Boolean).join(" · ") })]),
     el("span", { class: p.opinion < 0 ? "neg" : p.id === court.rulerId ? "" : "pos", text: p.id === court.rulerId ? "du" : signed(p.opinion) }),
   ]))))];
 }
@@ -187,7 +191,9 @@ const AREA_VIEWS = { needs: areaNeeds, people: areaPeople, houses: areaHouses, o
 function renderPanel() {
   const open = pending().length, [, title] = AREAS.find(([id]) => id === state.area);
   $("panel-title").textContent = title;
-  $("panel-count").textContent = state.area === "needs" ? (open ? `${open} ärenden` : "allt avgjort") : state.area === "people" ? `${court.people.length} levande` : "";
+  const lapsedCount = court.stories.filter((s) => !state.decided[s.id] && expired(s)).length;
+  $("panel-count").textContent = state.area === "needs" ? (open ? `${open} ärenden` : lapsedCount ? "inget öppet" : "allt avgjort") : state.area === "people" ? `${court.people.length} levande` : "";
+  setCourtCount(open);
   $("panel-body").replaceChildren(...AREA_VIEWS[state.area]());
   $("tabs").replaceChildren(...AREAS.map(([id, name]) => el("button", { type: "button", "aria-current": id === state.area ? "page" : false, onclick: () => { state.area = id; renderPanel(); } },
     [name, id === "needs" && open ? el("sup", { text: String(open) }) : null])));
@@ -271,6 +277,6 @@ for (const button of document.querySelectorAll(".epoch button")) button.addEvent
 });
 
 const map = createMap("map");
-addPlaces(map, places, { court, pending: () => pending().length, onRealm: (id) => select(id), onCourt: () => { state.area = "needs"; state.open = pending()[0]?.id ?? null; renderPanel(); } });
+addPlaces(map, places, { court, pending: () => pending().length, faceOf: (id) => RULER_FACES[id] ? face(id) : "", onRealm: (id) => select(id), onCourt: () => { state.area = "needs"; state.open = pending()[0]?.id ?? null; renderPanel(); } });
 renderAll();
 window.draft = { map, state };
