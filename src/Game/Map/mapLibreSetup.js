@@ -9,12 +9,14 @@
 import mapLibreGl from "maplibre-gl";
 import { basemapTileLoader, pmtilesProtocol } from "../../runtime/assets.js";
 import { isConstrainedDevice, mapRuntimeLimits } from "../../runtime/deviceProfile.js";
+import { SNOW_PROTOCOL, snowTileLoader } from "./snowLine.js";
 
 const { addProtocol, setMaxParallelImageRequests, setWorkerCount } = mapLibreGl;
 
 let runtimeConfigured = false;
 let pmtilesRegistered = false;
 let basemapRegistered = false;
+let snowRegistered = false;
 
 // Before the first map: the worker pool is made with it.
 export const configureMapRuntime = () => {
@@ -43,5 +45,13 @@ export const ensureBasemapProtocol = () => {
   if (!basemapRegistered) {
     addProtocol("ohbase", basemapTileLoader);
     basemapRegistered = true;
+  }
+};
+
+// ohsnow:// URLs: an elevation tile rewritten as height above the snow line of a day of the year (snowLine.js).
+export const ensureSnowProtocol = () => {
+  if (!snowRegistered) {
+    addProtocol(SNOW_PROTOCOL, snowTileLoader);
+    snowRegistered = true;
   }
 };
