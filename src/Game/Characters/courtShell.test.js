@@ -2,7 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { figuresOf, flagsOf, mattersOf, threadOf } from "./courtShell.js";
+import { cardOf, figuresOf, flagsOf, mattersOf, threadOf } from "./courtShell.js";
 
 const read = (name) => fs.readFileSync(new URL(name, import.meta.url), "utf8");
 const person = (id, familyId, age, extra = {}) => ({ id, name: id, familyId, age, diedAt: null, ...extra });
@@ -120,11 +120,68 @@ test("the shell is drawn over the map and everything in it opens the panel at a 
   assert.match(panel, /request\.seq === handledRequest\.current\) return;/);
   assert.match(panel, /if \(REQUEST_TABS\.has\(request\.tab\)\) setTab\(request\.tab\);/);
   assert.match(shell, /new CustomEvent\("oh:open-characters", \{ detail \}\)/);
-  for (const place of ['tab: "people", personId', 'tab: "decisions"', 'tab: "council"']) assert.ok(shell.includes(place), place);
+  for (const place of ['tab: "decisions"', 'tab: "council"']) assert.ok(shell.includes(place), place);
   assert.match(shell, /useCourtView\(activeGameId\)/);
   assert.match(read("../Map/SeatRulers.jsx"), /useCourtView\(activeGameId\)/, "the seat medallions share the read");
   assert.match(reader, /await import\("\.\/characterRuntime\.js"\)/);
   assert.match(reader, /if \(!hasCourt \|\| transactionPending\) return undefined;/, "the reader never starts a recovery");
   for (const text of ["Kräver dig", "Hovhusen", "Inget kräver dig just nu."]) assert.ok(shell.includes(text), text);
   assert.match(shell, /className="court-shell" data-native-text/, "the whole native book applies in the shell");
+});
+
+// Slice 2: the person card.
+const HEIR = {
+  ...person("karl-yngre", "royal", 30), name: "Karl den yngre", familyName: "Karls hus", originLabelSv: "Dokumenterad person; spelvärden är genererade",
+  archetypeLabel: "Förvaltaren", traitLabels: ["Plikttrogen", "Modig"], skills: { prowess: 4, command: 5, stewardship: 6.2, intrigue: 4, learning: 5, diplomacy: 5 },
+  opinion: 8, opinionReasons: [{ label: "Gemensam familj", value: 8 }], stress: 12, goalLabel: "Skyddar familjens trygghet",
+};
+const CARD_VIEW = { ...VIEW, people: VIEW.people.map((entry) => (entry.id === "karl-yngre" ? HEIR : entry)) };
+
+test("a card shows who the person is, what the person can do and how the person stands to the player", () => {
+  const card = cardOf(CARD_VIEW, "karl-yngre");
+  assert.equal(card.person, HEIR);
+  assert.deepEqual([card.role, card.heir, card.ruler, card.held], ["Arvinge", true, false, false]);
+  assert.deepEqual(card.tags, ["Dokumenterad person; spelvärden är genererade", "Förvaltaren", "Plikttrogen", "Modig"], "origin, archetype, then the traits");
+  assert.deepEqual(card.skills.map((skill) => [skill.key, skill.label, skill.value]), [
+    ["command", "Befäl", 5], ["stewardship", "Förvaltning", 6.2], ["diplomacy", "Diplomati", 5],
+    ["learning", "Lärdom", 5], ["intrigue", "Intrig", 4], ["prowess", "Kampförmåga", 4],
+  ], "the panel's labels, in one fixed order");
+  assert.deepEqual([card.opinion, card.stress, card.goalLabel], [8, 12, "Skyddar familjens trygghet"]);
+  assert.deepEqual(card.opinionReasons, [{ label: "Gemensam familj", value: 8 }]);
+});
+
+test("a card leaves out what the person lacks, and there is none for someone who is not at court", () => {
+  const plain = cardOf(CARD_VIEW, "pippin");
+  assert.deepEqual([plain.tags, plain.skills, plain.opinionReasons, plain.role], [[], [], [], ""]);
+  assert.equal(plain.goalLabel, "");
+  const partial = cardOf({ ...CARD_VIEW, people: CARD_VIEW.people.map((entry) => (entry.id === "pippin" ? { ...entry, skills: { intrigue: 7 } } : entry)) }, "pippin");
+  assert.deepEqual(partial.skills, [{ key: "intrigue", label: "Intrig", value: 7 }]);
+  assert.equal(cardOf(CARD_VIEW, "gone"), null, "the dead have no card");
+  assert.equal(cardOf(CARD_VIEW, "nobody"), null);
+  assert.equal(cardOf(CARD_VIEW, null), null);
+  assert.equal(cardOf(null, "karl"), null);
+  assert.equal(cardOf(CARD_VIEW, "odo").role, "Fånge", "the role is the thread's");
+  // A name that says "(genererad)" already tells where the person comes from (the panel's own rule).
+  const generated = { ...HEIR, id: "ansgar", familyId: "house-2", name: "Ansgar (genererad)", originLabelSv: "Genererad person" };
+  const view = { ...CARD_VIEW, people: CARD_VIEW.people.map((entry) => (entry.id === "ansgar" ? generated : entry)) };
+  assert.deepEqual(cardOf(view, "ansgar").tags, ["Förvaltaren", "Plikttrogen", "Modig"]);
+  const bare = { ...HEIR, opinionReasons: [{ label: "Gammal skuld" }, { label: "Gammal skuld", value: -3 }] };
+  const reasons = cardOf({ ...CARD_VIEW, people: CARD_VIEW.people.map((entry) => (entry.id === "karl-yngre" ? bare : entry)) }, "karl-yngre").opinionReasons;
+  assert.deepEqual(reasons, [{ label: "Gammal skuld", value: null }, { label: "Gammal skuld", value: -3 }], "a reason may come without a number, and twice");
+});
+
+test("a medallion selects its person, and the card's button is the way into the panel", () => {
+  const shell = read("./CourtShell.jsx"), card = read("./CourtPersonCard.jsx");
+  assert.match(shell, /aria-pressed=\{selected\}/);
+  assert.match(shell, /setSelectedId\(\(current\) => \(current === id \? null : id\)\)/, "a second press closes the card");
+  assert.match(shell, /event\.key !== "Escape"/, "Escape closes the card");
+  assert.doesNotMatch(shell, /open\(\{ tab: "people"/, "the medallion no longer opens the panel");
+  assert.match(card, /new CustomEvent\("oh:open-characters", \{ detail: \{ tab: "people", personId: card\.person\.id \} \}\)/);
+  for (const text of ["Lär känna", "Stäng", "Åsikt om din företrädare", "Stress", "Mål och drivkrafter"]) assert.ok(card.includes(text), text);
+  assert.match(shell, /data-court-person=\{member\.person\.id\}/, "closing the card can find the medallion again");
+  assert.match(shell, /\?\.focus\(\)/, "focus returns to the medallion");
+  assert.match(shell, /closest\?\.\("input, textarea, select, \[contenteditable\]"\)/, "Escape in a text field is the field's");
+  assert.match(shell, /card && !rightBusy/, "the card steps aside for the advisor");
+  assert.match(read("../GameUI/main.jsx"), /rightBusy=\{isAdvisorOpen\}/);
+  assert.doesNotMatch(card, /key=\{tag\}|key=\{reason\.label\}/, "two tags or two reasons may read the same");
 });

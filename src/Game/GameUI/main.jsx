@@ -572,7 +572,7 @@ const Main = ({
         onClick={() => setIsCharactersOpen(true)}
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
-      {hasCharacters && !mainMenuOpen && !isCharactersOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} /></Suspense>}
+      {hasCharacters && !mainMenuOpen && !isCharactersOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} rightBusy={isAdvisorOpen} /></Suspense>}
       {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} request={charactersRequest.gameId === activeGame?.id ? charactersRequest : null} /></Suspense>}
       {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
       <DateWidget
