@@ -22,6 +22,7 @@ import {
   buildShorePaint, waterOpacity,
 } from "./historicalCartography.js";
 import { MAP_LAYER_ORDER } from "./mapLayerOrder.js";
+import { SNOW_LAYER_ID, SNOW_OPACITY_STOPS, SNOW_SOURCE_ID, buildSnowPaint, buildSnowSource } from "./historicalCartography.js";
 
 const read = (name) => fs.readFileSync(new URL(name, import.meta.url), "utf8");
 
@@ -398,4 +399,38 @@ test("the water mounts on the historical default only, in order, and puts the st
   assert.match(water, /instance\.once\("idle", restore\);/);
   assert.match(water, /enforceMapLayerOrder\(instance\)/);
   assert.doesNotMatch(read("./Nations.jsx"), /WATER_/, "the water is not part of the political layers");
+});
+
+// Slice 5: snow by the date.
+test("the snow reads the rewritten elevation tiles of a day and starts at the line", () => {
+  assert.equal(SNOW_LAYER_ID, "seasonal-snow");
+  assert.equal(SNOW_SOURCE_ID, "seasonal-snow-source");
+  assert.deepEqual(buildSnowSource(356), { type: "raster-dem", tiles: ["ohsnow://356/{z}/{x}/{y}"], encoding: "terrarium", tileSize: 256, maxzoom: 7 });
+  const paint = buildSnowPaint();
+  const ramp = paint["color-relief-color"];
+  assert.deepEqual(ramp.slice(0, 3), ["interpolate", ["linear"], ["elevation"]]);
+  const stops = [];
+  for (let index = 3; index < ramp.length; index += 2) stops.push([ramp[index], ramp[index + 1]]);
+  const alpha = (color) => Number(/([\d.]+)\)$/.exec(color)[1]);
+  assert.ok(stops.every(([height], index) => index === 0 || height > stops[index - 1][0]));
+  assert.ok(stops.filter(([height]) => height <= 0).every(([, color]) => alpha(color) === 0), "clear at the line and below");
+  assert.equal(alpha(stops.find(([height]) => height === 350)[1]), 0.55);
+  assert.equal(alpha(stops.find(([height]) => height === 900)[1]), 0.92);
+  assert.ok(stops.at(-1)[0] >= 4000 && alpha(stops.at(-1)[1]) < 1);
+  assert.deepEqual(SNOW_OPACITY_STOPS, [[7, 0.9], [9, 0]]);
+  assert.deepEqual(zoomStops(paint["color-relief-opacity"]), [[7, 0.9], [9, 0]], "close in the snow is gone");
+});
+
+test("the snow lies under every other layer the game adds and mounts on the historical default", () => {
+  assert.equal(MAP_LAYER_ORDER[0], "seasonal-snow");
+  const world = read("./World.jsx"), snow = read("./SeasonalSnow.jsx"), setup = read("./mapLibreSetup.js");
+  assert.match(world, /\{historicalDefaultInUse && <SeasonalSnow \/>\}/);
+  assert.match(setup, /addProtocol\(SNOW_PROTOCOL, snowTileLoader\);/);
+  assert.match(snow, /^ensureSnowProtocol\(\);$/m);
+  assert.match(snow, /useSyncExternalStore\(subscribeUnits, getGameDate\)/);
+  assert.match(snow, /snowDayBucket\(dayOfYear\(gameDate\)\)/);
+  assert.match(snow, /if \(!canvasReadsExactly\(\)\) return null;/);
+  assert.match(snow, /type="color-relief"/);
+  assert.match(snow, /instance\.once\("idle", restore\);/);
+  assert.doesNotMatch(read("./Nations.jsx"), /SNOW_|snowLine/);
 });

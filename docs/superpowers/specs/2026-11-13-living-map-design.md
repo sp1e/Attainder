@@ -20,7 +20,7 @@ A historical campaign opens on land the player can read as land: coasts, mountai
 
 - Non-historical scenarios keep today's look.
 - No change to scenario packages, saves, region geometry or the ownership rules.
-- A seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2, the leaning camera slice 3 and painted water slice 4.
+- Rulers at their seats come in a later slice. Realm outlines are slice 2, the leaning camera slice 3, painted water slice 4 and snow by the date slice 5.
 
 ## Slice 1: the land shows
 
@@ -90,6 +90,20 @@ Rulings, each with what it costs if wrong:
 25. **Painted water belongs to the historical default.** It is mounted when the map on screen is the historical default (slice 1's `usesHistoricalDefault`): a basemap the player picked, a scenario with a map of its own, and a map without a network are drawn as before. The deepening layer reads the elevation tiles and so needs the network anyway. Cost if wrong: one condition.
 
 The ground under the sea still follows the sea floor when the camera leans. Painted flat it shows only as a faint fold where the shelf ends.
+
+## Slice 5: snow by the date
+
+The map looked the same on every day of the year. The interface draft drew snow above a line that fell to 700 m in winter and rose to 3,100 m in summer, and the owner approved it. The draft showed the Old World only, so one line was enough. The game's packages span the world: one line at 700 m would whiten Ethiopia, Mexico and the Altiplano in December.
+
+Rulings, each with what it costs if wrong:
+
+26. **The snow line depends on the latitude and on the day of the year.** A permanent line runs from about 5,000 m in the tropics over 2,900 m at 46 degrees to sea level near 78 degrees. A midwinter line leaves the tropics alone, is 700 m at 46 degrees and lies below sea level from 57 degrees, so the northern lowlands are white. The line of a day lies between the two by a cosine of the year that peaks in mid-January in the north and mid-July in the south. Cost if wrong: two tables in `snowLine.js`.
+27. **The snow is a colour ramp over a second reading of the elevation tiles.** A `color-relief` layer can only read elevation, not latitude. So a tile protocol (`ohsnow://`) fetches each elevation tile and rewrites it as height above the snow line at each row's latitude; the layer's ramp then starts at zero. Sea level and below is written as far under the line, so the sea is never white. Cost if wrong: one protocol and one layer.
+28. **The date is read in steps of five days**, so a turn that moves the date a little does not fetch the tiles again. Cost if wrong: one constant.
+29. **The snow lies on the photograph and under everything else**: under the realm's wash, so a snowed realm keeps its colour, and under the painted water. It thins from zoom 7 and is gone at zoom 9, as the water is at zoom 10: its tiles stop at level 7, and the holes it has where the land lies at sea level show as blocks close in.
+30. **Snow belongs to the historical default**, like the painted water: it needs the network for the elevation tiles and the photograph to lie on.
+
+Every released start opens between 25 December and 1 January, and a turn moves the game a whole year. Until the game has turns inside the year the north is therefore always in midwinter. The model is ready for other dates; a snow line that sweeps through the seasons while a year turns is left for a later slice.
 
 ## Checks
 

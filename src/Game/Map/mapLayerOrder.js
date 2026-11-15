@@ -8,6 +8,8 @@
 //
 // This list is the single current-renderer authority for bottom -> top order.
 export const MAP_LAYER_ORDER = [
+  // A historical campaign's snow lies on the basemap, under everything the game adds (snowLine.js).
+  "seasonal-snow",
   // Political body / local geography.
   "countries-fill",
   "countries-outline",

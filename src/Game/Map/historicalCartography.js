@@ -1,6 +1,7 @@
 // The look of a historical campaign's map: the land itself shows, a realm is a wash of colour over it, and relief reads
 // through the colour. Spec: docs/superpowers/specs/2026-11-13-living-map-design.md. Other scenarios keep the stock look.
 import { DEFAULT_BASEMAP_ID, TERRAIN_TILE_TEMPLATE, isBuiltinBasemapId } from "../../runtime/assets.js";
+import { snowTileTemplate } from "./snowLine.js";
 
 export const HISTORICAL_BASEMAP_ID = "imagery";
 // Deeper imagery shows motorways and airports. Past this level MapLibre stretches the last one.
@@ -246,4 +247,26 @@ export const buildShorePaint = () => ({
   "line-color": "#d9ecd9",
   "line-width": byZoom([[1.5, 0.4], [3, 0.6], [6, 1.1], [9, 1.8]]),
   "line-opacity": waterOpacity(0.7),
+});
+
+// Slice 5: snow by the date. snowLine.js says where the snow line lies and rewrites the elevation tiles as height above
+// it; this layer's ramp therefore starts at zero whatever the latitude and the season.
+export const SNOW_LAYER_ID = "seasonal-snow";
+export const SNOW_SOURCE_ID = "seasonal-snow-source";
+
+/** The rewritten elevation tiles of one day of the year (a five-day step, snowLine.js). */
+export const buildSnowSource = (day) => ({ type: "raster-dem", tiles: [snowTileTemplate(day)], encoding: "terrarium", tileSize: 256, maxzoom: 7 });
+
+// Close in the snow is gone, like the painted water: its tiles are coarse, and the holes it has where the land is at
+// sea level show as blocks.
+export const SNOW_OPACITY_STOPS = Object.freeze([[7, 0.9], [9, 0]]);
+
+/** Clear at the line, thin just above it, nearly whole 900 m above it. */
+export const buildSnowPaint = () => ({
+  "color-relief-color": [
+    "interpolate", ["linear"], ["elevation"],
+    -1, "rgba(244, 247, 250, 0)", 0, "rgba(244, 247, 250, 0)", 350, "rgba(244, 247, 250, 0.55)", 900, "rgba(248, 250, 252, 0.92)",
+    4600, "rgba(255, 255, 255, 0.97)",
+  ],
+  "color-relief-opacity": byZoom(SNOW_OPACITY_STOPS),
 });
