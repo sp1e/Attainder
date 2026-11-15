@@ -16,6 +16,12 @@ import {
   HISTORICAL_MAX_PITCH, HISTORICAL_REST_PITCH, HISTORICAL_TERRAIN_EXAGGERATION, STOCK_TERRAIN_EXAGGERATION,
   cameraHandlers, cameraMayLean, cameraOffRest, restPitch, terrainExaggeration,
 } from "./historicalCartography.js";
+import {
+  WATER_COAST_FILTER, WATER_DEPTH_SOURCE, WATER_LAKES_URL, WATER_LAYER_IDS, WATER_LAYER_ORDER, WATER_OPACITY_STOPS, WATER_SEA_FILTER,
+  WATER_SEA_URL, WATER_SOURCE_IDS, buildLakePaint, buildLakeShorePaint, buildSeaDepthPaint, buildSeaPaint, buildShallowsPaint,
+  buildShorePaint, waterOpacity,
+} from "./historicalCartography.js";
+import { MAP_LAYER_ORDER } from "./mapLayerOrder.js";
 
 const read = (name) => fs.readFileSync(new URL(name, import.meta.url), "utf8");
 
@@ -311,4 +317,85 @@ test("whether the camera may lean is part of the map's key, and the compass wait
   assert.ok(world.indexOf("const lean = cameraMayLean(") < world.indexOf("const stockRenderKey = buildBasemapRenderKey("), "lean is known before the key");
   assert.match(compass, /instance\.on\("move", read\);/);
   assert.doesNotMatch(compass, /\n\s+read\(\);/, "no reading at mount: the opening framing has not run yet");
+});
+
+// Slice 4: painted water.
+test("the water has two files, three sources and six layers, bottom to top", () => {
+  assert.equal(WATER_SEA_URL, "/map/sea.geojson");
+  assert.equal(WATER_LAKES_URL, "/map/lakes.geojson");
+  for (const name of ["sea.geojson", "lakes.geojson"]) assert.ok(fs.existsSync(new URL(`../../../public/map/${name}`, import.meta.url)), name);
+  assert.deepEqual(WATER_SOURCE_IDS, { sea: "water-sea-source", lakes: "water-lakes-source", depth: "water-depth-source" });
+  assert.deepEqual(WATER_LAYER_IDS, {
+    sea: "water-sea", depth: "water-depth", shallows: "water-shallows", lakes: "water-lakes", lakeShore: "water-lake-shore", shore: "water-shore",
+  });
+  assert.deepEqual(WATER_LAYER_ORDER, ["water-sea", "water-depth", "water-shallows", "water-lakes", "water-lake-shore", "water-shore"]);
+  assert.equal(WATER_DEPTH_SOURCE.type, "raster-dem");
+  assert.equal(WATER_DEPTH_SOURCE.encoding, "terrarium");
+  assert.deepEqual(WATER_SEA_FILTER, ["==", ["get", "kind"], "sea"]);
+  assert.deepEqual(WATER_COAST_FILTER, ["==", ["get", "kind"], "coast"]);
+});
+
+test("the paint is whole far out, thins from zoom 6.5 and is gone at zoom 10", () => {
+  assert.deepEqual(WATER_OPACITY_STOPS, [[6.5, 1], [8, 0.6], [10, 0]]);
+  assert.deepEqual(waterOpacity(), ["interpolate", ["linear"], ["zoom"], 6.5, 1, 8, 0.6, 10, 0]);
+  assert.deepEqual(waterOpacity(0.5), ["interpolate", ["linear"], ["zoom"], 6.5, 0.5, 8, 0.3, 10, 0]);
+  const opacities = [
+    buildSeaPaint()["fill-opacity"], buildSeaDepthPaint()["color-relief-opacity"], buildShallowsPaint()["line-opacity"],
+    buildLakePaint()["fill-opacity"], buildLakeShorePaint()["line-opacity"], buildShorePaint()["line-opacity"],
+  ];
+  for (const opacity of opacities) {
+    const stops = zoomStops(opacity);
+    assert.deepEqual(stops.map(([zoom]) => zoom), [6.5, 8, 10]);
+    assert.ok(stops[0][1] > 0 && stops[0][1] <= 1);
+    assert.equal(stops.at(-1)[1], 0);
+  }
+});
+
+test("the sea floor deepens the open water and leaves the coast clear", () => {
+  const ramp = buildSeaDepthPaint()["color-relief-color"];
+  assert.deepEqual(ramp.slice(0, 3), ["interpolate", ["linear"], ["elevation"]]);
+  const stops = [];
+  for (let index = 3; index < ramp.length; index += 2) stops.push([ramp[index], ramp[index + 1]]);
+  assert.ok(stops.every(([depth], index) => index === 0 || depth > stops[index - 1][0]), "depths rise");
+  assert.ok(stops[0][0] <= -6000);
+  assert.ok(stops.at(-1)[0] < 0, "nothing above the sea is touched");
+  assert.match(stops.at(-1)[1], /, ?0\)$/, "clear where the water is shallow");
+});
+
+test("the shallows lie in the water: the coast has the water on its left", () => {
+  const paint = buildShallowsPaint();
+  const width = zoomStops(paint["line-width"]), offset = zoomStops(paint["line-offset"]);
+  assert.ok(rising(width));
+  for (const [index, [zoom, value]] of offset.entries()) {
+    assert.equal(zoom, width[index][0]);
+    assert.ok(value < 0, "negative is the left of the line");
+    assert.ok(-value <= width[index][1] * 0.5, "the band's inner rim stays at the shore");
+  }
+  assert.equal(buildShorePaint()["line-offset"], undefined, "the shore line is on the shore");
+});
+
+test("the water lies over the relief and under every outline and border", () => {
+  const index = (id) => MAP_LAYER_ORDER.indexOf(id);
+  const places = WATER_LAYER_ORDER.map(index);
+  assert.ok(places.every((place) => place >= 0));
+  assert.deepEqual(places, places.map((_, offset) => places[0] + offset), "together and in order");
+  assert.equal(places[0], index("relief-over-fills") + 1);
+  assert.equal(places.at(-1) + 1, index("polity-outline-band"));
+});
+
+test("the water mounts on the historical default only, in order, and puts the stack back", () => {
+  const world = read("./World.jsx"), water = read("./HistoricalWater.jsx");
+  assert.match(world, /\{historicalDefaultInUse && <HistoricalWater \/>\}/);
+  const at = (text) => {
+    const place = water.indexOf(text);
+    assert.ok(place >= 0, text);
+    return place;
+  };
+  const order = ["sea", "depth", "shallows", "lakes", "lakeShore", "shore"].map((key) => at(`id={WATER_LAYER_IDS.${key}}`));
+  assert.deepEqual(order, [...order].sort((left, right) => left - right), "the layers are added bottom to top");
+  assert.equal(water.split("beforeId={beforeId}").length - 1, 6);
+  assert.match(water, /type="color-relief"/);
+  assert.match(water, /instance\.once\("idle", restore\);/);
+  assert.match(water, /enforceMapLayerOrder\(instance\)/);
+  assert.doesNotMatch(read("./Nations.jsx"), /WATER_/, "the water is not part of the political layers");
 });

@@ -27,6 +27,13 @@ export const MAP_LAYER_ORDER = [
   "group-areas-tint",
   // A historical campaign draws relief over the fills, so mountains read through a realm's colour.
   "relief-over-fills",
+  // ...and paints its water over that relief: the sea floor is not lit (historicalCartography.js, WATER_LAYER_ORDER).
+  "water-sea",
+  "water-depth",
+  "water-shallows",
+  "water-lakes",
+  "water-lake-shore",
+  "water-shore",
   // ...and each realm's outline inside its edge: a band of its colour and a thin rim.
   "polity-outline-band",
   "polity-outline-light",
