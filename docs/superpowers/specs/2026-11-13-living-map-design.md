@@ -20,7 +20,7 @@ A historical campaign opens on land the player can read as land: coasts, mountai
 
 - Non-historical scenarios keep today's look.
 - No change to scenario packages, saves, region geometry or the ownership rules.
-- Rulers at their seats come in a later slice. Realm outlines are slice 2, the leaning camera slice 3, painted water slice 4 and snow by the date slice 5.
+- Realm outlines are slice 2, the leaning camera slice 3, painted water slice 4, snow by the date slice 5 and rulers at their seats slice 6.
 
 ## Slice 1: the land shows
 
@@ -104,6 +104,19 @@ Rulings, each with what it costs if wrong:
 30. **Snow belongs to the historical default**, like the painted water: it needs the network for the elevation tiles and the photograph to lie on.
 
 Every released start opens between 25 December and 1 January, and a turn moves the game a whole year. Until the game has turns inside the year the north is therefore always in midwinter. The model is ready for other dates; a snow line that sweeps through the seasons while a year turns is left for a later slice.
+
+## Slice 6: rulers at their seats
+
+The owner's first complaint about the interface was that the map and the court do not hang together: the map shows land, the court is a panel, and nothing on the map says who rules where. The draft put each ruler's face at the realm's seat.
+
+Rulings, each with what it costs if wrong:
+
+31. **A seat is a city the package marks as one.** `cities.geojson` gives each seat its realm (`owner`) and `seat: true`. A realm has one medallion, at its first seat. Cost if wrong: one filter.
+32. **The player's realm shows its ruler's portrait**, the one the court panel shows, with a gold rim.
+33. **A foreign realm shows its ruler when the game knows the court**: the realms the campaign keeps as foreign realms (the eight nearest). Their people have no portraits of their own, so the medallion takes one of the game's shared portraits by the ruler's sex and age, picked by the ruler's id, as the court does for a person without a portrait of his own. A realm whose court the campaign does not keep gets no medallion. Cost if wrong: a medallion with initials instead.
+34. **A medallion opens the court.** A press sends the event the "Realm & families" button sends. It does not open the province under it. Its label is the ruler's name and the realm's name, both of which the game already has in the player's language, so the slice adds no player text. Cost if wrong: one handler.
+35. **The engine's presentation of a foreign realm gains two facts**, the ruler's id and sex, so the map can pick the portrait. Nothing else in the engine changes.
+36. **Medallions belong to every historical campaign with a court**, whatever the basemap: they are part of the game, not of the photograph.
 
 ## Checks
 

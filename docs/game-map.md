@@ -153,6 +153,7 @@ A historical campaign has a look of its own, held in `src/Game/Map/historicalCar
 - On the flat map the camera may lean and turn (`cameraHandlers`), a campaign opens leaned by `HISTORICAL_REST_PITCH`, and the ground is raised `HISTORICAL_TERRAIN_EXAGGERATION` times. `CameraCompass.jsx` shows a compass while the camera is off its resting view and returns it there.
 - The water is painted (`HistoricalWater.jsx`): the sea from `public/map/sea.geojson`, deepened by the sea floor, with pale shallows along the coast, and the lakes from `public/map/lakes.geojson`. `scripts/build-map-water.mjs` builds both files from Natural Earth; `--check` fails when they are stale. The paint thins from zoom 6.5 and is gone at zoom 10.
 - Snow lies above a line that depends on the latitude and the game's date (`snowLine.js`). The `ohsnow://` protocol rewrites each elevation tile as height above that line, and `SeasonalSnow.jsx` draws a `color-relief` layer over it, under every other layer the game adds.
+- Each realm's ruler stands at its seat (`SeatRulers.jsx`, `seatRulers.js`): a medallion with the portrait the court shows, or one of the shared portraits for a foreign ruler. A press opens the court panel.
 
 Other scenarios take none of this.
 

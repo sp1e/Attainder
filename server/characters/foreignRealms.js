@@ -127,7 +127,7 @@ export function presentForeignRealms(state, hooks) {
   return state.foreignRealms.map((realm) => {
     const ruler = realm.people[realm.rulerId], heir = foreignHeir(realm, ruler, state.date);
     return { id: realm.id, name: realm.name, seatName: realm.seatName, distanceKm: realm.distanceKm, neighbor: realm.distanceKm != null && realm.distanceKm <= FOREIGN.neighborKm,
-      rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance),
+      rulerId: ruler.id, rulerSex: ruler.sex, rulerName: ruler.name, rulerAge: getCharacterAge(ruler, state.date), heirName: heir?.name ?? null, opinion: foreignOpinion(state, realm.id), allied: Boolean(realm.alliance),
       faithName: realm.faith?.name ?? null, otherFaith: otherFaith(state, hooks.ruler()?.religionId, realm.faith ?? null), ...presentClaim(realm), ...presentEnvoy(state, realm, hooks) };
   });
 }
