@@ -72,6 +72,10 @@
 .court-figure small { font-size: 0.7rem; font-weight: 400; color: var(--court-vellum-2); }
 .court-figure--down { color: var(--court-minium); }
 
+/* Under the band: what needs the player on the left, the selected person's card on the right. */
+.court-row { align-self: stretch; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; min-width: 0; }
+.court-person--selected .court-person-face { border-color: var(--court-vellum); box-shadow: 0 0 0 3px rgba(239, 230, 210, 0.3); }
+
 /* What needs the player. */
 .court-needs {
   width: 19rem; max-height: min(52vh, 28rem); display: flex; flex-direction: column;
@@ -93,6 +97,38 @@
 .court-mini + .court-mini { margin-left: -0.5rem; }
 .court-matter b { font-size: 0.98rem; line-height: 1.15; font-weight: 600; }
 .court-matter small { grid-column: 2; font-size: 0.78rem; color: var(--court-minium); }
+
+/* The selected person. */
+.court-card {
+  width: 20rem; max-height: min(70vh, 40rem); margin-left: auto; display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.92); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+.court-card-head { display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.8rem; background: #5a2449; }
+.court-card-face { flex: none; width: 3.4rem; height: 3.4rem; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 2px solid var(--court-metal); background: var(--court-ink-2); font: 600 1.1rem var(--court-serif); }
+.court-card-head h2 { margin: 0; font: 600 1.3rem/1.05 var(--court-serif); }
+.court-card-head p { margin: 0.15rem 0 0; font-size: 0.85rem; color: var(--court-vellum-2); }
+.court-card-body { padding: 0.7rem 0.8rem 0.8rem; display: flex; flex-direction: column; gap: 0.7rem; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--court-rule) transparent; }
+.court-card-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.court-card-tags li { padding: 0.12rem 0.4rem; border: 1px solid var(--court-rule); border-radius: 4px; font-size: 0.74rem; color: var(--court-vellum-2); }
+.court-card-skills { margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--court-rule); border-radius: 8px; overflow: hidden; }
+.court-card-skills div { padding: 0.4rem 0.2rem; display: flex; flex-direction: column-reverse; align-items: center; gap: 0.1rem; border-right: 1px solid var(--court-rule); border-bottom: 1px solid var(--court-rule); }
+.court-card-skills div:nth-child(3n) { border-right: 0; }
+.court-card-skills div:nth-last-child(-n + 3) { border-bottom: 0; }
+.court-card-skills dt { font-size: 0.72rem; color: var(--court-vellum-2); }
+.court-card-skills dd { margin: 0; font-size: 1.15rem; font-weight: 600; }
+.court-card-facts { margin: 0; display: grid; grid-template-columns: 1fr auto; row-gap: 0.35rem; column-gap: 0.8rem; font-size: 0.92rem; }
+.court-card-facts dt { color: var(--court-vellum-2); }
+.court-card-facts dd { margin: 0; text-align: right; font-weight: 600; }
+.court-card-facts .court-card-wide { grid-column: 1 / -1; text-align: left; font-weight: 400; }
+.court-card-up { color: #58a58c; }
+.court-card-down { color: var(--court-minium); }
+.court-card-reasons { list-style: none; margin: 0; padding: 0; font-size: 0.8rem; color: var(--court-vellum-2); }
+.court-card-reasons li { display: flex; justify-content: space-between; gap: 0.8rem; }
+.court-card-actions { display: flex; gap: 0.5rem; }
+.court-shell .court-card-actions button { flex: 1; padding: 0.45rem 0.6rem; border: 1px solid var(--court-rule); border-radius: 8px; font: 600 0.74rem/1 var(--court-caps); letter-spacing: 0.1em; text-transform: uppercase; }
+.court-shell .court-card-actions button:hover { border-color: var(--court-vellum-3); }
+.court-shell .court-card-actions .court-card-primary { background: var(--court-metal); border-color: var(--court-metal); color: #1a1307; }
 
 /* Narrow windows: the figures give way to the thread. */
 @media (max-width: 1280px) {

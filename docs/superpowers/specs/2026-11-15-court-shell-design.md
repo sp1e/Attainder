@@ -23,8 +23,8 @@ The draft answers with one view: the court as a line of medallions over the map,
 ## The slices
 
 1. **The court over the map** (this slice): the thread of medallions, the list of what needs the player, and the realm's six figures. Each is a way into the panel: a press opens it at the person, at the decisions or at the overview.
-2. **The person card**: a selected medallion opens a card on the right with the person's skills, opinion and goal, and the actions the panel offers for that person.
-3. **Answer in place**: an open matter unfolds in the list with its choices, costs and deadline, and is answered there.
+2. **The person card**: a selected medallion opens a card on the right with the person's skills, opinion and goal, and a way into the panel at that person.
+3. **Answer and act in place**: an open matter unfolds in the list with its choices, costs and deadline, and is answered there; the card offers the actions the panel offers for its person.
 4. **The year**: the bottom year line with the deadlines, the next-year button and the year turn, and a top bar in place of the upstream chrome.
 5. **The areas**: people, families, offices, intrigue and the chronicle in the left panel; the modal panel retires; the period accent.
 
@@ -40,6 +40,15 @@ Rulings, each with what it costs if wrong:
 6. **The shell reads the court once per revision**, through the reader the seat medallions use, so the two share one read.
 7. **The shell is drawn on a desktop when the campaign has a court**, the menu is closed and the panel is closed. The "Rike & familjer" button stays where it is.
 8. **The look is the draft's**: ink panels, vellum text, the house's gold for the ruler, minium for a count, EB Garamond and Cinzel, which the game ships. Six new strings ("Kräver dig", "Hovhusen", "Arvinge", "Inget kräver dig just nu." and a count's name, "{{count}} ärende" and "{{count}} ärenden"), each with its English. No surface is a gradient, which is a rule of the house.
+
+## Slice 2: the person card
+
+Rulings, each with what it costs if wrong:
+
+9. **A medallion selects; it no longer opens the panel.** A press opens the person's card, a second press on the same medallion closes it, and Escape closes it. The card's own button opens the panel at the person. Cost if wrong: one handler.
+10. **The card shows what the panel's people tab shows of the person**: name, age, house and role; where the person comes from, the archetype and the traits; the six skills; the opinion of the player's representative with its reasons; the stress; the goal. The labels are the panel's.
+11. **The card does not act in this slice.** Talking, giving and appointing run inside the panel's own views, with their odds and their confirmation. They come out of the panel together with the answers, in slice 3.
+12. **The card stands on the right under the band**, opposite "Kräver dig", so the land between them stays in view.
 
 ## Checks
 

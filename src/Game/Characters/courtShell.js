@@ -73,3 +73,31 @@ export function figuresOf(view) {
     { key: "readiness", label: "Militär beredskap", value: economy.militaryReadiness, unit: "%" },
   ];
 }
+
+// The six skills in the order the card shows them, with the panel's own labels (CharactersPanel.jsx, `humanize`).
+const SKILLS = [
+  ["command", "Befäl"], ["stewardship", "Förvaltning"], ["diplomacy", "Diplomati"],
+  ["learning", "Lärdom"], ["intrigue", "Intrig"], ["prowess", "Kampförmåga"],
+];
+
+/**
+ * The card of one person at court: who the person is, what the person can do and how the person stands to the player.
+ * Nothing here is new knowledge: it is what the panel's people tab shows. `null` for someone who is not at court.
+ */
+export function cardOf(view, personId) {
+  if (!personId) return null;
+  const thread = threadOf(view);
+  const member = [...thread.house, ...thread.others].find((entry) => entry.person.id === personId);
+  if (!member) return null;
+  const { person } = member;
+  return {
+    ...member,
+    // A name that says "(genererad)" already tells where the person comes from (the panel's own rule).
+    tags: [/genererad/i.test(person.name ?? "") ? null : person.originLabelSv, person.archetypeLabel, ...entries(person.traitLabels)].filter(Boolean),
+    skills: SKILLS.filter(([key]) => Number.isFinite(person.skills?.[key])).map(([key, label]) => ({ key, label, value: person.skills[key] })),
+    opinion: person.opinion ?? null,
+    opinionReasons: entries(person.opinionReasons).filter((reason) => reason?.label).map((reason) => ({ label: reason.label, value: reason.value ?? null })),
+    stress: person.stress ?? null,
+    goalLabel: String(person.goalLabel ?? ""),
+  };
+}
