@@ -71,7 +71,7 @@ const copy = (value) => JSON.parse(JSON.stringify(value));
 // lowercase word. A key ending in Id or Ids is a reference and is skipped as well.
 const CODE_KEYS = new Set([
   "id", "type", "kind", "mode", "status", "phase", "key", "value", "catalogId", "category", "skill", "defenseSkill",
-  "secrecySkill", "actorScope", "target", "targetFamily", "wallet", "stressTag", "precision", "sex", "archetype",
+  "secrecySkill", "actorScope", "target", "targetFamily", "wallet", "stressTag", "precision", "sex", "rulerSex", "archetype",
   "traits", "education", "taxPolicy", "successionLaw", "law", "strength", "evidence", "tier", "role", "origin",
   "identityOrigin", "tradition", "state", "choice", "approach", "policy", "care", "uses", "requires", "utility",
   "portraitState", "portraitAgeGroup", "sign", "types", "bonds", "source", "topic", "stage", "outcome", "result",

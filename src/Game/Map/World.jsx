@@ -7,6 +7,7 @@ import MapScene from "./MapScene.jsx";
 import CameraCompass from "./CameraCompass.jsx";
 import HistoricalWater from "./HistoricalWater.jsx";
 import SeasonalSnow from "./SeasonalSnow.jsx";
+import SeatRulers from "./SeatRulers.jsx";
 import { loadNatGeoDarkStyle } from "./natGeoDarkStyle.js";
 
 import { recordMapFreeze, recordMapTrace } from "../../runtime/mapPerfTrace.js";
@@ -1181,6 +1182,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
         {lean && <CameraCompass rest={restPitch(lean)} />}
         {historicalDefaultInUse && <SeasonalSnow />}
         {historicalDefaultInUse && <HistoricalWater />}
+        {historical && <SeatRulers />}
       </Map>
       )}
       {isGlobe && (
