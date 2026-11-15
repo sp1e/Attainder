@@ -396,7 +396,10 @@ function ChronicleView({ view, filter, setFilter, historical = false, startDate,
   </>;
 }
 
-export default function CharactersPanel({ open, onClose, chronicleRequest = 0 }) {
+// The tabs a request may open (the court over the map asks for people, decisions and the overview).
+const REQUEST_TABS = new Set(["council", "people", "families", "offices", "decisions", "intrigue", "chronicle"]);
+
+export default function CharactersPanel({ open, onClose, chronicleRequest = 0, request = null }) {
   const worldRevision = useRuntimeState("world", (world) => world?.characterSystem?.revision ?? null);
   const game = useRuntimeState("game");
   const events = useRuntimeState("events");
@@ -445,10 +448,20 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0 })
     if (!open) return undefined;
     const previousFocus = document.activeElement;
     panelRef.current?.querySelector("button")?.focus();
-    return () => previousFocus?.focus?.();
+    // The court over the map is not drawn while the panel is open. A medallion that opened it is gone by now and
+    // focus has fallen to the body, so on closing focus goes to the button that always opens the panel.
+    return () => (previousFocus?.isConnected && previousFocus !== document.body ? previousFocus : document.querySelector("[data-court-button]"))?.focus?.();
   }, [open]);
   // The popup's "Visa alla i krönikan" link: open the record, and keep focus in the panel.
   useChronicleRequest(chronicleRequest, () => { setTab("chronicle"); setChronicleFilter("history"); holdFocus(panelRef.current, document.activeElement); });
+  // A request to open at a place is applied once, when its sequence number is new.
+  const handledRequest = useRef(0);
+  useEffect(() => {
+    if (!request?.seq || request.seq === handledRequest.current) return;
+    handledRequest.current = request.seq;
+    if (REQUEST_TABS.has(request.tab)) setTab(request.tab);
+    if (request.personId) setPersonId(request.personId);
+  }, [request]);
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
   useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
   useEffect(() => {

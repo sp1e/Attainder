@@ -1,0 +1,49 @@
+# The court over the map: an interface shell
+
+Design for bringing the interface draft's shell into the game. The draft is `docs/design/ui-draft/` on the branch `design/ui-draft`, with its design system in `DESIGN.md` there. The map half of the draft is done (`2026-11-13-living-map-design.md`, slices 1 to 6).
+
+## Why
+
+The owner named four faults of the interface: the map and the court do not hang together, it is unclear what he should do, there is too much text and too many numbers, and time is not felt. Today the court is one panel that covers the map. A player sees the land or the court, never both, and the panel opens on an overview, not on what waits for him.
+
+The draft answers with one view: the court as a line of medallions over the map, what needs the player on the left, the selected person on the right, the year along the bottom. The owner approved that direction and asked for it in the game.
+
+## Goals
+
+- The court is on screen while the map is: who is at court, in what order they stand to the throne, and what waits for the player.
+- Each slice ships alone, leaves the game playable, and removes nothing a player needs before its replacement is there.
+- Desktop first: the owner plays at 2560 by 1440. A phone keeps the panel it has.
+
+## Non-goals
+
+- No change to the rules, the engine's state, saves or the model's prompts.
+- No new art. The medallions use the portraits the court already shows.
+- The upstream chrome (menu, title, date widget, search, chat) stays until slice 4 replaces it.
+
+## The slices
+
+1. **The court over the map** (this slice): the thread of medallions, the list of what needs the player, and the realm's six figures. Each is a way into the panel: a press opens it at the person, at the decisions or at the overview.
+2. **The person card**: a selected medallion opens a card on the right with the person's skills, opinion and goal, and the actions the panel offers for that person.
+3. **Answer in place**: an open matter unfolds in the list with its choices, costs and deadline, and is answered there.
+4. **The year**: the bottom year line with the deadlines, the next-year button and the year turn, and a top bar in place of the upstream chrome.
+5. **The areas**: people, families, offices, intrigue and the chronicle in the left panel; the modal panel retires; the period accent.
+
+## Slice 1: the court over the map
+
+Rulings, each with what it costs if wrong:
+
+1. **The thread is the ruling house in the order of succession, then the court houses.** The ruler first, then the engine's own candidates in their order, then the rest of the house by age; after a gap, the people of the other houses at court. The dead are not on it. In family mode the house is the family the player follows. Cost if wrong: one function.
+2. **A medallion carries a name, a role and a count.** The role is the ruler's office, "Arvinge" for the lawful heir, "Fånge" for a prisoner, otherwise the office the person holds. The count is the open matters the person is part of, as the one who acts or the one acted on. Cost if wrong: one function.
+3. **"Kräver dig" lists the open matters**, the nearest deadline first, each with its title, its deadline and the faces of its people. With nothing open it says so. Cost if wrong: one component.
+4. **The six figures are the panel's**: treasury, annual revenue, actions left, legitimacy, prestige and military readiness, with the panel's own labels. They say nothing the panel does not. Why each stands where it does comes in a later slice.
+5. **Everything in this slice opens the panel.** A medallion opens it at that person, a matter at the decisions, a figure at the overview. The event `oh:open-characters` carries where to open; without a place the panel opens as before. Cost if wrong: one handler.
+6. **The shell reads the court once per revision**, through the reader the seat medallions use, so the two share one read.
+7. **The shell is drawn on a desktop when the campaign has a court**, the menu is closed and the panel is closed. The "Rike & familjer" button stays where it is.
+8. **The look is the draft's**: ink panels, vellum text, the house's gold for the ruler, minium for a count, EB Garamond and Cinzel, which the game ships. Six new strings ("Kräver dig", "Hovhusen", "Arvinge", "Inget kräver dig just nu." and a count's name, "{{count}} ärende" and "{{count}} ärenden"), each with its English. No surface is a gradient, which is a rule of the house.
+
+## Checks
+
+- Unit tests for the thread, the matters, the counts and the figures.
+- Source tests for the wiring, and the three text checks (`build-native-catalog --check`, `check-native-pack`, the engine sweep).
+- The full suite and the build.
+- A browser run on the Charlemagne campaign: the thread's order against the panel's succession, the counts against the open decisions, a press on each kind, Swedish and English.
