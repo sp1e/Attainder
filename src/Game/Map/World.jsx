@@ -5,6 +5,7 @@ import Map from "react-map-gl/maplibre";
 import { useCustomBackground } from "./useCustomBackground.js";
 import MapScene from "./MapScene.jsx";
 import CameraCompass from "./CameraCompass.jsx";
+import HistoricalWater from "./HistoricalWater.jsx";
 import { loadNatGeoDarkStyle } from "./natGeoDarkStyle.js";
 
 import { recordMapFreeze, recordMapTrace } from "../../runtime/mapPerfTrace.js";
@@ -1177,6 +1178,7 @@ function World({ mapRef, projection: requestedProjection, terrainEnabled, onInit
       >
         <MapScene isGlobe={isGlobe} />
         {lean && <CameraCompass rest={restPitch(lean)} />}
+        {historicalDefaultInUse && <HistoricalWater />}
       </Map>
       )}
       {isGlobe && (

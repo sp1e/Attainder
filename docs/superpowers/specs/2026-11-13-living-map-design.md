@@ -20,7 +20,7 @@ A historical campaign opens on land the player can read as land: coasts, mountai
 
 - Non-historical scenarios keep today's look.
 - No change to scenario packages, saves, region geometry or the ownership rules.
-- A painted sea, a seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2 and the leaning camera slice 3.
+- A seasonal snow line and rulers at their seats come in later slices. Realm outlines are slice 2, the leaning camera slice 3 and painted water slice 4.
 
 ## Slice 1: the land shows
 
@@ -76,6 +76,20 @@ Rulings, each with what it costs if wrong:
 20. **When leaning stops being allowed, the camera is laid flat.** A player who switches to the globe would otherwise be left with a view he cannot change.
 
 Not in this slice: the sea floor still rises and falls with the elevation tiles, which shows as a step at the edge of the continental shelf. The painted sea of a later slice covers it.
+
+## Slice 4: painted water
+
+The sea of a historical campaign was the satellite's sea: a photograph of the sea floor, lit by the relief layer, with a step where the continental shelf ends. Lakes were dark patches of the photograph. The interface draft painted its water, and the owner approved that look.
+
+Rulings, each with what it costs if wrong:
+
+21. **The sea is everything that is not Natural Earth's 1:50m land.** The historical packages clip their realms to the same land, so a realm and the sea meet without a gap. The sea is built once by `scripts/build-map-water.mjs` into `public/map/sea.geojson` (2.0 MB: the sea as a surface, and its coast as lines without the edge of the world box, so no line runs down the antimeridian) and served with the game; it needs no network. Cost if wrong: one script and one file.
+22. **The lakes are Natural Earth's 1:50m lakes without the modern ones**: no feature classed as a reservoir, none named as one, and none of eight lakes a dam or a canal made (Nasser, Tharthar, Razzaza, Habbaniyah, Sarygamysh, Gatun, Havasu, the Salton Sea). 352 lakes remain, in `public/map/lakes.geojson`. The source file is kept beside the land, with its record in `lakes-source.json`. Cost if wrong: a list to edit. The Aral Sea is drawn as it is now, smaller than it was.
+23. **The water is painted in five layers**: the sea's colour, the open water deepened by the sea floor's depth (a colour ramp over the elevation tiles, clear at the coast), a band of pale shallows inside the sea along every coast, the lakes with a thin shore, and a pale line at the sea's shore. They lie over the relief, so the sea floor is no longer lit, and under every outline and border. Cost if wrong: five paint builders.
+24. **The paint thins from zoom 6.5 and is gone at zoom 10.** Natural Earth's coast is drawn for a scale of 1:50 million; close in it would cut across the photographed coast. Far out the painted sea carries the map, close in the photograph does. Cost if wrong: one table.
+25. **Painted water belongs to the historical default.** It is mounted when the map on screen is the historical default (slice 1's `usesHistoricalDefault`): a basemap the player picked, a scenario with a map of its own, and a map without a network are drawn as before. The deepening layer reads the elevation tiles and so needs the network anyway. Cost if wrong: one condition.
+
+The ground under the sea still follows the sea floor when the camera leans. Painted flat it shows only as a faint fold where the shelf ends.
 
 ## Checks
 

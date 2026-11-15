@@ -185,3 +185,65 @@ export function cameraOffRest(camera, rest = 0) {
   const fromNorth = Math.abs(((bearing % 360) + 540) % 360 - 180);
   return fromNorth > 0.5 || Math.abs(pitch - rest) > 1;
 }
+
+// Slice 4: painted water. The sea is everything that is not Natural Earth's land, the land the historical packages clip
+// their realms to; the lakes are Natural Earth's without the modern ones. scripts/build-map-water.mjs builds both files.
+export const WATER_SEA_URL = "/map/sea.geojson";
+export const WATER_LAKES_URL = "/map/lakes.geojson";
+export const WATER_SOURCE_IDS = Object.freeze({ sea: "water-sea-source", lakes: "water-lakes-source", depth: "water-depth-source" });
+export const WATER_LAYER_IDS = Object.freeze({
+  sea: "water-sea", depth: "water-depth", shallows: "water-shallows", lakes: "water-lakes", lakeShore: "water-lake-shore", shore: "water-shore",
+});
+// Bottom to top (mapLayerOrder.js holds the same six, over the relief and under the outlines).
+export const WATER_LAYER_ORDER = Object.freeze([
+  WATER_LAYER_IDS.sea, WATER_LAYER_IDS.depth, WATER_LAYER_IDS.shallows, WATER_LAYER_IDS.lakes, WATER_LAYER_IDS.lakeShore, WATER_LAYER_IDS.shore,
+]);
+// The sea file holds the sea as a surface and its coast as lines (the surface's rings without the edge of the world).
+export const WATER_SEA_FILTER = Object.freeze(["==", ["get", "kind"], "sea"]);
+export const WATER_COAST_FILTER = Object.freeze(["==", ["get", "kind"], "coast"]);
+// The sea floor's depth, from the elevation tiles, on a source of its own.
+export const WATER_DEPTH_SOURCE = Object.freeze({ type: "raster-dem", tiles: [TERRAIN_TILE_TEMPLATE], encoding: "terrarium", tileSize: 256, maxzoom: 5 });
+
+// Natural Earth's coast is drawn for 1:50 million. Close in it would cut across the photographed coast, so the paint
+// thins and the photograph takes over.
+export const WATER_OPACITY_STOPS = Object.freeze([[6.5, 1], [8, 0.6], [10, 0]]);
+// Rounded, so a scaled stop is 0.3 and not 0.30000000000000004.
+export const waterOpacity = (scale = 1) => byZoom(WATER_OPACITY_STOPS.map(([zoom, value]) => [zoom, Math.round(value * scale * 1000) / 1000]));
+
+export const buildSeaPaint = () => ({ "fill-color": "#17566a", "fill-opacity": waterOpacity(), "fill-antialias": true });
+
+/** The open water deepened by the sea floor: clear at the coast, darkest over the trenches. */
+export const buildSeaDepthPaint = () => ({
+  "color-relief-color": [
+    "interpolate", ["linear"], ["elevation"],
+    -7000, "#040d16", -3500, "#071b29", -1500, "#0b2a3b", -400, "rgba(15, 54, 70, 0.9)", -60, "rgba(23, 86, 106, 0)",
+  ],
+  "color-relief-opacity": waterOpacity(),
+});
+
+// [zoom, width, blur, offset] of the shallows. A coast line has the water on its left, so the offset is negative.
+const SHALLOWS_STOPS = Object.freeze([[1.5, 2.5, 2.5, -1], [3, 5, 5, -2], [6, 16, 14, -6], [9, 40, 30, -16]]);
+
+/** A pale band in the water along every coast. */
+export const buildShallowsPaint = () => ({
+  "line-color": "#6cc4b8",
+  "line-width": byZoom(SHALLOWS_STOPS.map(([zoom, width]) => [zoom, width])),
+  "line-blur": byZoom(SHALLOWS_STOPS.map(([zoom, , blur]) => [zoom, blur])),
+  "line-offset": byZoom(SHALLOWS_STOPS.map(([zoom, , , offset]) => [zoom, offset])),
+  "line-opacity": waterOpacity(0.7),
+});
+
+export const buildLakePaint = () => ({ "fill-color": "#1b6076", "fill-opacity": waterOpacity(), "fill-antialias": true });
+
+export const buildLakeShorePaint = () => ({
+  "line-color": "#8fcfc6",
+  "line-width": byZoom([[1.5, 0.25], [3, 0.4], [6, 0.9], [9, 1.5]]),
+  "line-opacity": waterOpacity(0.6),
+});
+
+/** A pale line at the sea's shore. */
+export const buildShorePaint = () => ({
+  "line-color": "#d9ecd9",
+  "line-width": byZoom([[1.5, 0.4], [3, 0.6], [6, 1.1], [9, 1.8]]),
+  "line-opacity": waterOpacity(0.7),
+});
