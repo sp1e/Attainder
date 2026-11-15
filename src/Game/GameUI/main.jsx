@@ -105,6 +105,7 @@ const LazyInteractivePanel = lazy(() =>
   import("./interactive.jsx").then((module) => ({ default: module.InteractivePanel })),
 );
 const LazyCharactersPanel = lazy(() => import("../Characters/CharactersPanel.jsx"));
+const LazyCourtShell = lazy(() => import("../Characters/CourtShell.jsx"));
 const LazyHistoricalYearNotice = lazy(() => import("../Characters/HistoricalYearNotice.jsx"));
 
 const checkWebGL = () => {
@@ -236,6 +237,7 @@ const Main = ({
   const [shouldLoadDebugConsole, setShouldLoadDebugConsole] = useState(false);
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
+  const [charactersRequest, setCharactersRequest] = useState({ seq: 0, tab: null, personId: null, gameId: null });
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
   const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -253,6 +255,7 @@ const Main = ({
 
   const [aiSetup, setAiSetup] = useState(readAiSetup);
   const { activeGame, games, loaded, runtimeScenario } = useLibraryState();
+  const activeGameId = activeGame?.id ?? null;
   // The year popup's link to the chronicle: opens the panel and counts each request.
   const chronicleRequest = useHistoryRecordRequest(activeGame?.id, () => { if (hasCharacters) setIsCharactersOpen(true); });
   // The game menu names the campaign the way the library does.
@@ -527,14 +530,17 @@ const Main = ({
   }, []);
 
   useEffect(() => {
-    const openCharacters = () => {
+    // The event may say where to open: a tab, and a person on the people tab (the court over the map sends both).
+    const openCharacters = (event) => {
+      const place = event?.detail;
+      if (place && typeof place === "object") setCharactersRequest((previous) => ({ seq: previous.seq + 1, tab: place.tab ?? null, personId: place.personId ?? null, gameId: activeGameId }));
       setIsCharactersOpen(true);
       setIsAdvisorOpen(false);
       setActiveBottomPanel(null);
     };
     window.addEventListener("oh:open-characters", openCharacters);
     return () => window.removeEventListener("oh:open-characters", openCharacters);
-  }, []);
+  }, [activeGameId]);
 
   useEffect(() => {
     if (!hasCharacters || mainMenuOpen || !activeGame?.id) return;
@@ -562,10 +568,12 @@ const Main = ({
       {hasCharacters && !mainMenuOpen && <button
         type="button"
         aria-expanded={isCharactersOpen}
+        data-court-button
         onClick={() => setIsCharactersOpen(true)}
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
-      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} /></Suspense>}
+      {hasCharacters && !mainMenuOpen && !isCharactersOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} /></Suspense>}
+      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} request={charactersRequest.gameId === activeGame?.id ? charactersRequest : null} /></Suspense>}
       {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}

@@ -111,16 +111,17 @@ test("a medallion is the person's portrait, or initials when there is none", () 
 test("the engine presents a foreign ruler's id and sex, and the map draws the medallions in a historical campaign", () => {
   const engine = fs.readFileSync(new URL("../../../server/characters/foreignRealms.js", import.meta.url), "utf8");
   assert.match(engine, /rulerId: ruler\.id, rulerSex: ruler\.sex,/);
-  const world = read("./World.jsx"), component = read("./SeatRulers.jsx");
+  const world = read("./World.jsx"), component = read("./SeatRulers.jsx"), reader = read("../../runtime/useCourtView.js");
   assert.match(world, /\{historical && <SeatRulers \/>\}/);
-  assert.match(component, /await import\("\.\.\/\.\.\/runtime\/characterRuntime\.js"\)/, "the character engine stays out of the first download");
-  assert.doesNotMatch(component, /^import .*characterRuntime/m);
+  assert.match(component, /useCourtView\(activeGameId\)/);
+  assert.match(reader, /await import\("\.\/characterRuntime\.js"\)/, "the character engine is imported on demand");
+  assert.doesNotMatch(reader, /^import .*characterRuntime/m);
   assert.match(component, /originalEvent\?\.stopPropagation\(\)/, "a press does not reach the map");
   assert.match(component, /new CustomEvent\("oh:open-characters"\)/);
   assert.match(component, /"oh:cities-updated"/);
   assert.doesNotMatch(component, /oh:characters-updated/, "the court's revision already says when the court moved");
-  assert.match(component, /if \(!hasCourt \|\| transactionPending\) return undefined;/, "the map never starts a recovery");
-  assert.match(component, /\[activeGameId, hasCourt, revision, transactionPending\]/, "another campaign reads again");
+  assert.match(reader, /if \(!hasCourt \|\| transactionPending\) return undefined;/, "the map never starts a recovery");
+  assert.match(reader, /\[activeGameId, hasCourt, revision, seen, transactionPending\]/, "another campaign reads again");
   assert.match(component, /setAttribute\("role", "presentation"\)/);
   assert.match(component, /addEventListener\("dblclick", stop\)/);
   assert.match(component, /aria-label=\{label\}/);

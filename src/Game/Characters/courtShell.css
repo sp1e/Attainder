@@ -1,0 +1,103 @@
+/* The court over the map (CourtShell.jsx). The look is the interface draft's: ink panels, vellum text, gold for the
+   ruler, minium for a count. Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md. */
+.court-shell {
+  --court-ink: #14100c;
+  --court-ink-2: #1f1913;
+  --court-rule: #4a3f31;
+  --court-vellum: #efe6d2;
+  --court-vellum-2: #c4b79c;
+  --court-vellum-3: #9a8d75;
+  --court-minium: #e0573a;
+  --court-metal: #d4ac3a;
+  --court-serif: "EB Garamond", Georgia, serif;
+  --court-caps: "Cinzel", "EB Garamond", Georgia, serif;
+  position: fixed;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 9998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  pointer-events: none;
+  color: var(--court-vellum);
+  font-family: var(--court-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.court-shell button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.court-shell button:focus-visible { outline: 2px solid var(--court-metal); outline-offset: 2px; }
+
+/* The band: the thread on the left, the figures on the right. It starts beside the "Rike & familjer" button. */
+.court-band {
+  align-self: stretch;
+  margin-left: 11rem;
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 0.45rem 0.8rem 0.4rem;
+  border: 1px solid var(--court-rule);
+  border-radius: 12px;
+  background: rgba(20, 16, 12, 0.86);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+  min-width: 0;
+}
+/* The padding keeps a focus ring and a count from being cut where the thread scrolls. */
+.court-thread { flex: 1 1 auto; min-width: 0; display: flex; align-items: flex-start; gap: 0.9rem; padding: 0.3rem 0.25rem 0.2rem; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--court-rule) transparent; }
+.court-line { display: flex; align-items: flex-start; gap: 0.35rem; }
+.court-caption { align-self: center; flex: none; font: 600 0.62rem/1 var(--court-caps); letter-spacing: 0.14em; text-transform: uppercase; color: var(--court-vellum-3); }
+
+.court-person { position: relative; flex: none; width: 4.4rem; display: flex; flex-direction: column; align-items: center; gap: 0.12rem; text-align: center; }
+.court-person-face {
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  background: var(--court-ink-2); border: 2px solid var(--court-vellum-3); font: 600 0.9rem var(--court-serif);
+  transition: border-color 0.15s, transform 0.15s;
+}
+.court-person:hover .court-person-face { border-color: var(--court-vellum); transform: translateY(-1px); }
+.court-person--ruler .court-person-face { width: 3rem; height: 3rem; border-color: var(--court-metal); box-shadow: 0 0 0 2px rgba(212, 172, 58, 0.25); }
+.court-person--heir .court-person-face { border-color: var(--court-metal); }
+.court-person--held .court-person-face { filter: grayscale(0.8) brightness(0.8); }
+.court-person-who { font-size: 0.78rem; line-height: 1.1; max-height: 2.2em; overflow: hidden; }
+.court-person-role { font: 600 0.62rem/1.15 var(--court-caps); letter-spacing: 0.08em; text-transform: uppercase; color: var(--court-vellum-2); }
+.court-person--ruler .court-person-role, .court-person--heir .court-person-role { color: var(--court-metal); }
+.court-person-flag {
+  position: absolute; top: -0.1rem; left: calc(50% + 0.75rem); min-width: 1.05rem; height: 1.05rem; padding: 0 0.2rem; border-radius: 0.55rem;
+  display: flex; align-items: center; justify-content: center; background: var(--court-minium); color: #1a0a05; font: 700 0.68rem/1 var(--court-serif);
+}
+
+.court-shell .court-figures { flex: none; display: flex; align-items: center; gap: 1.1rem; padding-left: 1rem; border-left: 1px solid var(--court-rule); border-radius: 0; }
+.court-figure { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
+.court-figure span { font-size: 0.7rem; line-height: 1; color: var(--court-vellum-2); text-decoration: underline dotted var(--court-rule); text-underline-offset: 3px; }
+.court-figure b { font-size: 1.15rem; line-height: 1.15; font-weight: 600; white-space: nowrap; }
+.court-figure small { font-size: 0.7rem; font-weight: 400; color: var(--court-vellum-2); }
+.court-figure--down { color: var(--court-minium); }
+
+/* What needs the player. */
+.court-needs {
+  width: 19rem; max-height: min(52vh, 28rem); display: flex; flex-direction: column;
+  border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.9); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: auto; overflow: hidden;
+}
+.court-needs header { display: flex; align-items: baseline; justify-content: space-between; padding: 0.55rem 0.8rem; background: #5a2449; }
+.court-needs h2 { margin: 0; font: 600 1.25rem/1 var(--court-serif); }
+.court-needs-count { font-size: 0.8rem; color: var(--court-vellum-2); }
+.court-needs ul { list-style: none; margin: 0; padding: 0.4rem; display: flex; flex-direction: column; gap: 0.3rem; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--court-rule) transparent; }
+.court-needs p { margin: 0; padding: 0.7rem 0.8rem; font-size: 0.95rem; color: var(--court-vellum-2); }
+.court-shell .court-matter {
+  width: 100%; display: grid; grid-template-columns: auto 1fr; column-gap: 0.55rem; align-items: center; text-align: left;
+  padding: 0.45rem 0.55rem; border: 1px solid var(--court-rule); border-radius: 8px; background: var(--court-ink-2);
+}
+.court-shell .court-matter:hover { border-color: var(--court-vellum-3); }
+.court-matter-faces { grid-row: span 2; display: flex; }
+.court-mini { width: 1.7rem; height: 1.7rem; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid var(--court-vellum-3); background: var(--court-ink); font: 600 0.62rem var(--court-serif); font-style: normal; }
+.court-mini + .court-mini { margin-left: -0.5rem; }
+.court-matter b { font-size: 0.98rem; line-height: 1.15; font-weight: 600; }
+.court-matter small { grid-column: 2; font-size: 0.78rem; color: var(--court-minium); }
+
+/* Narrow windows: the figures give way to the thread. */
+@media (max-width: 1280px) {
+  .court-figures { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .court-person-face { transition: none; }
+}

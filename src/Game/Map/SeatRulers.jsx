@@ -5,8 +5,9 @@ import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } fro
 import { Marker } from "react-map-gl/maplibre";
 import { JSON_URLS, readJson } from "../../runtime/assets.js";
 import { useLibraryState } from "../../runtime/library.js";
-import { useRuntimeState } from "../../runtime/useRuntimeState.js";
+import { useCourtView } from "../../runtime/useCourtView.js";
 import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
+import MedallionPicture from "../Characters/MedallionPicture.jsx";
 import { medallionOf, seatRulers } from "./seatRulers.js";
 import { getPlayerCode, subscribeUnits } from "./unitsController.js";
 
@@ -28,7 +29,6 @@ const MEDALLION_STYLE = {
   color: "#efe6d2",
   font: "600 15px Georgia, serif",
 };
-const PICTURE_STYLE = { width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 30%", display: "block" };
 
 // A failed read leaves the map as it was: the medallions are an extra, and the court panel reports its own failures.
 const warn = (what, error) => console.warn(`[map] the rulers at their seats: ${what} could not be read:`, error);
@@ -54,44 +54,6 @@ const useSeatCities = (activeGameId, hasCourt) => {
   return loaded.campaign === activeGameId ? loaded.cities : null;
 };
 
-/**
- * The court as the player sees it, read again when the court's revision moves. While the engine has a transaction to
- * recover the map waits: reading then would start the recovery, which is the court panel's to do. The character
- * engine is imported on demand, as the court panel is.
- */
-const useSeatCourt = (activeGameId) => {
-  const revision = useRuntimeState("world", (world) => world?.characterSystem?.revision ?? null);
-  const transactionPending = useRuntimeState("world", (world) => Boolean(world?.characterTransaction));
-  const hasCourt = revision !== null;
-  const [loaded, setLoaded] = useState({ campaign: null, view: null });
-  useEffect(() => {
-    if (!hasCourt || transactionPending) return undefined;
-    let current = true;
-    (async () => {
-      const { readVisibleCharacterState } = await import("../../runtime/characterRuntime.js");
-      const { getCharacterPresentation } = await import("../../runtime/characters/index.js");
-      const state = await readVisibleCharacterState();
-      if (current) setLoaded({ campaign: activeGameId, view: state ? getCharacterPresentation(state) : null });
-    })().catch((error) => { if (current) warn("the court", error); });
-    return () => { current = false; };
-  }, [activeGameId, hasCourt, revision, transactionPending]);
-  // The court of another campaign is not this one's.
-  return { hasCourt, view: hasCourt && loaded.campaign === activeGameId ? loaded.view : null };
-};
-
-const Picture = ({ medallion }) => {
-  if (medallion.kind === "image") return <img src={medallion.src} alt="" aria-hidden="true" style={PICTURE_STYLE} />;
-  if (medallion.kind === "atlas") {
-    const { rect } = medallion;
-    return (
-      <svg viewBox={`${rect.x} ${rect.y} ${rect.width} ${rect.height}`} preserveAspectRatio="xMidYMin slice" focusable="false" aria-hidden="true" style={PICTURE_STYLE}>
-        <image href={medallion.src} width={medallion.width} height={medallion.height} />
-      </svg>
-    );
-  }
-  return <span aria-hidden="true">{medallion.text}</span>;
-};
-
 const openCourt = (event) => {
   // The press is the medallion's: the province under it does not open.
   event?.originalEvent?.stopPropagation();
@@ -115,7 +77,7 @@ const Medallion = ({ ruler, label, medallion }) => {
   return (
     <Marker ref={marker} longitude={ruler.longitude} latitude={ruler.latitude} anchor="bottom" offset={[0, -10]} onClick={openCourt}>
       <button type="button" className="oh-tap" aria-label={label} title={label} style={{ ...MEDALLION_STYLE, border: `2px solid ${ruler.own ? OWN_RIM : OTHER_RIM}` }}>
-        <Picture medallion={medallion} />
+        <MedallionPicture medallion={medallion} />
       </button>
     </Marker>
   );
@@ -123,7 +85,8 @@ const Medallion = ({ ruler, label, medallion }) => {
 
 const SeatRulers = () => {
   const { activeGameId } = useLibraryState();
-  const { hasCourt, view } = useSeatCourt(activeGameId);
+  // The court is read once per revision and shared with the shell over the map (useCourtView.js).
+  const { hasCourt, view } = useCourtView(activeGameId);
   const cities = useSeatCities(activeGameId, hasCourt);
   const playerPolity = useSyncExternalStore(subscribeUnits, getPlayerCode);
   const updates = useTranslatorUpdates();
