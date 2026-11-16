@@ -64,6 +64,21 @@ Rulings, each with what it costs if wrong:
 18. **The shell says less than the panel, never more.** It leaves out a chain's earlier steps, the earlier memory and a stress of nothing.
 19. **Escape closes what focus is in**, the open matter or the card; with focus in neither, the card first.
 
+## Slice 4: the year and the top bar
+
+Since slice 3 the player answers and acts over the map, and the game's own move, the year, still needs the panel. Nothing over the map says what the year ahead holds.
+
+Rulings, each with what it costs if wrong:
+
+20. **A year line stands along the bottom of the map.** It is the twelve months ahead of the game's date, with a mark for each month and a tick at each open matter's deadline. A tick names its matter, or says how many when several fall on one day; a deadline within three months is in minium. A press on a tick opens its matter in "Kräver dig". Matters due after the twelve months are not on the line. Cost if wrong: one component.
+21. **The year turns from the line.** "Nästa år med modellen" is the panel's own move (`advanceCharacterYearWithModel`), with the panel's label, since it calls the model and takes minutes. While the year is written the line says so and every choice and action of the shell is locked; the selection stays free, so the player can read cards meanwhile.
+22. **The year's record stands over the map** when the year is written: the panel's heading ("Årets händelser", or "Händelser fram till beslutet" when time stopped), the reason time stopped, and each event with its date and title; an event's text unfolds on a press. "Visa senaste turens händelser" reads the last saved turn the same way, without letting time pass. Cost if wrong: one component.
+23. **A year turn outlives the shell.** Its state is kept beside the shell, with the campaign it belongs to: the player may open the panel while the model writes, and the record is there when the shell is drawn again.
+24. **The seasons do not sweep at the year turn in this slice.** Every released start opens at midwinter and a year turn ends a year later, so the snow line is the same before and after.
+25. **A court bar replaces the session pill and "Exit Game"** in a campaign with a court, on a desktop: the realm's name (the family's in family mode), the date, the mode, "Rike & familjer" and "Huvudmeny". The standalone "Rike & familjer" button goes into the bar, and the thread starts at the left edge.
+26. **The date widget stays.** The upstream widget at the top right carries the world's timeline, the shorter jumps, undo and auto-jump. Taking it apart is its own slice: its parts move when the areas do. Cost if wrong: the date is shown twice until then.
+27. **A phone keeps the upstream chrome.** The shell is not drawn there (ruling 7).
+
 ## Checks
 
 - Unit tests for the thread, the matters, the counts and the figures.

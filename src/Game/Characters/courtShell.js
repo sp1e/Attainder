@@ -1,5 +1,6 @@
 // The court over the map: what the shell shows, read out of the court's presentation. The thread of medallions, the
 // matters that need the player, and the realm's six figures. Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md.
+import { addGameMonths, compareGameDates, diffGameDays, formatGameDate, isGameDate, parseGameDate } from "../../runtime/gameDates.js";
 
 const entries = (value) => (Array.isArray(value) ? value : Object.values(value ?? {}));
 const alive = (person) => person && person.alive !== false && !person.diedAt && !person.deathDate;
@@ -187,4 +188,51 @@ export function actionsOf(view, personId) {
       fields: others,
     }];
   });
+}
+
+// A deadline this near is marked on the year line: three months.
+const SOON_DAYS = 92;
+// A tick past this share of the line writes its label to the left of its mark, so it stays on the line.
+const END_SHARE = 0.75;
+// Deadlines nearer each other than this share of the line (eleven days) would be written over each other: they
+// share one tick.
+const TICK_GAP = 0.03;
+
+/**
+ * The year line: the twelve months ahead of the game's date. `months` are the first day of each month on the way,
+ * `ticks` the open matters' deadlines, each at its share of the line (0 to 1). A deadline already passed stands at
+ * the start. Deadlines of one day, and those too near each other to be read apart, share a tick, which carries the
+ * nearest of them. A tick's `end` says its label stands to the left of its mark, and `room` is the share
+ * of the line the label may take before it meets the next tick's. `beyond` counts the open matters that are not on
+ * the line: due later, or never.
+ * `null` when the view has no game date.
+ */
+export function yearLineOf(view) {
+  const from = view?.date;
+  const start = parseGameDate(from);
+  if (!start) return null;
+  const to = addGameMonths(from, 12);
+  const span = diffGameDays(from, to);
+  const share = (date) => Math.min(1, Math.max(0, diffGameDays(from, date) / span));
+  const firstOfMonth = formatGameDate({ year: start.year, month: start.month, day: 1 });
+  const months = Array.from({ length: 12 }, (unused, index) => addGameMonths(firstOfMonth, index + 1))
+    .filter((date) => compareGameDates(date, to) <= 0)
+    .map((date) => ({ at: share(date), month: parseGameDate(date).month, year: parseGameDate(date).year }));
+  const matters = mattersOf(view);
+  const onLine = matters.filter((matter) => isGameDate(matter.dueAt) && compareGameDates(matter.dueAt, to) <= 0);
+  // `mattersOf` gives the nearest deadline first, so a tick's first matter is its nearest.
+  const marks = [];
+  for (const matter of onLine) {
+    const at = share(matter.dueAt), last = marks.at(-1);
+    if (last && at - last.at < TICK_GAP) last.matters.push({ id: matter.id, title: matter.title });
+    else marks.push({ dueAt: matter.dueAt, at, soon: diffGameDays(from, matter.dueAt) <= SOON_DAYS, end: at > END_SHARE, matters: [{ id: matter.id, title: matter.title }] });
+  }
+  // A label has the gap to the tick it grows toward, or half of it when that tick's label grows toward it too.
+  const ticks = marks.map((tick, index) => {
+    const neighbour = marks[index + (tick.end ? -1 : 1)];
+    if (!neighbour) return { ...tick, room: tick.end ? tick.at : 1 - tick.at };
+    const gap = Math.abs(neighbour.at - tick.at);
+    return { ...tick, room: neighbour.end === tick.end ? gap : gap / 2 };
+  });
+  return { from, to, months, ticks, beyond: matters.length - onLine.length };
 }

@@ -1668,7 +1668,9 @@ const EditorDrawer = ({
   );
 };
 
-const LibraryTopBar = () => {
+// `inGameBar`: a campaign may bring its own bar for the desktop in-game cluster (Attainder's court bar). It is
+// called with the way out to the menu and the place the cluster stands at.
+const LibraryTopBar = ({ inGameBar = null } = {}) => {
   const {
     activeGame,
     activeGameId,
@@ -3133,7 +3135,8 @@ const LibraryTopBar = () => {
           Below the settings menu and date widget (z 9998/9999) so opening
           either covers it instead of the other way around, and below the
           desktop advisor drawer (9997) so a wide drawer covers it too. */}
-      {!menuOpen && !isMobile && (
+      {!menuOpen && !isMobile && inGameBar && inGameBar({ exitToMenu, top: TOP_BAR_OFFSET, left: `calc(5rem + ${SAFE_LEFT})` })}
+      {!menuOpen && !isMobile && !inGameBar && (
         <div
           style={{
             alignItems: "center",

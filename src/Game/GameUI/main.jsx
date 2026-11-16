@@ -106,6 +106,7 @@ const LazyInteractivePanel = lazy(() =>
 );
 const LazyCharactersPanel = lazy(() => import("../Characters/CharactersPanel.jsx"));
 const LazyCourtShell = lazy(() => import("../Characters/CourtShell.jsx"));
+const LazyCourtTopBar = lazy(() => import("../Characters/CourtTopBar.jsx"));
 const LazyHistoricalYearNotice = lazy(() => import("../Characters/HistoricalYearNotice.jsx"));
 
 const checkWebGL = () => {
@@ -562,11 +563,19 @@ const Main = ({
     return () => window.removeEventListener("oh:open-character-model-settings", openModelSettings);
   }, []);
 
+  // The court bar stands where the session pill and Exit Game stand in a campaign without a court.
+  const courtBar = ({ exitToMenu, top, left }) => (
+    <Suspense fallback={null}>
+      <LazyCourtTopBar top={top} left={left} courtOpen={isCharactersOpen} onOpenCourt={() => setIsCharactersOpen(true)} onExit={exitToMenu} />
+    </Suspense>
+  );
+
   return (
     <>
       {showWebGLWarning && <WebGLWarningPopup />}
-      <LibraryTopBar />
-      {hasCharacters && !mainMenuOpen && <button
+      <LibraryTopBar inGameBar={hasCharacters && !isMobile ? courtBar : null} />
+      {/* On a desktop the court bar holds this button; a phone keeps it here. */}
+      {hasCharacters && !mainMenuOpen && isMobile && <button
         type="button"
         aria-expanded={isCharactersOpen}
         data-court-button

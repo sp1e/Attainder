@@ -1,6 +1,6 @@
 /* The court over the map (CourtShell.jsx). The look is the interface draft's: ink panels, vellum text, gold for the
    ruler, minium for a count. Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md. */
-.court-shell {
+.court-shell, .court-top {
   --court-ink: #14100c;
   --court-ink-2: #1f1913;
   --court-rule: #4a3f31;
@@ -11,6 +11,11 @@
   --court-metal: #d4ac3a;
   --court-serif: "EB Garamond", Georgia, serif;
   --court-caps: "Cinzel", "EB Garamond", Georgia, serif;
+  color: var(--court-vellum);
+  font-family: var(--court-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.court-shell {
   position: fixed;
   left: 0.5rem;
   right: 0.5rem;
@@ -22,17 +27,14 @@
   align-items: flex-start;
   gap: 0.6rem;
   pointer-events: none;
-  color: var(--court-vellum);
-  font-family: var(--court-serif);
-  font-variant-numeric: lining-nums tabular-nums;
 }
 .court-shell button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 .court-shell button:focus-visible { outline: 2px solid var(--court-metal); outline-offset: 2px; }
 
-/* The band: the thread on the left, the figures on the right. It starts beside the "Rike & familjer" button. */
+/* The band: the thread on the left, the figures on the right, from the left edge (the court bar holds the button
+   that stood beside it). */
 .court-band {
   align-self: stretch;
-  margin-left: 11rem;
   display: flex;
   align-items: stretch;
   gap: 1rem;
@@ -200,9 +202,94 @@
   background: var(--court-metal); color: #1a1307; font: 600 0.7rem/1.1 var(--court-caps); letter-spacing: 0.08em; text-transform: uppercase;
 }
 
+/* The turn's record, between the list and the card. */
+.court-report {
+  flex: 0 1 34rem; min-width: 0; max-height: min(100%, 46rem); margin: 0 auto; display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.94); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+.court-report header { flex: none; display: flex; align-items: baseline; justify-content: space-between; padding: 0.55rem 0.8rem; background: #5a2449; }
+.court-report h2 { margin: 0; font: 600 1.25rem/1 var(--court-serif); }
+.court-report h2:focus { outline: none; }
+.court-report > .court-notice { flex: none; margin: 0.5rem 0.6rem 0; display: flex; flex-direction: column; gap: 0.15rem; }
+.court-report ol { list-style: none; margin: 0; padding: 0.6rem 0.8rem; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--court-rule) transparent; }
+.court-report li { display: grid; grid-template-columns: 6.5rem 1fr; column-gap: 0.7rem; align-items: baseline; }
+.court-report-date { font-size: 0.8rem; color: var(--court-vellum-2); white-space: nowrap; }
+.court-report summary, .court-report li > b { font-size: 0.98rem; line-height: 1.25; font-weight: 600; }
+.court-report summary { cursor: pointer; }
+.court-report summary:focus-visible { outline: 2px solid var(--court-metal); outline-offset: 2px; }
+.court-report details p { margin: 0.35rem 0 0.2rem; max-width: 65ch; font-size: 0.92rem; line-height: 1.45; color: var(--court-vellum-2); white-space: pre-line; }
+.court-report-empty { margin: 0; padding: 0.7rem 0.8rem; font-size: 0.95rem; color: var(--court-vellum-2); }
+.court-shell .court-report-close {
+  flex: none; align-self: flex-end; margin: 0.2rem 0.6rem 0.6rem; padding: 0.45rem 0.9rem; border: 1px solid var(--court-rule); border-radius: 8px;
+  font: 600 0.7rem/1 var(--court-caps); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.court-shell .court-report-close:hover { border-color: var(--court-vellum-3); }
+
+/* The year line, along the bottom of the map between the map's own buttons. */
+.court-year { position: fixed; left: 19rem; right: 7rem; bottom: 0.5rem; height: 3.7rem; display: flex; align-items: stretch; gap: 0.5rem; pointer-events: none; }
+.court-year > * { pointer-events: auto; }
+.court-shell .court-year-last, .court-shell .court-year-next {
+  flex: none; padding: 0 0.9rem; border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.92);
+  font: 600 0.66rem/1.25 var(--court-caps); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.court-shell .court-year-last { max-width: 11.5rem; text-align: left; color: var(--court-vellum-2); }
+.court-shell .court-year-last:hover:not(:disabled) { border-color: var(--court-vellum-3); color: var(--court-vellum); }
+.court-shell .court-year-next { background: var(--court-metal); border-color: var(--court-metal); color: #1a1307; font-size: 0.72rem; }
+.court-shell .court-year-last:disabled, .court-shell .court-year-next:disabled { cursor: default; opacity: 0.6; }
+.court-year-line { position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden; border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.9); }
+.court-year-months { position: absolute; inset: auto 0 0 0; height: 1.2rem; border-top: 1px solid var(--court-rule); }
+.court-year-months span { position: absolute; top: 0; bottom: 0; padding-left: 0.3rem; border-left: 1px solid var(--court-rule); font-size: 0.7rem; line-height: 1.2rem; color: var(--court-vellum-3); white-space: nowrap; }
+.court-shell .court-tick {
+  position: absolute; top: 0.25rem; bottom: 1.4rem; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 0.05rem;
+  padding: 0 0.45rem; border-left: 2px solid var(--court-vellum-2); text-align: left; white-space: nowrap;
+}
+.court-tick b { overflow: hidden; text-overflow: ellipsis; font-size: 0.88rem; line-height: 1.15; font-weight: 600; }
+.court-tick small { overflow: hidden; text-overflow: ellipsis; font-size: 0.7rem; color: var(--court-vellum-2); }
+.court-shell .court-tick--soon { border-color: var(--court-minium); }
+.court-tick--soon b { color: var(--court-minium); }
+.court-shell .court-tick--end { border-left: 0; border-right: 2px solid var(--court-vellum-2); transform: translateX(-100%); text-align: right; }
+.court-shell .court-tick--end.court-tick--soon { border-right-color: var(--court-minium); }
+.court-shell .court-tick:hover b { text-decoration: underline; }
+.court-year-line--working .court-tick { opacity: 0.3; }
+.court-year-working:empty { display: none; }
+.court-year-working { position: absolute; inset: 0 0 1.2rem 0; z-index: 1; margin: 0; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; color: var(--court-metal); }
+.court-year-refusal {
+  position: absolute; left: 0; right: 0; bottom: calc(100% + 0.4rem); display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0.7rem;
+  border: 1px solid var(--court-rule); border-left: 3px solid var(--court-minium); border-radius: 8px; background: rgba(20, 16, 12, 0.96); font-size: 0.92rem; line-height: 1.3;
+}
+.court-year-refusal span { flex: 1 1 auto; }
+.court-shell .court-year-refusal button { flex: none; color: var(--court-vellum-2); text-decoration: underline; font-size: 0.85rem; }
+.court-shell .court-year-refusal button:hover { color: var(--court-vellum); }
+
+/* The court bar, where the session pill and Exit Game stood. It ends before the date widget, which owns the top right. */
+.court-top { position: fixed; z-index: 9996; height: 2.85rem; max-width: calc(100vw - 27rem); display: flex; align-items: stretch; gap: 0.45rem; }
+.court-top-title {
+  flex: 0 1 auto; min-width: 0; display: flex; align-items: baseline; gap: 0.7rem; padding: 0.62rem 0.9rem 0; overflow: hidden;
+  border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.9);
+}
+.court-top h1 { flex: 0 1 auto; min-width: 0; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 1.35rem/1.1 var(--court-serif); }
+.court-top-when { flex: none; font-size: 0.95rem; color: var(--court-vellum-2); white-space: nowrap; }
+.court-top-mode { flex: none; font: 600 0.62rem/1 var(--court-caps); letter-spacing: 0.12em; color: var(--court-vellum-3); white-space: nowrap; }
+.court-top button {
+  flex: none; padding: 0 0.9rem; border: 1px solid var(--court-rule); border-radius: 12px; background: rgba(20, 16, 12, 0.9); color: var(--court-vellum-2); cursor: pointer;
+  font: 600 0.68rem/1 var(--court-caps); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+}
+.court-top button:hover { border-color: var(--court-vellum-3); color: var(--court-vellum); }
+.court-top button:focus-visible { outline: 2px solid var(--court-metal); outline-offset: 2px; }
+.court-top .court-top-court { color: var(--court-vellum); }
+
 /* Narrow windows: the figures give way to the thread. */
 @media (max-width: 1280px) {
   .court-figures { display: none; }
+}
+/* Narrow windows: the bar keeps its buttons and gives up the mode, then the date. */
+@media (max-width: 1500px) {
+  .court-top-mode { display: none; }
+}
+@media (max-width: 1150px) {
+  .court-top-when { display: none; }
+  .court-year-last { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .court-person-face { transition: none; }
