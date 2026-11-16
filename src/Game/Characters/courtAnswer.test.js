@@ -144,7 +144,7 @@ test("a matter is answered in the list with the panel's own command", () => {
   assert.match(shell, /type: "resolve_story", payload: \{ storyId: [a-zA-Z.]+, choiceId \}/);
   assert.match(shell, /decisionNotice\(/);
   assert.match(shell, /role="status"/, "the notice is announced");
-  assert.match(shell, /open\(\{ tab: "decisions" \}\)/, "the actions that name nobody are one press away");
+  assert.match(shell, /open\(\{ tab: AREAS\.find\(/, "the actions that name nobody are one press away");
   assert.match(matter, /aria-expanded=\{open\}/);
   assert.match(matter, /role="alert"/, "a refusal is announced");
   assert.match(matter, /disabled=\{busy \|\| Boolean\(choice\.disabledReason\)\}/);
@@ -174,7 +174,7 @@ test("Escape closes what focus is in, and the open matter is kept with its campa
   const shell = read("./CourtShell.jsx");
   assert.match(shell, /closest\?\.\("\.court-needs"\)/);
   assert.match(shell, /data-court-matter=|matterId/);
-  assert.match(shell, /remembered = \{ campaign: activeGameId, id: selectedId, matterId: openMatterId \}/);
+  assert.match(shell, /remembered = \{ campaign: activeGameId, id: selectedId, matterId: openMatterId, area \}/);
 });
 
 test("while a command is written the shell keeps its selection, and what has left the court leaves no state behind", () => {

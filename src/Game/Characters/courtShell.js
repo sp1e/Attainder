@@ -236,3 +236,107 @@ export function yearLineOf(view) {
   });
   return { from, to, months, ticks, beyond: matters.length - onLine.length };
 }
+
+/** The areas of the left panel, each with the panel's tab it opens for what the list leaves out. */
+export const AREAS = Object.freeze([
+  { key: "needs", tab: "decisions" }, { key: "people", tab: "people" }, { key: "houses", tab: "families" },
+  { key: "seats", tab: "offices" }, { key: "intrigue", tab: "intrigue" }, { key: "chronicle", tab: "chronicle" },
+]);
+
+/** Everyone alive at court, in the thread's order. `self` marks the player's representative, who has no opinion of himself. */
+export function peopleOf(view) {
+  const thread = threadOf(view);
+  const selfId = view?.representative?.id ?? view?.ruler?.id ?? null;
+  return [...thread.house, ...thread.others].map((member) => ({ person: member.person, role: member.role, self: member.person.id === selfId }));
+}
+
+/**
+ * The houses by support, the strongest first; a house without a number comes last. `headId` is given only for a head
+ * who is alive at court, so only such a head can be selected. `own` marks the player's house.
+ */
+export function housesOf(view) {
+  const atCourt = new Map(entries(view?.people).filter(alive).map((person) => [person.id, person]));
+  const number = (value) => (Number.isFinite(value) ? value : null);
+  return entries(view?.families).filter((family) => family?.id).map((family) => ({
+    id: family.id,
+    name: String(family.name ?? ""),
+    headId: atCourt.has(family.headId) ? family.headId : null,
+    // The house names its head; a head at court whom it does not name is named by the court.
+    headName: String(family.headName || atCourt.get(family.headId)?.name || ""),
+    support: number(family.support),
+    treasury: number(family.treasury),
+    influence: number(family.influence),
+    own: family.id === view.identity?.familyId,
+    exiled: Boolean(family.exiled),
+  })).sort((left, right) => (right.support ?? -Infinity) - (left.support ?? -Infinity));
+}
+
+// The line of succession shows this many: the heir and the four after.
+const LINE_LENGTH = 5;
+
+/**
+ * The line of succession and the offices. The line is the lawful heir and the engine's candidates after, alive and
+ * without the ruler. An office's `holderId` is given only for a holder at court; a vacant office has no name.
+ */
+export function seatsOf(view) {
+  const byId = new Map(entries(view?.people).filter(alive).map((person) => [person.id, person]));
+  const rulerId = view?.ruler?.id ?? null;
+  const heirId = view?.succession?.legalHeirId ?? null;
+  const line = [...new Set([heirId, ...entries(view?.succession?.candidates).map((candidate) => candidate?.id)])]
+    .filter((id) => id !== rulerId && byId.has(id))
+    .slice(0, LINE_LENGTH)
+    .map((id) => ({ id, name: String(byId.get(id).name ?? ""), heir: id === heirId }));
+  const offices = entries(view?.offices).filter((office) => office?.id)
+    .map((office) => ({ ruler: office.kind === "ruler", seat: {
+      id: office.id,
+      name: String(office.name ?? ""),
+      holderId: byId.has(office.holderId) ? office.holderId : null,
+      holderName: office.holderId ? String(office.holderName || byId.get(office.holderId)?.name || "") : "",
+    } }))
+    .sort((left, right) => Number(right.ruler) - Number(left.ruler))
+    .map((entry) => entry.seat);
+  return { line, offices };
+}
+
+/**
+ * What the player's side knows and holds, under the presentation's own names. A person's id is given only for
+ * someone at court. An entry without an id is left out. `empty` when there is nothing of any kind.
+ */
+export function intrigueOf(view) {
+  const atCourt = new Set(entries(view?.people).filter(alive).map((person) => person.id));
+  const here = (id) => (atCourt.has(id) ? id : null);
+  const known = (value) => entries(value).filter((entry) => entry?.id);
+  const schemes = known(view?.schemes).map((scheme) => ({ id: scheme.id, actionLabel: String(scheme.actionLabel ?? ""), targetNames: entries(scheme.targetNames), dueAt: scheme.dueAt ?? "" }));
+  const prisoners = known(view?.prisoners).map((prisoner) => ({ id: prisoner.id, personId: here(prisoner.personId), name: String(prisoner.name ?? ""), familyName: String(prisoner.familyName ?? ""), since: prisoner.since ?? "", ransom: prisoner.ransom ?? null }));
+  const hooks = known(view?.ownHooks).map((hook) => ({ id: hook.id, targetId: here(hook.targetId), targetName: String(hook.targetName ?? ""), strengthLabel: String(hook.strengthLabel ?? hook.strength ?? "") }));
+  const secrets = known(view?.knownSecrets).map((secret) => ({ id: secret.id, subjectId: here(secret.subjectId), typeLabel: String(secret.typeLabel ?? secret.type ?? ""), subjectName: String(secret.subjectName ?? ""), evidenceLabel: String(secret.evidenceLabel ?? ""), exposed: Boolean(secret.exposed) }));
+  const rumors = known(view?.rumors).map((rumor) => ({ id: rumor.id, topicLabel: String(rumor.topicLabel ?? rumor.topic ?? ""), subjectName: String(rumor.subjectName ?? ""), date: rumor.date ?? "", reliability: rumor.reliability ?? "" }));
+  return { schemes, prisoners, hooks, secrets, rumors, empty: ![schemes, prisoners, hooks, secrets, rumors].some((list) => list.length) };
+}
+
+// The chronicle shows this many entries: the panel's record goes further back.
+const CHRONICLE_LENGTH = 60;
+
+/** The year record, the latest first, under its years. An entry without a date comes last, under no year. */
+export function chronicleOf(view) {
+  const dateOf = (entry) => entry.date || entry.createdAt || "";
+  const latest = entries(view?.log).filter((entry) => entry?.id)
+    .sort((left, right) => Number(isGameDate(dateOf(right))) - Number(isGameDate(dateOf(left))) || compareGameDates(dateOf(right), dateOf(left)))
+    .slice(0, CHRONICLE_LENGTH);
+  const years = [];
+  for (const entry of latest) {
+    const date = dateOf(entry);
+    const year = parseGameDate(date)?.year ?? null;
+    if (years.at(-1)?.year !== year) years.push({ year, entries: [] });
+    years.at(-1).entries.push({ id: entry.id, date, title: String(entry.title ?? ""), description: String(entry.description ?? ""), type: entry.type ?? "" });
+  }
+  return years;
+}
+
+// The start's package gives the period its accent (DESIGN.md, "The Period Accent Rule").
+const EPOCHS = Object.freeze({ "egypt-3000bc": "egypt", "john-1200": "angevin", "world-1500": "aztec" });
+
+/** The period accent of the campaign's start: `carolingian` for the year 800 and for any start without its own. */
+export function epochOf(view) {
+  return EPOCHS[view?.historicalOrigin?.contentId] ?? "carolingian";
+}

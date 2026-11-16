@@ -26,7 +26,8 @@ The draft answers with one view: the court as a line of medallions over the map,
 2. **The person card**: a selected medallion opens a card on the right with the person's skills, opinion and goal, and a way into the panel at that person.
 3. **Answer and act in place**: an open matter unfolds in the list with its choices, costs and deadline, and is answered there; the card offers the actions the panel offers for its person.
 4. **The year**: the bottom year line with the deadlines, the next-year button and the year turn, and a top bar in place of the upstream chrome.
-5. **The areas**: people, families, offices, intrigue and the chronicle in the left panel; the modal panel retires; the period accent.
+5. **The areas**: people, families, offices, intrigue and the chronicle as lists in the left panel, and the period accent.
+6. **The panel retires**: the conversation, the free-text action, the envoys, the schemes' forms and the general actions come out of the modal panel, and the panel goes.
 
 ## Slice 1: the court over the map
 
@@ -78,6 +79,22 @@ Rulings, each with what it costs if wrong:
 25. **A court bar replaces the session pill and "Exit Game"** in a campaign with a court, on a desktop: the realm's name (the family's in family mode), the date, the mode, "Rike & familjer" and "Huvudmeny". The standalone "Rike & familjer" button goes into the bar, and the thread starts at the left edge.
 26. **The date widget stays.** The upstream widget at the top right carries the world's timeline, the shorter jumps, undo and auto-jump. Taking it apart is its own slice: its parts move when the areas do. Cost if wrong: the date is shown twice until then.
 27. **A phone keeps the upstream chrome.** The shell is not drawn there (ruling 7).
+
+## Slice 5: the areas and the period accent
+
+Since slice 4 the player answers, acts and turns the year over the map. To see who is at court beyond the thread, how the houses stand, who holds which office, what the player's side knows, or what has happened, the player still opens the modal panel, and the map is gone behind it.
+
+Rulings, each with what it costs if wrong:
+
+28. **The slice is cut in two.** The list of slices gave slice 5 the areas, the panel's retirement and the period accent. The panel also holds what no list can: the conversation, the free-text action with its odds, the envoys, the schemes' forms, the general actions, the chronicle's history, the model's connection. Those come out in slice 6, and the panel goes then. This slice brings out what is read. Cost if wrong: one more slice than the list said.
+29. **The left panel has six areas**: "Kräver dig", "Personer", "Familjer", "Ämbeten & arv", "Intriger" and "Krönikan", the panel's own names, chosen at the head of the panel. "Kräver dig" carries the count of open matters. The area is kept with its campaign while the shell is not drawn. A tick of the year line leads to "Kräver dig".
+30. **"Personer" is everyone alive at court**, in the thread's order: the face, the name, the house and age, and the opinion of the player's representative. A press selects the person, as a medallion does.
+31. **"Familjer" is the houses by support**, the strongest support first: the name, the head, the support, the common treasury and the influence, the panel's own figures. The player's house is marked. A press on a head who is at court selects the person.
+32. **"Ämbeten & arv" is the line of succession and the offices**: the lawful heir and the candidates after, then each office with its holder; a vacant office says so in italic. A press on a person selects.
+33. **"Intriger" is what the player's side knows and holds**: the running schemes with their targets and the day they are settled, the prisoners, the hooks, the known secrets and the rumours, under the panel's own headings. An empty kind is left out; with nothing at all the area says so. The forms (abort, release, press) stay in the panel in this slice.
+34. **"Krönikan" is the year record**, the latest first, under a heading for each year: the date and the title, and the text on a press. It is the log the panel shows, not the memories.
+35. **Each area has one button into the panel** at its own tab, for what the list leaves out.
+36. **The period accent follows the start.** The heads of the shell's panels (the list, the record and the card), the rule under them and the ring around the selected medallion take the start's accent: Carolingian purple for the year 800 (and for any start without its own), Nile green for Egypt 3000 BC, Angevin red for 1200, turquoise for 1500. Ink, vellum, minium and gold are the same in every start (DESIGN.md, "The Period Accent Rule").
 
 ## Checks
 

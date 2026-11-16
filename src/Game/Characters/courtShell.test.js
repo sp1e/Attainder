@@ -120,12 +120,14 @@ test("the shell is drawn over the map and everything in it opens the panel at a 
   assert.match(panel, /request\.seq === handledRequest\.current\) return;/);
   assert.match(panel, /if \(REQUEST_TABS\.has\(request\.tab\)\) setTab\(request\.tab\);/);
   assert.match(shell, /new CustomEvent\("oh:open-characters", \{ detail \}\)/);
-  for (const place of ['tab: "decisions"', 'tab: "council"']) assert.ok(shell.includes(place), place);
+  assert.ok(shell.includes('tab: "council"'));
+  assert.match(shell, /open\(\{ tab: AREAS\.find\(/, "the list opens the panel at its area's tab (the decisions, for the matters)");
   assert.match(shell, /useCourtView\(activeGameId\)/);
   assert.match(read("../Map/SeatRulers.jsx"), /useCourtView\(activeGameId\)/, "the seat medallions share the read");
   assert.match(reader, /await import\("\.\/characterRuntime\.js"\)/);
   assert.match(reader, /if \(!hasCourt \|\| transactionPending\) return undefined;/, "the reader never starts a recovery");
-  for (const text of ["Kräver dig", "Hovhusen", "Inget kräver dig just nu."]) assert.ok(shell.includes(text), text);
+  for (const text of ["Hovhusen", "Inget kräver dig just nu."]) assert.ok(shell.includes(text), text);
+  assert.ok(read("./CourtAreas.jsx").includes("Kräver dig"), "the list's name stands with the other areas' names");
   assert.match(shell, /className="court-shell" data-native-text/, "the whole native book applies in the shell");
 });
 

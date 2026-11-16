@@ -1,7 +1,8 @@
 // The court over the map: the thread of medallions, the list of what needs the player, and the realm's six figures.
 // A matter is answered in the list, a person's actions are carried out from the card, and the year turns from the
 // line along the bottom; the rest is a way into the court panel. What is shown is decided in courtShell.js.
-// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 1 to 4.
+// The left panel shows one area of the court at a time (CourtAreas.jsx).
+// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 1 to 5.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./courtShell.css";
 import { characterNumberLocale } from "../../runtime/characterLanguage.js";
@@ -9,13 +10,17 @@ import { useLibraryState } from "../../runtime/library.js";
 import { useCourtView } from "../../runtime/useCourtView.js";
 import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import { medallionOf } from "../Map/seatRulers.js";
+import { ChronicleArea, CourtAreaTabs, HousesArea, IntrigueArea, PeopleArea, SeatsArea, areaName } from "./CourtAreas.jsx";
 import CourtCardActions from "./CourtCardActions.jsx";
 import CourtMatter from "./CourtMatter.jsx";
 import CourtPersonCard from "./CourtPersonCard.jsx";
 import CourtYearLine from "./CourtYearLine.jsx";
 import CourtYearReport from "./CourtYearReport.jsx";
 import MedallionPicture from "./MedallionPicture.jsx";
-import { actionsOf, answerOf, cardOf, commandNotice, decisionNotice, figuresOf, flagsOf, mattersOf, threadOf, yearLineOf } from "./courtShell.js";
+import {
+  AREAS, actionsOf, answerOf, cardOf, chronicleOf, commandNotice, decisionNotice, epochOf, figuresOf, flagsOf, housesOf, intrigueOf, mattersOf, peopleOf, seatsOf,
+  threadOf, yearLineOf,
+} from "./courtShell.js";
 import { courtYear, useCourtYear } from "./courtYear.js";
 import { useCourtCommand } from "./useCourtCommand.js";
 
@@ -37,7 +42,7 @@ const figureText = (figure, updates) => {
 // The shell is not drawn while the panel, the menu or a bottom panel is open. The person the player had selected and
 // the matter the player had open are kept here, with the campaign they belong to, so they are there again when the
 // shell comes back.
-let remembered = { campaign: null, id: null, matterId: null };
+let remembered = { campaign: null, id: null, matterId: null, area: "needs" };
 
 // A medallion selects its person: the card on the right is the person's. A second press closes it.
 const Medallion = ({ member, count, updates, selected, onSelect }) => {
@@ -61,7 +66,9 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
   const [selectedId, setSelectedId] = useState(() => (remembered.campaign === activeGameId ? remembered.id : null));
   const [openMatterId, setOpenMatterId] = useState(() => (remembered.campaign === activeGameId ? remembered.matterId : null));
   const [openAct, setOpenAct] = useState(null);
-  useEffect(() => { remembered = { campaign: activeGameId, id: selectedId, matterId: openMatterId }; }, [activeGameId, selectedId, openMatterId]);
+  // The area of the left panel: the matters, or one of the lists.
+  const [area, setArea] = useState(() => (remembered.campaign === activeGameId && AREAS.some((entry) => entry.key === remembered.area) ? remembered.area : "needs"));
+  useEffect(() => { remembered = { campaign: activeGameId, id: selectedId, matterId: openMatterId, area }; }, [activeGameId, selectedId, openMatterId, area]);
   // One command at a time for the whole shell: an answer to a matter, or an action from the card.
   const command = useCourtCommand(view?.revision);
   // The year turn is kept beside the shell (courtYear.js). Nothing is answered while the year is written; the
@@ -79,7 +86,8 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
   const acts = useMemo(() => actionsOf(view, card?.person.id), [view, card]);
   const answer = useMemo(() => answerOf(view, openMatterId), [view, openMatterId]);
   const cardOpen = Boolean(card);
-  const answerOpen = Boolean(answer);
+  // A matter is open to the player only while the matters are shown.
+  const answerOpen = Boolean(answer) && area === "needs";
   // What has left the court leaves no state behind: an action that comes back later is not found open.
   if (openAct && !acts.some((action) => action.type === openAct)) setOpenAct(null);
   if (view && openMatterId && !answer) setOpenMatterId(null);
@@ -149,11 +157,24 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
     setOpenMatterId(null);
     root.current?.querySelector("#court-needs-title")?.focus();
   };
+  const matterToFocus = useRef(null);
+  useEffect(() => {
+    const id = matterToFocus.current;
+    if (!id || area !== "needs") return;
+    matterToFocus.current = null;
+    root.current?.querySelector(`[data-court-matter="${CSS.escape(id)}"]`)?.focus();
+  });
   // A tick of the year line opens its matter in the list.
   const openMatter = (id) => {
     if (command.busy) return;
-    command.clear(); setOpenMatterId(id);
-    root.current?.querySelector(`[data-court-matter="${CSS.escape(id)}"]`)?.focus();
+    command.clear(); setArea("needs"); setOpenMatterId(id);
+    // From another area the matter's row is not drawn yet: it takes focus when it is.
+    matterToFocus.current = id;
+  };
+  // A name in a list opens its person's card. It never closes it: a name is not a switch.
+  const openPerson = (id) => {
+    if (command.busy || id === selectedId) return;
+    command.clear(); setOpenAct(null); setSelectedId(id);
   };
   const toggleAct = (type) => {
     if (command.busy) return;
@@ -171,16 +192,27 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
     const matters = mattersOf(view);
     return { thread: threadOf(view), matters, flags: flagsOf(matters), figures: figuresOf(view), line: yearLineOf(view) };
   }, [view]);
+  // Only the area that is shown is read out of the court.
+  const list = useMemo(() => {
+    if (area === "people") return peopleOf(view);
+    if (area === "houses") return housesOf(view);
+    if (area === "seats") return seatsOf(view);
+    if (area === "intrigue") return intrigueOf(view);
+    return area === "chronicle" ? chronicleOf(view) : null;
+  }, [view, area]);
   if (!view) return null;
   const { thread, matters, flags, figures, line } = shell;
   const onMatter = command.at === "matter", onCard = command.at === "card";
+  const needs = area === "needs";
+  // Another area takes the list's place. The tabs stay where they are, so focus stays on the tab that was pressed.
+  const showArea = (key) => { command.clear(); setArea(key); };
   const medallions = (members) => members.map((member) => (
     <Medallion key={member.person.id} member={member} count={flags.get(member.person.id) ?? 0} updates={updates} selected={card?.person.id === member.person.id} onSelect={select} />
   ));
 
   return (
     // data-native-text: the shell is written in Swedish, so the page translator applies its whole native book here.
-    <div className="court-shell" data-native-text ref={root} aria-busy={command.busy} style={{ top: `calc(${topOffset} + 5rem)` }}>
+    <div className="court-shell" data-native-text data-court-epoch={epochOf(view)} ref={root} aria-busy={command.busy} style={{ top: `calc(${topOffset} + 5rem)` }}>
       <div className="court-band">
         <nav className="court-thread" aria-label="Hovet">
           <div className="court-line">{medallions(thread.house)}</div>
@@ -198,13 +230,23 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
         </button>
       </div>
       <div className="court-row">
-      <aside className={answer ? "court-needs court-needs--open" : "court-needs"} aria-labelledby="court-needs-title">
+      <aside className={needs ? (answer ? "court-needs court-needs--open" : "court-needs") : "court-needs court-needs--area"} aria-labelledby="court-needs-title">
         <header>
-          <h2 id="court-needs-title" tabIndex={-1}>Kräver dig</h2>
-          <span className="court-needs-count">{matters.length}</span>
+          <h2 id="court-needs-title" tabIndex={-1}>{areaName(area)}</h2>
+          {needs && <span className="court-needs-count">{matters.length}</span>}
         </header>
-        {onMatter && command.notice && <p className="court-notice" role="status">{command.notice}</p>}
-        {matters.length > 0
+        <CourtAreaTabs area={area} count={matters.length} onArea={showArea} />
+        {needs && onMatter && command.notice && <p className="court-notice" role="status">{command.notice}</p>}
+        {!needs && (
+          <div className="court-area">
+            {area === "people" && <PeopleArea people={list} selectedId={card?.person.id ?? null} updates={updates} onSelect={select} />}
+            {area === "houses" && <HousesArea houses={list} updates={updates} onSelect={openPerson} />}
+            {area === "seats" && <SeatsArea seats={list} onSelect={openPerson} />}
+            {area === "intrigue" && <IntrigueArea intrigue={list} updates={updates} onSelect={openPerson} />}
+            {area === "chronicle" && <ChronicleArea years={list} updates={updates} />}
+          </div>
+        )}
+        {needs && (matters.length > 0
           ? (
             <ul className="court-matters">
               {matters.map((matter) => (
@@ -213,9 +255,12 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
               ))}
             </ul>
           )
-          : <p>Inget kräver dig just nu.</p>}
-        {/* The actions that name nobody (a feast, a wonder, the taxes) are in the panel, with every decision. */}
-        <button type="button" className="court-needs-more" onClick={() => open({ tab: "decisions" })}>Ärenden och handlingar</button>
+          : <p>Inget kräver dig just nu.</p>)}
+        {/* What a list leaves out is in the panel, at the area's own tab: for the matters, the actions that name
+            nobody (a feast, a wonder, the taxes) and every decision. */}
+        <button type="button" className="court-needs-more" onClick={() => open({ tab: AREAS.find((entry) => entry.key === area).tab })}>
+          {needs ? "Ärenden och handlingar" : "Öppna i panelen"}
+        </button>
       </aside>
       {year.report && <CourtYearReport report={year.report} onClose={closeReport} />}
       {/* The advisor's drawer opens over the right edge: the card steps aside for it. */}
