@@ -2444,7 +2444,8 @@ test("a narrated action in the chronicle is marked as the model's text; the engi
 
 test("the roots of the Swedish-native views carry data-native-text, and no panel view leaves its root through a portal", () => {
   const read = (file) => readFileSync(new URL(`./${file}`, import.meta.url), "utf8");
-  assert.match(read("CharactersPanel.jsx"), /return <div className="char-backdrop" data-char-theme=\{theme\} data-native-text /);
+  // The root carries data-native-text whether the panel is a dialog or docked beside the map (court shell, slice 6).
+  assert.match(read("CharactersPanel.jsx"), /return <div className=\{docked \? "char-backdrop char-backdrop--docked" : "char-backdrop"\} data-char-theme=\{docked \? "court" : theme\} data-native-text /);
   assert.match(read("HistoricalYearNotice.jsx"), /return <div className="char-backdrop hist-backdrop" data-char-theme=\{theme\} data-native-text>/);
   assert.match(read("HistoricalRecordView.jsx"), /return <div className="hist-record" data-native-text>/);
   for (const file of ["CharactersPanel.jsx", "ActionBox.jsx", "ConversationView.jsx", "EnvoyView.jsx", "IntrigueView.jsx", "CourtSections.jsx", "LocalModelConnect.jsx",

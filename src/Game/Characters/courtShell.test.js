@@ -113,7 +113,7 @@ test("the shell is drawn over the map and everything in it opens the panel at a 
   const main = read("../GameUI/main.jsx"), shell = read("./CourtShell.jsx"), panel = read("./CharactersPanel.jsx"), reader = read("../../runtime/useCourtView.js");
   assert.match(main, /const LazyCourtShell = lazy\(\(\) => import\("\.\.\/Characters\/CourtShell\.jsx"\)\);/);
   assert.match(main, /request=\{charactersRequest\.gameId === activeGame\?\.id \? charactersRequest : null\}/, "a place asked for in one campaign is not opened in another");
-  assert.match(main, /!isCharactersOpen && !activeBottomPanel && !isMobile && <Suspense fallback=\{null\}><LazyCourtShell/);
+  assert.match(main, /!mainMenuOpen && !activeBottomPanel && !isMobile && <Suspense fallback=\{null\}><LazyCourtShell/);
   assert.match(reader, /UNSEEN_EVENTS_CHANGED/, "the court is read again when the player has read a turn's events");
   assert.match(panel, /previousFocus\?\.isConnected/, "focus has somewhere to return to when the shell's button is gone");
   assert.match(main, /event\?\.detail/);
@@ -182,7 +182,7 @@ test("a medallion selects its person, and the card's button is the way into the 
   for (const text of ["Lär känna", "Stäng", "Åsikt om din företrädare", "Stress", "Mål och drivkrafter"]) assert.ok(card.includes(text), text);
   assert.match(shell, /data-court-person=\{member\.person\.id\}/, "closing the card can find the medallion again");
   assert.match(shell, /\?\.focus\(\)/, "focus returns to the medallion");
-  assert.match(shell, /closest\?\.\("input, textarea, select, \[contenteditable\]"\)/, "Escape in a text field is the field's");
+  assert.match(shell, /closest\?\.\("input, textarea, select, \[contenteditable\], \.char-panel"\)/, "Escape in a text field is the field's");
   assert.match(shell, /card && !rightBusy/, "the card steps aside for the advisor");
   assert.match(read("../GameUI/main.jsx"), /rightBusy=\{isAdvisorOpen\}/);
   assert.doesNotMatch(card, /key=\{tag\}|key=\{reason\.label\}/, "two tags or two reasons may read the same");

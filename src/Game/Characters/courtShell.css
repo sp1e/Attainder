@@ -268,6 +268,9 @@
   background: var(--court-metal); color: #1a1307; font: 600 0.7rem/1.1 var(--court-caps); letter-spacing: 0.08em; text-transform: uppercase;
 }
 
+/* The docked court panel stands in the list's place (characters.css, `.char-backdrop--docked`): the row leaves its
+   width free, so the record and the card stand to its right. */
+.court-row--docked { padding-left: calc(min(46rem, 100vw - 23.5rem) + 0.6rem); }
 /* The turn's record, between the list and the card. */
 .court-report {
   flex: 0 1 34rem; min-width: 0; max-height: min(100%, 46rem); margin: 0 auto; display: flex; flex-direction: column; overflow: hidden;

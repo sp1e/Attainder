@@ -183,7 +183,7 @@ test("while a command is written the shell keeps its selection, and what has lef
   for (const name of ["select", "toggleMatter", "toggleAct", "closeCard"]) {
     assert.match(shell, new RegExp(`const ${name} = \\([a-z]*\\) => \\{\\s+if \\(command\\.busy\\) return;`), name);
   }
-  assert.match(shell, /if \(\(!cardOpen && !answerOpen && !reportOpen\) \|\| busy\) return undefined;/, "Escape closes nothing while a command is written");
+  assert.match(shell, /if \(\(!cardOpen && !answerOpen && !reportOpen && !panelOpen\) \|\| busy\) return undefined;/, "Escape closes nothing while a command is written");
   assert.match(shell, /aria-busy=\{command\.busy\}/);
   assert.match(shell, /if \(openAct && !acts\.some\(\(action\) => action\.type === openAct\)\) setOpenAct\(null\);/, "an action that left the card is not open when it comes back");
   assert.match(shell, /if \(view && openMatterId && !answer\) setOpenMatterId\(null\);/);

@@ -32,7 +32,8 @@ const Tick = ({ tick, onOpenMatter }) => {
   );
 };
 
-export default function CourtYearLine({ line, year, locked, ended, updates, onOpenMatter, onAdvance, onReveal, onDismiss }) {
+/** `held`: a conversation's request stands open in the docked panel, and the year waits for its answer. */
+export default function CourtYearLine({ line, year, locked, ended, held = false, updates, onOpenMatter, onAdvance, onReveal, onDismiss }) {
   const { busy, kind, error } = year;
   return (
     <footer className="court-year" aria-label="Året som kommer">
@@ -52,7 +53,7 @@ export default function CourtYearLine({ line, year, locked, ended, updates, onOp
           {line.months.map((mark) => <span key={`${mark.year}-${mark.month}`} style={{ left: `${(mark.at * 100).toFixed(2)}%` }}>{monthText(mark, updates)}</span>)}
         </div>
       </div>
-      <button type="button" className="court-year-next" disabled={locked || ended} onClick={onAdvance}>
+      <button type="button" className="court-year-next" disabled={locked || ended || held} title={held ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={onAdvance}>
         {busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span>
       </button>
     </footer>

@@ -27,7 +27,7 @@ The draft answers with one view: the court as a line of medallions over the map,
 3. **Answer and act in place**: an open matter unfolds in the list with its choices, costs and deadline, and is answered there; the card offers the actions the panel offers for its person.
 4. **The year**: the bottom year line with the deadlines, the next-year button and the year turn, and a top bar in place of the upstream chrome.
 5. **The areas**: people, families, offices, intrigue and the chronicle as lists in the left panel, and the period accent.
-6. **The panel retires**: the conversation, the free-text action, the envoys, the schemes' forms and the general actions come out of the modal panel, and the panel goes.
+6. **The modal goes**: the panel stops covering the map. On a desktop it stands docked as the shell's left column, in the shell's look, with everything it holds: the conversation, the free-text action, the envoys, the schemes' forms and the general actions.
 
 ## Slice 1: the court over the map
 
@@ -95,6 +95,19 @@ Rulings, each with what it costs if wrong:
 34. **"Krönikan" is the year record**, the latest first, under a heading for each year: the date and the title, and the text on a press. It is the log the panel shows, not the memories.
 35. **Each area has one button into the panel** at its own tab, for what the list leaves out.
 36. **The period accent follows the start.** The heads of the shell's panels (the list, the record and the card), the rule under them and the ring around the selected medallion take the start's accent: Carolingian purple for the year 800 (and for any start without its own), Nile green for Egypt 3000 BC, Angevin red for 1200, turquoise for 1500. Ink, vellum, minium and gold are the same in every start (DESIGN.md, "The Period Accent Rule").
+
+## Slice 6: the modal goes
+
+Since slice 5 the player reads and decides over the map, and what no list can hold still opens a modal: a blurred sheet over the whole map, 1 440 pixels wide, in its own light or dark colours. A conversation with the heir hides the realm the conversation is about.
+
+Rulings, each with what it costs if wrong:
+
+37. **The panel docks; it is not rewritten.** Its views (the overview, the people with their conversations, the families, the offices with the envoys, the decisions with the general actions and the free-text action, the intrigue with its forms, the chronicle) are the game's tested depth. On a desktop, in a campaign with a court, the panel stands as the shell's left column under the band and above the year line, at most 46 rem wide, and the map, the thread, the card and the year line stay in view and in use. Cost if wrong: one class and one prop; the modal is still there for a phone.
+38. **A docked panel is not a dialog.** It has no backdrop, does not trap focus and is not announced as modal. Escape closes it when focus is inside it or nowhere; Escape elsewhere is the shell's.
+39. **The docked panel takes the shell's look**: ink ground, vellum text, the shell's gold, minium and rule, and the shell's serif. Its own light and dark themes, and their switch, belong to the modal.
+40. **The panel lays itself out by its own width**, not the window's: docked at 46 rem it takes the layout it has in a narrow window. The two breakpoints it had are kept, measured on the panel.
+41. **The docked panel does not repeat the shell.** The realm's name, the date and the mode stand in the court bar and the year turns from the year line, so the docked panel's strip keeps only the difficulty and the watches.
+42. **The shell stays while the panel is docked.** The panel takes the place of the shell's left list; the card, the year line and the turn's record stay, and the record moves to the right of the panel.
 
 ## Checks
 
