@@ -28,6 +28,7 @@ The draft answers with one view: the court as a line of medallions over the map,
 4. **The year**: the bottom year line with the deadlines, the next-year button and the year turn, and a top bar in place of the upstream chrome.
 5. **The areas**: people, families, offices, intrigue and the chronicle as lists in the left panel, and the period accent.
 6. **The modal goes**: the panel stops covering the map. On a desktop it stands docked as the shell's left column, in the shell's look, with everything it holds: the conversation, the free-text action, the envoys, the schemes' forms and the general actions.
+7. **The map's own controls take the shell's ground**: the upstream menu button, date widget, search and advisor buttons read the shell's ink, rule and vellum in a campaign with a court.
 
 ## Slice 1: the court over the map
 
@@ -108,6 +109,17 @@ Rulings, each with what it costs if wrong:
 40. **The panel lays itself out by its own width**, not the window's: docked at 46 rem it takes the layout it has in a narrow window. The two breakpoints it had are kept, measured on the panel.
 41. **The docked panel does not repeat the shell.** The realm's name, the date and the mode stand in the court bar and the year turns from the year line, so the docked panel's strip keeps only the difficulty and the watches.
 42. **The shell stays while the panel is docked.** The panel takes the place of the shell's left list; the card, the year line and the turn's record stay, and the record moves to the right of the panel.
+
+## Slice 7: the map's own controls take the shell's ground
+
+Since slice 6 everything of the court stands over the map in one look. The map's own controls beside it (the menu button, the date widget and its two panels, the search, the advisor's buttons) are still the upstream grey glass, so the screen reads as two programs.
+
+Rulings, each with what it costs if wrong:
+
+43. **The upstream controls keep their place, their shape and their code; they take the shell's ground.** They read their surfaces from the `--oh-hud-*` properties. In a campaign with a court, on a desktop, the properties the controls read for their surfaces are the shell's: ink ground, the shell's rule and a flat shadow without the inset light. The glass blur stays, because two controls keep a grey ground of their own and are read through it. Cost if wrong: one attribute and one block of properties.
+44. **The ground follows the court bar.** The bar is drawn in a campaign with a court on a desktop while the main menu is closed; it sets the attribute while it stands and takes it away when it goes. The main menu, the library and a phone keep the upstream look.
+45. **What an upstream control writes in a literal colour stays as it is** in this slice: every label (white), the menu button's and the advisor's buttons' grey ground. Changing those is a change to upstream code for each.
+46. **The same properties are read beyond the map's controls**: the settings dialog, the statistics, the country and event popups and the chat take the shell's rule and flat shadow too, some around a grey fill of their own. That is accepted here; it is the same campaign, and each fill is upstream code.
 
 ## Checks
 

@@ -363,3 +363,14 @@
 @media (prefers-reduced-motion: reduce) {
   .court-person-face { transition: none; }
 }
+/* The map's own controls (the menu button, the date widget and its panels, the search, the advisor's buttons) read
+   their surfaces from these properties. While the court bar stands they are the shell's: ink, the shell's rule and
+   a flat shadow. The glass blur stays, for the two controls that keep a grey ground of their own; the labels are
+   literal colours in the controls' own code. Spec: slice 7. */
+:root[data-court-hud] {
+  --oh-hud-bg: rgba(20, 16, 12, 0.9);
+  --oh-hud-bg-strong: rgba(20, 16, 12, 0.94);
+  --oh-hud-border: #4a3f31;
+  --oh-hud-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --oh-hud-shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
