@@ -1,0 +1,37 @@
+// A court year is not lost to a name.
+// Spec: docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md.
+//
+// gameplay.js cannot be loaded under bare node, so these tests read its source, as nameRefs.test.js does.
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+const gameplay = fs.readFileSync(new URL("./gameplay.js", import.meta.url), "utf8").replace(/\r\n/g, "\n");
+// The validator is one long function; what these tests look for stands in its first forty thousand characters.
+const validatorStart = gameplay.indexOf("export const validateGeneratedWorldChanges");
+const validator = validatorStart < 0 ? "" : gameplay.slice(validatorStart, validatorStart + 40000);
+
+test("a court year's world changes are strict only while a retry remains", () => {
+  const call = gameplay.slice(gameplay.indexOf("// The war ledger must see the sanitized impacts, so world changes go first."));
+  const argumentsOfCall = call.slice(call.indexOf("validateGeneratedWorldChanges(candidate, bundle.world, {"), call.indexOf("if (worldChangeError) return worldChangeError;"));
+  assert.match(argumentsOfCall, /strictTransfers: !finalAttempt,/, "the last answer is repaired in place, with or without a court");
+  // A court year's last answer drops what the map does not have and adds nothing: the ledgers after it are still
+  // strict there, and a capture completed on the last answer could be the combat they cannot bind to a war.
+  assert.match(argumentsOfCall, /captureGuard: !\(finalAttempt && Boolean\(bundle\.world\.characterSystem\)\),/);
+  assert.match(gameplay, /const strict = Boolean\(bundle\.world\.characterSystem\) \|\| !finalAttempt;/,
+    "the year's other checks keep the court's rule");
+});
+
+test("the contract the call now keeps is the validator's own", () => {
+  assert.match(gameplay, /Callers set it on every attempt EXCEPT the\n\/\/ last \(runJsonTask passes finalAttempt to validatePayload\)/);
+});
+
+test("the two refusals that cost a court year stand in the strict branch, with a repair beside them", () => {
+  assert.ok(validator.length > 1000, "the validator's source was found");
+  // An operation on a unit the map does not have: told while strict, dropped otherwise.
+  assert.match(validator, /if \(!unitIds\.has\(unitId\)\) \{\s+if \(strict\) return `\$\{operationPath\}\.unitId "\$\{unitId\}" does not name one existing unit\./);
+  assert.match(validator, /continue; \/\/ salvage: drop the op aimed at a unit that no longer exists/);
+  // The capture heuristic: a nudge on a strict attempt, a completed capture otherwise.
+  assert.match(validator, /if \(strict && captureGuard && Array\.isArray\(candidate\?\.events\)\) \{/);
+  assert.match(validator, /if \(!strict && captureGuard && !resolvedRegionIdsOnly && Array\.isArray\(candidate\?\.events\)\) \{\s+await completeNarratedCaptures\(/);
+});
