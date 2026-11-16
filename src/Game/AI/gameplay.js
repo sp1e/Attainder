@@ -13475,8 +13475,16 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
             }
           }
           // The war ledger must see the sanitized impacts, so world changes go first.
+          // Strict only while a retry remains, in a campaign with a court as in any other: the validator's own
+          // contract ("the final answer must never be rejected … over a name"). A court year has no fallback, so
+          // a strict last answer cost the whole year to a unit's name or to a sentence that read like a capture
+          // (docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md). The repairs drop operations
+          // from the events' impacts; the court's own changes (characterOps) are never touched here.
+          // A court year's last answer gets the drops and nothing added: the ledgers below are still strict for a
+          // court, and a capture completed here could be the combat they cannot bind to a war.
           const worldChangeError = await validateGeneratedWorldChanges(candidate, bundle.world, {
-            strictTransfers: strict,
+            strictTransfers: !finalAttempt,
+            captureGuard: !(finalAttempt && Boolean(bundle.world.characterSystem)),
             receipt: draft,
             requests: state.requests,
           });

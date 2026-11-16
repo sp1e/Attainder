@@ -354,7 +354,7 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 **Bugs the scripts found, all fixed**
 
 - A Claude Code installed through npm was reported as missing, because the bridge looked for `claude.exe` only in `~/.local/bin` and on `PATH`.
-- `LEGAL_TRANSFER_LANGUAGE` matched the Swedish word `sold` (a soldier's pay). A character campaign treats its final attempt as strict, so the whole year was lost after 158 seconds. The check now needs `sold to`.
+- `LEGAL_TRANSFER_LANGUAGE` matched the Swedish word `sold` (a soldier's pay). A character campaign treated its final attempt as strict in every check, so the whole year was lost after 158 seconds. The check now needs `sold to`. Since 16 November 2026 the world's changes are repaired in place on a court year's last answer: operations the map cannot carry are dropped, as in any other campaign (`docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md`). Two more years had been lost the same way, to a unit's name and to a sentence that read like a capture. A court year's other checks (dates, ledgers, storylines) are still strict on the last answer.
 - Codex older than the flags the bridge sends read `Inloggad och tillgänglig` and then failed on every call. Codex 0.117.0 lacks `--ignore-user-config`; 0.166.0 has it. The status now reads `Behöver uppdateras` with the update command. A real Codex call has not run on this computer.
 - `Planen avgörs 1/4 300 f.Kr..` had two periods, `Statskassan förändras med 30.1 silver.` used a decimal point, and the skill list showed `prowess` in English.
 - A failed year showed the model call's English error. The panel now shows a Swedish sentence and logs the original.
