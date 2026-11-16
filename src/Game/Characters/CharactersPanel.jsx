@@ -400,7 +400,9 @@ function ChronicleView({ view, filter, setFilter, historical = false, startDate,
 // The tabs a request may open (the court over the map asks for people, decisions and the overview).
 const REQUEST_TABS = new Set(["council", "people", "families", "offices", "decisions", "intrigue", "chronicle"]);
 
-export default function CharactersPanel({ open, onClose, chronicleRequest = 0, request = null }) {
+// `docked`: on a desktop, in a campaign with a court, the panel is the court shell's left column beside the map
+// (court shell, slice 6). It is then no dialog: no backdrop, no focus trap, the shell's look.
+export default function CharactersPanel({ open, onClose, chronicleRequest = 0, request = null, docked = false }) {
   const worldRevision = useRuntimeState("world", (world) => world?.characterSystem?.revision ?? null);
   const game = useRuntimeState("game");
   const events = useRuntimeState("events");
@@ -470,7 +472,9 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
   useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
   useEffect(() => {
-    if (!open) return undefined;
+    // Docked, the rest of the page is in use beside the panel: Escape out there is the court shell's, which closes
+    // its own things first and then the panel. Escape inside the panel is handled on the panel itself.
+    if (!open || docked) return undefined;
     const closeOnEscape = (event) => {
       if (event.key !== "Escape" || event.defaultPrevented) return;
       event.preventDefault();
@@ -478,11 +482,18 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [open, onClose]);
+  }, [open, onClose, docked]);
   useEffect(() => {
     const panel = panelRef.current;
-    if (open && panel && !panel.contains(document.activeElement)) panel.querySelector("button:not(:disabled)")?.focus();
-  }, [open, busy]);
+    // A dialog keeps focus inside itself; a docked panel lets the player work beside it.
+    if (!docked && open && panel && !panel.contains(document.activeElement)) panel.querySelector("button:not(:disabled)")?.focus();
+  }, [open, busy, docked]);
+  // A conversation's open request holds the year (its odds must not go stale). Docked, the year turns from the
+  // court shell's year line, so the shell is told. As a dialog the panel holds its own button.
+  useEffect(() => {
+    if (!docked) return;
+    window.dispatchEvent(new CustomEvent("oh:court-talk-hold", { detail: { held: open && talkHold } }));
+  }, [docked, open, talkHold]);
   const view = useMemo(() => state ? getCharacterPresentation(state) : null, [state]);
   const pending = entries(view?.stories).filter((story) => ["open", "pending", "active"].includes(story.status));
   const perform = useCallback(async (operation, annual = false, withModel = annual, quiet = false, summary = null) => {
@@ -527,7 +538,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   const onKeyDown = (event) => {
     event.stopPropagation();
     if (event.key === "Escape") { event.preventDefault(); onClose(); }
-    if (event.key !== "Tab") return;
+    if (docked || event.key !== "Tab") return;
     const focusable = [...panelRef.current.querySelectorAll('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), summary, [tabindex="0"]')].filter((element) => element.getClientRects().length);
     const first = focusable[0]; const last = focusable.at(-1);
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
@@ -538,10 +549,10 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   if (talkAsk && tab !== "people") setTalkAsk(null);
   if (!open) return null;
   // data-native-text: everything in the panel is written in Swedish, so the page translator applies its whole native book here.
-  return <div className="char-backdrop" data-char-theme={theme} data-native-text onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
-    <section className="char-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="characters-title" onKeyDown={onKeyDown}>
-      <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Attainder · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button><button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer"><CloseMark /></button></div></header>
-      {view && <div className="char-campaign-strip"><div><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span>{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}<CharacterWatchToggles disabled={busy} /></div><button type="button" className="char-button char-button--advance" disabled={busy || talkHold || view.status?.ended || view.status === "ended"} title={talkHold ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button></div>}
+  return <div className={docked ? "char-backdrop char-backdrop--docked" : "char-backdrop"} data-char-theme={docked ? "court" : theme} data-native-text onClick={docked ? undefined : (event) => { if (event.target === event.currentTarget) onClose(); }}>
+    <section className="char-panel" ref={panelRef} role={docked ? "region" : "dialog"} aria-modal={docked ? undefined : "true"} aria-labelledby="characters-title" onKeyDown={onKeyDown}>
+      <header className="char-header"><div className="char-brand"><span className="char-brand-mark"><CivicMark /></span><div><span className="char-eyebrow">Attainder · Dynastier</span><h2 id="characters-title">Rike & familjer</h2></div></div><div className="char-header-controls"><button type="button" className="char-button char-connect-model" aria-expanded={modelConnectOpen} onClick={() => setModelConnectOpen((current) => !current)}>Anslut modell</button>{!docked && <><button type="button" className="char-icon-button" onClick={() => choose(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? "Byt till ljust läge" : "Byt till mörkt läge"} title={theme === "dark" ? "Ljust läge" : "Mörkt läge"}>{theme === "dark" ? "☀" : "☾"}</button><button type="button" className="char-theme-system" aria-pressed={choice === "system"} onClick={() => choose("system")}>Systemtema</button></>}<button type="button" className="char-icon-button char-close" onClick={onClose} aria-label="Stäng Rike & familjer"><CloseMark /></button></div></header>
+      {view && <div className="char-campaign-strip"><div>{!docked && <><span className="char-mode">{view.mode === "family" ? "FÖLJ FAMILJEN" : "FÖLJ RIKET"}</span><strong>{view.mode === "family" ? view.families.find((family) => family.id === view.identity?.familyId)?.name : (view.identity?.realmName || view.economy?.polityName || "Riket")}</strong><span className="char-date">{dateLabel(view.date)}</span></>}{view.difficulty?.label && <span className="char-difficulty">Svårighetsgrad: {view.difficulty.label}</span>}<CharacterWatchToggles disabled={busy} /></div>{!docked && <button type="button" className="char-button char-button--advance" disabled={busy || talkHold || view.status?.ended || view.status === "ended"} title={talkHold ? "Besvara eller avbryt förfrågan i samtalet först" : undefined} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>{busy ? "Bearbetar…" : "Nästa år med modellen"}<span aria-hidden="true"> →</span></button>}</div>}
       <nav className="char-nav" aria-label="Rike och familjer">{TABS.map(([id, label]) => <button key={id} type="button" aria-current={tab === id ? "page" : undefined} className={tab === id ? "is-active" : ""} onClick={() => setTab(id)}>{label}{id === "decisions" && pending.length > 0 && <span className="char-tab-count">{pending.length}</span>}</button>)}</nav>
       <div className="char-content" aria-busy={busy}>
         {modelConnectOpen && <LocalModelConnect onAdvanced={() => window.dispatchEvent(new Event("oh:open-character-model-settings"))} />}

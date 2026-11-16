@@ -564,9 +564,13 @@ const Main = ({
   }, []);
 
   // The court bar stands where the session pill and Exit Game stand in a campaign without a court.
+  // On a desktop the court panel is docked in the shell (court shell, slice 6). The dock is drawn only with the
+  // shell it stands in: not under the main menu, not with a bottom panel.
+  const courtDocked = hasCharacters && !isMobile;
+  const closeCourtPanel = () => setIsCharactersOpen(false);
   const courtBar = ({ exitToMenu, top, left }) => (
     <Suspense fallback={null}>
-      <LazyCourtTopBar top={top} left={left} courtOpen={isCharactersOpen} onOpenCourt={() => setIsCharactersOpen(true)} onExit={exitToMenu} />
+      <LazyCourtTopBar top={top} left={left} courtOpen={isCharactersOpen} onOpenCourt={() => setIsCharactersOpen(true)} onExit={() => { setIsCharactersOpen(false); exitToMenu(); }} />
     </Suspense>
   );
 
@@ -582,8 +586,9 @@ const Main = ({
         onClick={() => setIsCharactersOpen(true)}
         style={{ ...baseStyle, top: `calc(${TOP_BAR_OFFSET} + 5rem)`, left: "0.5rem", padding: "0.7rem 1rem", minHeight: "44px", cursor: "pointer", fontSize: "0.85rem", gap: "0.6rem" }}
       ><span aria-hidden="true">◇</span> Rike & familjer</button>}
-      {hasCharacters && !mainMenuOpen && !isCharactersOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} rightBusy={isAdvisorOpen} /></Suspense>}
-      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} request={charactersRequest.gameId === activeGame?.id ? charactersRequest : null} /></Suspense>}
+      {/* The shell stays while the panel is open: on a desktop the panel is docked as its left column. */}
+      {hasCharacters && !mainMenuOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} rightBusy={isAdvisorOpen} panelOpen={isCharactersOpen} onClosePanel={closeCourtPanel} /></Suspense>}
+      {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen && !(courtDocked && (mainMenuOpen || Boolean(activeBottomPanel)))} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} request={charactersRequest.gameId === activeGame?.id ? charactersRequest : null} docked={courtDocked} /></Suspense>}
       {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}

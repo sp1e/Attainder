@@ -1,4 +1,7 @@
 .char-backdrop {
+  /* The panel lays itself out by its own width (the two container queries below): docked beside the map it is
+     narrow in a wide window. */
+  container: char / inline-size;
   --char-bg: #f2eee5; --char-surface: #fffcf5; --char-ink: #292c2a; --char-muted: #626761;
   --char-border: #d9d4c7; --char-accent: #733f34; --char-accent-ink: #fffaf1;
   --char-soft: #ece7d9; --char-green: #395f4b; --char-gold: #8b6b28; --char-danger: #a33732;
@@ -332,8 +335,12 @@
 .char-choice-odds > strong { color: var(--char-accent); font-weight: 600; }
 .char-choice-odds .char-explanation { margin-top: 2px; }
 .char-choice-odds .char-explanation ul { margin: 4px 0 0; }
+/* Only the backdrop's own padding follows the window: a container cannot style itself. With 10px on each side a
+   950px window is a 930px panel. */
 @media (max-width: 950px) {
   .char-backdrop { padding: 10px; }
+}
+@container char (max-width: 930px) {
   .char-header, .char-campaign-strip, .char-footer { padding-left: 20px; padding-right: 20px; }
   .char-content { padding: 22px 20px 35px; }
   .char-nav { padding: 0 12px; }
@@ -345,6 +352,8 @@
 }
 @media (max-width: 680px) {
   .char-backdrop { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+}
+@container char (max-width: 680px) {
   .char-panel { width: 100%; height: 100%; border: 0; border-radius: 0; }
   .char-header { padding: 12px 15px; }
   .char-header { flex-wrap: wrap; }
@@ -422,3 +431,22 @@
 .hist-close, .hist-link { font: inherit; cursor: pointer; border-radius: 8px; padding: 8px 16px; }
 .hist-close { background: var(--char-accent); color: var(--char-accent-ink); border: 1px solid var(--char-accent); }
 .hist-link { background: transparent; color: var(--char-ink); border: 1px solid var(--char-border); }
+
+/* Docked beside the map (court shell, slice 6): on a desktop, in a campaign with a court, the panel is the shell's
+   left column under the band and above the year line. No backdrop, the shell's look. The shell publishes where its
+   row begins. */
+.char-backdrop.char-backdrop--docked {
+  inset: auto; left: 0.5rem; top: var(--court-row-top, 13.6rem); bottom: 4.5rem; width: min(46rem, calc(100vw - 23.5rem)); z-index: 9998;
+  /* Its own box takes no presses: outside the panel's rounded corners the map is in use. */
+  padding: 0; background: none; backdrop-filter: none; display: block; pointer-events: none;
+}
+.char-backdrop--docked .char-panel { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); pointer-events: auto; }
+.char-backdrop[data-char-theme="court"] {
+  --char-bg: #14100c; --char-surface: #1f1913; --char-ink: #efe6d2; --char-muted: #c4b79c;
+  --char-border: #4a3f31; --char-accent: #d4ac3a; --char-accent-ink: #1a1307;
+  --char-soft: #2a2219; --char-green: #58a58c; --char-gold: #d4ac3a; --char-danger: #e0573a;
+  --char-focus: #d4ac3a; --char-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  color-scheme: dark; font-family: "EB Garamond", Georgia, serif; font-size: 17px; line-height: 1.45;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.char-backdrop[data-char-theme="court"] .char-panel h2, .char-backdrop[data-char-theme="court"] .char-panel h3, .char-backdrop[data-char-theme="court"] .char-panel h4 { font-family: "EB Garamond", Georgia, serif; font-weight: 600; }

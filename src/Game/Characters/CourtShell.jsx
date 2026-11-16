@@ -1,8 +1,9 @@
 // The court over the map: the thread of medallions, the list of what needs the player, and the realm's six figures.
 // A matter is answered in the list, a person's actions are carried out from the card, and the year turns from the
 // line along the bottom; the rest is a way into the court panel. What is shown is decided in courtShell.js.
-// The left panel shows one area of the court at a time (CourtAreas.jsx).
-// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 1 to 5.
+// The left panel shows one area of the court at a time (CourtAreas.jsx). While the court panel is open it stands
+// docked in the left panel's place (CharactersPanel.jsx, `docked`).
+// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 1 to 6.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./courtShell.css";
 import { characterNumberLocale } from "../../runtime/characterLanguage.js";
@@ -58,7 +59,7 @@ const Medallion = ({ member, count, updates, selected, onSelect }) => {
   );
 };
 
-export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
+export default function CourtShell({ topOffset = "0px", rightBusy = false, panelOpen = false, onClosePanel }) {
   const { activeGameId } = useLibraryState();
   const { view } = useCourtView(activeGameId);
   const updates = useTranslatorUpdates();
@@ -125,27 +126,38 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
   }, [reportOpen]);
   // The record is kept while the shell is not drawn. When the shell comes back and the court has moved on since the
   // turn was written (the player went on in the panel), the record is no longer the latest: it is dropped.
+  // The same holds while the panel stands docked beside the shell: what is answered there moves the court on.
   const reportChecked = useRef(false);
   useEffect(() => {
-    if (reportChecked.current || !view) return;
+    if (!view) return;
+    const stale = Boolean(year.report) && Number(view.revision) > Number(year.report.revision);
+    if (stale && (panelOpen || !reportChecked.current)) courtYear.close();
     reportChecked.current = true;
-    if (year.report && Number(view.revision) > Number(year.report.revision)) courtYear.close();
-  }, [view, year.report]);
+  }, [view, year.report, panelOpen]);
+  // A conversation's open request in the docked panel holds the year: its odds must not go stale.
+  const [held, setHeld] = useState(false);
+  useEffect(() => {
+    const hold = (event) => setHeld(Boolean(event.detail?.held));
+    window.addEventListener("oh:court-talk-hold", hold);
+    return () => window.removeEventListener("oh:court-talk-hold", hold);
+  }, []);
   const { busy } = command;
   useEffect(() => {
     // Nothing closes while a command is written.
-    if ((!cardOpen && !answerOpen && !reportOpen) || busy) return undefined;
+    if ((!cardOpen && !answerOpen && !reportOpen && !panelOpen) || busy) return undefined;
     const closeOnEscape = (event) => {
       // Escape in a text field is the field's (the search box closes itself with it).
-      if (event.key !== "Escape" || event.defaultPrevented || event.target?.closest?.("input, textarea, select, [contenteditable]")) return;
-      // Escape closes what focus is in; with focus in none of them, the card first, then the matter, then the record.
+      if (event.key !== "Escape" || event.defaultPrevented || event.target?.closest?.("input, textarea, select, [contenteditable], .char-panel")) return;
+      // Escape closes what focus is in; with focus in none of them, the card first, then the matter, then the record,
+      // and last, from nowhere on the page, the docked panel.
       if (reportOpen && (event.target?.closest?.(".court-report") || (!cardOpen && !answerOpen))) closeReport();
       else if (answerOpen && (!cardOpen || event.target?.closest?.(".court-needs"))) shutMatter(openMatterId);
-      else shutCard(selectedId);
+      else if (cardOpen) shutCard(selectedId);
+      else if (panelOpen && event.target === document.body) onClosePanel?.();
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [cardOpen, answerOpen, reportOpen, selectedId, openMatterId, busy]);
+  }, [cardOpen, answerOpen, reportOpen, panelOpen, onClosePanel, selectedId, openMatterId, busy]);
   // The panel's own command for a decision, with the story the player saw when choosing.
   const answerMatter = async (choiceId) => {
     if (!answer) return;
@@ -188,6 +200,24 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
     setOpenAct(null);
     root.current?.querySelector("#court-card-name")?.focus();
   };
+  // The docked court panel stands where the shell's row begins: the shell says where that is, whatever the band's
+  // height.
+  const hasView = Boolean(view);
+  useEffect(() => {
+    const band = root.current?.querySelector(".court-band");
+    const row = root.current?.querySelector(".court-row");
+    if (!band || !row) return undefined;
+    const publish = () => document.documentElement.style.setProperty("--court-row-top", `${Math.round(row.getBoundingClientRect().top)}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(band);
+    window.addEventListener("resize", publish);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", publish);
+      document.documentElement.style.removeProperty("--court-row-top");
+    };
+  }, [hasView]);
   const shell = useMemo(() => {
     const matters = mattersOf(view);
     return { thread: threadOf(view), matters, flags: flagsOf(matters), figures: figuresOf(view), line: yearLineOf(view) };
@@ -229,7 +259,9 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
           ))}
         </button>
       </div>
-      <div className="court-row">
+      <div className={panelOpen ? "court-row court-row--docked" : "court-row"}>
+      {/* The docked court panel takes the list's place. */}
+      {!panelOpen && (
       <aside className={needs ? (answer ? "court-needs court-needs--open" : "court-needs") : "court-needs court-needs--area"} aria-labelledby="court-needs-title">
         <header>
           <h2 id="court-needs-title" tabIndex={-1}>{areaName(area)}</h2>
@@ -262,6 +294,7 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
           {needs ? "Ärenden och handlingar" : "Öppna i panelen"}
         </button>
       </aside>
+      )}
       {year.report && <CourtYearReport report={year.report} onClose={closeReport} />}
       {/* The advisor's drawer opens over the right edge: the card steps aside for it. */}
       {card && !rightBusy && (
@@ -272,7 +305,7 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
       )}
       </div>
       {line && (
-        <CourtYearLine line={line} year={year} locked={locked} ended={Boolean(view.status?.ended) || view.status === "ended"} updates={updates}
+        <CourtYearLine line={line} year={year} locked={locked} held={held} ended={Boolean(view.status?.ended) || view.status === "ended"} updates={updates}
           onOpenMatter={openMatter} onAdvance={() => courtYear.advance(activeGameId)} onReveal={() => courtYear.reveal(activeGameId)} onDismiss={courtYear.close} />
       )}
     </div>

@@ -142,14 +142,14 @@ test("the year stands along the bottom of the map and turns there", () => {
   assert.match(store, /createCourtYear\(\(\) => import\("\.\.\/\.\.\/runtime\/characterRuntime\.js"\)\)/, "the engine is loaded on demand");
   assert.match(store, /useSyncExternalStore/);
   assert.match(store, /state\.campaign === campaign \? state : \{ \.\.\.QUIET, busy: state\.busy \}/, "a turn belongs to its campaign");
-  assert.match(shell, /Number\(view\.revision\) > Number\(year\.report\.revision\)\) courtYear\.close\(\);/, "a record the court has moved on from is not shown when the shell comes back");
+  assert.match(shell, /const stale = Boolean\(year\.report\) && Number\(view\.revision\) > Number\(year\.report\.revision\);/, "a record the court has moved on from is not shown when the shell comes back");
   assert.match(shell, /querySelector\("#court-report-title"\)\?\.focus\(\)/, "a record that arrives takes focus from the button that asked for it");
   assert.match(shell, /closest\?\.\("\.court-report"\)/, "Escape closes the record focus is in");
   assert.match(line, /era: mark\.year < 0 \? "short" : undefined/, "a year before the era says so");
   assert.match(shell, /useCourtYear\(activeGameId\)/);
   assert.match(shell, /yearLineOf\(view\)/);
   assert.match(shell, /const locked = command\.busy \|\| year\.busy;/, "nothing is answered while the year is written");
-  assert.match(line, /disabled=\{locked \|\| ended\}/);
+  assert.match(line, /disabled=\{locked \|\| ended \|\| held\}/, "the year does not turn while it ended, is written, or a conversation's request is open");
   assert.match(line, /role="status"/);
   assert.match(line, /role="alert"/);
   assert.match(line, /error\.includes\("Läs färdigt"\)/, "the engine's request to read the last turn first has its button");
