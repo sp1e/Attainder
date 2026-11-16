@@ -1,6 +1,7 @@
 // The court over the map: the thread of medallions, the list of what needs the player, and the realm's six figures.
-// Everything here is a way into the court panel. What is shown is decided in courtShell.js.
-// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slice 1.
+// A matter is answered in the list and a person's actions are carried out from the card; the rest is a way into the
+// court panel. What is shown is decided in courtShell.js.
+// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 1 to 3.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./courtShell.css";
 import { characterNumberLocale } from "../../runtime/characterLanguage.js";
@@ -8,10 +9,12 @@ import { useLibraryState } from "../../runtime/library.js";
 import { useCourtView } from "../../runtime/useCourtView.js";
 import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import { medallionOf } from "../Map/seatRulers.js";
-import { dateLabel } from "./ActionBox.jsx";
+import CourtCardActions from "./CourtCardActions.jsx";
+import CourtMatter from "./CourtMatter.jsx";
 import CourtPersonCard from "./CourtPersonCard.jsx";
 import MedallionPicture from "./MedallionPicture.jsx";
-import { cardOf, figuresOf, flagsOf, mattersOf, threadOf } from "./courtShell.js";
+import { actionsOf, answerOf, cardOf, commandNotice, decisionNotice, figuresOf, flagsOf, mattersOf, threadOf } from "./courtShell.js";
+import { useCourtCommand } from "./useCourtCommand.js";
 
 const MINUS = "−";
 // Opens the court panel at a place: a tab.
@@ -28,9 +31,10 @@ const figureText = (figure, updates) => {
   return figure.signed && number > 0 ? `+${text}` : text;
 };
 
-// The shell is not drawn while the panel, the menu or a bottom panel is open. The person the player had selected is
-// kept here, with the campaign it belongs to, so the card is there again when the shell comes back.
-let remembered = { campaign: null, id: null };
+// The shell is not drawn while the panel, the menu or a bottom panel is open. The person the player had selected and
+// the matter the player had open are kept here, with the campaign they belong to, so they are there again when the
+// shell comes back.
+let remembered = { campaign: null, id: null, matterId: null };
 
 // A medallion selects its person: the card on the right is the person's. A second press closes it.
 const Medallion = ({ member, count, updates, selected, onSelect }) => {
@@ -46,60 +50,102 @@ const Medallion = ({ member, count, updates, selected, onSelect }) => {
   );
 };
 
-const Matter = ({ matter, updates }) => {
-  const read = (text) => readNative(text, updates);
-  return (
-    <li>
-      <button type="button" className="court-matter" onClick={() => open({ tab: "decisions" })}>
-        <span className="court-matter-faces">
-          {matter.people.map((person) => <i key={person.id} className="court-mini"><MedallionPicture medallion={medallionOf(person, read)} /></i>)}
-        </span>
-        <b>{matter.title}</b>
-        {matter.dueAt && <small>{`Senast ${dateLabel(matter.dueAt)}`}</small>}
-      </button>
-    </li>
-  );
-};
-
 export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
   const { activeGameId } = useLibraryState();
   const { view } = useCourtView(activeGameId);
   const updates = useTranslatorUpdates();
   const root = useRef(null);
   const [selectedId, setSelectedId] = useState(() => (remembered.campaign === activeGameId ? remembered.id : null));
-  useEffect(() => { remembered = { campaign: activeGameId, id: selectedId }; }, [activeGameId, selectedId]);
-  const select = (id) => setSelectedId((current) => (current === id ? null : id));
-  // A person who is no longer at court has no card: `cardOf` gives none, so the card closes with the view.
+  const [openMatterId, setOpenMatterId] = useState(() => (remembered.campaign === activeGameId ? remembered.matterId : null));
+  const [openAct, setOpenAct] = useState(null);
+  useEffect(() => { remembered = { campaign: activeGameId, id: selectedId, matterId: openMatterId }; }, [activeGameId, selectedId, openMatterId]);
+  // One command at a time for the whole shell: an answer to a matter, or an action from the card.
+  const command = useCourtCommand(view?.revision);
+  // While a command is written the selection stays: its feedback belongs to the person or the matter it was sent for.
+  const select = (id) => {
+    if (command.busy) return;
+    command.clear(); setOpenAct(null); setSelectedId((current) => (current === id ? null : id));
+  };
+  // A person who is no longer at court has no card: `cardOf` gives none, so the card closes with the view. The same
+  // holds for a matter that is no longer open and its answer.
   const card = useMemo(() => cardOf(view, selectedId), [view, selectedId]);
+  const acts = useMemo(() => actionsOf(view, card?.person.id), [view, card]);
+  const answer = useMemo(() => answerOf(view, openMatterId), [view, openMatterId]);
   const cardOpen = Boolean(card);
+  const answerOpen = Boolean(answer);
+  // What has left the court leaves no state behind: an action that comes back later is not found open.
+  if (openAct && !acts.some((action) => action.type === openAct)) setOpenAct(null);
+  if (view && openMatterId && !answer) setOpenMatterId(null);
   // Closing the card removes the button that had focus, so focus goes back to the person's medallion.
-  const closeCard = (id) => {
+  const shutCard = (id) => {
     setSelectedId(null);
+    setOpenAct(null);
     if (id) root.current?.querySelector(`[data-court-person="${CSS.escape(id)}"]`)?.focus();
   };
+  const closeCard = (id) => {
+    if (command.busy) return;
+    shutCard(id);
+  };
+  const toggleMatter = (id) => {
+    if (command.busy) return;
+    command.clear(); setOpenMatterId((current) => (current === id ? null : id));
+  };
+  // Closing a matter removes its choices, so focus goes back to the matter's row.
+  const shutMatter = (id) => {
+    setOpenMatterId(null);
+    if (id) root.current?.querySelector(`[data-court-matter="${CSS.escape(id)}"]`)?.focus();
+  };
+  const { busy } = command;
   useEffect(() => {
-    if (!cardOpen) return undefined;
+    // Nothing closes while a command is written.
+    if ((!cardOpen && !answerOpen) || busy) return undefined;
     const closeOnEscape = (event) => {
       // Escape in a text field is the field's (the search box closes itself with it).
       if (event.key !== "Escape" || event.defaultPrevented || event.target?.closest?.("input, textarea, select, [contenteditable]")) return;
-      closeCard(selectedId);
+      // Escape closes what focus is in; with focus in neither, the card first.
+      if (answerOpen && (!cardOpen || event.target?.closest?.(".court-needs"))) shutMatter(openMatterId);
+      else shutCard(selectedId);
     };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [cardOpen, selectedId]);
+  }, [cardOpen, answerOpen, selectedId, openMatterId, busy]);
+  // The panel's own command for a decision, with the story the player saw when choosing.
+  const answerMatter = async (choiceId) => {
+    if (!answer) return;
+    const story = Object.values(view.stories ?? {}).find((entry) => entry?.id === answer.id);
+    const result = await command.run({ type: "resolve_story", payload: { storyId: answer.id, choiceId }, at: "matter",
+      noticeOf: (events) => decisionNotice(story, choiceId, events) || commandNotice(events) });
+    if (!result?.ok) return;
+    // The matter leaves the list with the next read; focus goes to the list's heading, where the notice stands.
+    setOpenMatterId(null);
+    root.current?.querySelector("#court-needs-title")?.focus();
+  };
+  const toggleAct = (type) => {
+    if (command.busy) return;
+    command.clear(); setOpenAct((current) => (current === type ? null : type));
+  };
+  const act = async (action, values) => {
+    const result = await command.run({ type: action.type, payload: { ...values, [action.field]: action.value }, at: "card", noticeOf: commandNotice });
+    if (!result?.ok) return;
+    // The form is gone, and the action's row may leave the list with the next read (a released prisoner has no
+    // release left), so focus goes to the card's name, which stays.
+    setOpenAct(null);
+    root.current?.querySelector("#court-card-name")?.focus();
+  };
   const shell = useMemo(() => {
     const matters = mattersOf(view);
     return { thread: threadOf(view), matters, flags: flagsOf(matters), figures: figuresOf(view) };
   }, [view]);
   if (!view) return null;
   const { thread, matters, flags, figures } = shell;
+  const onMatter = command.at === "matter", onCard = command.at === "card";
   const medallions = (members) => members.map((member) => (
     <Medallion key={member.person.id} member={member} count={flags.get(member.person.id) ?? 0} updates={updates} selected={card?.person.id === member.person.id} onSelect={select} />
   ));
 
   return (
     // data-native-text: the shell is written in Swedish, so the page translator applies its whole native book here.
-    <div className="court-shell" data-native-text ref={root} style={{ top: `calc(${topOffset} + 5rem)` }}>
+    <div className="court-shell" data-native-text ref={root} aria-busy={command.busy} style={{ top: `calc(${topOffset} + 5rem)` }}>
       <div className="court-band">
         <nav className="court-thread" aria-label="Hovet">
           <div className="court-line">{medallions(thread.house)}</div>
@@ -117,17 +163,32 @@ export default function CourtShell({ topOffset = "0px", rightBusy = false }) {
         </button>
       </div>
       <div className="court-row">
-      <aside className="court-needs" aria-labelledby="court-needs-title">
+      <aside className={answer ? "court-needs court-needs--open" : "court-needs"} aria-labelledby="court-needs-title">
         <header>
-          <h2 id="court-needs-title">Kräver dig</h2>
+          <h2 id="court-needs-title" tabIndex={-1}>Kräver dig</h2>
           <span className="court-needs-count">{matters.length}</span>
         </header>
+        {onMatter && command.notice && <p className="court-notice" role="status">{command.notice}</p>}
         {matters.length > 0
-          ? <ul>{matters.map((matter) => <Matter key={matter.id} matter={matter} updates={updates} />)}</ul>
+          ? (
+            <ul className="court-matters">
+              {matters.map((matter) => (
+                <CourtMatter key={matter.id} matter={matter} answer={answer?.id === matter.id ? answer : null} busy={command.busy}
+                  error={onMatter && answer?.id === matter.id ? command.error : ""} updates={updates} onToggle={toggleMatter} onAnswer={answerMatter} />
+              ))}
+            </ul>
+          )
           : <p>Inget kräver dig just nu.</p>}
+        {/* The actions that name nobody (a feast, a wonder, the taxes) are in the panel, with every decision. */}
+        <button type="button" className="court-needs-more" onClick={() => open({ tab: "decisions" })}>Ärenden och handlingar</button>
       </aside>
       {/* The advisor's drawer opens over the right edge: the card steps aside for it. */}
-      {card && !rightBusy && <CourtPersonCard card={card} updates={updates} onClose={() => closeCard(selectedId)} />}
+      {card && !rightBusy && (
+        <CourtPersonCard card={card} updates={updates} onClose={() => closeCard(selectedId)}>
+          <CourtCardActions actions={acts} openType={openAct} busy={command.busy} error={onCard ? command.error : ""} notice={onCard ? command.notice : ""}
+            updates={updates} onToggle={toggleAct} onAct={act}>Handlingar</CourtCardActions>
+        </CourtPersonCard>
+      )}
       </div>
     </div>
   );

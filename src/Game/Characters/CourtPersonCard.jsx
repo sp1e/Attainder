@@ -1,6 +1,7 @@
 // The card of the person selected on the court's thread: who the person is, what the person can do and how the person
-// stands to the player. It shows what the panel's people tab shows and has one way into the panel. What it holds is
-// decided by `cardOf` (courtShell.js). Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slice 2.
+// stands to the player, and what the player can do with the person. It shows what the panel's people tab shows; a
+// conversation opens in the panel. What it holds is decided by `cardOf` and `actionsOf` (courtShell.js).
+// Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 2 and 3.
 import React from "react";
 import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { readNative } from "../../runtime/useTranslatorUpdates.js";
@@ -20,16 +21,17 @@ const numberText = (value, updates, { signed = false } = {}) => {
 };
 const lean = (value) => (Number(value) > 0 ? "court-card-up" : Number(value) < 0 ? "court-card-down" : undefined);
 
-export default function CourtPersonCard({ card, updates, onClose }) {
+export default function CourtPersonCard({ card, updates, onClose, children }) {
   const { person } = card;
   const read = (text) => readNative(text, updates);
   const openInPanel = () => window.dispatchEvent(new CustomEvent("oh:open-characters", { detail: { tab: "people", personId: card.person.id } }));
+  const talkInPanel = () => window.dispatchEvent(new CustomEvent("oh:open-characters", { detail: { tab: "people", personId: card.person.id, talk: true } }));
   return (
     <aside className="court-card" aria-labelledby="court-card-name">
       <header className="court-card-head">
         <span className="court-card-face"><MedallionPicture medallion={medallionOf(person, read)} /></span>
         <div>
-          <h2 id="court-card-name">{person.name}</h2>
+          <h2 id="court-card-name" tabIndex={-1}>{person.name}</h2>
           {/* House and age are one piece of text, as in the panel: the phrase book reads them together and gives the
               house its English name. */}
           <p>
@@ -62,10 +64,13 @@ export default function CourtPersonCard({ card, updates, onClose }) {
           {card.goalLabel && <dt className="court-card-wide">Mål och drivkrafter</dt>}
           {card.goalLabel && <dd className="court-card-wide">{card.goalLabel}</dd>}
         </dl>
-        <div className="court-card-actions">
-          <button type="button" className="court-card-primary" onClick={openInPanel}>Lär känna</button>
-          <button type="button" onClick={onClose}>Stäng</button>
-        </div>
+        {/* The person's actions (CourtCardActions), handed in by the shell with the command they share. */}
+        {children}
+      </div>
+      <div className="court-card-actions">
+        {card.canTalk && <button type="button" className="court-card-primary" onClick={talkInPanel}>Samtala</button>}
+        <button type="button" className={card.canTalk ? undefined : "court-card-primary"} onClick={openInPanel}>Lär känna</button>
+        <button type="button" onClick={onClose}>Stäng</button>
       </div>
     </aside>
   );

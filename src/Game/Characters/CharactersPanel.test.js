@@ -18,6 +18,7 @@ import { createSecret, grantHook } from "../../runtime/characters/secrets.js";
 import { SHIPPED_START_FOLDERS } from "../../runtime/testing/shippedHistoricalStarts.js";
 import { interpretCharacterAction } from "./characterModelCalls.js";
 import * as playerTextModule from "./playerText.js";
+import * as courtShellModule from "./courtShell.js";
 import * as characterLanguageModule from "../../runtime/characterLanguage.js";
 import * as nameInitialsModule from "./nameInitials.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
@@ -40,7 +41,8 @@ const envoyCompiled = compileFile("EnvoyView.jsx");
 // The views read their number locale from the real module: with no stored
 // language it is the Swedish one, as these tests expect.
 // The translator subscription is a stub: these renders run outside the browser and its native book.
-const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule,
+// The decision's notice is the real one: the panel shares it with the court over the map (courtShell.js).
+const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule, "./courtShell.js": courtShellModule,
   "../../runtime/useTranslatorUpdates.js": { useTranslatorUpdates: () => 0, readNative: (text) => text } };
 
 function runModule(code, modules, globals = {}) {

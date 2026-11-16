@@ -237,7 +237,7 @@ const Main = ({
   const [shouldLoadDebugConsole, setShouldLoadDebugConsole] = useState(false);
   const [isInteractiveOpen, setIsInteractiveOpen] = useState(false);
   const [isCharactersOpen, setIsCharactersOpen] = useState(false);
-  const [charactersRequest, setCharactersRequest] = useState({ seq: 0, tab: null, personId: null, gameId: null });
+  const [charactersRequest, setCharactersRequest] = useState({ seq: 0, tab: null, personId: null, talk: false, gameId: null });
   const hasCharacters = useRuntimeState("world", (world) => Boolean(world?.characterSystem));
   const isHistoricalCampaign = useRuntimeState("world", (world) => Boolean(world?.historicalScenario));
   const [isAdvisorOpen, setIsAdvisorOpen] = useState(false);
@@ -530,10 +530,11 @@ const Main = ({
   }, []);
 
   useEffect(() => {
-    // The event may say where to open: a tab, and a person on the people tab (the court over the map sends both).
+    // The event may say where to open: a tab, a person on the people tab, and a conversation with that person (the
+    // court over the map sends them).
     const openCharacters = (event) => {
       const place = event?.detail;
-      if (place && typeof place === "object") setCharactersRequest((previous) => ({ seq: previous.seq + 1, tab: place.tab ?? null, personId: place.personId ?? null, gameId: activeGameId }));
+      if (place && typeof place === "object") setCharactersRequest((previous) => ({ seq: previous.seq + 1, tab: place.tab ?? null, personId: place.personId ?? null, talk: Boolean(place.talk), gameId: activeGameId }));
       setIsCharactersOpen(true);
       setIsAdvisorOpen(false);
       setActiveBottomPanel(null);
