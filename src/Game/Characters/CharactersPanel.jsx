@@ -16,6 +16,7 @@ import ConversationView from "./ConversationView.jsx";
 import EnvoyView from "./EnvoyView.jsx";
 import CharacterWatchToggles from "./CharacterWatchToggles.jsx";
 import { BorderTribes, ChoiceOdds, CouncilSeats, DemandList, ForeignRealms, ReignCard } from "./CourtSections.jsx";
+import { decisionNotice } from "./courtShell.js";
 import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
@@ -34,14 +35,6 @@ const TABS = [
 const INLINE_REFUSALS = ["abort_scheme", "release_prisoner", "execute_prisoner"];
 // A decision's notice: the choice, then its gravest outcome (a death before a wound). The engine logs the decision after its
 // outcome, under the question's title, so the outcomes are the rows before that one.
-const decisionNotice = (story, choiceId, events) => {
-  const label = story?.choices?.find((choice) => choice.id === choiceId)?.label;
-  if (!label) return "";
-  const decided = events.map((event) => event.title).lastIndexOf(story.title);
-  const outcomes = (decided < 0 ? events : events.slice(0, decided)).filter((event) => event.title !== story.title);
-  const lead = outcomes.find((event) => event.importance === "major") ?? outcomes[0];
-  return lead ? `${label} · ${lead.title}` : label;
-};
 const number = (value) => Number.isFinite(Number(value)) ? new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Number(value)) : "—";
 const entries = (value) => Array.isArray(value) ? value : Object.values(value || {});
 const text = (value, fallback = "—") => typeof value === "string" || typeof value === "number" ? String(value) : value?.label || value?.name || value?.title || fallback;
@@ -251,9 +244,17 @@ function CouncilView({ view, pending, onCommand, busy, setTab, selectPerson, run
   </>;
 }
 
-function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, talks = {}, setTalk, onHold }) {
+function PeopleView({ view, selectedId, selectPerson, busy = false, runAction, talks = {}, setTalk, onHold, talkAsk = null, onTalkAsked }) {
   const [query, setQuery] = useState("");
   const [talkingTo, setTalkingTo] = useState(null);
+  // The court over the map may ask for a conversation with a person. It is opened once, when the ask arrives, and
+  // only with someone who can be talked to now. The panel then forgets the ask, so a later visit opens nothing.
+  const [askTaken, setAskTaken] = useState(null);
+  if (talkAsk !== askTaken) {
+    setAskTaken(talkAsk);
+    if (talkAsk && entries(view.conversationTargets).some((target) => target.id === talkAsk)) setTalkingTo(talkAsk);
+  }
+  useEffect(() => { if (talkAsk) onTalkAsked?.(); }, [talkAsk, onTalkAsked]);
   // Closing a conversation takes its field with it; focus goes to the person's Samtala button instead of the page, or, when the
   // person can no longer be asked (a decided request), to the person's heading, and without a person to the search field.
   const talkButton = useRef(null);
@@ -421,6 +422,9 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   // True while a conversation's confirmation card is open: time stays put so its odds cannot go stale.
   const [talkHold, setTalkHold] = useState(false);
   const [chronicleFilter, setChronicleFilter] = useState("memories");
+  // The person the court over the map asked a conversation with, until the people tab has taken the ask.
+  const [talkAsk, setTalkAsk] = useState(null);
+  const talkAsked = useCallback(() => setTalkAsk(null), []);
   const historical = Boolean(useRuntimeState("world", (world) => world?.historicalScenario));
   const busyRef = useRef(false);
   const readSequence = useRef(0);
@@ -461,6 +465,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
     handledRequest.current = request.seq;
     if (REQUEST_TABS.has(request.tab)) setTab(request.tab);
     if (request.personId) setPersonId(request.personId);
+    setTalkAsk(request.talk && request.personId ? request.personId : null);
   }, [request]);
   useEffect(() => { panelRef.current?.querySelector(".char-content")?.scrollTo({ top: 0 }); }, [tab, yearEvents]);
   useEffect(() => subscribeModelCalls((counts) => setModelCalls(counts.total)), []);
@@ -528,6 +533,9 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
   };
+  // The people tab takes a conversation's ask when it is drawn. An ask that was never shown (the player went to
+  // another tab first) is forgotten with its tab.
+  if (talkAsk && tab !== "people") setTalkAsk(null);
   if (!open) return null;
   // data-native-text: everything in the panel is written in Swedish, so the page translator applies its whole native book here.
   return <div className="char-backdrop" data-char-theme={theme} data-native-text onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}>
@@ -549,7 +557,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
           {view.governance?.realmAlive === false && !view.status?.ended && <div className="char-feedback"><strong>Riket har upplösts</strong><span>Familjen består, men de gamla riksämbetena ger ingen makt. Sök en fristad under Beslut och följ familjens tillgångar och beskyddare under Familjer.</span></div>}
           {(view.status?.ended || view.status === "ended") && <div className="char-feedback char-feedback--error"><strong>Kampanjen är avslutad</strong><span>{view.status?.reason || "Kampanjens fortsättningsvillkor är inte längre uppfyllda."}</span></div>}
           {tab === "council" && <CouncilView view={view} pending={pending} onCommand={command} busy={busy} setTab={setTab} selectPerson={setPersonId} runAction={runAction} />}
-          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} busy={busy} runAction={runAction} talks={talks} setTalk={setTalk} onHold={setTalkHold} />}
+          {tab === "people" && <PeopleView view={view} selectedId={personId} selectPerson={setPersonId} busy={busy} runAction={runAction} talks={talks} setTalk={setTalk} onHold={setTalkHold} talkAsk={talkAsk} onTalkAsked={talkAsked} />}
           {tab === "families" && <FamiliesView view={view} />}
           {tab === "offices" && <OfficesView view={view} setTab={setTab} busy={busy} runAction={runAction} onHold={setTalkHold} />}
            {tab === "decisions" && <><div className="char-section-heading"><div><span className="char-eyebrow">Dina val formar nästa år</span><h3>Ärenden och handlingar</h3></div></div>{pending.map((story) => <StoryCard key={story.id} story={story} person={view.people.find((person) => person.id === story.actorId)} onCommand={command} busy={busy} />)}<p className="char-intro">Välj en handling för att se berörda personer och kostnader. Olika personer kan företräda riket och hushållet. Varje handling följer den ansvariga aktörens mandat, resurser och personlighet.</p><div className="char-actions-grid">{entries(view.actions).map((action) => <ActionCard key={`${action.type}-${view.revision}`} action={action} onCommand={command} busy={busy} />)}</div>{!view.actions?.length && <Empty title="Inga handlingar är möjliga just nu">Läs de pågående ärendena eller låt tiden gå till nästa beslutspunkt.</Empty>}<ChainHistory chains={view.chainHistory} /></>}

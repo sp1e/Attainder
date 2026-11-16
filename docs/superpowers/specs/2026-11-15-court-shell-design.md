@@ -50,6 +50,20 @@ Rulings, each with what it costs if wrong:
 11. **The card does not act in this slice.** Talking, giving and appointing run inside the panel's own views, with their odds and their confirmation. They come out of the panel together with the answers, in slice 3.
 12. **The card stands on the right under the band**, opposite "Kräver dig", so the land between them stays in view.
 
+## Slice 3: answer and act in place
+
+Since slice 2 the shell shows what waits and who is at court, and every answer still needs the panel. This slice brings the answers and the actions that name a person out of it.
+
+Rulings, each with what it costs if wrong:
+
+13. **A matter unfolds where it stands.** A press on a matter in "Kräver dig" opens it in the list: what it is about, its background, what happens when the deadline passes, and its choices. A choice shows what it does, who carries it out, its cost, its stress when it has any, why it cannot be chosen, and its chance when the engine gives one. One matter is open at a time; a second press closes it. Cost if wrong: one component.
+14. **A press on a choice answers**, with the panel's own command (`resolve_story`, sent with the revision the list was read at). One press, as in the panel. While an answer is written, every choice and every action of the shell is locked. Cost if wrong: a confirmation step in one component.
+15. **The list says what came of it.** After an answer the list carries the panel's own sentence (the choice, and the event that followed) until the player turns to something else, and the matter leaves the list when the court is read again. A refusal stands under the matter in the engine's words.
+16. **The card offers the panel's actions that name its person.** An action is on the card when one of its fields lists the person (a prisoner through the prisoner's entry) and it can be done now. The person's field is filled in; the action's other fields are chosen on the card, without the person among them. The actions that name nobody (a feast, a wonder, the taxes) stay in the panel, behind "Ärenden och handlingar" under the list. Cost if wrong: one function.
+17. **A conversation stays in the panel in this slice.** It is an exchange of several turns with model calls and its own state. The card's "Samtala" opens the panel at the person with the conversation open. It moves with the areas, in slice 5.
+18. **The shell says less than the panel, never more.** It leaves out a chain's earlier steps, the earlier memory and a stress of nothing.
+19. **Escape closes what focus is in**, the open matter or the card; with focus in neither, the card first.
+
 ## Checks
 
 - Unit tests for the thread, the matters, the counts and the figures.
