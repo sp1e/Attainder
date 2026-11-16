@@ -3,23 +3,10 @@
 // conversation opens in the panel. What it holds is decided by `cardOf` and `actionsOf` (courtShell.js).
 // Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slices 2 and 3.
 import React from "react";
-import { characterNumberLocale } from "../../runtime/characterLanguage.js";
 import { readNative } from "../../runtime/useTranslatorUpdates.js";
 import { medallionOf } from "../Map/seatRulers.js";
 import MedallionPicture from "./MedallionPicture.jsx";
-
-const MINUS = "−";
-// `updates` is the translator's count: the React Compiler keeps a call's result until an argument changes, and the
-// number's locale follows the language.
-const numberText = (value, updates, { signed = false } = {}) => {
-  void updates;
-  const number = Number(value);
-  if (value === null || value === undefined || !Number.isFinite(number)) return "—";
-  const text = new Intl.NumberFormat(characterNumberLocale(), { maximumFractionDigits: 1 }).format(Math.abs(number));
-  if (number < 0) return `${MINUS}${text}`;
-  return signed && number > 0 ? `+${text}` : text;
-};
-const lean = (value) => (Number(value) > 0 ? "court-card-up" : Number(value) < 0 ? "court-card-down" : undefined);
+import { lean, numberText } from "./courtText.js";
 
 export default function CourtPersonCard({ card, updates, onClose, children }) {
   const { person } = card;

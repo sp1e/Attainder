@@ -7,6 +7,21 @@ import { dateLabel } from "./ActionBox.jsx";
 // A narrative the model wrote for the player's own action is left as written (the panel's own rule).
 const asWritten = (event) => (event.type === "action_narrative" ? "" : undefined);
 
+/** One event of a record or of the chronicle: its date and its title; its text unfolds on a press. */
+export const CourtEvent = ({ event }) => (
+  <li>
+    <span className="court-report-date">{dateLabel(event.date || event.createdAt)}</span>
+    {event.description || event.text
+      ? (
+        <details>
+          <summary data-no-translate={asWritten(event)}>{event.title}</summary>
+          <p data-no-translate={asWritten(event)}>{event.description || event.text}</p>
+        </details>
+      )
+      : <b data-no-translate={asWritten(event)}>{event.title}</b>}
+  </li>
+);
+
 const Stopped = ({ interruption }) => (
   <p className="court-notice" role="status">
     <strong>
@@ -29,19 +44,7 @@ export default function CourtYearReport({ report, onClose }) {
       {events.length > 0
         ? (
           <ol>
-            {events.map((event, index) => (
-              <li key={event.id || index}>
-                <span className="court-report-date">{dateLabel(event.date || event.createdAt)}</span>
-                {event.description || event.text
-                  ? (
-                    <details>
-                      <summary data-no-translate={asWritten(event)}>{event.title}</summary>
-                      <p data-no-translate={asWritten(event)}>{event.description || event.text}</p>
-                    </details>
-                  )
-                  : <b data-no-translate={asWritten(event)}>{event.title}</b>}
-              </li>
-            ))}
+            {events.map((event, index) => <CourtEvent key={event.id || index} event={event} />)}
           </ol>
         )
         : <p className="court-report-empty">Inga händelser att visa.</p>}
