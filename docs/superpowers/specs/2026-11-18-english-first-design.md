@@ -30,12 +30,14 @@ Since `docs/superpowers/specs/2026-11-11-bilingual-runtime-design.md` the game r
 4. **English mode is checked by looking.** A browser run on a fresh install walks the start, each of the four starts' cards, the map, the shell's areas and the panel's tabs, and collects every text that reads as Swedish. Each is given its English or a stated reason to stand (a person's name, a model's own words).
 5. **The repository says what is true.** `README.md` and `docs/i18n.md` name English as the first language and Swedish as the choice.
 6. **Swedish is one press away on the first screen.** The Options picker is reached from the game menu, which a new install does not see until a campaign runs. The start card carries a button beside its theme switch that names the other language in that language (`Svenska` on a device that reads English, `English` on one that reads Swedish), stores the choice as the picker does and reloads. Found by the first browser run of slice 1. Cost if wrong: one button.
+7. **The help pages follow.** A help page opens in English when neither its own switch nor the game has stored a language, and its static markup (the language of `<html>`, the title, the search box, the pressed button of the switch) is English for a reader without script. `sv` in either key still reads Swedish. Found by the review of slice 1: the pages' rule named Swedish as "the game's first-language rule". Cost if wrong: one constant and a rebuild of the pages.
 
 ## Slices
 
-1. The first language (rulings 1, 2, 5).
+1. The first language (rulings 1, 2, 5, 6).
 2. The map's names (ruling 3).
-3. The walk through English mode and what it finds (ruling 4).
+3. The help pages (ruling 7).
+4. The walk through English mode and what it finds (ruling 4).
 
 ## Checks
 
