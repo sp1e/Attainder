@@ -55,6 +55,7 @@ import { formatGameDateReadable, isGameDate, normalizeGameDate } from "../../run
 import { jumpDayStep, jumpTargetDate } from "../../runtime/jumpDates.js";
 import { normalizeGroupOp } from "../../runtime/groups.js";
 import { nativeEventProps } from "../../runtime/translatorMode.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 
 dayjs.extend(advancedFormat);
 
@@ -785,11 +786,15 @@ const ghostButtonStyle = {
 // text that happens to be a place's name is not one.
 const LINK_GLYPHS = { polity: "⚑", region: "⌖", city: "●", unit: "⛊", structure: "▣", sea: "≈" };
 
-const LinkPill = ({ link, onFocus }) => (
+// The chip's text passes the page translator; its title is a sentence around the name, which the translator
+// cannot match, so the name is read from the book here (a court campaign names its realms in Swedish).
+const LinkPill = ({ link, onFocus }) => {
+    const updates = useTranslatorUpdates();
+    return (
     <button
     type="button"
     className="oh-tap-row"
-    title={`Show ${link.label} on the map`}
+    title={`Show ${readNative(link.label, updates)} on the map`}
     onClick={() => onFocus?.(link.bounds)}
     style={{
         alignItems: "center",
@@ -809,7 +814,8 @@ const LinkPill = ({ link, onFocus }) => (
     <span aria-hidden="true" style={{ opacity: 0.7 }}>{LINK_GLYPHS[link.kind] || "⌖"}</span>
     {link.label}
     </button>
-);
+    );
+};
 
 // A document that came with an event: its heading, and the text itself on a
 // click. Published ones say so; a paper only the player's government holds says
