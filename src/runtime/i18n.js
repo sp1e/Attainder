@@ -7,10 +7,14 @@ const STORAGE_KEY = "ui_language";
 // The language the upstream interface is written in: its text is shown as
 // written, and its prompts carry no language directive.
 export const DEFAULT_LANGUAGE = "en";
-// What an install reads before anyone has picked a language: Swedish, the
-// language the character system is written in. English is a choice like any
-// other and is stored as "en"; it used to be the absence of a stored value.
-export const INITIAL_LANGUAGE = "sv";
+// What a device reads before anyone has picked a language: English. Swedish is
+// a choice like any other and is stored as "sv"
+// (docs/superpowers/specs/2026-11-18-english-first-design.md).
+export const INITIAL_LANGUAGE = "en";
+// The language the character system is written in. Where there is no storage
+// at all (the engine under bare node, the build's tools, a view rendered in a
+// test) nothing was chosen and nothing can be translated: the source is read.
+export const SOURCE_LANGUAGE = "sv";
 
 // What the advisor and diplomatic chats reply in, so the interface can be read
 // in one language and the chats held in another. Defaults to the UI language —
@@ -108,7 +112,17 @@ const readLocalLanguage = () => {
   }
 };
 
-export const getStoredLanguage = () => readLocalLanguage() ?? INITIAL_LANGUAGE;
+// A device has storage even when it refuses to be read (a private window): such
+// a device is a browser, and it reads the first language.
+const deviceHasStorage = () => {
+  try {
+    return typeof localStorage !== "undefined" && localStorage !== null;
+  } catch {
+    return true;
+  }
+};
+
+export const getStoredLanguage = () => readLocalLanguage() ?? (deviceHasStorage() ? INITIAL_LANGUAGE : SOURCE_LANGUAGE);
 
 // Every code is stored, "en" included. Says whether the value now reads back
 // as written: with storage blocked it does not, and the caller must not act as

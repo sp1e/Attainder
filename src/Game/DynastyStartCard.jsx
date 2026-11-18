@@ -5,6 +5,8 @@ import HistoricalStartPicker from './HistoricalStartPicker.jsx';
 import { loadHistoricalStartOptions, startDynastyCampaign } from '../runtime/startDynastyCampaign.js';
 import { coverageLineSv } from '../runtime/historicalStartOptions.js';
 import { isFallbackListConfigured } from './AI/providerConfig.js';
+import { LANGUAGES, getStoredLanguage, languageDisplayName, setStoredLanguage } from '../runtime/i18n.js';
+import { logSettingChange } from '../runtime/debugLog.js';
 import './dynastyStart.css';
 
 // The character engine's difficulty ids (extensions.js DIFFICULTIES); the game's own difficulty is a separate setting.
@@ -50,6 +52,18 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     const next = dark ? 'light' : 'dark'; setTheme(next);
     try { localStorage.setItem('oh-dynasty-start-theme',next); } catch { /* optional persistence */ }
   };
+  // The other language is one press away on the first screen: the Options picker is reached from inside a campaign.
+  // The button names that language in the language itself, so the page translator leaves it as written.
+  const [switching,setSwitching] = useState(false);
+  const otherLanguage = LANGUAGES.find(entry => entry.code === (getStoredLanguage() === 'sv' ? 'en' : 'sv'));
+  const switchLanguage = async () => {
+    if (switching) return;
+    setSwitching(true);
+    logSettingChange('UI language', languageDisplayName(otherLanguage.code));
+    await setStoredLanguage(otherLanguage.code);
+    // Reload so the translator starts (or stops) cleanly, as the Options picker does.
+    window.location.reload();
+  };
   const start = async () => {
     setBusy(true); setError('');
     try { const options = {option:selected,mode,seed,difficulty,scenarioId,date:selected?.date,polityId,...(mode === 'family' ? {familyId} : {})}; await (onStart ? onStart(options) : startDynastyCampaign(options)); }
@@ -59,7 +73,7 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
   const outerError = useMemo(() => errorMessage ? playerText(errorMessage, START_FAILED) : '', [errorMessage]);
   // data-native-text: the card is written in Swedish, so the page translator applies its whole native book here.
   return <section className="dynasty-start" data-theme={theme} aria-labelledby="dynasty-start-heading" data-native-text>
-    <div className="dynasty-start-heading"><span>HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.</span><button type="button" onClick={toggleTheme} aria-label="Växla mellan ljust och mörkt tema">Ljust / mörkt</button></div>
+    <div className="dynasty-start-heading"><span>HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.</span><span className="dynasty-start-tools"><button type="button" className="dynasty-start-language" onClick={switchLanguage} disabled={switching} lang={otherLanguage.code} data-no-translate>{otherLanguage.native}</button><button type="button" onClick={toggleTheme} aria-label="Växla mellan ljust och mörkt tema">Ljust / mörkt</button></span></div>
     <div className="dynasty-start-layout"><div>
       <h1 id="dynasty-start-heading">Vem för du vidare?</h1>
       <p className="dynasty-start-intro">Välj en historisk start och följ människorna som formar din kampanj.</p>

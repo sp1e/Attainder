@@ -28,14 +28,16 @@ const createTranslatorStub = (english = {}) => {
     announce: () => listeners.forEach(listener => listener()) };
 };
 // The card with its real picker; the other imports are the test's.
-const loadCard = (driver, modules, translator = createTranslatorStub()) => load('./DynastyStartCard.jsx','jsx',{
+const loadCard = (driver, modules, translator = createTranslatorStub(), globals = {}) => load('./DynastyStartCard.jsx','jsx',{
+  '../runtime/i18n.js':{LANGUAGES:[{code:'en',name:'English',native:'English'},{code:'sv',name:'Swedish',native:'Svenska'}],getStoredLanguage:()=>'sv',languageDisplayName:code=>code,setStoredLanguage:async()=>{}},
+  '../runtime/debugLog.js':{logSettingChange:()=>{}},
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
   './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{}, './Characters/playerText.js':playerTextModule,
   './HistoricalStartPicker.jsx':load('./HistoricalStartPicker.jsx','jsx',{react:driver.react,'../runtime/historicalStartPicker.js':startPicker,'../runtime/translator.js':translator.module,
     '../runtime/useTranslatorUpdates.js':load('../runtime/useTranslatorUpdates.js','js',{react:driver.react,'./translator.js':translator.module},{window:translator.window})},{window:translator.window}),
   '../runtime/historicalStartOptions.js':{coverageLineSv},
   ...modules,
-});
+},globals);
 // The four shipped starts as the option loader returns them; John installs as `default`.
 const shippedOptions = () => orderHistoricalStarts(Object.entries({'charlemagne-800':'charlemagne-800',default:'john-1200','egypt-3000bc':'egypt-3000bc','world-1500':'world-1500'}).map(([scenarioId,folder]) => {
   const pkg=JSON.parse(readFileSync(new URL(`../../server/seed/historical/${folder}/scenario.json`,import.meta.url),'utf8'));
@@ -62,6 +64,28 @@ test('the start card heading names the supported start range', async () => {
   render(); await settle();
   const heading=findAll(render(),n=>n.props?.className==='dynasty-start-heading');
   assert.equal(heading.length,1); assert.equal(textOf(heading[0].props.children[0]),'HISTORISKA DYNASTIER · 3300 F.KR.–1530 E.KR.');
+});
+
+test('the start card offers the other language beside the theme switch, in that language', async () => {
+  const stored=[], logged=[]; let reloads=0, language='en';
+  const i18n={LANGUAGES:[{code:'en',name:'English',native:'English'},{code:'sv',name:'Swedish',native:'Svenska'}],getStoredLanguage:()=>language,
+    languageDisplayName:code=>({en:'English',sv:'Swedish'})[code],setStoredLanguage:async code=>{stored.push(code);}};
+  const driver=createHookDriver();
+  const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{}},
+    '../runtime/i18n.js':i18n,'../runtime/debugLog.js':{logSettingChange:(label,value)=>logged.push([label,value])}},undefined,{window:{location:{reload:()=>{reloads+=1;}}}});
+  const render=()=>driver.render(React.createElement(card.default,{}));
+  render(); await settle();
+  // A device that reads English (the first language) is offered Swedish, written as Swedes write it.
+  let button=buttonNamed(render(),'Svenska');
+  assert.equal(button.props.lang,'sv');
+  assert.equal(button.props['data-no-translate'],true,'the page translator leaves the name as written');
+  const tools=findAll(render(),n=>n.props?.className==='dynasty-start-tools');
+  assert.deepEqual(tools[0].props.children.map(textOf),['Svenska','Ljust / mörkt']);
+  await button.props.onClick();
+  assert.deepEqual(stored,['sv']); assert.deepEqual(logged,[['UI language','Swedish']]); assert.equal(reloads,1);
+  // A device that reads Swedish is offered English; any other language is offered Swedish, the card's own.
+  language='sv'; assert.equal(buttonNamed(render(),'English').props.lang,'en');
+  language='de'; assert.equal(buttonNamed(render(),'Svenska').props.lang,'sv');
 });
 
 test('orchestrator creates once with the selected historical options before activation', async () => {
@@ -346,6 +370,7 @@ test('a failed start shows a Swedish sentence, never the internal error, also wh
 test('the card and its picker are marked as Swedish-native text, and the card no longer opts out of translation', () => {
   const card=readFileSync(new URL('./DynastyStartCard.jsx',import.meta.url),'utf8');
   assert.match(card,/<section className="dynasty-start"[^>]* data-native-text>/);
-  assert.doesNotMatch(card,/data-no-translate/);
+  assert.doesNotMatch(card,/<section className="dynasty-start"[^>]*data-no-translate/);
+  assert.equal(card.match(/data-no-translate/g).length,1,'only the language button, which names a language in that language');
   assert.match(readFileSync(new URL('./HistoricalStartPicker.jsx',import.meta.url),'utf8'),/return <div className="historical-start-picker" data-native-text>/);
 });
