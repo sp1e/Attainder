@@ -2,7 +2,7 @@
 
 - Codex: read `docs/development/CODEX-HANDOVER.md` first, then `HANDOVER.local.md` if it exists. It holds the current work queue and the standing mandate.
 - The project repository is https://github.com/sp1e/Attainder. Publish tested project changes there at development milestones. Verify the remote commit after each push.
-- Keep README and new public documentation in English. The current game interface includes Swedish text.
+- Keep README and new public documentation in English. The game reads English on a new install; its source text is Swedish, and Swedish is a choice in the game.
 - Preserve upstream attribution and AGPL notices. Do not publish credentials, account sessions, campaign saves, private reports or machine-specific paths.
 - Build each phase of the design in `docs/superpowers/specs/` from a written plan in `docs/superpowers/plans/`, with tests first and a review of each task.
 - When Claude runs on the owner's private Claude account, the global GitHub CLI account is `sp1e`. Check `gh api user --jq .login` and `git var GIT_AUTHOR_IDENT` before every push; both must name sp1e.
