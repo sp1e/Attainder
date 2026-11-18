@@ -12,10 +12,14 @@ import { useWorldState } from "./useWorldState.js";
 import { publishCustomCityIndex } from "../../runtime/placeSearch.js";
 import {
     EMPTY_CITY_FEATURE_COLLECTION,
+    cityFeaturesAsRead,
+    cityLabelOverrides,
+    cityNameReadings,
     customCityFeatureCount,
     normalizeCustomCityFeatureCollection,
     resolveCityLayerSource,
 } from "../../runtime/cityFeatures.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 
 ensurePmtilesProtocol();
 
@@ -244,7 +248,11 @@ const Cities = () => {
     const [customRead, setCustomRead] = useState(false);
     const [cityEditorEpoch, setCityEditorEpoch] = useState(0);
     const citiesGeojsonUrl = JSON_URLS.citiesGeojson;
-    const label = React.useMemo(() => cityLabelExpr(cityRenames), [cityRenames]);
+    // A package's cities are stored under their Swedish names. The label and the place search show the reading of
+    // the player's language (the native book), and an AI rename wins over it.
+    const updates = useTranslatorUpdates();
+    const readings = React.useMemo(() => cityNameReadings(customData, (text) => readNative(text, updates)), [customData, updates]);
+    const label = React.useMemo(() => cityLabelExpr(cityLabelOverrides(readings, cityRenames)), [readings, cityRenames]);
     const pop = React.useMemo(() => cityPopulationExpr(cityPopulations), [cityPopulations]);
 
     // Cheats 2.0 can authoritatively edit the scenario city asset while the game is
@@ -278,8 +286,7 @@ const Cities = () => {
                 // The empty default is served on failure too, so counting can't tell.
                 const read = jsonReadSucceeded(citiesGeojsonUrl);
                 setCustomData(normalized);
-                // Names for the place search; stock cities are OSM's already.
-                publishCustomCityIndex(count > 0 ? normalized : null);
+                // The place search gets the names from the effect below, as the player reads them.
                 setCustomRead(read);
 
                 if (import.meta.env?.DEV) {
@@ -304,6 +311,12 @@ const Cities = () => {
             cancelled = true;
         };
     }, [customFlag, citiesGeojsonUrl, cityEditorEpoch]);
+
+    // Names for the place search, as the player reads them; stock cities are OSM's already.
+    useEffect(() => {
+        if (!customData) return;
+        publishCustomCityIndex(customCityFeatureCount(customData) > 0 ? cityFeaturesAsRead(customData, readings) : null);
+    }, [customData, readings]);
 
     const source = resolveCityLayerSource({
         customCities: customFlag,
