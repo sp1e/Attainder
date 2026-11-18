@@ -29,7 +29,8 @@ const selectNow = (game) => game?.gameDate ?? "";
 // After the turn that closes a real calendar year, shows the sourced real-world
 // events of that year once per device. Nothing here is saved to the game and no
 // model is called; the watermark in historicalYearSeen is the only thing written.
-export default function HistoricalYearNotice({ gameId, hidden }) {
+// `court`: beside the court shell on a desktop the notice takes the shell's look (court shell, slice 6).
+export default function HistoricalYearNotice({ gameId, hidden, court = false }) {
   const startDate = useRuntimeState("game", selectStart);
   const gameDate = useRuntimeState("game", selectNow);
   const turnKey = useRuntimeState("world", selectTurnKey);
@@ -160,7 +161,7 @@ export default function HistoricalYearNotice({ gameId, hidden }) {
 
   if (!open) return null;
 
-  return <div className="char-backdrop hist-backdrop" data-char-theme={theme} data-native-text>
+  return <div className="char-backdrop hist-backdrop" data-char-theme={court ? "court" : theme} data-native-text>
     <div ref={dialogRef} className="hist-notice" role="dialog" aria-modal="true" aria-labelledby="hist-notice-title" tabIndex={-1}>
       <header>
         <h2 id="hist-notice-title">I verklighetens historia</h2>

@@ -13489,7 +13489,10 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
             requests: state.requests,
           });
           if (worldChangeError) return worldChangeError;
-          const ledgerError = validateSegmentLedgers(candidate, { world: ledgerWorld, strict, segmentIndex, receipt: draft });
+          // The war ledger too is strict only while a retry remains, court or not: on the last answer its own
+          // repair keeps an event that read as combat and takes only its war link away. One court year in five
+          // was lost to a revolt that "collapses without a battle" (same spec, measured 18 November 2026).
+          const ledgerError = validateSegmentLedgers(candidate, { world: ledgerWorld, strict: !finalAttempt, segmentIndex, receipt: draft });
           if (ledgerError) return ledgerError;
           return validateSegmentStorylines(candidate, {
             world: ledgerWorld,

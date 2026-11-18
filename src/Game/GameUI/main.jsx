@@ -589,7 +589,7 @@ const Main = ({
       {/* The shell stays while the panel is open: on a desktop the panel is docked as its left column. */}
       {hasCharacters && !mainMenuOpen && !activeBottomPanel && !isMobile && <Suspense fallback={null}><LazyCourtShell key={activeGame?.id} topOffset={TOP_BAR_OFFSET} rightBusy={isAdvisorOpen} panelOpen={isCharactersOpen} onClosePanel={closeCourtPanel} /></Suspense>}
       {hasCharacters && <Suspense fallback={null}><LazyCharactersPanel key={activeGame?.id} open={isCharactersOpen && !(courtDocked && (mainMenuOpen || Boolean(activeBottomPanel)))} onClose={() => setIsCharactersOpen(false)} chronicleRequest={chronicleRequest} request={charactersRequest.gameId === activeGame?.id ? charactersRequest : null} docked={courtDocked} /></Suspense>}
-      {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
+      {isHistoricalCampaign && Boolean(activeGame?.id) && <Suspense fallback={null}><LazyHistoricalYearNotice key={activeGame.id} gameId={activeGame.id} court={courtDocked} hidden={mainMenuOpen || isCharactersOpen || isSettingsOpen || isCheatsOpen || Boolean(activeBottomPanel)} /></Suspense>}
       <DateWidget
         activePanel={activeBottomPanel}
         mapRef={mapRef}
