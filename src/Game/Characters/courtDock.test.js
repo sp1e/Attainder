@@ -82,3 +82,13 @@ test("the shell stays beside the docked panel and gives it its left column", () 
   const dock = block(".char-backdrop.char-backdrop--docked {");
   assert.ok(dock.includes("pointer-events: none;"), "the dock's own box does not take the map's presses");
 });
+
+test("the real-history notice takes the shell's look beside a court on a desktop", () => {
+  const notice = read("./HistoricalYearNotice.jsx").replace(/\r\n/g, "\n"), main = read("../GameUI/main.jsx").replace(/\r\n/g, "\n");
+  assert.match(notice, /export default function HistoricalYearNotice\(\{ gameId, hidden, court = false \}\)/);
+  assert.match(notice, /data-char-theme=\{court \? "court" : theme\}/);
+  assert.match(main, /<LazyHistoricalYearNotice key=\{activeGame\.id\} gameId=\{activeGame\.id\} court=\{courtDocked\}/);
+  const rule = block('.hist-backdrop[data-char-theme="court"] {');
+  assert.ok(rule.includes("backdrop-filter: none;"), "the map stays in view behind the notice");
+  assert.doesNotMatch(rule, /gradient\(/);
+});

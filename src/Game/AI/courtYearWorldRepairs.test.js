@@ -35,3 +35,13 @@ test("the two refusals that cost a court year stand in the strict branch, with a
   assert.match(validator, /if \(strict && captureGuard && Array\.isArray\(candidate\?\.events\)\) \{/);
   assert.match(validator, /if \(!strict && captureGuard && !resolvedRegionIdsOnly && Array\.isArray\(candidate\?\.events\)\) \{\s+await completeNarratedCaptures\(/);
 });
+
+test("a court year's war ledger is strict only while a retry remains", () => {
+  // Measured on 18 November 2026: one year in five was refused because a revolt that "collapses without a battle"
+  // read as hard combat with fewer than two combatants. The ledger's own repair keeps the event as narrative and
+  // takes only its war link away.
+  assert.match(gameplay, /validateSegmentLedgers\(candidate, \{ world: ledgerWorld, strict: !finalAttempt, segmentIndex, receipt: draft \}\)/);
+  const ledger = gameplay.slice(gameplay.indexOf("const validateSegmentLedgers = "), gameplay.indexOf("const validateSegmentLedgers = ") + 6000);
+  assert.match(ledger, /if \(combatWarRepair\.unresolved\.length && strict\) \{/, "the refusal stands in the strict branch");
+  assert.match(ledger, /\? \{ \.\.\.event, warId: "", combatants: \[\] \}/, "the repair keeps the event and removes its war link");
+});

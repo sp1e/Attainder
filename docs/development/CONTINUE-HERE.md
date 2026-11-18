@@ -275,6 +275,35 @@ Phase 7, moment 19. The spec is `docs/superpowers/specs/2026-11-11-holy-war-desi
 - The builder copies a court religion's `tradition` into the package, and the package validator accepts only the eleven ids of section 13 (PR #190, `5d66f613`). The court dossiers name none yet, so a rebuild after Codex adds the field is what turns on the tradition test.
 - In the same browser run, the neighbor list showed each realm's faith ("tro: Den latinska kyrkan"). After Karls lära was founded, Kyrkostaten read "(annan tro)" and no other neighbor did, before and after a reload. A priests' call needs yearly turns with the model and was not played.
 
+## The living map
+
+Design `docs/superpowers/specs/2026-11-13-living-map-design.md`, six slices, PRs #223 to #228. In a historical campaign on the default basemap the map has relief over the realm fills, an outline around every realm (`polity-frontier`, `polity-side` in `src/Game/Map/vnext/politicalBoundaryTopology.js`), a camera that opens tilted at 42 degrees with a compass to reset it, painted sea and lakes built by `node scripts/build-map-water.mjs` into `public/map/`, snow by date and latitude (`src/Game/Map/snowLine.js`, the tile protocol `ohsnow://`), and each ruler's portrait at his seat (`src/Game/Map/seatRulers.js`). All of the historical look is in `src/Game/Map/historicalCartography.js`. Left open: the palette (five colours for ten realms) and a sweep of the seasons at the year turn.
+
+## The court over the map
+
+Design `docs/superpowers/specs/2026-11-15-court-shell-design.md`, seven slices, PRs #229 to #235, each with its plan under `docs/superpowers/plans/2026-11-1*-court-shell-slice-*.md`. On a desktop, in a campaign with a court:
+
+- `src/Game/Characters/CourtShell.jsx` draws the thread, the left panel, the person card, the turn's record and the year line. What each holds is decided by pure functions in `courtShell.js` (`threadOf`, `mattersOf`, `answerOf`, `cardOf`, `actionsOf`, `yearLineOf`, `peopleOf`, `housesOf`, `seatsOf`, `intrigueOf`, `chronicleOf`, `epochOf`), tested in `courtShell.test.js`, `courtAnswer.test.js`, `courtYear.test.js` and `courtAreas.test.js`.
+- The court is read once per campaign, revision and read-state by `src/runtime/useCourtView.js`, shared with the seat portraits.
+- A command goes in through the panel's own entry (`submitCharacterCommand`) by `useCourtCommand.js`, one at a time. The year turn is kept in `courtYear.js`, beside the shell, so it outlives a visit to the panel.
+- `CourtTopBar.jsx` stands in place of the session pill and Exit Game through `LibraryTopBar({ inGameBar })`, and gives the map's own controls the shell's ground while it stands (`data-court-hud`).
+- `CharactersPanel({ docked })` is the shell's left column on a desktop: no backdrop, no focus trap, the shell's look. Its two breakpoints are container queries. A phone keeps the modal.
+
+Every label is the panel's own Swedish string where the panel has one; new text goes through `build-native-catalog` and `check-native-pack`. A list writes its sentences with the panel's variable names, because the catalog names a pattern's slots after them.
+
+Left open by the design: the upstream date widget still stands at the top right (ruling 26), and labels in the upstream controls keep their literal colours (ruling 45).
+
+## A court year with the model
+
+Design `docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md`, PRs #236 and the one that added this section. A campaign with a court validated its year strictly on every attempt and has no fallback, so a strict complaint on the model's last answer lost the year. Measured from the year line with the local Claude on copies of the Charlemagne campaign:
+
+| Day | Turned | Written | Refused by |
+|---|---|---|---|
+| 16 November | 3 | 1 | a unit's name the map does not have; a church's consecration read as a capture |
+| 18 November | 5 | 4 | a revolt that "collapses without a battle" read as combat |
+
+A written year took 207 to 308 seconds and held 15 to 26 events. On a court year's last answer the world's changes and the war ledger now repair in place (operations the map cannot carry are dropped, an event that read as combat keeps its text and loses its war link); the last answer adds nothing to the map. The dates and the storylines are still strict there and refused no year in the eight. A refused year's reason is in the browser console: `[character action] an internal error was kept from the player: …`. The real-history notice after a year takes the shell's look beside the shell.
+
 ## Branch state
 
 Phase 3 tasks 1 to 10 are on `main`. PR #9 squash-merged them as `9a780f7` on 5 November 2026, ahead of schedule because the weekly token limit was nearly spent. `phase-3/court-and-power` keeps the individual commits. Each task passed its own review. The whole-branch review found two reproduced issues; both now have reviewed fixes. The final follow-up review of `08d3518..55283dc` approved the branch with no new Critical, Important or Minor findings. The required test/build check passed in [CI run 42020869295](https://github.com/sp1e/Attainder/actions/runs/42020869295). [PR #12](https://github.com/sp1e/Attainder/pull/12) merged the fixes, and the remote `main` commit was verified as `6f4f7c0de84ea58010e5ea597ff0325f572ea4eb`. The retained remote branch `fix/phase-3-review` ends at `55283dc`; its tested production code remains `cfa225238c5065441e4642481ab507629e498e73`. Nobody has run the Phase 3 play script; the owner deferred the Hadara script behind the historical foundation.
@@ -354,7 +383,7 @@ The play scripts reached four of the five tiers. `Det slog tillbaka` did not com
 **Bugs the scripts found, all fixed**
 
 - A Claude Code installed through npm was reported as missing, because the bridge looked for `claude.exe` only in `~/.local/bin` and on `PATH`.
-- `LEGAL_TRANSFER_LANGUAGE` matched the Swedish word `sold` (a soldier's pay). A character campaign treated its final attempt as strict in every check, so the whole year was lost after 158 seconds. The check now needs `sold to`. Since 16 November 2026 the world's changes are repaired in place on a court year's last answer: operations the map cannot carry are dropped, as in any other campaign (`docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md`). Two more years had been lost the same way, to a unit's name and to a sentence that read like a capture. A court year's other checks (dates, ledgers, storylines) are still strict on the last answer.
+- `LEGAL_TRANSFER_LANGUAGE` matched the Swedish word `sold` (a soldier's pay). A character campaign treated its final attempt as strict in every check, so the whole year was lost after 158 seconds. The check now needs `sold to`. Since 16 November 2026 the world's changes are repaired in place on a court year's last answer: operations the map cannot carry are dropped, as in any other campaign (`docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md`). Two more years had been lost the same way, to a unit's name and to a sentence that read like a capture. On 18 November five more years were turned from the year line: four written, one refused by the war ledger (a revolt that "collapses without a battle" read as combat), which now repairs in place on the last answer too. A court year's dates and storylines are still strict on the last answer; they refused no year in eight.
 - Codex older than the flags the bridge sends read `Inloggad och tillgänglig` and then failed on every call. Codex 0.117.0 lacks `--ignore-user-config`; 0.166.0 has it. The status now reads `Behöver uppdateras` with the update command. A real Codex call has not run on this computer.
 - `Planen avgörs 1/4 300 f.Kr..` had two periods, `Statskassan förändras med 30.1 silver.` used a decimal point, and the skill list showed `prowess` in English.
 - A failed year showed the model call's English error. The panel now shows a Swedish sentence and logs the original.

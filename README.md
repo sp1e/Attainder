@@ -79,11 +79,27 @@ Phase 2 adds secrets, plots and prisoners on top of the Phase 1 action engine. A
 
 A reign now has goals, prestige and earned nicknames. Legitimacy shows its sources. Council members serve according to loyalty you can only read as well as your spymaster can. Dread holds some nobles back and turns others into enemies. Sustained stress ends in a breakdown with a real cost. Great families demand cities and offices. Discontented nobles form hidden factions, and a strong faction sends a dated ultimatum: abdicate, concede, try to crush it, or lose the throne when the date comes. The engine decides every outcome, and the model sees the court only as far as you know it.
 
+## The map and the court over it
+
+In a historical campaign the map is the game's own MapLibre map with relief, a tilted camera, painted sea and lakes, snow that follows the date and the latitude, an outline around every realm, and each ruler's portrait at his seat ([design](docs/superpowers/specs/2026-11-13-living-map-design.md)).
+
+On a desktop the court stands over that map ([design](docs/superpowers/specs/2026-11-15-court-shell-design.md)):
+
+- a thread of portraits along the top, the ruling house in the order of succession and then the other houses at court, with the realm's six figures beside it;
+- a panel on the left with six areas: what needs you, the people, the families, the offices and the succession, the intrigue and the chronicle. A matter unfolds there with its choices and is answered there;
+- a card on the right for the person you select, with skills, opinion and goal, and the actions that name that person;
+- a year line along the bottom with the deadlines of the twelve months ahead. The year turns from it, and the year's record is read over the map;
+- a bar at the top with the realm's name, the date and the way to the main menu.
+
+The full panel, with conversations, free-text actions, envoys and schemes, opens docked beside the map instead of over it. A phone keeps the earlier full-screen panel.
+
 ## Scenarios Are Released Under CC BY 4.0
 
 The upstream scenario-sharing rules remain in place. Scenarios posted or shared through the game are released under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/). Exported scenario files include the corresponding license record. Separately referenced maps, music and other third-party material retain their own terms.
 
 ## Development status
+
+As of 18 November 2026 `main` holds the historical starts, the character systems below, the living map and the court shell. The suite has 5,883 tests. A year written by the local model from the year line was measured on a copy of the Charlemagne campaign: of eight years turned on 16 and 18 November, five were written (about three to five minutes each) and three were refused by a check on the model's answer; each of the three now has its repair ([design](docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md)). The paragraphs below are the record of earlier checkpoints.
 
 The historical branch remains in development. [PR #13](https://github.com/sp1e/Attainder/pull/13) tracks the branch and its merge state. At `2066a55`, [CI run 42102593161](https://github.com/sp1e/Attainder/actions/runs/42102593161) passed: 4,654 tests passed, none failed, two are TODOs, and the build passed. The controller accepted browser evidence for both bookmarks and adapters with the limits in the [play script](docs/play-scripts/historical-foundation.md). Final review approved publication subject to current-head CI. The latest full local lint measurement, before the final render fixes, reported 18 errors and 71 warnings, matching the earlier aggregate; the final globe-fix files passed targeted lint. Build warnings remain.
 

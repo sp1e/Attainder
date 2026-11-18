@@ -450,3 +450,7 @@
   font-variant-numeric: lining-nums tabular-nums;
 }
 .char-backdrop[data-char-theme="court"] .char-panel h2, .char-backdrop[data-char-theme="court"] .char-panel h3, .char-backdrop[data-char-theme="court"] .char-panel h4 { font-family: "EB Garamond", Georgia, serif; font-weight: 600; }
+
+/* The real-history notice beside the court shell: the shell's look, and the map stays in view behind it. */
+.hist-backdrop[data-char-theme="court"] { background: rgba(10, 8, 6, 0.5); backdrop-filter: none; }
+.hist-backdrop[data-char-theme="court"] .hist-notice h2 { font-family: "EB Garamond", Georgia, serif; font-weight: 600; }
