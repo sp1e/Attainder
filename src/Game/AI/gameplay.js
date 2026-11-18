@@ -13480,8 +13480,9 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
           // a strict last answer cost the whole year to a unit's name or to a sentence that read like a capture
           // (docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md). The repairs drop operations
           // from the events' impacts; the court's own changes (characterOps) are never touched here.
-          // A court year's last answer gets the drops and nothing added: the ledgers below are still strict for a
-          // court, and a capture completed here could be the combat they cannot bind to a war.
+          // A court year's last answer gets the drops and nothing added. The completion of a narrated capture was
+          // switched off there while the ledgers below were strict for a court; it stays off, because no court year
+          // has been measured with it on.
           const worldChangeError = await validateGeneratedWorldChanges(candidate, bundle.world, {
             strictTransfers: !finalAttempt,
             captureGuard: !(finalAttempt && Boolean(bundle.world.characterSystem)),
@@ -13494,10 +13495,13 @@ const runJumpSegments = async ({ context, onEvents, onProgress, signal, state })
           // was lost to a revolt that "collapses without a battle" (same spec, measured 18 November 2026).
           const ledgerError = validateSegmentLedgers(candidate, { world: ledgerWorld, strict: !finalAttempt, segmentIndex, receipt: draft });
           if (ledgerError) return ledgerError;
+          // The consequence check follows the ledger: its repair takes an event's war link away, and that link
+          // can be the event's only consequence channel. Strict after the repair, it would refuse the year the
+          // repair had just kept (same spec, ruling 6). The dates above keep the court's rule.
           return validateSegmentStorylines(candidate, {
             world: ledgerWorld,
             analysis: worldInitiative.analysis,
-            strict,
+            strict: !finalAttempt,
             finalAttempt,
             originDate: state.segmentOrigin,
             targetDate: segmentTarget,

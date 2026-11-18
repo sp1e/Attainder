@@ -18,7 +18,7 @@ All three come from `validateGeneratedWorldChanges`. Its own contract says: "Cal
 
 ## Non-goals
 
-- The other strict checks of a court year (dates, the storylines, the event limit) stay as they are. No year has been seen lost to them. The war ledger was among them until it was measured (ruling 5).
+- The other strict checks of a court year (dates, the storylines, the event limit) stay as they are. No year has been seen lost to them. The war ledger was among them until it was measured (ruling 5), and the consequence check followed it (ruling 6).
 - No change to a campaign without a court.
 - No new retry and no longer wait.
 
@@ -29,6 +29,7 @@ All three come from `validateGeneratedWorldChanges`. Its own contract says: "Cal
 3. **The language heuristics run only while a retry remains**, as their own comment says. That follows from ruling 1: they live in the strict branch.
 4. **A court year's last answer gets the drops and nothing added.** In any other campaign the last answer also has a narrated capture completed on the map. A court year's ledgers are still strict on the last answer (non-goal above), and a capture completed there could be the combat they cannot bind to a war, which would lose the year again by another road. So the completion is switched off (`captureGuard`) for a court year's last answer. Cost if wrong: a capture the text states and the model left off the map stays off the map that year.
 5. **The war ledger follows the same rule** (added 18 November 2026). Five more years were turned from the year line: four were written (207 to 308 seconds each, 15 to 26 events), and one was refused after 178 seconds because `Bardanes Tourkos's Revolt Against Nikephoros Collapses Without a Battle at Chrysopolis` read as hard combat with fewer than two combatants. The ledger has its own repair for exactly this ("a riot and a bombing read as hard combat to the detector"): the event stays as narrative and loses its war link, and a war record that only such events established goes with it. A court year's last answer now gets that repair. Ruling 4 stands as it is: the last answer adds nothing to the map.
+6. **The consequence check follows the ledger** (added 18 November 2026, from the review of ruling 5). The ledger's repair takes an event's war link away, and that link can be the event's only consequence channel; a strict consequence check after the repair would refuse the year with "has no canonical consequence at all". On a court year's last answer the check is fail-soft, as it is in every other campaign. The capture completion of ruling 4 stays off: its reason (strict ledgers) is gone, and no court year has been measured with it on. Cost if wrong: a major event without a recorded consequence stands in a year's record.
 
 ## Checks
 
@@ -37,5 +38,7 @@ All three come from `validateGeneratedWorldChanges`. Its own contract says: "Cal
 - A year turned from the year line with the local model, on a copy of the Charlemagne campaign: the year is written, the date moves, the record stands over the map.
 
 ## Known and left
+
+Since ruling 6 only the dates and the storylines' own payload check are strict on a court year's last answer. Not measured: a year whose last answer needed the ledger's repair.
 
 Across both measurements eight years were turned: three refused (a unit's name, a sentence read as a capture, a revolt read as combat), five written. Each of the three refusals now has its repair. The dates and the storylines are still strict on a court year's last answer and have refused no year in the eight.
