@@ -72,3 +72,47 @@ export const resolveCityLayerSource = ({ customCities, collection, readSucceeded
   if (collection === null || collection === undefined) return "loading";
   return readSucceeded ? "custom" : "stock";
 };
+
+const storedCityName = (feature) => String(feature?.properties?.city ?? feature?.properties?.name ?? "").trim();
+const collectionFeatures = (collection) => (Array.isArray(collection?.features) ? collection.features : []);
+
+// What the player reads for each custom city: { lowercased stored name: its reading }, only where the reading
+// differs. `read` is the page's native book (readNative). A package stores its cities under their Swedish names,
+// and the stored name stays the key everything else matches on (world.cityRenames, world.cityPopulations).
+export const cityNameReadings = (collection, read) => {
+  const readings = {};
+  for (const feature of collectionFeatures(collection)) {
+    const name = storedCityName(feature);
+    if (!name) continue;
+    const answer = read(name);
+    const reading = typeof answer === "string" ? answer.trim() : "";
+    if (reading && reading !== name) readings[name.toLowerCase()] = reading;
+  }
+  return readings;
+};
+
+// The label overrides for the map: a reading, and over it an AI rename (world.cityRenames, keyed by the lowercased
+// name the model wrote). A model that read the English name renamed the same city, so a rename made under a
+// reading lands on the stored name too.
+export const cityLabelOverrides = (readings, renames = {}) => {
+  const overrides = { ...readings };
+  const storedByReading = new Map(Object.entries(readings || {}).map(([stored, reading]) => [reading.toLowerCase(), stored]));
+  for (const [from, to] of Object.entries(renames || {})) {
+    overrides[from] = to;
+    if (storedByReading.has(from)) overrides[storedByReading.get(from)] = to;
+  }
+  return overrides;
+};
+
+// The same collection with each city under the name the player reads, for the place search. With nothing to read
+// it is the collection itself.
+export const cityFeaturesAsRead = (collection, readings) => {
+  if (!readings || !Object.keys(readings).length) return collection;
+  return {
+    ...collection,
+    features: collectionFeatures(collection).map((feature) => {
+      const reading = readings[storedCityName(feature).toLowerCase()];
+      return reading ? { ...feature, properties: { ...feature.properties, city: reading, name: reading } } : feature;
+    }),
+  };
+};
