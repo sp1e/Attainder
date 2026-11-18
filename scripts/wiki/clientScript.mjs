@@ -27,7 +27,7 @@ export const clientScript = (shell) => `
   var list = document.getElementById("wikiResults");
   var index = null, pending = false;
 
-  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+  function current() { return root.getAttribute("data-help-lang") === "sv" ? "sv" : "en"; }
 
   // Titles and section names come from JSON and go into innerHTML.
   function esc(s) {

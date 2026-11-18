@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sv" data-help-lang="sv" data-title-sv="Länder och identitet — Guide till Attainder" data-title-en="Countries and identity — Attainder guide">
+<html lang="en" data-help-lang="en" data-title-sv="Länder och identitet — Guide till Attainder" data-title-en="Countries and identity — Attainder guide">
 <head>
   <meta charset="UTF-8" />
   <!-- Visit counters: asked for first, loaded only after a yes (consent.js). -->
@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111113" />
   <link rel="icon" type="image/jpeg" href="/logo.png" />
-  <title>Länder och identitet — Guide till Attainder</title>
+  <title>Countries and identity — Attainder guide</title>
   <!-- Swedish or English, chosen before the first paint: the page's own switch, then the game's Options. -->
   <script>
 (function () {
@@ -15,12 +15,12 @@
   try {
     own = localStorage.getItem("wiki_language");
     game = localStorage.getItem("ui_language");
-  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  } catch (error) { /* Storage is blocked: the page reads English. */ }
   var lang = (function decideHelpLanguage(wikiLanguage, uiLanguage) {
   var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
   var own = clean(wikiLanguage);
   var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
-  return chosen === "en" ? "en" : "sv";
+  return chosen === "sv" ? "sv" : "en";
 })(own, game);
   root.setAttribute("data-help-lang", lang);
   root.lang = lang;
@@ -29,21 +29,21 @@
 })();
   </script>
   <link rel="canonical" href="https://openhistoria.com/wiki/countries/" />
-  <meta name="description" content="Läs landinformation och skilj mellan namn, identitet och territorium." />
+  <meta name="description" content="Read country information and distinguish names, identity and territory." />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Open Historia" />
   <meta property="og:url" content="https://openhistoria.com/wiki/countries/" />
-  <meta property="og:title" content="Länder och identitet — Guide till Attainder" />
-  <meta property="og:description" content="Läs landinformation och skilj mellan namn, identitet och territorium." />
+  <meta property="og:title" content="Countries and identity — Attainder guide" />
+  <meta property="og:description" content="Read country information and distinguish names, identity and territory." />
   <meta property="og:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1280" />
   <meta property="og:image:height" content="720" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Länder och identitet — Guide till Attainder" />
-  <meta name="twitter:description" content="Läs landinformation och skilj mellan namn, identitet och territorium." />
+  <meta name="twitter:title" content="Countries and identity — Attainder guide" />
+  <meta name="twitter:description" content="Read country information and distinguish names, identity and territory." />
   <meta name="twitter:image" content="https://raw.githubusercontent.com/Open-Historia/open-historia/main/public/loading_screen.jpg" />
 
   <link rel="stylesheet" href="/fonts/fonts.css" />
@@ -86,16 +86,16 @@
       <a href="/#download"><span data-help-lang="sv" lang="sv">Ladda ner</span><span data-help-lang="en" lang="en">Download</span></a>
       <a href="https://github.com/Open-Historia/open-historia" target="_blank" rel="noopener">GitHub</a>
       <a class="nav-cta" href="/play/"><span data-help-lang="sv" lang="sv">▶ Spela</span><span data-help-lang="en" lang="en">▶ Play</span></a>
-      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
+      <div class="lang-switch lang-switch-header" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="false">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="true">English</button></div>
     </nav>
   </div>
 </header>
 
 <div class="wrap wiki-layout">
   <aside class="wiki-sidebar">
-    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button></div>
+    <div class="lang-switch lang-switch-side" role="group"><button type="button" data-help-set="sv" lang="sv" aria-pressed="false">Svenska</button><button type="button" data-help-set="en" lang="en" aria-pressed="true">English</button></div>
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="Sök i guiden…" aria-label="Sök i guiden" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="Search the guide…" aria-label="Search the guide" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     <ul class="wiki-nav">
@@ -214,7 +214,7 @@
   var list = document.getElementById("wikiResults");
   var index = null, pending = false;
 
-  function current() { return root.getAttribute("data-help-lang") === "en" ? "en" : "sv"; }
+  function current() { return root.getAttribute("data-help-lang") === "sv" ? "sv" : "en"; }
 
   // Titles and section names come from JSON and go into innerHTML.
   function esc(s) {

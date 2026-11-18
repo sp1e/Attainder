@@ -84,27 +84,28 @@ test('the search index has one Swedish and one English entry per page', () => {
 });
 
 test('the language follows Options, and the page\'s own switch wins', () => {
-  assert.equal(decideHelpLanguage(null, 'en'), 'en');
-  for (const game of [null, undefined, '', 'sv', 'de', 'EN']) {
-    assert.equal(decideHelpLanguage(null, game), 'sv', String(game));
+  assert.equal(decideHelpLanguage(null, 'sv'), 'sv');
+  // English is the first language: an unset value and every value but "sv" read English.
+  for (const game of [null, undefined, '', 'en', 'de', 'SV']) {
+    assert.equal(decideHelpLanguage(null, game), 'en', String(game));
   }
   assert.equal(decideHelpLanguage('sv', 'en'), 'sv');
   assert.equal(decideHelpLanguage('en', 'sv'), 'en');
   assert.equal(decideHelpLanguage('en', null), 'en');
   // A value the switch never writes is no choice, so the game's stands.
-  assert.equal(decideHelpLanguage('de', 'en'), 'en');
-  assert.equal(decideHelpLanguage(' en ', null), 'en', 'trimmed like the game\'s own reader');
+  assert.equal(decideHelpLanguage('de', 'sv'), 'sv');
+  assert.equal(decideHelpLanguage(' sv ', null), 'sv', 'trimmed like the game\'s own reader');
 });
 
 // Runs the script of <head> against a stand-in for the page.
 const runHeadScript = (localStorage) => {
   const attributes = { 'data-title-sv': 'Svensk titel', 'data-title-en': 'English title' };
   const documentElement = {
-    lang: 'sv',
+    lang: 'en',
     setAttribute(name, value) { attributes[name] = value; },
     getAttribute(name) { return attributes[name] ?? null; },
   };
-  const document = { documentElement, title: 'Svensk titel' };
+  const document = { documentElement, title: 'English title' };
   const sandbox = { document };
   Object.defineProperty(sandbox, 'localStorage', localStorage);
   vm.runInNewContext(headLanguageScript(), sandbox);
@@ -113,12 +114,12 @@ const runHeadScript = (localStorage) => {
 const storageWith = (values) => ({ value: { getItem: (key) => values[key] ?? null } });
 
 test('the head script sets the language and the title before the page is drawn', () => {
-  assert.deepEqual(runHeadScript(storageWith({ ui_language: 'en' })), { lang: 'en', shown: 'en', title: 'English title' });
-  assert.deepEqual(runHeadScript(storageWith({})), { lang: 'sv', shown: 'sv', title: 'Svensk titel' });
+  assert.deepEqual(runHeadScript(storageWith({ ui_language: 'sv' })), { lang: 'sv', shown: 'sv', title: 'Svensk titel' });
+  assert.deepEqual(runHeadScript(storageWith({})), { lang: 'en', shown: 'en', title: 'English title' });
   assert.deepEqual(runHeadScript(storageWith({ ui_language: 'en', wiki_language: 'sv' })), { lang: 'sv', shown: 'sv', title: 'Svensk titel' });
-  // Blocked storage throws on access; the page then reads Swedish.
+  // Blocked storage throws on access; the page then reads English, as the game does.
   const blocked = { get() { throw new Error('storage is blocked'); } };
-  assert.deepEqual(runHeadScript(blocked), { lang: 'sv', shown: 'sv', title: 'Svensk titel' });
+  assert.deepEqual(runHeadScript(blocked), { lang: 'en', shown: 'en', title: 'English title' });
   // The committed pages run this exact script.
   assert.ok(committedPage('/wiki/').includes(`<script>\n${headLanguageScript()}\n  </script>`));
 });
@@ -129,13 +130,14 @@ test('the switch is two buttons named as in the game\'s language list', () => {
   }
   const html = committedPage('/wiki/time/');
   // Written twice, in the header and above the search box; the stylesheet shows one.
-  const buttons = '<button type="button" data-help-set="sv" lang="sv" aria-pressed="true">Svenska</button>'
-    + '<button type="button" data-help-set="en" lang="en" aria-pressed="false">English</button>';
+  const buttons = '<button type="button" data-help-set="sv" lang="sv" aria-pressed="false">Svenska</button>'
+    + '<button type="button" data-help-set="en" lang="en" aria-pressed="true">English</button>';
   for (const place of ['header', 'side']) {
     assert.equal(count(html, `<div class="lang-switch lang-switch-${place}" role="group">${buttons}</div>`), 1, place);
   }
   assert.equal(count(html, '<button'), 4);
-  assert.match(html, /^<!doctype html>\n<html lang="sv" data-help-lang="sv"/, 'Swedish without script');
+  assert.match(html, /^<!doctype html>\n<html lang="en" data-help-lang="en"/, 'English without script');
+  assert.match(html, /<title>[^<]*Attainder guide<\/title>/, 'the static title is the English one');
 });
 
 // A stand-in for the parts of a page the script at its end touches. It proves the script's

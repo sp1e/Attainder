@@ -71,9 +71,9 @@ attribute, and `public/wiki.css` hides the other one. Both renderings of a secti
 language and no id appears twice. Section ids are permanent for the same reason slugs are.
 
 **Which language shows.** A short script in `<head>` reads `localStorage.wiki_language`, then
-`localStorage.ui_language`, before the first paint. `en` gives English. Anything else, an unset
-value included, gives Swedish, which is the game's first-language rule. Without script the page
-reads Swedish. The switch stores `wiki_language` and leaves the game's choice alone. It is in the
+`localStorage.ui_language`, before the first paint. `sv` gives Swedish. Anything else, an unset
+value included, gives English, which is the game's first-language rule. Without script the page
+reads English. The switch stores `wiki_language` and leaves the game's choice alone. It is in the
 header, and above the search box at 720px and narrower, where the header has no room for it.
 The rule is `decideHelpLanguage` in `scripts/wiki/helpCatalog.mjs`; the script in the page is
 generated from that function's source text, so the two cannot drift.
