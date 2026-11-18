@@ -1,7 +1,8 @@
 // Run: node --test src/runtime/i18nFirstLanguage.test.js
 //
-// The first-language rule (i18n.js): an install that never stored a language
-// reads Swedish, English is stored as a choice like any other, and the boot
+// The first-language rule (i18n.js): a device that never stored a language
+// reads English, Swedish is a choice like any other, where there is no storage
+// at all the Swedish source is read, and the boot
 // reconcile with the server reports a change only when this device's language
 // really changed. A reported change reloads the page (translator.js), so a
 // server without a language, or storage that cannot be written, must never
@@ -14,6 +15,7 @@ import { createMemoryStorage } from "../Game/AI/requestBudget.js";
 import {
   DEFAULT_LANGUAGE,
   INITIAL_LANGUAGE,
+  SOURCE_LANGUAGE,
   chatLanguageDiffersFromUi,
   getStoredLanguage,
   hasShippedPack,
@@ -50,32 +52,47 @@ const blockedStorage = () => {
   return { getItem: refuse, setItem: refuse, removeItem: refuse };
 };
 
-test("an install that never stored a language reads Swedish", () => {
-  device();
-  assert.equal(INITIAL_LANGUAGE, "sv");
+test("without any storage the Swedish source is read: nothing was chosen and nothing can be translated", () => {
+  // First, before any test installs a device: bare node has no localStorage.
+  assert.equal(typeof globalThis.localStorage, "undefined");
+  assert.equal(SOURCE_LANGUAGE, "sv");
   assert.equal(getStoredLanguage(), "sv");
-  assert.equal(DEFAULT_LANGUAGE, "en", "the upstream source text is still English");
+});
+
+test("a device that never stored a language reads English", () => {
+  device();
+  assert.equal(INITIAL_LANGUAGE, "en");
+  assert.equal(getStoredLanguage(), "en");
+  assert.equal(DEFAULT_LANGUAGE, "en", "the upstream source text is English too");
 });
 
 test("a stored code is read as stored, trimmed, and an empty one counts as none", () => {
   device({ stored: { [KEY]: " de " } });
   assert.equal(getStoredLanguage(), "de");
   device({ stored: { [KEY]: "   " } });
+  assert.equal(getStoredLanguage(), "en");
+});
+
+test("Swedish is a choice: stored as sv, sent to the server as sv, and read back as sv", async () => {
+  const { requests, server, storage } = device();
+  await setStoredLanguage("sv");
+  assert.equal(storage.getItem(KEY), "sv");
+  assert.equal(getStoredLanguage(), "sv");
+  assert.deepEqual(requests, [{ url: "/api/ui-settings", method: "PUT", body: { language: "sv" } }]);
+  assert.equal(server.settings.language, "sv");
+  // Picking it again changes nothing, and the next boot finds both in step.
+  await setStoredLanguage("sv");
+  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(await syncLanguageFromServer(), false);
   assert.equal(getStoredLanguage(), "sv");
 });
 
-test("English is stored as en, sent to the server as en, and read back as en", async () => {
-  const { requests, server, storage } = device();
+test("English is stored as en when it is picked, like any other code", async () => {
+  const { requests, storage } = device({ stored: { [KEY]: "sv" } });
   await setStoredLanguage("en");
   assert.equal(storage.getItem(KEY), "en");
   assert.equal(getStoredLanguage(), "en");
-  assert.deepEqual(requests, [{ url: "/api/ui-settings", method: "PUT", body: { language: "en" } }]);
-  assert.equal(server.settings.language, "en");
-  // Picking it again changes nothing, and the next boot finds both in step.
-  await setStoredLanguage("en");
-  assert.equal(getStoredLanguage(), "en");
-  assert.equal(await syncLanguageFromServer(), false);
-  assert.equal(getStoredLanguage(), "en");
+  assert.deepEqual(requests.at(-1).body, { language: "en" });
 });
 
 test("every other code is stored and sent as given", async () => {
@@ -92,7 +109,7 @@ test("a server without a stored language has no opinion: nothing changes, no cha
   const fresh = device({ settings: {} });
   assert.equal(await syncLanguageFromServer(), false);
   assert.equal(fresh.storage.getItem(KEY), null);
-  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(getStoredLanguage(), "en");
 
   const german = device({ stored: { [KEY]: "de" }, settings: {} });
   assert.equal(await syncLanguageFromServer(), false);
@@ -103,12 +120,13 @@ test("a server without a stored language has no opinion: nothing changes, no cha
   assert.equal(english.storage.getItem(KEY), "en");
 });
 
-test("a server that stored en moves a device with nothing stored to English once, and then reports nothing", async () => {
-  const { storage } = device({ settings: { language: "en" } });
-  assert.equal(getStoredLanguage(), "sv");
-  assert.equal(await syncLanguageFromServer(), true);
-  assert.equal(storage.getItem(KEY), "en");
+test("a server that stored sv moves a device with nothing stored to Swedish once, and then reports nothing", async () => {
+  // The player chose Swedish on another device of this server: the choice is kept.
+  const { storage } = device({ settings: { language: "sv" } });
   assert.equal(getStoredLanguage(), "en");
+  assert.equal(await syncLanguageFromServer(), true);
+  assert.equal(storage.getItem(KEY), "sv");
+  assert.equal(getStoredLanguage(), "sv");
   assert.equal(await syncLanguageFromServer(), false);
   assert.equal(await syncLanguageFromServer(), false);
 });
@@ -121,20 +139,20 @@ test("the server's choice wins over a different stored one, once", async () => {
 });
 
 test("a server that says what the device already reads reports no change and writes nothing", async () => {
-  const { storage } = device({ settings: { language: "sv" } });
+  const { storage } = device({ settings: { language: "en" } });
   assert.equal(await syncLanguageFromServer(), false);
   assert.equal(storage.getItem(KEY), null);
 });
 
-test("storage that throws reads Swedish and never reports a change", async () => {
-  const { server } = device({ storage: blockedStorage(), settings: { language: "en" } });
-  assert.equal(getStoredLanguage(), "sv");
+test("storage that throws reads English and never reports a change", async () => {
+  const { server } = device({ storage: blockedStorage(), settings: { language: "sv" } });
+  assert.equal(getStoredLanguage(), "en");
   assert.equal(await syncLanguageFromServer(), false);
   assert.equal(await syncLanguageFromServer(), false, "nor on the next boot");
   // The picker still tells the server, and still nothing here claims a change.
   await setStoredLanguage("de");
   assert.equal(server.settings.language, "de");
-  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(getStoredLanguage(), "en");
   assert.equal(await syncLanguageFromServer(), false);
 });
 
@@ -164,13 +182,18 @@ test("a server that fails or cannot be reached changes nothing", async () => {
   assert.equal(offline.storage.getItem(KEY), "en", "the local copy still applies");
 });
 
-test("the readers of the stored language follow it, unset and with an explicit en", () => {
-  device();
+test("the readers of the stored language follow it: Swedish chosen, unset, and an explicit en", () => {
+  device({ stored: { [KEY]: "sv" } });
   assert.match(languageDirective(), /The player reads Swedish \(sv\)/);
   assert.equal(resolveChatLanguage(), "sv", "the chats follow the interface");
   assert.equal(chatLanguageDiffersFromUi(), false);
   assert.equal(hasShippedPack(getStoredLanguage()), true);
   assert.equal(isRtlLanguage(getStoredLanguage()), false);
+
+  device();
+  assert.equal(languageDirective(), "", "a device with nothing stored reads English, the language the prompts are written in");
+  assert.equal(resolveChatLanguage(), "en");
+  assert.equal(hasShippedPack(getStoredLanguage()), false);
 
   device({ stored: { [KEY]: "en" } });
   assert.equal(languageDirective(), "", "English is the language the prompts are written in");

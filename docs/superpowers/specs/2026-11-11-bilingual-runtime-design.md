@@ -58,6 +58,8 @@ The native book is created with three options that the Swedish text needs and th
 
 ### The first language
 
+> Reversed on 18 November 2026 by `2026-11-18-english-first-design.md`: a device with nothing stored reads English, and Swedish is the choice. What follows is the rule as it was decided on 11 November.
+
 An install that has never stored a language starts in Swedish, the language the game is written in. English is stored as an explicit choice, where today English means "nothing stored". `DEFAULT_LANGUAGE` keeps its meaning for the translator: the language of the upstream source. Four functions of `src/runtime/i18n.js` change together:
 
 - `getStoredLanguage` falls back to `INITIAL_LANGUAGE = 'sv'`;
@@ -100,7 +102,7 @@ Each slice is one pull request and leaves the game playable.
 ## Rulings
 
 - **Display-time translation, not a locale parameter in the engine.** The engine keeps its Swedish sentences. A locale parameter would touch 1,836 literals, change what saves hold and leave every old save in Swedish. Cost if wrong: a sentence assembled from several fragments can miss its pattern and stay Swedish; the browser run lists such text and the fix is a full-sentence variant in the catalog.
-- **Swedish is the first language.** Cost if wrong: one click in Options.
+- **Swedish is the first language.** Cost if wrong: one click in Options. Reversed on 18 November 2026 (`2026-11-18-english-first-design.md`).
 - **Languages other than Swedish and English keep Swedish court text.** Chaining Swedish to English to a third language is a later step. Cost: none against today.
 - **Text the model already wrote stays in the language it was written in.** A story written in Swedish reads Swedish after a switch to English. Cost: mixed text in a campaign played in both languages.
 - **The whole page is scanned in English mode, in two tiers.** Swedish court text also reaches upstream views (the event log, notifications), so marked regions alone would miss it. Outside the marked views only exact entries and strong patterns apply. Cost if wrong: a short Swedish sentence in an upstream view stays Swedish; the browser run lists it and the catalog gets a full-sentence entry.

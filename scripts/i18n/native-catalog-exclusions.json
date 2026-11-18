@@ -130,6 +130,11 @@
     "reason": "technical"
   },
   {
+    "file": "src/Game/DynastyStartCard.jsx",
+    "text": "UI language",
+    "reason": "technical"
+  },
+  {
     "file": "src/Game/GameUI/cheats.jsx",
     "text": "Under construction",
     "reason": "not-swedish"
