@@ -35,7 +35,7 @@ import { Marked } from "marked";
 import { writeOrCheck } from "./i18n/jsonOutput.mjs";
 import { clientScript } from "./wiki/clientScript.mjs";
 import {
-  HELP_LANGUAGES, LANGUAGE_NAMES, WikiBuildError, bilingual, escapeHtml as esc, headLanguageScript,
+  HELP_DEFAULT_LANGUAGE, HELP_LANGUAGES, LANGUAGE_NAMES, WikiBuildError, bilingual, escapeHtml as esc, headLanguageScript,
   langAttrs, loadHelpCatalog, navigationProblems, perLanguage, renderCatalogSections, sectionLabel,
 } from "./wiki/helpCatalog.mjs";
 
@@ -347,10 +347,10 @@ const catalogArticle = (ctx, page) => {
       <a href="${issues}" target="_blank" rel="noopener">${issues.replace(/^https?:\/\//, "")}</a></p>`,
     mainAttrs: "",
     titles,
-    // Without script the page reads Swedish, so the static head is Swedish as well.
-    title: titles.sv,
-    shareTitle: titles.sv,
-    description: help.description.sv,
+    // Without script the page reads English, so the static head is English as well.
+    title: titles[HELP_DEFAULT_LANGUAGE],
+    shareTitle: titles[HELP_DEFAULT_LANGUAGE],
+    description: help.description[HELP_DEFAULT_LANGUAGE],
     links: wikiLinks(body, `the help catalog's ${help.file}`, { anchors: true }),
     search: (lang) => ({ title: help.title[lang], section: sectionText(page, lang), haystack: catalogHaystack(help, bodies, lang) }),
   };
@@ -405,7 +405,7 @@ ${breadcrumbJsonLd(page)}
 // labels change length, and above the search box on a phone, where the header has no room
 // for it (at 375px it pushed the brand and the Play button onto two lines).
 const languageSwitchHtml = (place) => {
-  const button = (lang) => `<button type="button" data-help-set="${lang}" lang="${lang}" aria-pressed="${lang === "sv"}">${esc(LANGUAGE_NAMES[lang])}</button>`;
+  const button = (lang) => `<button type="button" data-help-set="${lang}" lang="${lang}" aria-pressed="${lang === HELP_DEFAULT_LANGUAGE}">${esc(LANGUAGE_NAMES[lang])}</button>`;
   return `<div class="lang-switch lang-switch-${place}" role="group">${HELP_LANGUAGES.map(button).join("")}</div>`;
 };
 
@@ -451,9 +451,9 @@ const renderPage = (ctx, page, index, article) => {
   const titleAttrs = article.titles
     ? HELP_LANGUAGES.map((lang) => ` data-title-${lang}="${esc(article.titles[lang])}"`).join("")
     : "";
-  const search = ctx.shell["search-placeholder"].sv;
+  const search = ctx.shell["search-placeholder"][HELP_DEFAULT_LANGUAGE];
   return `<!doctype html>
-<html lang="sv" data-help-lang="sv"${titleAttrs}>
+<html lang="${HELP_DEFAULT_LANGUAGE}" data-help-lang="${HELP_DEFAULT_LANGUAGE}"${titleAttrs}>
 ${headHtml(page, article)}
 <body>
 ${siteHeaderHtml(ctx)}
@@ -462,7 +462,7 @@ ${siteHeaderHtml(ctx)}
   <aside class="wiki-sidebar">
     ${languageSwitchHtml("side")}
     <div class="wiki-search">
-      <input type="search" id="wikiSearch" placeholder="${esc(search)}" aria-label="${esc(ctx.shell["search-label"].sv)}" autocomplete="off" />
+      <input type="search" id="wikiSearch" placeholder="${esc(search)}" aria-label="${esc(ctx.shell["search-label"][HELP_DEFAULT_LANGUAGE])}" autocomplete="off" />
       <ul id="wikiResults" hidden></ul>
     </div>
     ${sidebarHtml(ctx, page.url)}

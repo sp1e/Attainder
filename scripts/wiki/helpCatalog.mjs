@@ -7,9 +7,11 @@
 import path from "node:path";
 import { readJson } from "../i18n/jsonOutput.mjs";
 
-// Swedish first: it is the language a page reads without script, so its rendering comes first
-// in the markup as well.
+// Swedish first in the markup, as the pages were written. The language a page reads without
+// script, and with nothing stored, is HELP_DEFAULT_LANGUAGE.
 export const HELP_LANGUAGES = ["sv", "en"];
+// English, the game's first language (INITIAL_LANGUAGE in src/runtime/i18n.js).
+export const HELP_DEFAULT_LANGUAGE = "en";
 
 // The switch is labelled with each language's own name, the same endonyms the game's Options
 // list shows (LANGUAGES in src/runtime/i18n.js; the test compares them). shell.json has no
@@ -30,21 +32,21 @@ export const escapeHtml = (s) => String(s)
 // ---------------------------------------------------------------- the language rule
 
 // Which language a help page opens in. The page's own switch stores `wiki_language`; the game
-// stores `ui_language`. The switch wins, then the game's choice: "en" is English and anything
-// else, an unset value included, is Swedish, which is the game's first-language rule
+// stores `ui_language`. The switch wins, then the game's choice: "sv" is Swedish and anything
+// else, an unset value included, is English, which is the game's first-language rule
 // (src/runtime/i18n.js). Written without modern syntax and without outside names, because its
 // source text is also the script every page runs: see headLanguageScript.
 export function decideHelpLanguage(wikiLanguage, uiLanguage) {
   var clean = function (value) { return typeof value === "string" ? value.trim() : ""; };
   var own = clean(wikiLanguage);
   var chosen = own === "sv" || own === "en" ? own : clean(uiLanguage);
-  return chosen === "en" ? "en" : "sv";
+  return chosen === "sv" ? "sv" : "en";
 }
 
 // The inline script in <head>. It runs before the first paint, so the page never shows one
 // language and then the other. Kept in step with decideHelpLanguage by construction: the
 // function's own source text is pasted in, so the test of the function is a test of the page.
-// Blocked storage (private mode, a sandboxed frame) leaves both values null and reads Swedish.
+// Blocked storage (private mode, a sandboxed frame) leaves both values null and reads English.
 // The title is switched here as well, which is why the script sits after <title>.
 export const headLanguageScript = () => {
   const decide = decideHelpLanguage.toString().replace(/\r\n/g, "\n");
@@ -53,7 +55,7 @@ export const headLanguageScript = () => {
   try {
     own = localStorage.getItem("${WIKI_LANGUAGE_KEY}");
     game = localStorage.getItem("${UI_LANGUAGE_KEY}");
-  } catch (error) { /* Storage is blocked: the page reads Swedish. */ }
+  } catch (error) { /* Storage is blocked: the page reads English. */ }
   var lang = (${decide})(own, game);
   root.setAttribute("data-help-lang", lang);
   root.lang = lang;
