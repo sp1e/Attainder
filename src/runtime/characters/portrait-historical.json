@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "source": "docs/artwork/gpt-imagegen-2026-11-07-manifest.json",
+  "appearance": "artistic-interpretation",
+  "characters": {
+    "eirene-of-athens": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/eirene-of-athens.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/eirene-of-athens.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          482,
+          724,
+          965,
+          1206,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          182,
+          363,
+          544,
+          723,
+          906,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "harun-ar-rashid": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/harun-ar-rashid.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/harun-ar-rashid.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          242,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          182,
+          363,
+          542,
+          723,
+          906,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "dezong": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/dezong.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/dezong.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          724,
+          905,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "aejang": {
+      "ageGroup": "child",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/aejang.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/aejang.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          905,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "al-hakam-i": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/al-hakam-i.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/al-hakam-i.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "ibrahim-ibn-al-aghlab": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/ibrahim-ibn-al-aghlab.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/ibrahim-ibn-al-aghlab.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          723,
+          965,
+          1206,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "alfonso-ii-asturias": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/alfonso-ii-asturias.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/alfonso-ii-asturias.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          724,
+          905,
+          1086
+        ],
+        "inset": 2
+      }
+    },
+    "grimoald-iii-benevento": {
+      "ageGroup": "adult",
+      "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/grimoald-iii-benevento.png",
+      "atlas": {
+        "src": "/dynasties/portraits/gpt-imagegen-2026-11-07/variants/grimoald-iii-benevento.png",
+        "width": 1086,
+        "height": 1448,
+        "rowBounds": [
+          0,
+          241,
+          483,
+          724,
+          965,
+          1207,
+          1448
+        ],
+        "columnBounds": [
+          0,
+          181,
+          362,
+          543,
+          723,
+          904,
+          1086
+        ],
+        "inset": 2
+      }
+    }
+  }
+}
