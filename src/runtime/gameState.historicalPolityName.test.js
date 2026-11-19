@@ -81,5 +81,5 @@ test("the map's store makes the same repair, and leaves an unharmed world as the
   assert.equal(withHistoricalPolityNames(undefined, sound), undefined);
   // The store reads the raw world (useWorldState.js), not normalizeWorldState.
   const store = fs.readFileSync(new URL("../Game/Map/useWorldState.js", import.meta.url), "utf8");
-  assert.match(store, /polityOverrides: withHistoricalPolityNames\(state\?\.polityOverrides \?\? EMPTY_OBJECT, state\),/);
+  assert.match(store, /withHistoricalPolityNames\(state\?\.polityOverrides \?\? EMPTY_OBJECT, state\)/);
 });

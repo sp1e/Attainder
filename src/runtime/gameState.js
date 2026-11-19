@@ -12,6 +12,7 @@ import { normalizeEventPlaces } from "./eventPlaces.js";
 import { buildOwnerAliasMap, createOwnerResolver, isRealCountryName, toCountryName } from "./ownerNames.js";
 import { foundPolityIfUnknown } from "./polityFounding.js";
 import { updatedPolityName, withHistoricalPolityNames } from "./historicalPolityNames.js";
+import { withDistinctPolityColors } from "./historicalPolityColors.js";
 import { normalizeTerritoryBasis, screenTerritoryBasis } from "./territoryBasis.js";
 import { normalizeApplicationReceipt } from "./applicationReceipt.js";
 import { applyReportOps, normalizeReportOp, normalizeReports } from "./reports.js";
@@ -3522,12 +3523,13 @@ const withFormerSceneKeyMoved = (world) => {
 export const normalizeWorldState = (world) => {
   const nextWorld = withFormerSceneKeyMoved(world && typeof world === "object" ? world : {});
   // Repair on read: until 19 November 2026 every update of a historical polity wrote its id over
-  // its name (docs/superpowers/specs/2026-11-19-historical-polity-names-design.md).
-  const polityOverrides = withHistoricalPolityNames(Object.fromEntries(
+  // its name (docs/superpowers/specs/2026-11-19-historical-polity-names-design.md). And a start's
+  // realms that were dealt the same colour each get their own (2026-11-19-realm-colours-design.md).
+  const polityOverrides = withDistinctPolityColors(withHistoricalPolityNames(Object.fromEntries(
     Object.entries(nextWorld.polityOverrides ?? {})
       .map(([key, value]) => [key, normalizePolityOverride(key, value)])
       .filter(([, value]) => value),
-  ), nextWorld);
+  ), nextWorld), nextWorld);
 
   // Canonicalise on READ too, so a save written before this migrated — or one
   // whose owners were split across a polity's token and its era display name by
