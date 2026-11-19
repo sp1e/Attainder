@@ -60,11 +60,14 @@ export const snowDayBucket = (day) => (Number.isFinite(day) ? 1 + Math.floor((Ma
 export const SNOW_PROTOCOL = "ohsnow";
 export const snowTileTemplate = (day) => `${SNOW_PROTOCOL}://${day}/{z}/{x}/{y}`;
 
+// Day 0 names the tile of the whole year, which the season's sweep draws from (winterNeeded below).
+export const YEAR_TILE_DAY = 0;
+
 export function parseSnowTileUrl(url) {
   const match = /^ohsnow:\/\/(\d{1,3})\/(\d+)\/(\d+)\/(\d+)$/.exec(String(url ?? ""));
   if (!match) return null;
   const [day, z, x, y] = match.slice(1).map(Number);
-  return day >= 1 && day <= 366 ? { day, z, x, y } : null;
+  return day >= YEAR_TILE_DAY && day <= 366 ? { day, z, x, y } : null;
 }
 
 /** The latitude of the middle of each pixel row of a Web Mercator tile, north to south. */
@@ -93,6 +96,54 @@ export function rewriteTerrarium(pixels, width, height, lineForRow) {
       const metres = pixels[at] * 256 + pixels[at + 1] + pixels[at + 2] / 256 - TERRARIUM_OFFSET;
       const above = metres <= 0 ? SEA_DEPTH_BELOW_LINE : metres - line;
       const value = Math.max(0, Math.min(65535, above + TERRARIUM_OFFSET));
+      const whole = Math.floor(value);
+      pixels[at] = whole >> 8;
+      pixels[at + 1] = whole & 255;
+      pixels[at + 2] = Math.min(255, Math.round((value - whole) * 256));
+      pixels[at + 3] = 255;
+    }
+  }
+  return pixels;
+}
+
+// The season's sweep (docs/superpowers/specs/2026-11-19-season-sweep-design.md). A tile of the whole year holds,
+// for each pixel, how much winter the place needs before snow lies on it: at or below 0 it is always white, 1 is
+// the midwinter line, above 1 it is never white. Snow lies where that is under the day's winterShare, which is
+// snowLineMetres rearranged; the season is then a value of the layer's paint, and no tile is fetched to move it.
+export const WINTER_NEEDED_MIN = -2.5;
+export const WINTER_NEEDED_MAX = 3;
+// The south has its winter half a year from the north's: its pixels are written mirrored, and the ramp has an
+// arm for each. Between the arms everything is clear, so the row where the hemispheres meet draws no line.
+export const SOUTH_MIRROR = 10;
+// Units of the elevation channel per share of winter.
+export const WINTER_SHARE_SCALE = 1000;
+
+const clampNeeded = (value) => Math.max(WINTER_NEEDED_MIN, Math.min(WINTER_NEEDED_MAX, value));
+
+/** How much winter a height at a latitude needs before snow lies on it. The sea never has snow. */
+export function winterNeeded(metres, latitude) {
+  if (!(metres > 0)) return WINTER_NEEDED_MAX;
+  const permanent = permanentSnowLine(latitude);
+  const span = permanent - winterSnowLine(latitude);
+  // The tropics have one line all year.
+  if (span < 1) return metres >= permanent ? WINTER_NEEDED_MIN : WINTER_NEEDED_MAX;
+  return clampNeeded((permanent - metres) / span);
+}
+
+/** What a pixel of the year's tile holds, in the elevation channel's units. */
+export const yearSnowValue = (metres, latitude) => {
+  const needed = winterNeeded(metres, latitude);
+  return WINTER_SHARE_SCALE * (latitude < 0 ? SOUTH_MIRROR - needed : needed);
+};
+
+/** Rewrite terrarium pixels in place as the year's tile; `latitudes` has one latitude per pixel row. */
+export function rewriteTerrariumYear(pixels, width, height, latitudes) {
+  for (let row = 0; row < height; row += 1) {
+    const latitude = latitudes[row];
+    for (let column = 0; column < width; column += 1) {
+      const at = (row * width + column) * 4;
+      const metres = pixels[at] * 256 + pixels[at + 1] + pixels[at + 2] / 256 - TERRARIUM_OFFSET;
+      const value = Math.max(0, Math.min(65535, yearSnowValue(metres, latitude) + TERRARIUM_OFFSET));
       const whole = Math.floor(value);
       pixels[at] = whole >> 8;
       pixels[at + 1] = whole & 255;
@@ -163,8 +214,9 @@ export async function snowTileLoader(params, abortController) {
     if (!context) throw new Error(`Snow tile ${tile.z}/${tile.x}/${tile.y}: no 2d canvas context`);
     context.drawImage(bitmap, 0, 0);
     const image = context.getImageData(0, 0, width, height);
-    const lines = Float64Array.from(tileRowLatitudes(tile.z, tile.y, height), (latitude) => snowLineMetres(latitude, tile.day));
-    rewriteTerrarium(image.data, width, height, lines);
+    const latitudes = tileRowLatitudes(tile.z, tile.y, height);
+    if (tile.day === YEAR_TILE_DAY) rewriteTerrariumYear(image.data, width, height, latitudes);
+    else rewriteTerrarium(image.data, width, height, Float64Array.from(latitudes, (latitude) => snowLineMetres(latitude, tile.day)));
     context.putImageData(image, 0, 0);
     const blob = canvas.convertToBlob
       ? await canvas.convertToBlob({ type: "image/png" })

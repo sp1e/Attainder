@@ -1,7 +1,7 @@
 // The look of a historical campaign's map: the land itself shows, a realm is a wash of colour over it, and relief reads
 // through the colour. Spec: docs/superpowers/specs/2026-11-13-living-map-design.md. Other scenarios keep the stock look.
 import { DEFAULT_BASEMAP_ID, TERRAIN_TILE_TEMPLATE, isBuiltinBasemapId } from "../../runtime/assets.js";
-import { snowTileTemplate } from "./snowLine.js";
+import { SOUTH_MIRROR, WINTER_SHARE_SCALE, YEAR_TILE_DAY, snowTileTemplate } from "./snowLine.js";
 
 export const HISTORICAL_BASEMAP_ID = "imagery";
 // Deeper imagery shows motorways and airports. Past this level MapLibre stretches the last one.
@@ -261,6 +261,34 @@ export const buildSnowSource = (day) => ({ type: "raster-dem", tiles: [snowTileT
 // sea level show as blocks.
 export const SNOW_OPACITY_STOPS = Object.freeze([[7, 0.9], [9, 0]]);
 
+/** The snow's opacity by zoom, drawn at a share of its strength (the two snow layers cross-fade). */
+export const buildSnowOpacity = (strength = 1) => byZoom(SNOW_OPACITY_STOPS.map(([zoom, opacity]) => [zoom, opacity * Math.max(0, Math.min(1, strength))]));
+
+// The season's sweep (docs/superpowers/specs/2026-11-19-season-sweep-design.md): a second snow layer over the tile
+// of the whole year (snowLine.js winterNeeded). Its ramp says where the snow lies for a share of winter.
+export const SNOW_SWEEP_LAYER_ID = "seasonal-snow-sweep";
+export const SNOW_SWEEP_SOURCE_ID = "seasonal-snow-sweep-source";
+
+export const buildSnowSweepSource = () => ({ type: "raster-dem", tiles: [snowTileTemplate(YEAR_TILE_DAY)], encoding: "terrarium", tileSize: 256, maxzoom: 7 });
+
+// How far under the day's share of winter a place lies, against how solid its snow is. The resting ramp's 350,
+// 900 and 4,600 m above the line, at the Alps' 2,200 m between the midwinter line and the permanent one.
+const SWEEP_DEPTHS = Object.freeze([[350 / 2200, "rgba(244, 247, 250, 0.55)"], [900 / 2200, "rgba(248, 250, 252, 0.92)"], [4600 / 2200, "rgba(255, 255, 255, 0.97)"]]);
+const SWEEP_CLEAR = "rgba(244, 247, 250, 0)";
+
+/** The sweep's ramp for the north's share of winter (0 at midsummer, 1 at midwinter). The south reads the mirror. */
+export const buildSnowSweepColor = (northWinter) => {
+  const north = Math.max(0, Math.min(1, Number(northWinter) || 0));
+  const south = 1 - north;
+  const at = (share) => share * WINTER_SHARE_SCALE;
+  const northArm = [...SWEEP_DEPTHS].reverse().flatMap(([depth, colour]) => [at(north - depth), colour]);
+  const southArm = SWEEP_DEPTHS.flatMap(([depth, colour]) => [at(SOUTH_MIRROR - south + depth), colour]);
+  return ["interpolate", ["linear"], ["elevation"], ...northArm, at(north), SWEEP_CLEAR, at(SOUTH_MIRROR - south), SWEEP_CLEAR, ...southArm];
+};
+
+/** The sweep's layer as it waits: its tiles are loaded and nothing of it is drawn. */
+export const buildSnowSweepPaint = () => ({ "color-relief-color": buildSnowSweepColor(1), "color-relief-opacity": buildSnowOpacity(0) });
+
 /** Clear at the line, thin just above it, nearly whole 900 m above it. */
 export const buildSnowPaint = () => ({
   "color-relief-color": [
@@ -268,5 +296,5 @@ export const buildSnowPaint = () => ({
     -1, "rgba(244, 247, 250, 0)", 0, "rgba(244, 247, 250, 0)", 350, "rgba(244, 247, 250, 0.55)", 900, "rgba(248, 250, 252, 0.92)",
     4600, "rgba(255, 255, 255, 0.97)",
   ],
-  "color-relief-opacity": byZoom(SNOW_OPACITY_STOPS),
+  "color-relief-opacity": buildSnowOpacity(1),
 });

@@ -428,7 +428,9 @@ test("the snow lies under every other layer the game adds and mounts on the hist
   assert.match(setup, /addProtocol\(SNOW_PROTOCOL, snowTileLoader\);/);
   assert.match(snow, /^ensureSnowProtocol\(\);$/m);
   assert.match(snow, /useSyncExternalStore\(subscribeUnits, getGameDate\)/);
-  assert.match(snow, /snowDayBucket\(dayOfYear\(gameDate\)\)/);
+  // The resting snow shows the game's date, except while the seasons' sweep covers it (snowSweep.test.js).
+  assert.match(snow, /snowDayBucket\(dayOfYear\(restDate\)\)/);
+  assert.match(snow, /const \[restDate, setRestDate\] = useState\(gameDate\);/);
   assert.match(snow, /if \(!canvasReadsExactly\(\)\) return null;/);
   assert.match(snow, /type="color-relief"/);
   assert.match(snow, /instance\.once\("idle", restore\);/);
