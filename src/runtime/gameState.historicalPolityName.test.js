@@ -83,3 +83,50 @@ test("the map's store makes the same repair, and leaves an unharmed world as the
   const store = fs.readFileSync(new URL("../Game/Map/useWorldState.js", import.meta.url), "utf8");
   assert.match(store, /withHistoricalPolityNames\(state\?\.polityOverrides \?\? EMPTY_OBJECT, state\)/);
 });
+
+// Backlog row 30: a rename keeps a historical polity's key.
+const keysAndOwners = (world) => [Object.keys(world.polityOverrides), world.regionOwnershipOverrides];
+
+test("an update that repeats the polity's own name renames nothing", () => {
+  for (const name of ["Bysantinska riket", "bysantinska riket", "byzantine-empire"]) {
+    const { world } = applyEventImpactsToWorld({
+      world: historicalWorld(),
+      events: [event({ polityChanges: [update("byzantine-empire", { name, note: "A quiet year." })] })],
+    });
+    assert.deepEqual(keysAndOwners(world), [["byzantine-empire", "abbasid-caliphate", "silla"], { "region-1": "byzantine-empire", "region-2": "abbasid-caliphate" }], name);
+    assert.equal(world.polityOverrides["byzantine-empire"].name, "Bysantinska riket", name);
+    assert.equal(world.polityOverrides["byzantine-empire"].formerNames, undefined, name);
+  }
+});
+
+test("a rename changes the label and keeps the key, and both names still find the polity", () => {
+  const { world } = applyEventImpactsToWorld({
+    world: historicalWorld(),
+    events: [
+      event({ polityChanges: [update("Bysantinska riket", { name: "Basileia" })] }),
+      event({ polityChanges: [update("Basileia", { note: "Under its new name." })] }),
+      event({ regionTransfers: [{ regionId: "region-2", toCode: "Bysantinska riket" }] }),
+    ],
+  });
+  assert.deepEqual(Object.keys(world.polityOverrides), ["byzantine-empire", "abbasid-caliphate", "silla"]);
+  const renamed = world.polityOverrides["byzantine-empire"];
+  assert.equal(renamed.name, "Basileia");
+  assert.equal(renamed.code, "byzantine-empire");
+  assert.deepEqual(renamed.formerNames, ["Bysantinska riket"]);
+  assert.ok(renamed.aliases.includes("Bysantinska riket"));
+  assert.equal(renamed.note, "Under its new name.", "the new name finds the polity");
+  assert.deepEqual(world.regionOwnershipOverrides, { "region-1": "byzantine-empire", "region-2": "byzantine-empire" }, "and so does the old one");
+  // The repair on read leaves a given name alone.
+  assert.equal(normalizeWorldState(world).polityOverrides["byzantine-empire"].name, "Basileia");
+});
+
+test("a rename to another realm's name is refused", () => {
+  for (const name of ["Abbasidiska kalifatet", "abbasid-caliphate", "SILLA"]) {
+    const { world } = applyEventImpactsToWorld({
+      world: historicalWorld(),
+      events: [event({ polityChanges: [update("byzantine-empire", { name })] })],
+    });
+    assert.deepEqual(names(world), { "byzantine-empire": "Bysantinska riket", "abbasid-caliphate": "Abbasidiska kalifatet", silla: "Silla" }, name);
+    assert.deepEqual(world.regionOwnershipOverrides, { "region-1": "byzantine-empire", "region-2": "abbasid-caliphate" }, name);
+  }
+});

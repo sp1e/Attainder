@@ -5,7 +5,7 @@ import HistoricalStartPicker from './HistoricalStartPicker.jsx';
 import { loadHistoricalStartOptions, startDynastyCampaign } from '../runtime/startDynastyCampaign.js';
 import { coverageLineSv } from '../runtime/historicalStartOptions.js';
 import { isFallbackListConfigured } from './AI/providerConfig.js';
-import { LANGUAGES, getStoredLanguage, languageDisplayName, setStoredLanguage } from '../runtime/i18n.js';
+import { LANGUAGES, enterLanguage, getStoredLanguage, languageDisplayName } from '../runtime/i18n.js';
 import { logSettingChange } from '../runtime/debugLog.js';
 import './dynastyStart.css';
 
@@ -60,9 +60,8 @@ export default function DynastyStartCard({ onStart, errorMessage = '' }) {
     if (switching) return;
     setSwitching(true);
     logSettingChange('UI language', languageDisplayName(otherLanguage.code));
-    await setStoredLanguage(otherLanguage.code);
-    // Reload so the translator starts (or stops) cleanly, as the Options picker does.
-    window.location.reload();
+    // Stores the choice and starts the page again in it, as the Options picker does.
+    await enterLanguage(otherLanguage.code);
   };
   const start = async () => {
     setBusy(true); setError('');

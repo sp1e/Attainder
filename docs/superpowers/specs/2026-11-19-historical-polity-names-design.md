@@ -16,7 +16,7 @@ Measured on the Charlemagne test campaign: at 25 December AD 802 two of ten real
 
 ## Non-goals
 
-- A rename by the model (`polityChanges[].name`) still re-keys the polity, as upstream does. In a historical campaign that turns an id into a name as the key; it has not been seen in the measured years and is left.
+- A rename by the model was left as upstream has it when this was written; ruling 4 took it up the same day (backlog row 30).
 - Events already saved keep what the model wrote in them (`places: [{ kind: "country", name: "byzantine-empire" }]`). Their chips read the realm's name through the repaired label.
 
 ## Rulings
@@ -24,9 +24,10 @@ Measured on the Charlemagne test campaign: at 25 December AD 802 two of ten real
 1. **On update, a historical polity carries the name it has.** If that name is missing or is the id, it carries the scenario's name for the id. Outside a historical package the label is the key, as before. Cost if wrong: one function (`updatedPolityName`).
 2. **The repair is made on read, in both readers.** `normalizeWorldState` gives a polity the scenario's name when its label equals its key and the scenario names that id otherwise. The map's store reads the raw world without that normalizer (`src/Game/Map/useWorldState.js`), so it makes the same repair; the first browser run after the fix showed the chips under the events corrected and the map's own labels still hyphenated. The rule lives once, in `src/runtime/historicalPolityNames.js`, and returns the object it was given when nothing was overwritten, because the store compares references. A label that is anything else stands: a scenario edited as a copy, or a later rename. The repaired world is what the next write stores, so a save heals when it is next written. Cost if wrong: a polity an author named exactly by its id gets the scenario's name; no package does that.
 3. **The scenario's name is the Swedish source name.** It is read in English through the book like every other name of the package.
+4. **A rename changes the label and keeps the key** (added 19 November 2026, backlog row 30). Upstream a rename re-keys the polity and rewrites every store from the old key to the new. The tests written for this ruling showed two things the non-goal had not known: an update that merely repeated a polity's own name (`code: "byzantine-empire", name: "Bysantinska riket"`) re-keyed it from its id to its name, and a rename to another realm's name was not refused, because the upstream check compares keys and the realms' keys are ids. `renameHistoricalPolity` (`src/runtime/historicalPolityNames.js`) answers for a scenario's polity: the polity's own id, label or nothing new is no rename; a name another polity answers to (its key, label, alias, former name or scenario name) is refused; otherwise the label becomes the new name and the old label stays as an alias and a former name, so text written under either finds the polity. A polity the scenario does not list (one the model founded) is renamed the upstream way. Left: a label that is a modern country's English name is not folded onto its polity by the alias map (`COUNTRY_NAME_KEYS` in `ownerNames.js`), so a later event that uses it founds a second polity.
 
 ## Checks
 
-- `src/runtime/gameState.historicalPolityName.test.js`: an update by id, an update by name, a name given apart from the scenario's, the repair on read, a world without a historical package, and the map store's repair.
+- `src/runtime/gameState.historicalPolityName.test.js`: an update by id, an update by name, a name given apart from the scenario's, the repair on read, a world without a historical package, the map store's repair, and for ruling 4 a repeated name, a rename followed by events under both names, and a refused rename.
 - The full suite and the build.
 - Browser, the Charlemagne test campaign at AD 806 in English: the map's labels and the chips under the events name the five realms. The README's banner and screenshot are taken again from that run.

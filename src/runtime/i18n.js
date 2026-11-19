@@ -3,6 +3,8 @@
 // UI language: chosen in Settings, stored on the SERVER (shared by every
 // device that plays through it — desktop browser and the Android app see the
 // same choice) and mirrored in localStorage so boot doesn't wait on a fetch.
+import { storageIsVolatile } from "./storageFallback.js";
+
 const STORAGE_KEY = "ui_language";
 // The language the upstream interface is written in: its text is shown as
 // written, and its prompts carry no language directive.
@@ -122,7 +124,31 @@ const deviceHasStorage = () => {
   }
 };
 
-export const getStoredLanguage = () => readLocalLanguage() ?? (deviceHasStorage() ? INITIAL_LANGUAGE : SOURCE_LANGUAGE);
+// The address can name the language: `?lang=sv`. It is read only when this device has nothing
+// readable stored, which is how a device whose storage is blocked carries a choice across a
+// reload (backlog row 31), and how a link can open the game in a language for one visit.
+const ADDRESS_KEY = "lang";
+const hasAddress = () => typeof location !== "undefined" && Boolean(location);
+const readAddressLanguage = () => {
+  try {
+    if (!hasAddress()) return null;
+    const value = new URLSearchParams(location.search).get(ADDRESS_KEY);
+    const code = typeof value === "string" ? value.trim() : "";
+    return isLanguageCode(code) ? code : null;
+  } catch {
+    return null;
+  }
+};
+
+// This page's address with the language named in it.
+export const languageAddress = (code) => {
+  const url = new URL(location.href);
+  url.searchParams.set(ADDRESS_KEY, code);
+  return url.toString();
+};
+
+export const getStoredLanguage = () =>
+  readLocalLanguage() ?? readAddressLanguage() ?? (deviceHasStorage() ? INITIAL_LANGUAGE : SOURCE_LANGUAGE);
 
 // Every code is stored, "en" included. Says whether the value now reads back
 // as written: with storage blocked it does not, and the caller must not act as
@@ -138,14 +164,16 @@ const writeLocalLanguage = (code) => {
   } catch {
     // Private-mode storage failures leave the game in its first language.
   }
-  return readLocalLanguage() === value;
+  // A storage kept in memory (storageFallback.js) reads back now and is gone at the next reload.
+  return readLocalLanguage() === value && !storageIsVolatile();
 };
 
 // Persist locally AND on the server, so the choice follows the player to
 // every device connected to this server (the Android app included). The
-// server gets the code as given: "en" is a choice it has to remember.
+// server gets the code as given: "en" is a choice it has to remember. Says
+// whether this device holds the choice; with storage blocked it does not.
 export const setStoredLanguage = async (code) => {
-  writeLocalLanguage(code);
+  const held = writeLocalLanguage(code);
   try {
     await fetch("/api/ui-settings", {
       method: "PUT",
@@ -155,6 +183,17 @@ export const setStoredLanguage = async (code) => {
   } catch {
     // Offline/hub-hosted: the local copy still applies on this device.
   }
+  return held;
+};
+
+// Stores the choice and starts the page again in it, so the translator starts (or stops) cleanly
+// and every string already drawn goes through it from scratch. A device that holds the choice is
+// reloaded; one whose storage is blocked is sent to this page's address with the language named.
+export const enterLanguage = async (code) => {
+  const held = await setStoredLanguage(code);
+  if (!hasAddress()) return;
+  if (held) location.reload();
+  else location.replace(languageAddress(code));
 };
 
 // Boot-time reconcile: the server's choice wins, when it has one. A server
@@ -176,7 +215,11 @@ export const syncLanguageFromServer = async () => {
       return false;
     }
 
-    return writeLocalLanguage(serverLanguage);
+    if (writeLocalLanguage(serverLanguage)) return true;
+    // Storage cannot hold it: the address carries it. The navigation is the reload, and the page
+    // then reads the server's language, so this runs once.
+    if (hasAddress()) location.replace(languageAddress(serverLanguage));
+    return false;
   } catch {
     // Server unreachable: keep the local value.
   }
