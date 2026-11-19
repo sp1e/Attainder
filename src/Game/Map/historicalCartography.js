@@ -286,8 +286,17 @@ export const buildSnowSweepColor = (northWinter) => {
   return ["interpolate", ["linear"], ["elevation"], ...northArm, at(north), SWEEP_CLEAR, at(SOUTH_MIRROR - south), SWEEP_CLEAR, ...southArm];
 };
 
+// MapLibre eases a change of opacity over 300 ms of its own. The sweep sets the opacity of both snow layers on
+// every frame from its own clock, so that easing would draw each fade late and let the resting snow change its
+// day while it still showed through.
+export const SNOW_OPACITY_TRANSITION = Object.freeze({ duration: 0, delay: 0 });
+
 /** The sweep's layer as it waits: its tiles are loaded and nothing of it is drawn. */
-export const buildSnowSweepPaint = () => ({ "color-relief-color": buildSnowSweepColor(1), "color-relief-opacity": buildSnowOpacity(0) });
+export const buildSnowSweepPaint = () => ({
+  "color-relief-color": buildSnowSweepColor(1),
+  "color-relief-opacity": buildSnowOpacity(0),
+  "color-relief-opacity-transition": SNOW_OPACITY_TRANSITION,
+});
 
 /** Clear at the line, thin just above it, nearly whole 900 m above it. */
 export const buildSnowPaint = () => ({
@@ -297,4 +306,5 @@ export const buildSnowPaint = () => ({
     4600, "rgba(255, 255, 255, 0.97)",
   ],
   "color-relief-opacity": buildSnowOpacity(1),
+  "color-relief-opacity-transition": SNOW_OPACITY_TRANSITION,
 });

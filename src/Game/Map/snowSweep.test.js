@@ -7,7 +7,7 @@ import {
   parseSnowTileUrl, rewriteTerrariumYear, snowLineMetres, snowTileTemplate, winterNeeded, winterShare, yearSnowValue,
 } from "./snowLine.js";
 import {
-  SNOW_LAYER_ID, SNOW_OPACITY_STOPS, SNOW_SWEEP_LAYER_ID, SNOW_SWEEP_SOURCE_ID,
+  SNOW_LAYER_ID, SNOW_OPACITY_STOPS, SNOW_OPACITY_TRANSITION, SNOW_SWEEP_LAYER_ID, SNOW_SWEEP_SOURCE_ID,
   buildSnowOpacity, buildSnowPaint, buildSnowSweepColor, buildSnowSweepPaint, buildSnowSweepSource,
 } from "./historicalCartography.js";
 import { MAP_LAYER_ORDER } from "./mapLayerOrder.js";
@@ -103,7 +103,11 @@ test("the sweep's layer lies with the resting snow and waits clear", () => {
   const waiting = buildSnowSweepPaint();
   assert.deepEqual(waiting["color-relief-opacity"], buildSnowOpacity(0));
   assert.deepEqual(waiting["color-relief-color"], buildSnowSweepColor(1));
-  // The resting layer is what it was.
+  // Neither layer eases its opacity on its own: the sweep sets it on every frame (MapLibre's default is 300 ms).
+  assert.deepEqual(SNOW_OPACITY_TRANSITION, { duration: 0, delay: 0 });
+  assert.equal(waiting["color-relief-opacity-transition"], SNOW_OPACITY_TRANSITION);
+  assert.equal(buildSnowPaint()["color-relief-opacity-transition"], SNOW_OPACITY_TRANSITION);
+  // The resting layer's ramp and opacity are what they were.
   assert.deepEqual(buildSnowPaint()["color-relief-opacity"], buildSnowOpacity(1));
   const stops = (expression) => expression.filter((entry) => typeof entry === "number");
   assert.deepEqual(stops(buildSnowOpacity(1)), SNOW_OPACITY_STOPS.flat());
