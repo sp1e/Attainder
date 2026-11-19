@@ -11,7 +11,7 @@ import { normalizeEventTags } from "./eventTags.js";
 import { normalizeEventPlaces } from "./eventPlaces.js";
 import { buildOwnerAliasMap, createOwnerResolver, isRealCountryName, toCountryName } from "./ownerNames.js";
 import { foundPolityIfUnknown } from "./polityFounding.js";
-import { updatedPolityName, withHistoricalPolityNames } from "./historicalPolityNames.js";
+import { renameHistoricalPolity, updatedPolityName, withHistoricalPolityNames } from "./historicalPolityNames.js";
 import { withDistinctPolityColors } from "./historicalPolityColors.js";
 import { normalizeTerritoryBasis, screenTerritoryBasis } from "./territoryBasis.js";
 import { normalizeApplicationReceipt } from "./applicationReceipt.js";
@@ -4429,7 +4429,18 @@ const applyPolityAndTerritoryImpacts = ({
     // store is rewritten from the old key to the new one and the old name stays
     // only as a former name (server/polityRename.js). A name another polity
     // already answers to is refused rather than merging two countries.
-    if (change.name && !samePolity(code, change.name)) {
+    // A scenario's polity is keyed by a stable id: its rename changes the label and nothing else
+    // (historicalPolityNames.js). null means the polity is not one, and the key is its name.
+    const labelRename = change.name && !samePolity(code, change.name)
+      ? renameHistoricalPolity(world, code, change.name)
+      : null;
+    if (labelRename?.outcome === "renamed") {
+      world.polityOverrides = labelRename.polityOverrides;
+      console.info(`[polity lifecycle] "${code}" is called "${labelRename.to}" from now on (was "${labelRename.from}").`);
+    } else if (labelRename?.outcome === "refused") {
+      console.warn(`[polity lifecycle] rename of "${code}" to "${change.name}" refused: "${labelRename.clash}" already answers to that name.`);
+    }
+    if (!labelRename && change.name && !samePolity(code, change.name)) {
       try {
         const result = renamePolityInWorld(world, code, change.name);
         Object.assign(world, result.world);

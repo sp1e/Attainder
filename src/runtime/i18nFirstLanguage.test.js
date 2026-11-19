@@ -12,11 +12,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { createMemoryStorage } from "../Game/AI/requestBudget.js";
+import { createVolatileStorage } from "./storageFallback.js";
 import {
   DEFAULT_LANGUAGE,
   INITIAL_LANGUAGE,
   SOURCE_LANGUAGE,
   chatLanguageDiffersFromUi,
+  enterLanguage,
   getStoredLanguage,
   hasShippedPack,
   isRtlLanguage,
@@ -34,6 +36,8 @@ const device = ({ stored = {}, settings = {}, storage = createMemoryStorage(stor
   const requests = [];
   const server = { settings: { ...settings } };
   globalThis.localStorage = storage;
+  // A device starts without an address; address() gives it one.
+  delete globalThis.location;
   globalThis.fetch = async (url, init = {}) => {
     const method = init.method ?? "GET";
     requests.push({ url, method, body: init.body ? JSON.parse(init.body) : undefined });
@@ -201,4 +205,91 @@ test("the readers of the stored language follow it: Swedish chosen, unset, and a
   assert.equal(resolveChatLanguage(), "en");
   assert.equal(chatLanguageDiffersFromUi(), false);
   assert.equal(hasShippedPack(getStoredLanguage()), false);
+});
+
+// Backlog row 31: a device whose storage cannot hold the choice carries it in the address (`?lang=sv`).
+const address = (href) => {
+  const visited = [];
+  globalThis.location = {
+    href,
+    get search() { return new URL(this.href).search; },
+    replace(next) { visited.push(next); this.href = next; },
+    reload() { visited.push("reload"); },
+  };
+  return visited;
+};
+
+test("the address names the language when this device has nothing readable stored", () => {
+  device({ storage: blockedStorage() });
+  address("http://127.0.0.1:4167/?lang=sv");
+  assert.equal(getStoredLanguage(), "sv");
+  address("http://127.0.0.1:4167/?seed=7&lang=%20sv%20#start");
+  assert.equal(getStoredLanguage(), "sv", "trimmed, among other parameters");
+  for (const href of ["http://127.0.0.1:4167/", "http://127.0.0.1:4167/?lang=", "http://127.0.0.1:4167/?lang=xx", "http://127.0.0.1:4167/?language=sv"]) {
+    address(href);
+    assert.equal(getStoredLanguage(), "en", href);
+  }
+  // A stored choice wins over the address.
+  device({ stored: { [KEY]: "en" } });
+  address("http://127.0.0.1:4167/?lang=sv");
+  assert.equal(getStoredLanguage(), "en");
+  // A fresh device with working storage follows a link for that visit, and stores nothing.
+  const fresh = device();
+  address("http://127.0.0.1:4167/?lang=sv");
+  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(fresh.storage.getItem(KEY), null);
+});
+
+test("setStoredLanguage says whether this device holds the choice", async () => {
+  device();
+  assert.equal(await setStoredLanguage("sv"), true);
+  const blocked = device({ storage: blockedStorage() });
+  assert.equal(await setStoredLanguage("sv"), false);
+  assert.equal(blocked.server.settings.language, "sv", "the server still gets it");
+});
+
+test("entering a language reloads a device that holds it and re-addresses one that cannot", async () => {
+  device();
+  let visited = address("http://127.0.0.1:4167/?seed=7");
+  await enterLanguage("sv");
+  assert.deepEqual(visited, ["reload"]);
+  assert.equal(getStoredLanguage(), "sv");
+
+  const blocked = device({ storage: blockedStorage() });
+  visited = address("http://127.0.0.1:4167/play/?seed=7#start");
+  await enterLanguage("sv");
+  assert.deepEqual(visited, ["http://127.0.0.1:4167/play/?seed=7&lang=sv#start"], "the same page, with the language named");
+  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(blocked.server.settings.language, "sv");
+  // And back: the parameter is replaced, not added twice.
+  await enterLanguage("en");
+  assert.equal(visited.at(-1), "http://127.0.0.1:4167/play/?seed=7&lang=en#start");
+  assert.equal(getStoredLanguage(), "en");
+});
+
+test("a device with blocked storage follows the server's language through the address, once", async () => {
+  device({ storage: blockedStorage(), settings: { language: "sv" } });
+  const visited = address("http://127.0.0.1:4167/");
+  assert.equal(getStoredLanguage(), "en");
+  assert.equal(await syncLanguageFromServer(), false, "the navigation is the reload; the caller does not reload again");
+  assert.deepEqual(visited, ["http://127.0.0.1:4167/?lang=sv"]);
+  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(await syncLanguageFromServer(), false);
+  assert.deepEqual(visited, ["http://127.0.0.1:4167/?lang=sv"], "no second navigation: the page would never settle");
+});
+
+test("a device on the in-memory stand-in does not count as holding the choice", async () => {
+  // storageFallback.js replaces a blocked storage for the page: a value reads back now and is gone at the reload.
+  const volatile = device({ storage: createVolatileStorage() });
+  const visited = address("http://127.0.0.1:4167/");
+  assert.equal(await setStoredLanguage("sv"), false);
+  assert.equal(getStoredLanguage(), "sv", "this page reads it");
+  await enterLanguage("sv");
+  assert.deepEqual(visited, ["http://127.0.0.1:4167/?lang=sv"], "and the reload is carried by the address");
+  assert.equal(volatile.server.settings.language, "sv");
+  // After the reload the stand-in is empty and the address speaks.
+  device({ storage: createVolatileStorage(), settings: { language: "sv" } });
+  address("http://127.0.0.1:4167/?lang=sv");
+  assert.equal(getStoredLanguage(), "sv");
+  assert.equal(await syncLanguageFromServer(), false, "nothing more to do");
 });

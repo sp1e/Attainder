@@ -1,3 +1,5 @@
+// First: other modules read the browser's storage as they load, and where it is blocked that read throws.
+import "./runtime/storageFallback.js";
 import { createRoot } from "react-dom/client";
 import { installAppHeight } from "./runtime/mobileUi.js";
 import { installNativeBackgroundPause } from "./runtime/native/backgroundPause.js";

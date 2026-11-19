@@ -29,7 +29,7 @@ const createTranslatorStub = (english = {}) => {
 };
 // The card with its real picker; the other imports are the test's.
 const loadCard = (driver, modules, translator = createTranslatorStub(), globals = {}) => load('./DynastyStartCard.jsx','jsx',{
-  '../runtime/i18n.js':{LANGUAGES:[{code:'en',name:'English',native:'English'},{code:'sv',name:'Swedish',native:'Svenska'}],getStoredLanguage:()=>'sv',languageDisplayName:code=>code,setStoredLanguage:async()=>{}},
+  '../runtime/i18n.js':{LANGUAGES:[{code:'en',name:'English',native:'English'},{code:'sv',name:'Swedish',native:'Svenska'}],getStoredLanguage:()=>'sv',languageDisplayName:code=>code,enterLanguage:async()=>{}},
   '../runtime/debugLog.js':{logSettingChange:()=>{}},
   react:driver.react, './Characters/LocalModelConnect.jsx':{default:()=>null,__esModule:true},
   './AI/providerConfig.js':{isFallbackListConfigured:()=>true}, './dynastyStart.css':{}, './Characters/playerText.js':playerTextModule,
@@ -67,12 +67,12 @@ test('the start card heading names the supported start range', async () => {
 });
 
 test('the start card offers the other language beside the theme switch, in that language', async () => {
-  const stored=[], logged=[]; let reloads=0, language='en';
+  const entered=[], logged=[]; let language='en';
   const i18n={LANGUAGES:[{code:'en',name:'English',native:'English'},{code:'sv',name:'Swedish',native:'Svenska'}],getStoredLanguage:()=>language,
-    languageDisplayName:code=>({en:'English',sv:'Swedish'})[code],setStoredLanguage:async code=>{stored.push(code);}};
+    languageDisplayName:code=>({en:'English',sv:'Swedish'})[code],enterLanguage:async code=>{entered.push(code);}};
   const driver=createHookDriver();
   const card=loadCard(driver,{'../runtime/startDynastyCampaign.js':{loadHistoricalStartOptions:async()=>[bookmark],startDynastyCampaign:async()=>{}},
-    '../runtime/i18n.js':i18n,'../runtime/debugLog.js':{logSettingChange:(label,value)=>logged.push([label,value])}},undefined,{window:{location:{reload:()=>{reloads+=1;}}}});
+    '../runtime/i18n.js':i18n,'../runtime/debugLog.js':{logSettingChange:(label,value)=>logged.push([label,value])}});
   const render=()=>driver.render(React.createElement(card.default,{}));
   render(); await settle();
   // A device that reads English (the first language) is offered Swedish, written as Swedes write it.
@@ -82,7 +82,8 @@ test('the start card offers the other language beside the theme switch, in that 
   const tools=findAll(render(),n=>n.props?.className==='dynasty-start-tools');
   assert.deepEqual(tools[0].props.children.map(textOf),['Svenska','Ljust / mörkt']);
   await button.props.onClick();
-  assert.deepEqual(stored,['sv']); assert.deepEqual(logged,[['UI language','Swedish']]); assert.equal(reloads,1);
+  // enterLanguage stores the choice and starts the page again in it (i18nFirstLanguage.test.js).
+  assert.deepEqual(entered,['sv']); assert.deepEqual(logged,[['UI language','Swedish']]);
   // A device that reads Swedish is offered English; any other language is offered Swedish, the card's own.
   language='sv'; assert.equal(buttonNamed(render(),'English').props.lang,'en');
   language='de'; assert.equal(buttonNamed(render(),'Svenska').props.lang,'sv');

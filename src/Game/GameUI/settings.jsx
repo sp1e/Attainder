@@ -62,7 +62,7 @@ import {
     getStoredChatLanguage,
     getStoredLanguage,
     setStoredChatLanguage,
-    setStoredLanguage,
+    enterLanguage,
 } from "../../runtime/i18n.js";
 import { LABEL_FONT_SUGGESTIONS, MAP_SETTING_KEYS, getMapSetting, getMapSettingDefaultOn, setMapSetting, setMapSettingValue, useMapSettingValue } from "../../runtime/mapSettings.js";
 import { getLibraryState } from "../../runtime/library.js";
@@ -268,11 +268,10 @@ const LanguageSelector = () => {
         setSaving(true);
         // Before the reload below; the log is flushed on pagehide.
         logSettingChange("UI language", languageDisplayName(code));
-        // Saves on the server too, so the phone app follows the same choice.
-        await setStoredLanguage(code);
-        // Reload so the translator starts (or stops) cleanly and every
+        // Saves on the server too, so the phone app follows the same choice, and starts
+        // the page again so the translator starts (or stops) cleanly and every
         // already-rendered string goes through it from scratch.
-        window.location.reload();
+        await enterLanguage(code);
     };
 
     return (
