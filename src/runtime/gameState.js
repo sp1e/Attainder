@@ -11,6 +11,7 @@ import { normalizeEventTags } from "./eventTags.js";
 import { normalizeEventPlaces } from "./eventPlaces.js";
 import { buildOwnerAliasMap, createOwnerResolver, isRealCountryName, toCountryName } from "./ownerNames.js";
 import { foundPolityIfUnknown } from "./polityFounding.js";
+import { updatedPolityName, withHistoricalPolityNames } from "./historicalPolityNames.js";
 import { normalizeTerritoryBasis, screenTerritoryBasis } from "./territoryBasis.js";
 import { normalizeApplicationReceipt } from "./applicationReceipt.js";
 import { applyReportOps, normalizeReportOp, normalizeReports } from "./reports.js";
@@ -3520,11 +3521,13 @@ const withFormerSceneKeyMoved = (world) => {
 
 export const normalizeWorldState = (world) => {
   const nextWorld = withFormerSceneKeyMoved(world && typeof world === "object" ? world : {});
-  const polityOverrides = Object.fromEntries(
+  // Repair on read: until 19 November 2026 every update of a historical polity wrote its id over
+  // its name (docs/superpowers/specs/2026-11-19-historical-polity-names-design.md).
+  const polityOverrides = withHistoricalPolityNames(Object.fromEntries(
     Object.entries(nextWorld.polityOverrides ?? {})
       .map(([key, value]) => [key, normalizePolityOverride(key, value)])
       .filter(([, value]) => value),
-  );
+  ), nextWorld);
 
   // Canonicalise on READ too, so a save written before this migrated — or one
   // whose owners were split across a polity's token and its era display name by
@@ -4442,7 +4445,7 @@ const applyPolityAndTerritoryImpacts = ({
       aliases: [],
       code,
       color: "",
-      name: code,
+      name: updatedPolityName(world, code, ""),
       note: "",
     };
     const aliases = [...new Set([
@@ -4453,7 +4456,8 @@ const applyPolityAndTerritoryImpacts = ({
       ...current,
       ...(aliases.length > 0 || change.aliases?.length > 0 ? { aliases } : {}),
       ...(change.color ? { color: change.color } : {}),
-      name: code,
+      // A historical polity keeps its name; anywhere else the key is the name.
+      name: updatedPolityName(world, code, current.name),
       ...(change.note ? { note: change.note } : {}),
     };
 
