@@ -301,8 +301,11 @@ Design `docs/superpowers/specs/2026-11-16-court-year-world-repairs-design.md`, P
 |---|---|---|---|
 | 16 November | 3 | 1 | a unit's name the map does not have; a church's consecration read as a capture |
 | 18 November | 5 | 4 | a revolt that "collapses without a battle" read as combat |
+| 19 November | 1 | 1 | |
 
 A written year took 207 to 308 seconds and held 15 to 26 events. On a court year's last answer the world's changes and the war ledger now repair in place (operations the map cannot carry are dropped, an event that read as combat keeps its text and loses its war link); the last answer adds nothing to the map. The dates and the storylines are still strict there and refused no year in the eight. A refused year's reason is in the browser console: `[character action] an internal error was kept from the player: …`. The real-history notice after a year takes the shell's look beside the shell.
+
+The year of 19 November was turned after #237, #238 and #244, from an untouched copy at 25 December AD 806: written in 135 seconds, 17 events (7 from the model, 10 from the character system), no refusal. The model's answer was accepted without a complaint in the console, so the repairs of the last answer (the war ledger, the consequence check) were not exercised by it; they are still held by source tests only. Three of its events updated a realm (`Tangriket`, `Emiratet Córdoba`, `Abbasidiska kalifatet`). Before the year five of ten realms were named by their ids in the save; after it none was (design `docs/superpowers/specs/2026-11-19-historical-polity-names-design.md`).
 
 ## Branch state
 
