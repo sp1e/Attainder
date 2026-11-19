@@ -34,6 +34,13 @@ export const loadStatSheetDefinition = async ({ force = false } = {}) => {
   const library = getLibraryState();
   const scenario = library?.runtimeScenario;
   if (scenario?.id && !scenario?.missing) {
+    // A scenario whose catalog entry says it has no stats.json is not asked for one: the answer is
+    // the standard sheet either way, and the request came back 404, twice per court year, as an
+    // error in the console. An entry that says nothing about its files is asked, as before.
+    const files = scenario.assetStatus;
+    if (files && typeof files === "object" && files.stats === false) {
+      return normalizeStatSheetDefinition(null);
+    }
     const raw = await downloadScenarioJsonAsset(scenario.id, "stats");
     if (raw !== null) return normalizeStatSheetDefinition(raw);
 
