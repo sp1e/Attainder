@@ -4,13 +4,33 @@ import "./characters.css";
 
 const PROVIDERS = [{ id: "codex-cli", label: "Codex", letter: "C" }, { id: "claude-cli", label: "Claude", letter: "✳" }];
 
+// The provider at the top of the fallback list: the model the next model-led turn uses. Read again when the list
+// changes (providerConfig.js announces it).
+export function useSelectedProvider() {
+  const [selected, setSelected] = useState(() => getResolvedFallbackList()[0]?.provider || "");
+  useEffect(() => {
+    const updateSelected = () => setSelected(getResolvedFallbackList()[0]?.provider || "");
+    window.addEventListener("ai:fallback-changed", updateSelected);
+    return () => window.removeEventListener("ai:fallback-changed", updateSelected);
+  }, []);
+  return [selected, setSelected];
+}
+
+// The panel header's button. It names the model once Claude or Codex is chosen, so that a chosen model does not
+// read as none connected; the name is a product name and is not read through the dictionary.
+export function ConnectModelButton({ open, onToggle }) {
+  const [selected] = useSelectedProvider();
+  const label = PROVIDERS.find((provider) => provider.id === selected)?.label;
+  return <button type="button" className="char-button char-connect-model" aria-expanded={open} onClick={onToggle}>{label ? <>Modell: <span data-no-translate>{label}</span></> : "Anslut modell"}</button>;
+}
+
 export default function LocalModelConnect({ onConnected, onAdvanced, compact = false, className = "" }) {
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [connecting, setConnecting] = useState("");
   const [error, setError] = useState("");
   const [model, setModel] = useState("");
-  const [selected, setSelected] = useState(() => getResolvedFallbackList()[0]?.provider || "");
+  const [selected, setSelected] = useSelectedProvider();
   const [notice, setNotice] = useState("");
   const requestRef = useRef(null);
   const refresh = useCallback(async () => {
@@ -38,11 +58,6 @@ export default function LocalModelConnect({ onConnected, onAdvanced, compact = f
     refresh();
     return () => { requestRef.current?.abort(); requestRef.current = null; };
   }, [refresh]);
-  useEffect(() => {
-    const updateSelected = () => setSelected(getResolvedFallbackList()[0]?.provider || "");
-    window.addEventListener("ai:fallback-changed", updateSelected);
-    return () => window.removeEventListener("ai:fallback-changed", updateSelected);
-  }, []);
   const connect = async (provider) => {
     if (connecting) return;
     setConnecting(provider); setError(""); setNotice("");

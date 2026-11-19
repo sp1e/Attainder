@@ -130,7 +130,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
     "./playerText.js": playerTextModule,
     "./characters.css": {},
     "./HistoricalRecordView.jsx": { default: () => React.createElement("p", null, "HISTORISK POST"), holdFocus: () => {}, useChronicleRequest: () => {}, __esModule: true },
-    "./LocalModelConnect.jsx": { default: () => null, __esModule: true },
+    "./LocalModelConnect.jsx": { default: () => null, ConnectModelButton: () => null, __esModule: true },
     "./CharacterWatchToggles.jsx": { default: () => null, __esModule: true },
     "./Portrait.jsx": { default: ({ person }) => React.createElement("span", { "data-portrait-person": person.id }), __esModule: true },
   };
@@ -204,6 +204,25 @@ test("incapacity without a regent is not described as contested succession", () 
   const html = renderToStaticMarkup(React.createElement(GovernanceSummary, { view }));
   assert.match(html, /Ingen behörig regent finns för Astrid/);
   assert.doesNotMatch(html, /Omstridd överlämning|förvaltar makten för/);
+});
+
+// Found on 19 November 2026 in a new campaign of Egypt in English: the family of a claimant stood in Swedish,
+// because it shared one text node with the separator and the page's dictionary reads a node as a whole.
+test("the family of a claimant to the throne stands in a text node of its own", () => {
+  const view = baseView();
+  view.governance = { actualRulerName: "Astrid", claims: [{ personId: "a", personName: "Astrid", familyName: "Det genererade kungahuset" }, { personId: "b", personName: "Bo" }] };
+  const { GovernanceSummary } = loadPanel(view);
+  const items = [];
+  const walk = (node) => {
+    if (Array.isArray(node)) return node.forEach(walk);
+    if (!node || typeof node !== "object") return;
+    if (node.type === "li") items.push(node);
+    walk(node.props?.children);
+  };
+  walk(GovernanceSummary({ view }));
+  const texts = (node) => Array.isArray(node) ? node.flatMap(texts) : typeof node === "string" ? [node] : node && typeof node === "object" ? texts(node.props?.children) : [];
+  assert.deepEqual(items.map((item) => texts(item.props.children)), [["Astrid", " \u00b7 ", "Det genererade kungahuset"], ["Bo", ""]]);
+  assert.match(renderToStaticMarkup(React.createElement(GovernanceSummary, { view })), /<li><strong>Astrid<\/strong> \u00b7 Det genererade kungahuset<\/li><li><strong>Bo<\/strong><\/li>/);
 });
 
 test("household mandate remains visible when governance has no ruler summary", () => {
