@@ -130,3 +130,40 @@ test("a rename to another realm's name is refused", () => {
     assert.deepEqual(world.regionOwnershipOverrides, { "region-1": "byzantine-empire", "region-2": "abbasid-caliphate" }, name);
   }
 });
+
+// Found by the review of the rename: the owner resolver was not rebuilt after a label rename, and the test above
+// hid it by placing a polity change between the rename and the old name's next use.
+test("the old name finds the polity in the very next event, and in the rename's own", () => {
+  const next = applyEventImpactsToWorld({
+    world: historicalWorld(),
+    events: [
+      event({ polityChanges: [update("Bysantinska riket", { name: "Basileia" })] }),
+      event({ regionTransfers: [{ regionId: "region-2", toCode: "Bysantinska riket" }] }),
+    ],
+  }).world;
+  assert.deepEqual(Object.keys(next.polityOverrides), ["byzantine-empire", "abbasid-caliphate", "silla"], "no second polity under the old name");
+  assert.equal(next.regionOwnershipOverrides["region-2"], "byzantine-empire");
+
+  const same = applyEventImpactsToWorld({
+    world: historicalWorld(),
+    events: [event({
+      polityChanges: [update("byzantine-empire", { name: "Basileia" })],
+      regionTransfers: [{ regionId: "region-2", toCode: "Bysantinska riket" }],
+    })],
+  }).world;
+  assert.deepEqual(Object.keys(same.polityOverrides), ["byzantine-empire", "abbasid-caliphate", "silla"]);
+  assert.equal(same.regionOwnershipOverrides["region-2"], "byzantine-empire");
+  assert.equal(same.polityOverrides["byzantine-empire"].name, "Basileia");
+});
+
+test("a scenario's polity without a record of its own is renamed by label too", async () => {
+  const { renameHistoricalPolity } = await import("./historicalPolityNames.js");
+  const world = historicalWorld();
+  delete world.polityOverrides.silla;
+  const renamed = renameHistoricalPolity(world, "silla", "Gyerim");
+  assert.equal(renamed.outcome, "renamed");
+  assert.deepEqual([renamed.polityOverrides.silla.name, renamed.polityOverrides.silla.code, renamed.polityOverrides.silla.formerNames], ["Gyerim", "silla", ["Silla"]]);
+  assert.equal(renameHistoricalPolity(world, "silla", "silla").outcome, "same");
+  assert.equal(renameHistoricalPolity(world, "rebels", "Free Company"), null, "not the scenario's: renamed the upstream way");
+  assert.equal(renameHistoricalPolity({ polityOverrides: { Germany: {} } }, "Germany", "Third Reich"), null);
+});
