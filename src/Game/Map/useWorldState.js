@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { JSON_URLS, readJson, reportPerfOperation } from "../../runtime/assets.js";
 import { recordMapTrace, recordMapWork } from "../../runtime/mapPerfTrace.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "../../runtime/ownerNames.js";
+import { withHistoricalPolityNames } from "../../runtime/historicalPolityNames.js";
 import { mapViewOf } from "../../../server/mapProjection.js";
 import { normalizeGroupAreas, normalizeGroups } from "../../runtime/groups.js";
 
@@ -158,7 +159,9 @@ const deriveMapState = (state) => ({
       regionClaimants: withSettledClaims(folded.claimants, state?.settledRegionClaims),
     };
   })(),
-  polityOverrides: state?.polityOverrides ?? EMPTY_OBJECT,
+  // The map's store reads the raw world, so the repair normalizeWorldState makes is made here too: a
+  // historical polity whose label was overwritten by its id is drawn under the scenario's name.
+  polityOverrides: withHistoricalPolityNames(state?.polityOverrides ?? EMPTY_OBJECT, state),
   // Groups and the regions they control (runtime/groups.js), read through the
   // same normalizer the game uses; a world without groups costs nothing.
   ...(() => {
