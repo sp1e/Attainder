@@ -52,6 +52,15 @@ in the prompts. The manifest records actual dimensions for each file. The new
 atlas cells have less detail than the existing 2016 × 2688 atlases. Integration
 should use the recorded geometry and keep portraits near their native cell size.
 
+## Integration, 19 November 2026
+
+The runtime draws the eight rulers from this batch (design
+`docs/superpowers/specs/2026-11-19-historical-portraits-design.md`). `scripts/build-historical-portraits.mjs`
+writes `src/runtime/characters/portrait-historical.json` from the production manifest, and
+`src/runtime/characters/portraitHistorical.test.js` holds the runtime to it: the 16 files' hashes and sizes and all
+288 frames. The production manifest keeps `integrationStatus` as it was delivered; it is the record of the delivery.
+The section below is the boundary as the batch left it.
+
 ## Integration boundary
 
 The production manifest is a delivery contract, not an installed runtime manifest.

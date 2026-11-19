@@ -40,3 +40,8 @@ This batch made no OpenArt calls. The [production notes](../../docs/artwork/gpt-
 record prompts, hashes, actual dimensions, visual limits and the separate runtime
 integration requirement. The faces, clothing and hypothetical age/condition
 variants are artistic interpretations of documented historical identities.
+
+Since 19 November 2026 the game draws these eight portraits and their atlases for the rulers they depict
+(`src/runtime/characters/portrait-historical.json`, built by `scripts/build-historical-portraits.mjs` from the
+production manifest; design `docs/superpowers/specs/2026-11-19-historical-portraits-design.md`). Each picture's
+label says that the appearance is an artistic interpretation.
