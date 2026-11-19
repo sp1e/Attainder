@@ -4154,9 +4154,14 @@ const previewPolityOverrides = (polityOverrides, pendingChanges) => {
 
   const preview = { ...polityOverrides };
   for (const { change, code } of pendingChanges) {
+    const before = preview[code] ?? { aliases: [], code, name: "" };
+    const aliases = change.aliases?.length > 0 ? change.aliases : normalizeArray(before.aliases);
+    // The name a rename replaces still names the polity while this event is read: a historical
+    // polity keeps its key through a rename, and its old label is not that key.
+    const replaced = change.name && before.name && !samePolity(before.name, change.name) ? [before.name] : [];
     preview[code] = {
-      ...(preview[code] ?? { aliases: [], code, name: "" }),
-      ...(change.aliases?.length > 0 ? { aliases: change.aliases } : {}),
+      ...before,
+      ...(change.aliases?.length > 0 || replaced.length ? { aliases: [...aliases, ...replaced] } : {}),
       ...(change.name ? { name: change.name } : {}),
     };
   }
@@ -4671,10 +4676,12 @@ export const applyEventImpactsToWorld = ({
       resolveOwner,
       world: nextWorld,
     });
-    if (renamedHere.length) {
-      renamedPolities.push(...renamedHere);
+    if (renamedHere.length) renamedPolities.push(...renamedHere);
+    if (renamedHere.length || polityChanges.length) {
       // The polity is keyed by its new name now: this event's unit and structure
-      // ops, and every later event, must resolve either name to the new key.
+      // ops, and every later event, must resolve either name to the new key. A
+      // historical polity keeps its key and changes its label, which reports no
+      // rename here, so the resolver is rebuilt after any event that changed a polity.
       resolveOwner = createOwnerResolver(buildOwnerAliasMap(nextWorld.polityOverrides));
     }
 

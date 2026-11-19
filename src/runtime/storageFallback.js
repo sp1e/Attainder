@@ -21,25 +21,36 @@ export const createVolatileStorage = () => {
   return storage;
 };
 
-// True when a value can be written to the storage and taken away again.
-const writable = (target, name) => {
+// A storage that is full refuses a write and still holds what the player stored: it is not blocked.
+const isQuotaError = (error) =>
+  error?.name === "QuotaExceededError" || error?.name === "NS_ERROR_DOM_QUOTA_REACHED" || error?.code === 22 || error?.code === 1014;
+
+// True when the storage can be used: a value can be written and taken away again, or the storage is only full
+// and can still be read.
+const usable = (target, name) => {
+  const probe = "oh:storage-probe";
   try {
     const storage = target[name];
     if (!storage) return false;
-    const probe = "oh:storage-probe";
     storage.setItem(probe, "1");
     storage.removeItem(probe);
     return true;
-  } catch {
-    return false;
+  } catch (error) {
+    if (!isQuotaError(error)) return false;
+    try {
+      target[name].getItem(probe);
+      return true;
+    } catch {
+      return false;
+    }
   }
 };
 
-// Replaces each storage of `target` that cannot be written. Returns the names it replaced.
+// Replaces each storage of `target` that cannot be used. Returns the names it replaced.
 export const installStorageFallback = (target) => {
   const replaced = [];
   for (const name of ["localStorage", "sessionStorage"]) {
-    if (writable(target, name)) continue;
+    if (usable(target, name)) continue;
     try {
       Object.defineProperty(target, name, { value: createVolatileStorage(), configurable: true, writable: true });
       replaced.push(name);

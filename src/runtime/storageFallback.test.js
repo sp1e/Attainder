@@ -70,3 +70,18 @@ test("the stand-in is installed before anything else of the game is loaded", () 
   const imports = entry.split("\n").filter((line) => line.startsWith("import "));
   assert.equal(imports[0], 'import "./runtime/storageFallback.js";', "imports are evaluated in order, and other modules read storage as they load");
 });
+
+test("a storage that is only full is left: it still holds what the player stored", () => {
+  const full = (error) => {
+    const held = createMemoryStorage({ ui_language: "sv" });
+    return { getItem: (key) => held.getItem(key), setItem: () => { throw error; }, removeItem: () => {} };
+  };
+  for (const error of [{ name: "QuotaExceededError" }, { name: "NS_ERROR_DOM_QUOTA_REACHED" }, { code: 22 }, { code: 1014 }]) {
+    const target = { localStorage: full(error), sessionStorage: createMemoryStorage({}) };
+    assert.deepEqual(installStorageFallback(target), [], JSON.stringify(error));
+    assert.equal(target.localStorage.getItem("ui_language"), "sv");
+  }
+  // Full and unreadable is blocked all the same.
+  const unreadable = { localStorage: { getItem: refuse, setItem: () => { throw { name: "QuotaExceededError" }; }, removeItem: refuse }, sessionStorage: createMemoryStorage({}) };
+  assert.deepEqual(installStorageFallback(unreadable), ["localStorage"]);
+});

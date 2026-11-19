@@ -58,10 +58,13 @@ const unique = (values) => values.filter((value, index) => values.findIndex((oth
 export const renameHistoricalPolity = (world, id, newName) => {
   const key = text(id);
   const to = text(newName);
-  const overrides = world?.polityOverrides;
   const scenarioName = historicalPolityName(world, key);
-  if (!scenarioName || !to || !overrides || typeof overrides !== "object" || !overrides[key]) return null;
-  const record = overrides[key];
+  if (!scenarioName || !to) return null;
+  const overrides = world.polityOverrides && typeof world.polityOverrides === "object" ? world.polityOverrides : {};
+  // A scenario's polity without a record of its own is still the scenario's: it is not re-keyed.
+  const record = overrides[key] && typeof overrides[key] === "object"
+    ? overrides[key]
+    : { aliases: [], code: key, color: "", name: scenarioName, note: "" };
   const from = text(record.name) || scenarioName;
   const same = { outcome: "same", polityOverrides: overrides, from, to: from };
   if ([key, from].some((own) => fold(own) === fold(to))) return same;
