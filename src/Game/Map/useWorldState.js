@@ -3,6 +3,7 @@ import { JSON_URLS, readJson, reportPerfOperation } from "../../runtime/assets.j
 import { recordMapTrace, recordMapWork } from "../../runtime/mapPerfTrace.js";
 import { buildOwnerAliasMap, createOwnerResolver } from "../../runtime/ownerNames.js";
 import { withHistoricalPolityNames } from "../../runtime/historicalPolityNames.js";
+import { withDistinctPolityColors } from "../../runtime/historicalPolityColors.js";
 import { mapViewOf } from "../../../server/mapProjection.js";
 import { normalizeGroupAreas, normalizeGroups } from "../../runtime/groups.js";
 
@@ -159,9 +160,10 @@ const deriveMapState = (state) => ({
       regionClaimants: withSettledClaims(folded.claimants, state?.settledRegionClaims),
     };
   })(),
-  // The map's store reads the raw world, so the repair normalizeWorldState makes is made here too: a
-  // historical polity whose label was overwritten by its id is drawn under the scenario's name.
-  polityOverrides: withHistoricalPolityNames(state?.polityOverrides ?? EMPTY_OBJECT, state),
+  // The map's store reads the raw world, so the repairs normalizeWorldState makes are made here too: a
+  // historical polity whose label was overwritten by its id is drawn under the scenario's name, and
+  // realms that were dealt the same colour are each drawn in their own.
+  polityOverrides: withDistinctPolityColors(withHistoricalPolityNames(state?.polityOverrides ?? EMPTY_OBJECT, state), state),
   // Groups and the regions they control (runtime/groups.js), read through the
   // same normalizer the game uses; a world without groups costs nothing.
   ...(() => {
