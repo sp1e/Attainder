@@ -10,6 +10,8 @@
 export const MAP_LAYER_ORDER = [
   // A historical campaign's snow lies on the basemap, under everything the game adds (snowLine.js).
   "seasonal-snow",
+  // The same snow while the seasons sweep (snowSweep.js); clear at rest.
+  "seasonal-snow-sweep",
   // Political body / local geography.
   "countries-fill",
   "countries-outline",
