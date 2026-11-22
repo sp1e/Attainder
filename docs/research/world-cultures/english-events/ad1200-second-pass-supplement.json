@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1200-second-pass-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1200,
+    "endYear": 1299
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "7d3ce7ae571d4bd2a643022612794efd780a470b",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1200sp-sherer-formulary",
+      "title": "The History of Law in Japan, Through Historical Sources: Lecture 3, The Judicial Formulary of 1232 and Medieval Law",
+      "institution": "Murakami Kazuhiro and Nishimura Yasuhiro, editors; translated and interpreted by Dan Sherer; USC Project for Premodern Japan Studies",
+      "url": "https://www.uscppjs.org/s/murak3.pdf",
+      "locator": "PDF pp. 2–4, section 1 and Document 1 (Yasutoki's letter), followed by section 2. Public six-page course translation; attribution checked through the project's Research in Japanese Law page.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "promulgated in 1232",
+      "originalChronology": "The commentary dates promulgation to 1232. The separately translated letter bears Jôei 1 (1232) 09/11; this is not converted into a Gregorian promulgation day.",
+      "scopedClaim": "Yasutoki issued the 51-clause formulary; his explanation limited its intended jurisdiction and preserved Kyoto's laws. The text does not establish universal enforcement.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1200sp-ut-formulary-clauses",
+      "title": "Japan: A Documentary History, Chapter IV, Rise of Feudal Institutions",
+      "institution": "University of Texas at Austin course-hosted anthology excerpt; document 26 adapted from John Carey Hall and a Japanese source edition as credited in footnote 43",
+      "url": "https://laits.utexas.edu/~mr56267/HIST_341K/Lu_sections/IV_Rise%20of%20Feudal%20Institutions.pdf",
+      "locator": "Printed pp. 109–111 (PDF pp. 29–31), document 26, heading, footnote 43 and clauses 3–6. Public translated excerpt; the separately cited underlying editions were not opened.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "Lawsuits, 1232",
+      "originalChronology": "Document 26 is explicitly headed 1232. The passage supplies no adopted month or day.",
+      "scopedClaim": "Clauses regulate protectors' duties, confiscation and stewards' rent disputes, while recognizing other authorities' existing jurisdictions. The rules prescribe conduct rather than prove compliance.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1200sp-archnet-mustansiriyya",
+      "title": "Madrasa al-Mustansiriyya",
+      "institution": "Archnet",
+      "url": "https://www.archnet.org/sites/3836",
+      "locator": "Opening three paragraphs and Events field; public institutional HTML. The foundation's ancillary facilities are discussed through later descriptions, not contemporary observation.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "opened in 1234/631 AH",
+      "originalChronology": "Archnet gives commissioning in 1227/625 AH and opening in 1234/631 AH; Events spans 1227–34. Its six-year construction statement is not used to calculate a different endpoint.",
+      "scopedClaim": "Al-Mustansir commissioned the Baghdad madrasa, which taught the four Sunni legal schools. No earliest-institution claim or precise opening date for ancillary facilities is adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1200sp-tdv-mustansiriyya",
+      "title": "MÜSTANSIRİYYE MEDRESESİ",
+      "institution": "Sâmî es-Sakkâr and Nebi Bozkurt; TDV İslâm Ansiklopedisi, TDV İslâm Araştırmaları Merkezi, 2006",
+      "url": "https://islamansiklopedisi.org.tr/mustansiriyye-medresesi",
+      "locator": "Opening paragraphs on foundation, completion and opening, followed by the four-school layout; public Turkish article. The later paragraph on the medical iwan is chronologically separate.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "5 Receb 631’de (6 Nisan 1234)",
+      "originalChronology": "The article distinguishes foundation in 625/1228, completion in 630/1233 and opening on 5 Rajab 631, rendered by the source as 6 April 1234. No independent conversion is made.",
+      "scopedClaim": "The opening ceremony and accommodation of four Sunni legal schools. Construction and the later medical iwan are not collapsed into the opening event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1232-yasutoki-promulgates-judicial-formulary",
+      "date": {
+        "kind": "exact",
+        "startYear": 1232,
+        "endYear": 1232,
+        "displayEn": "1232 CE",
+        "noteEn": "The year dates promulgation of the Goseibai shikimoku. Yasutoki's explanatory letter has its own date and does not supply a Gregorian promulgation day. The formulary did not replace all existing jurisdictions, and its prescriptions do not prove uniform enforcement."
+      },
+      "titleEn": "Hōjō Yasutoki issues the Goseibai shikimoku",
+      "summaryEn": "The Kamakura regent promulgates a 51-clause judicial formulary for warrior government. Its rules address officials' duties, confiscation and disputes over estate rents while recognizing other authorities' existing jurisdictions.",
+      "geographyEn": "Kamakura and the jurisdictions of its warrior government, Japan",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1200sp-sherer-formulary",
+        "ad1200sp-ut-formulary-clauses"
+      ],
+      "selectionNote": "A major regional legal measure, distinct from Yoritomo's earlier appointment, the Genpei war and later Mongol invasions. The record concerns promulgation and the content of rules, without claiming that warrior government acquired exclusive jurisdiction throughout Japan. The fixed comparisons contain no matching formulary event.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check with scoped source follow-up; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-1234-mustansiriyya-madrasa-opens",
+      "date": {
+        "kind": "exact",
+        "startYear": 1234,
+        "endYear": 1234,
+        "displayEn": "1234 CE",
+        "noteEn": "Both sources date the opening to 1234. Archnet places commissioning in 1227; TDV dates foundation to 1228 and completion to 1233. These are separate stages. The event does not date every associated facility to the opening year or resolve the earlier chronology by calculation."
+      },
+      "titleEn": "The Mustansiriyya madrasa opens in Baghdad",
+      "summaryEn": "The college commissioned by Caliph al-Mustansir opens in Baghdad. It provides teaching for the Hanafi, Maliki, Shafi‘i and Hanbali schools of Sunni law within one institution.",
+      "geographyEn": "Baghdad, Abbasid caliphate, present-day Iraq",
+      "category": "culture",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1200sp-archnet-mustansiriyya",
+        "ad1200sp-tdv-mustansiriyya"
+      ],
+      "selectionNote": "A major regional educational institution bringing four legal traditions together in the Abbasid capital. Its opening is distinct from the later conquest of Baghdad and from institutions elsewhere, including Salamanca and the Qarawiyyin mosque expansion. No universal first, modern-university equivalence or contemporaneous opening of all medical facilities is asserted.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check with scoped source follow-up; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}

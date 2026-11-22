@@ -1,0 +1,57 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1100-charter-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1100,
+    "endYear": 1199
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "d288a59a24f2dfe71c498d00daf22f23da238364",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1100charter-kas-roffensis",
+      "title": "Henry I Coronation Charter",
+      "institution": "Kent Archaeological Society; page credits Jacob Scott and describes its translation as following Richard Sharpe",
+      "url": "https://www.kentarchaeology.org.uk/records/textus-roffensis/96r-97v",
+      "locator": "Introductory paragraphs and displayed Latin transcription and English translation under folio 96r. Read the HTML text; manuscript facsimile and the separate translation notes were not inspected.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "5th August, 1100; circa 1101",
+      "originalChronology": "The modern introduction dates the charter to 5 August 1100 and identifies circa 1101 as the differing date in the Rochester copy. No calendar conversion is made.",
+      "scopedClaim": "Henry's coronation charter announces his kingship and promises to remove abuses, protect the Church from royal exploitation, and restore Edward's law with his father's amendments. The Rochester copy has a differing date in its introduction.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1100-henry-coronation-charter",
+      "date": {
+        "kind": "exact",
+        "startYear": 1100,
+        "endYear": 1100,
+        "displayEn": "1100 CE",
+        "noteEn": "The Kent Archaeological Society's introduction dates the charter to 5 August 1100 while identifying circa 1101 in the Rochester copy. This record follows the introduction's date for its issue and preserves the copy's differing wording. The promises do not establish how Henry enforced them."
+      },
+      "titleEn": "Henry I issues his coronation charter",
+      "summaryEn": "Henry I promises to remove abuses in royal government and protect the Church from exploitation. He pledges to restore the law of Edward the Confessor with the amendments made by William I.",
+      "geographyEn": "England",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1100charter-kas-roffensis"
+      ],
+      "selectionNote": "A royal statement of obligations concerning government and the Church. The act is distinct from the catalog's Domesday inquiry and Magna Carta. This bounded English supplement does not cover every region or year of the century.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check; independent final data, English and integration review; source-review attribution corrected in a preserved addendum",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
