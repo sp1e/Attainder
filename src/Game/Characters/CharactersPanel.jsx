@@ -21,6 +21,7 @@ import IntrigueView from "./IntrigueView.jsx";
 import LocalModelConnect, { ConnectModelButton } from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 import { nameInitials as initials } from "./nameInitials.js";
+import { PriceParts } from "./priceParts.js";
 import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import HistoricalRecordView, { holdFocus, useChronicleRequest } from "./HistoricalRecordView.jsx";
 
@@ -160,7 +161,7 @@ function ActionCard({ action, onCommand, busy }) {
   const [values, setValues] = useState(() => Object.fromEntries(fields.map((field) => [field.key, field.options?.[0]?.value ?? ""])));
   const missing = fields.some((field) => !values[field.key]);
   return <details className={`char-action${action.disabledReason ? " char-action--unavailable" : ""}`}>
-    <summary><span><strong>{action.label}</strong><small>{action.cost || "Ingen myntkostnad"}{action.stress ? ` · ${stressLabel(action.stress)}` : ""}</small>{action.actorName ? <small>Utförs av: {action.actorName}</small> : action.actorName === null && <small>Ingen behörig aktör</small>}</span><span aria-hidden="true">＋</span></summary>
+    <summary><span><strong>{action.label}</strong><small><PriceParts parts={[action.cost || "Ingen myntkostnad", action.stress ? stressLabel(action.stress) : ""]} /></small>{action.actorName ? <small>Utförs av: {action.actorName}</small> : action.actorName === null && <small>Ingen behörig aktör</small>}</span><span aria-hidden="true">＋</span></summary>
     <div className="char-action-body"><p>{action.description}</p>
       <form onSubmit={(event) => { event.preventDefault(); onCommand(action.type, values); }}>
         {fields.map((field) => <label key={field.key}>{field.label}<select value={values[field.key] ?? ""} onChange={(event) => setValues((current) => ({ ...current, [field.key]: event.target.value }))} disabled={busy || Boolean(action.disabledReason)} required>
@@ -206,7 +207,7 @@ function StoryCard({ story, person, onCommand, busy }) {
     {story.deadlineText ? <p className="char-caption">{story.deadlineText}</p> : story.fallbackDescription && <p className="char-caption">Om du avstår till tidsgränsen: {story.fallbackDescription}</p>}
     {isChain && story.nextAt && <p className="char-caption">Nästa uppföljning: {dateLabel(story.nextAt)}</p>}
     <div className="char-story-choices">{(story.choices || []).map((choice) => <div className="char-choice-slot" key={choice.id} role={choice.odds ? "group" : undefined} aria-labelledby={choice.odds ? `char-choice-${story.id}-${choice.id}` : undefined}><button type="button" id={`char-choice-${story.id}-${choice.id}`} className="char-choice" disabled={busy || Boolean(choice.disabledReason)} onClick={() => onCommand("resolve_story", { storyId: story.id, choiceId: choice.id })}>
-      <strong>{choice.label}</strong>{!choice.odds && <span>{choice.description}</span>}{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small>{[choice.cost, stressLabel(choice.stress)].filter(Boolean).join(" · ")}</small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
+      <strong>{choice.label}</strong>{!choice.odds && <span>{choice.description}</span>}{choice.scope !== "none" && (choice.actorName ? <small>Utförs av: {choice.actorName}</small> : choice.actorName === null && <small>Ingen behörig aktör</small>)}<small><PriceParts parts={[choice.cost, stressLabel(choice.stress)]} /></small>{choice.disabledReason && <em>{choice.disabledReason}</em>}
     </button><ChoiceOdds odds={choice.odds} /></div>)}</div>
   </article>;
 }

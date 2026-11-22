@@ -1022,6 +1022,10 @@ export function getCatalogActions(state) { return catalogFrom(state, getAvailabl
 const catalogFrom = (state, actions) => buildCatalogActions(state, actions, { representativeId: activeRepresentative(state)?.id || null, familyId: controlledFamily(state)?.id || null, realmAccess: canRule(state),
   shieldedIds: [state.offices.ruler?.holderId, activeRepresentative(state)?.id, householdRepresentative(state)?.id].filter(Boolean) });
 
+// The cost sentence of a story's fallback is a catalog entry of its own: the English mode reads it apart from
+// the label and the description it follows.
+const FALLBACK_COST = "Kostnad: 0 silver.";
+
 function presentStory(state, story) {
   const choices = story.status === 'open' ? storyChoices(state, story) : [];
   const fallback = story.type === 'character_event' ? choices.find((choice) => choice.id === 'ignore') : null;
@@ -1029,7 +1033,7 @@ function presentStory(state, story) {
   const caption = story.status === 'open' && COURT_STORY_TYPES.includes(story.type) ? { deadlineText: courtDeadlineText(story, actionHooks(state)) } : {};
   return { ...copy(story), ...caption, actorName: state.people[story.actorId]?.name || state.families[story.familyId]?.name || '',
     causeTitle: cause?.title || null,
-    fallbackDescription: fallback ? `${fallback.label}. ${fallback.description} Kostnad: 0 silver.` : null, choices,
+    fallbackDescription: fallback ? [`${fallback.label}.`, fallback.description, FALLBACK_COST].join(" ") : null, choices,
     ...(story.type === 'event_chain' ? presentEventChain(state, story) : {}) };
 }
 

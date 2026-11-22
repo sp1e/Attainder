@@ -21,7 +21,10 @@ import * as playerTextModule from "./playerText.js";
 import * as courtShellModule from "./courtShell.js";
 import * as characterLanguageModule from "../../runtime/characterLanguage.js";
 import * as nameInitialsModule from "./nameInitials.js";
+import * as priceModule from "./priceParts.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
+import { pageReading } from "../testing/pageReading.js";
+import { loadNativeBook } from "../../../scripts/i18n/sweep-engine-text.mjs";
 
 // Render the real JSX with supplied presentation data. Runtime and portrait
 // loading are stubs; these checks do not exercise the core or a browser.
@@ -42,7 +45,7 @@ const envoyCompiled = compileFile("EnvoyView.jsx");
 // language it is the Swedish one, as these tests expect.
 // The translator subscription is a stub: these renders run outside the browser and its native book.
 // The decision's notice is the real one: the panel shares it with the court over the map (courtShell.js).
-const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule, "./courtShell.js": courtShellModule,
+const SHARED_MODULES = { "../../runtime/characterLanguage.js": characterLanguageModule, "./nameInitials.js": nameInitialsModule, "./courtShell.js": courtShellModule, "./priceParts.js": priceModule,
   "../../runtime/useTranslatorUpdates.js": { useTranslatorUpdates: () => 0, readNative: (text) => text } };
 
 function runModule(code, modules, globals = {}) {
@@ -223,6 +226,52 @@ test("the family of a claimant to the throne stands in a text node of its own", 
   const texts = (node) => Array.isArray(node) ? node.flatMap(texts) : typeof node === "string" ? [node] : node && typeof node === "object" ? texts(node.props?.children) : [];
   assert.deepEqual(items.map((item) => texts(item.props.children)), [["Astrid", " \u00b7 ", "Det genererade kungahuset"], ["Bo", ""]]);
   assert.match(renderToStaticMarkup(React.createElement(GovernanceSummary, { view })), /<li><strong>Astrid<\/strong> \u00b7 Det genererade kungahuset<\/li><li><strong>Bo<\/strong><\/li>/);
+});
+
+// Found on 22 November 2026 in a family campaign of Karl in English: "10 silver ur ämbetets budget · 1 action ·
+// Service: 0 · Klienter: 28". The cost and the stress stood in one element, the page's dictionary read that run in part,
+// and a run read in part is never read again piece by piece. Each part of a price now stands in an element of its own.
+const nativeBook = loadNativeBook().book;
+const OFFICE_PRICE = { cost: "10 silver ur ämbetets budget · 1 handling", stress: "Tjänst: 0 · Klienter: 28" };
+const OFFICE_READING = "10 silver from the office’s budget · 1 action · Service: 0 · Clients: 28";
+const courtMatterCompiled = transformSync(`${readFileSync(new URL("./CourtMatter.jsx", import.meta.url), "utf8")}\nexport { Choice };`, {
+  loader: "jsx", format: "cjs", jsx: "transform",
+}).code;
+
+test("an action's cost and stress read English apart from each other", () => {
+  const { ActionCard } = loadPanel(baseView(), { panelState: false });
+  const action = { type: "exercise_office", label: "Utöva ditt ämbete", actorName: "Odo", ...OFFICE_PRICE };
+  const reading = pageReading(React.createElement(ActionCard, { action }), nativeBook);
+  assert.ok(reading.includes(OFFICE_READING), reading);
+  assert.doesNotMatch(reading, /ämbetets budget|Klienter/);
+});
+
+test("a decision's choice reads its cost and its stress apart", () => {
+  const { StoryCard } = loadPanel(baseView(), { panelState: false });
+  const story = { id: "story-1", type: "ransom_offer", title: "Lösen", description: "Ett bud.", createdAt: "0801-01-01",
+    choices: [{ id: "pay", label: "Betala", description: "", cost: "40 familjesilver · 0 handlingar", stress: 2, scope: "none" }] };
+  const reading = pageReading(React.createElement(StoryCard, { story, onCommand: () => {} }), nativeBook);
+  assert.ok(reading.includes("40 family silver · 0 actions · Stress +2"), reading);
+  assert.doesNotMatch(reading, /handlingar|familjesilver/);
+});
+
+test("a choice in the court over the map reads its cost and its stress apart", () => {
+  const { Choice } = runModule(courtMatterCompiled, { react: React, "../Map/seatRulers.js": { medallionOf: () => null },
+    "./ActionBox.jsx": { dateLabel: (value) => value, modifierText: (row) => row.label, oddsText: (value) => `${value} %` },
+    "./MedallionPicture.jsx": { default: () => null, __esModule: true } });
+  const choice = { id: "office", label: "Utöva ämbetet", description: "", ...OFFICE_PRICE };
+  const reading = pageReading(React.createElement(Choice, { choice, busy: false, updates: 0, onAnswer: () => {} }), nativeBook);
+  assert.ok(reading.includes(OFFICE_READING), reading);
+  assert.doesNotMatch(reading, /ämbetets budget|Klienter/);
+});
+
+test("the confirmation reads the label of a cost and the cost apart", () => {
+  const box = loadActionBox();
+  const proposal = { mode: "command", entry: { label: "Utöva ditt ämbete", actorName: "Odo", fields: [], ...OFFICE_PRICE }, payload: {} };
+  const reading = pageReading(React.createElement(box.ConfirmationCard, { proposal, view: {}, onConfirm: () => {}, onCancel: () => {} }), nativeBook);
+  assert.ok(reading.includes("Cost: 10 silver from the office’s budget · 1 action"), reading);
+  assert.ok(reading.includes("Service: 0 · Clients: 28"), reading);
+  assert.doesNotMatch(reading, /Kostnad|ämbetets budget|Klienter/);
 });
 
 test("household mandate remains visible when governance has no ruler summary", () => {

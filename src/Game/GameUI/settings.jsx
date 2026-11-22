@@ -89,6 +89,7 @@ import {
 import { saveDebugLogFile } from "../../runtime/saveDebugLog.js";
 import { buildGameZipBlob, formatZipSize, saveGameZipToDisk } from "../../runtime/gameZip.js";
 import { useIsMobile } from "../../runtime/useIsMobile.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import { usePresenceLeaving } from "./presence.jsx";
 import { ESRI_BASEMAPS, isBuiltinBasemapId } from "../../runtime/assets.js";
 import { presenceAvailable } from "../../runtime/discordPresence.js";
@@ -1559,6 +1560,8 @@ const DiagnosticsPanel = () => {
     // Read at render rather than subscribed: this panel is remounted every time the
     // settings menu opens, and the name only has to be right when it is on screen.
     const activeGameName = String(getLibraryState().activeGame?.name ?? "").trim();
+    // The title and the notices quote the name inside English sentences: the native book reads it for them.
+    const updates = useTranslatorUpdates();
     // The count is the whole reason this section is visible when nothing is
     // wrong: "Entries: 0" after a crash means the log is not recording and the
     // player should say so, rather than pasting an empty report.
@@ -1680,7 +1683,7 @@ const DiagnosticsPanel = () => {
         onClick={handleAttachGame}
         disabled={attachState.kind === "working"}
         style={{ ...diagnosticsButton, width: "100%", marginBottom: "0.5rem" }}
-        title={attachGameTitle(enabled, activeGameName)}
+        title={attachGameTitle(enabled, readNative(activeGameName, updates))}
         >
         {attachState.kind === "working"
             ? "Packing the game…"
@@ -1689,9 +1692,9 @@ const DiagnosticsPanel = () => {
             : attachState.kind === "failed"
             ? "Couldn't save the game"
             : attachState.kind === "saved-without-map"
-            ? `✓ Saved “${shortGameName(attachState.name)}” — map not included`
+            ? `✓ Saved “${shortGameName(readNative(attachState.name, updates))}” — map not included`
             : attachState.kind === "saved"
-            ? `✓ Saved ${enabled ? "log + " : ""}“${shortGameName(attachState.name)}” (${attachState.size})`
+            ? `✓ Saved ${enabled ? "log + " : ""}“${shortGameName(readNative(attachState.name, updates))}” (${attachState.size})`
             : enabled ? "💾 Save log file + game" : "💾 Save game"}
         </button>
         )}
