@@ -1,0 +1,120 @@
+{
+  "schema": "attainder-historical-event-research-en-v1",
+  "locale": "en",
+  "preparedOn": "2026-11-09",
+  "batchId": "ad1300-second-pass-supplement-2026-11-09",
+  "researchWindow": {
+    "startYear": 1300,
+    "endYear": 1399
+  },
+  "integrationStatus": "awaiting-runtime-support",
+  "catalogBaseline": {
+    "commit": "92add4bcd6b2136b016f56ec3e733fb4cafe9c26",
+    "eventCount": 873,
+    "sourceCount": 801
+  },
+  "sources": [
+    {
+      "id": "ad1300sp-aks-hwatong",
+      "title": "화통도감",
+      "institution": "Shin An-sik (신안식); Encyclopedia of Korean Culture, Academy of Korean Studies; written 2023, revised 22 September 2024",
+      "url": "https://encykorea.aks.ac.kr/Article/E0064918",
+      "locator": "Institution dates, Definition, Establishment purpose, Functions and roles, and Changes (정의; 설치 목적; 기능과 역할; 변천사항). Public Korean article read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1377년(우왕 3)",
+      "originalChronology": "Establishment is explicitly dated 1377, King U's third year. Later battles in 1380 and 1383 and abolition in 1388 are separate developments.",
+      "scopedClaim": "Choe Mu-seon's proposal led to a temporary government office for gunpowder and firearm manufacture, intended to counter coastal raiders. The establishment date does not date every later weapon or battle.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1300sp-nikh-choe-manufacture",
+      "title": "최무선의 화약 무기 제조",
+      "institution": "National Institute of Korean History, Our History Net, History through Primary Sources",
+      "url": "https://contents.history.go.kr/front/hm/view.do?levelId=hm_054_0040&tabId=01&treeId=010401",
+      "locator": "Translated Taejo sillok excerpt, vol. 7, fourth year, fourth month, nineteenth day, and editorial commentary paragraphs on establishment in 1377 and earlier imported weapons. Public Korean translation, original text and commentary read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1377년(우왕 3) 10월",
+      "originalChronology": "The commentary explicitly dates the office to the tenth month of 1377. The translated retrospective account belongs to a later annal entry; its date is not the foundation date. No Gregorian month is calculated.",
+      "scopedClaim": "The account describes Choe's petition and office; the commentary supplies the dated establishment and distinguishes earlier imported gunpowder weapons from organized manufacture. Technical instruction and later battle outcomes are outside this event.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1300sp-nikh-gwajeon",
+      "title": "과전법의 시행",
+      "institution": "National Institute of Korean History, Our History Net, History through Primary Sources",
+      "url": "https://contents.history.go.kr/front/hm/view.do?levelId=hm_080_0010",
+      "locator": "Opening translated Goryeosa passage, vol. 78, Treatise 32, Food and Money 1, land system; original text and commentary on promulgation, Gyeonggi allocations and revenue rights. Public Korean translation and commentary read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1391년(공양왕 3) 5월",
+      "originalChronology": "The commentary dates promulgation to the fifth month of 1391, King Gongyang's third year. The translated record gives the council's proposal and royal acceptance. No Gregorian May date is inferred.",
+      "scopedClaim": "The law regulated ranked allocations of land-revenue collection rights, including officials' Gyeonggi allotments. The commentary distinguishes these rights from cultivators' ownership and rejects the inference that all land became state property.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    },
+    {
+      "id": "ad1300sp-aks-gwajeon",
+      "title": "과전법",
+      "institution": "Encyclopedia of Korean Culture, Academy of Korean Studies; written 2022, revised 22 September 2023; no individual byline shown in the inspected header",
+      "url": "https://encykorea.aks.ac.kr/Article/E0004611",
+      "locator": "Definition, Establishment purpose and circumstances, Contents, and Significance and assessment (정의; 제정 목적 및 경위; 내용; 의의와 평가). Public Korean article read.",
+      "retrievedOn": "2026-11-09",
+      "asWorded": "1391년(공양왕 3)",
+      "originalChronology": "The law is dated 1391 and distinguished from Joseon's establishment in the following year. Later changes under Joseon are not treated as part of the promulgation event.",
+      "scopedClaim": "Officials' revenue allotments used eighteen grades and were concentrated in Gyeonggi; ownership and revenue rights overlapped rather than being interchangeable. The entry's numerical allotment limits are not adopted.",
+      "reuseTerms": "Reference only; no source prose or images redistributed"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev-1377-goryeo-establishes-hwatong-dogam",
+      "date": {
+        "kind": "exact",
+        "startYear": 1377,
+        "endYear": 1377,
+        "displayEn": "1377 CE",
+        "noteEn": "The year dates the office's establishment. The Korean commentary also specifies the tenth month, without an adopted Gregorian conversion. Earlier imports, Choe's preceding experiments and later battles are separate; this is no claim that gunpowder or firearms were invented in 1377."
+      },
+      "titleEn": "Goryeo establishes the Hwatong Dogam",
+      "summaryEn": "At Choe Mu-seon's urging, Goryeo creates a temporary government office to manufacture gunpowder and firearms. The project aims to strengthen the response to raiders attacking Korea's coasts.",
+      "geographyEn": "Goryeo, Korean Peninsula",
+      "category": "technology",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1300sp-aks-hwatong",
+        "ad1300sp-nikh-choe-manufacture"
+      ],
+      "selectionNote": "A major regional step in state-organized military manufacture. Its institutional establishment is distinct from earlier imported weapons, later combat and the unrelated Jikji printing of the same year. The record avoids invention priority, quantities of weapons and unverified claims that coastal attacks ended.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check with disclosed metadata-read deviation; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    },
+    {
+      "id": "ev-1391-goryeo-promulgates-gwajeon-law",
+      "date": {
+        "kind": "exact",
+        "startYear": 1391,
+        "endYear": 1391,
+        "displayEn": "1391 CE",
+        "noteEn": "The record concerns promulgation in 1391, with the source's fifth-month label left unconverted. It does not date the whole preceding reform process to one year. Revenue-collection rights are distinct from ownership, and the legal provisions do not establish universal compliance."
+      },
+      "titleEn": "Goryeo promulgates the Gwajeon land-revenue law",
+      "summaryEn": "King Gongyang accepts the central council's proposal for the Gwajeon law. It regulates officials' rights to collect revenue from specified land, distributing Gyeonggi allotments by eighteen grades while setting rules for taxation and cultivators' rights.",
+      "geographyEn": "Goryeo, particularly Gyeonggi around the capital Gaegyeong, Korean Peninsula",
+      "category": "politics",
+      "importance": 2,
+      "historicalStatus": "sourced",
+      "sourceIds": [
+        "ad1300sp-nikh-gwajeon",
+        "ad1300sp-aks-gwajeon"
+      ],
+      "selectionNote": "A major regional fiscal and institutional measure, distinct from the 1388 overthrow, Joseon's dynastic founding in 1392 and the later capital move. The event records a legal arrangement for revenue and official support, without presenting it as equal land redistribution, wholesale nationalization or proof of successful enforcement everywhere.",
+      "review": {
+        "status": "approved",
+        "reviewedBy": "Codex independent source and English check with disclosed metadata-read deviation; independent final data, English and integration review",
+        "reviewedOn": "2026-11-09"
+      }
+    }
+  ]
+}
