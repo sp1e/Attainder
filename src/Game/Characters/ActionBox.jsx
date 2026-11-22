@@ -163,8 +163,8 @@ function ProposalFacts({ proposal, view }) {
     return <ul className="char-confirm-facts">
       {entry.actorName && <li>Utförs av: {entry.actorName}</li>}
       {entries(entry.fields).map((field) => <li key={field.key}>{field.label}: {field.options?.find((option) => option.value === payload[field.key])?.label ?? String(payload[field.key] ?? "—")}</li>)}
-      <li>Kostnad: {formatCost(entry.cost)}</li>
-      {entry.stress && entry.stress !== "0" && <li>Stress: {entry.stress}</li>}
+      <li>Kostnad: <span>{formatCost(entry.cost)}</span></li>
+      {entry.stress && entry.stress !== "0" && <li>Stress: <span>{entry.stress}</span></li>}
     </ul>;
   }
   const agentField = entries(entry.fields).find((field) => field.key === "agentRoles");
@@ -180,7 +180,7 @@ function ProposalFacts({ proposal, view }) {
         const field = entries(entry.fields).find((item) => item.key === key);
         return <li key={key}>{field?.label || key}: {field?.options?.find((option) => option.value === payload.means[key])?.label ?? String(payload.means[key])}</li>;
       })}
-      <li>Kostnad: {formatCost(proposal.estimate.cost ?? entry.cost)}</li>
+      <li>Kostnad: <span>{formatCost(proposal.estimate.cost ?? entry.cost)}</span></li>
     </ul>
     <ul className="char-confirm-odds">
       <li>Chans att lyckas: {oddsText(display.success)}</li>

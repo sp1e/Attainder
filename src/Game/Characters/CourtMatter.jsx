@@ -7,6 +7,7 @@ import { readNative } from "../../runtime/useTranslatorUpdates.js";
 import { medallionOf } from "../Map/seatRulers.js";
 import { dateLabel, modifierText, oddsText } from "./ActionBox.jsx";
 import MedallionPicture from "./MedallionPicture.jsx";
+import { PriceParts } from "./priceParts.js";
 
 /**
  * The stress a choice or an action costs, as the panel writes it; nothing for a stress of nothing. `updates` is the
@@ -30,7 +31,7 @@ export const Actor = ({ actorName }) => {
 };
 
 const Choice = ({ choice, busy, updates, onAnswer }) => {
-  const price = [choice.cost, stressText(choice.stress, updates)].filter(Boolean).join(" · ");
+  const price = [choice.cost, stressText(choice.stress, updates)].filter(Boolean);
   const modifiers = Array.isArray(choice.odds?.modifiers) ? choice.odds.modifiers : [];
   return (
     <li>
@@ -38,7 +39,7 @@ const Choice = ({ choice, busy, updates, onAnswer }) => {
         <strong>{choice.label}</strong>
         {choice.description && <span>{choice.description}</span>}
         <Actor actorName={choice.actorName} />
-        {price && <small>{price}</small>}
+        {price.length > 0 && <small><PriceParts parts={price} /></small>}
         {choice.disabledReason && <em>{choice.disabledReason}</em>}
       </button>
       {choice.odds && (

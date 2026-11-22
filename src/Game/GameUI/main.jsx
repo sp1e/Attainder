@@ -10,6 +10,7 @@ import { useLibraryState } from "../../runtime/library.js";
 import { presenceFor, useDiscordPresence } from "../../runtime/discordPresence.js";
 import { DISCORD_URL, GITHUB_URL, REDDIT_URL } from "../../runtime/communityLinks.js";
 import { useCountryDisplayName } from "../../runtime/polityNames.js";
+import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import { DateWidget } from "./time";
 import { Other } from "./other";
 import { Toolbar } from "./chat";
@@ -261,6 +262,8 @@ const Main = ({
   const chronicleRequest = useHistoryRecordRequest(activeGame?.id, () => { if (hasCharacters) setIsCharactersOpen(true); });
   // The game menu names the campaign the way the library does.
   const activeCountryName = useCountryDisplayName(activeGame?.country || "");
+  // The menu writes the name inside English sentences ("Playing as …"), which the page's dictionary has no entry for.
+  const translatorUpdates = useTranslatorUpdates();
   // No games -> nothing to simulate (the main menu covers the empty world).
   const hasNoGames = loaded && (games?.length ?? 0) === 0;
 
@@ -695,7 +698,7 @@ const Main = ({
           context={{
             gameName: activeGame?.name || "",
             scenarioName: runtimeScenario?.name || "",
-            countryName: activeCountryName || activeGame?.country || "",
+            countryName: readNative(activeCountryName || activeGame?.country || "", translatorUpdates),
             date: activeGame?.currentDate || "",
           }}
           initialSection={settingsInitialSection}
