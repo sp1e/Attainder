@@ -22,6 +22,7 @@ import * as courtShellModule from "./courtShell.js";
 import * as characterLanguageModule from "../../runtime/characterLanguage.js";
 import * as nameInitialsModule from "./nameInitials.js";
 import * as priceModule from "./priceParts.js";
+import * as yearRefusalModule from "./yearRefusal.js";
 import { buttonNamed, createHookDriver, findAll, settle, textOf } from "../testing/hookDriver.js";
 import { pageReading } from "../testing/pageReading.js";
 import { loadNativeBook } from "../../../scripts/i18n/sweep-engine-text.mjs";
@@ -131,6 +132,7 @@ function loadPanel(view, { busy = false, theme = "light", panelState = true, tab
       ...conversationModel(model),
     },
     "./playerText.js": playerTextModule,
+    "./yearRefusal.js": yearRefusalModule,
     "./characters.css": {},
     "./HistoricalRecordView.jsx": { default: () => React.createElement("p", null, "HISTORISK POST"), holdFocus: () => {}, useChronicleRequest: () => {}, __esModule: true },
     "./LocalModelConnect.jsx": { default: () => null, ConnectModelButton: () => null, __esModule: true },
@@ -1546,6 +1548,34 @@ test("a year that fails shows a Swedish sentence, never the model call's English
     assert.match(banner, /Modellen kunde inte skriva året\. Försök igen\./);
     assert.doesNotMatch(banner, /jumpForward|impacts\.regionTransfers/);
     assert.ok(warnings.some((line) => line.includes("jumpForward")), "the English text goes to the log");
+  } finally { console.warn = realWarn; }
+});
+
+test("a refused year names its failure and offers the year again", async () => {
+  const realWarn = console.warn;
+  console.warn = () => {};
+  try {
+    const driver = createHookDriver();
+    const view = engineCampaign().view;
+    let turns = 0;
+    const timeout = 'Modellåret avbröts utan att flytta tiden eller ändra karaktärerna. AI task "jumpForward" failed: AI task "jumpForward" timed out: the model stopped answering.';
+    const { default: Panel } = loadPanel(view, { react: driver.react, globals: {
+      window: { matchMedia: () => ({ matches: false }), addEventListener() {}, removeEventListener() {} }, document: { activeElement: null } },
+    runtime: { advanceCharacterYearWithModel: async () => { turns += 1; return { ok: false, error: timeout }; } } });
+    const draw = () => driver.render(React.createElement(Panel, { open: true, onClose: () => {} }));
+    let tree = draw();
+    await settle();
+    tree = draw();
+    await findAll(tree, (node) => node.props?.className === "char-button char-button--advance")[0].props.onClick();
+    await settle();
+    tree = draw();
+    const banner = findAll(tree, (node) => node.props?.role === "alert")[0];
+    assert.match(textOf(banner), /Modellen slutade svara innan året var skrivet\. Inget har ändrats\./);
+    const retry = findAll(banner, (node) => node.type === "button" && textOf(node) === "Försök igen");
+    assert.equal(retry.length, 1);
+    await retry[0].props.onClick();
+    await settle();
+    assert.equal(turns, 2, "the button turns the year again");
   } finally { console.warn = realWarn; }
 });
 

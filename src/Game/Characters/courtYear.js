@@ -4,10 +4,11 @@
 // Spec: docs/superpowers/specs/2026-11-15-court-shell-design.md, slice 4.
 import { useMemo, useSyncExternalStore } from "react";
 import { playerText } from "./playerText.js";
+import { yearRefusal } from "./yearRefusal.js";
 
-// The panel's own sentences for a refusal the player may not read.
-const YEAR_FAILED = "Modellen kunde inte skriva året. Försök igen.";
+// The panel's own sentence for a refusal the player may not read. A model year says what kind of failure it met.
 const ACTION_FAILED = "Handlingen kunde inte genomföras.";
+const actionRefusal = (message) => playerText(message, ACTION_FAILED);
 const QUIET = Object.freeze({ campaign: null, busy: false, kind: null, error: "", report: null });
 
 /**
@@ -21,7 +22,7 @@ export function createCourtYear(load) {
   let state = QUIET;
   const listeners = new Set();
   const set = (next) => { state = next; for (const listener of listeners) listener(); };
-  const run = async (campaign, kind, entry, fallback) => {
+  const run = async (campaign, kind, entry, refusal) => {
     if (state.busy) return;
     set({ campaign, busy: true, kind, error: "", report: null });
     let result;
@@ -32,14 +33,14 @@ export function createCourtYear(load) {
     }
     set(result?.ok
       ? { campaign, busy: false, kind, error: "", report: { kind, revision: result.state?.revision ?? null, events: result.events || [], interruption: result.interruption ?? null } }
-      : { campaign, busy: false, kind, error: playerText(result?.error, fallback), report: null });
+      : { campaign, busy: false, kind, error: refusal(result?.error), report: null });
   };
   return {
     read: () => state,
     of: (campaign) => (state.campaign === campaign ? state : { ...QUIET, busy: state.busy }),
     subscribe: (listener) => { listeners.add(listener); return () => listeners.delete(listener); },
-    advance: (campaign) => run(campaign, "year", "advanceCharacterYearWithModel", YEAR_FAILED),
-    reveal: (campaign) => run(campaign, "last", "revealLatestCharacterTurn", ACTION_FAILED),
+    advance: (campaign) => run(campaign, "year", "advanceCharacterYearWithModel", yearRefusal),
+    reveal: (campaign) => run(campaign, "last", "revealLatestCharacterTurn", actionRefusal),
     /** Drops the record and the refusal. Nothing closes while a turn is written. */
     close: () => { if (!state.busy && (state.error || state.report)) set({ ...state, error: "", report: null }); },
   };

@@ -41,6 +41,7 @@ export default function CourtYearLine({ line, year, locked, ended, held = false,
         <div className="court-year-refusal" role="alert">
           <span>{error}</span>
           {error.includes("Läs färdigt") && <button type="button" disabled={locked} onClick={onReveal}>Visa senaste turens händelser</button>}
+          {kind === "year" && !error.includes("Läs färdigt") && <button type="button" disabled={locked || ended || held} onClick={onAdvance}>Försök igen</button>}
           <button type="button" onClick={onDismiss}>Stäng meddelandet</button>
         </div>
       )}
