@@ -1716,6 +1716,7 @@
     "Modellprogrammet avslutades med kod {{code}}. {{slice}}",
     "Modellprogrammet startas",
     "Modellsvaret blev för stort.",
+    "Modellåret avbröts utan att flytta tiden eller ändra karaktärerna.",
     "Modellåret avbröts utan att flytta tiden eller ändra karaktärerna. {{reason}}",
     "Modig",
     "Mord",

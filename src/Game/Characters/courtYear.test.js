@@ -124,7 +124,7 @@ test("a refusal is the engine's sentence, and an internal error is kept from the
     assert.equal(year.read().error, "Läs färdigt den senaste turens händelser först.");
     assert.equal(year.read().report, null);
     await year.advance("karl");
-    assert.equal(year.read().error, "Spelet fick ingen kontakt med modellen. Inget har ändrats.", "a model year names its failure");
+    assert.equal(year.read().error, "Modellen kunde inte skriva året. Försök igen.", "a failure outside the model year's abort claims nothing");
     await year.reveal("karl");
     assert.equal(year.read().error, "Handlingen kunde inte genomföras.");
     assert.equal(year.read().busy, false);

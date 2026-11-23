@@ -34,7 +34,7 @@ test("each kind of failure the year meets gives its own sentence", () => {
       "Modellen skrev fler händelser än ett år rymmer. Inget har ändrats."],
     [task("[world consequence] event 3 names a consequence no ledger carries."),
       "Modellen lämnade en berättelsetråd utan följd. Inget har ändrats."],
-    [task("storyline saxon-revolt must link to a returned event"),
+    [task("new breadth storyline saxon-revolt must link to a returned event"),
       "Modellen lämnade en berättelsetråd utan följd. Inget har ändrats."],
     [task("The model did not return valid structured output."),
       "Modellens svar gick inte att läsa. Inget har ändrats."],
@@ -51,6 +51,24 @@ test("a retry that died in transport is told as the transport failure", () => {
   const message = task("$.events[2].date must not precede the previous event date. The retry then failed: AI task \"jumpForward\" timed out: the model stopped answering.");
   const { result } = withWarnings(() => yearRefusal(message));
   assert.equal(result, "Modellen slutade svara innan året var skrivet. Inget har ändrats.");
+});
+
+test("only a failure the model year aborted on is named; any other gives the fallback", () => {
+  for (const message of [
+    "TypeError: Failed to fetch dynamically imported module: http://127.0.0.1:3018/assets/gameplayLazy.js",
+    "TypeError: Failed to fetch",
+    "AI task \"jumpForward\" timed out: the model stopped answering.",
+  ]) {
+    const { result } = withWarnings(() => yearRefusal(message));
+    assert.equal(result, YEAR_FAILED, message);
+  }
+});
+
+test("a validation message that quotes a model's name is read as validation, and other storyline errors are not a missing consequence", () => {
+  const quoted = task("$.events[3].date must not be later than 0807-12-25. (\"The network of Frankish bishops\")");
+  assert.equal(withWarnings(() => yearRefusal(quoted)).result, "Modellen daterade en händelse utanför året. Inget har ändrats.");
+  const other = task("$.storylineUpdates[0].polities[1] \"Saxon fetch\" could not resolve to a current or same-transaction canonical polity.");
+  assert.equal(withWarnings(() => yearRefusal(other)).result, YEAR_FAILED);
 });
 
 test("the engine's own Swedish sentence passes as it is, and an unknown failure gives the fallback", () => {
@@ -72,7 +90,8 @@ test("every sentence the player can read has its English", () => {
   const source = read("./yearRefusal.js");
   const sentences = [...source.matchAll(/"([A-ZÅÄÖ][^"]*\.)"/g)].map((match) => match[1]);
   assert.ok(sentences.length >= 8, "the sentences are found");
-  for (const sentence of [...sentences, "Försök igen"]) assert.ok(catalog[sentence], sentence);
+  // The abort sentence is the engine's marker, matched in the message and never shown alone.
+  for (const sentence of [...sentences.filter((sentence) => sentence !== ABORTED), "Försök igen"]) assert.ok(catalog[sentence], sentence);
 });
 
 test("the refusal box offers the year again, beside the year line and in the panel", () => {

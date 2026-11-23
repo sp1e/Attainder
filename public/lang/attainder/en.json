@@ -1713,6 +1713,7 @@
   "Modellprogrammet avslutades med kod {{code}}. {{slice}}": "The model program exited with code {{code}}. {{slice}}",
   "Modellprogrammet startas": "Starting the model program",
   "Modellsvaret blev för stort.": "The model response was too large.",
+  "Modellåret avbröts utan att flytta tiden eller ändra karaktärerna.": "The model year was cancelled without moving time or changing the characters.",
   "Modellåret avbröts utan att flytta tiden eller ändra karaktärerna. {{reason}}": "The model year was cancelled without moving time or changing the characters. {{reason}}",
   "Modig": "Brave",
   "Mord": "Murder",

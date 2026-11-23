@@ -444,7 +444,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
       setLoaded(true);
     } catch (reason) {
       if (sequence !== readSequence.current) return;
-      setError(playerText(reason?.message, "Kampanjen kunde inte läsas."));
+      setError(playerText(reason?.message, "Kampanjen kunde inte läsas.")); setRetryYear(false);
       setLoaded(true);
     }
   }, []);
