@@ -22,12 +22,12 @@ import LocalModelConnect, { ConnectModelButton } from "./LocalModelConnect.jsx";
 import Portrait from "./Portrait.jsx";
 import { nameInitials as initials } from "./nameInitials.js";
 import { PriceParts } from "./priceParts.js";
+import { yearRefusal } from "./yearRefusal.js";
 import { readNative, useTranslatorUpdates } from "../../runtime/useTranslatorUpdates.js";
 import HistoricalRecordView, { holdFocus, useChronicleRequest } from "./HistoricalRecordView.jsx";
 
 const THEME_KEY = "oh:characters:theme";
 const ACTION_FAILED = "Handlingen kunde inte genomföras.";
-const YEAR_FAILED = "Modellen kunde inte skriva året. Försök igen.";
 const TABS = [
   ["council", "Överblick"], ["people", "Personer"], ["families", "Familjer"],
   ["offices", "Ämbeten & arv"], ["decisions", "Beslut"], ["intrigue", "Intriger"], ["chronicle", "Krönikan"],
@@ -413,6 +413,8 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   const [personId, setPersonId] = useState(null);
   const [busy, setBusy] = useState(false);
   const [annualBusy, setAnnualBusy] = useState(false);
+  // A refused model year offers the year again beside its reason.
+  const [retryYear, setRetryYear] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [yearEvents, setYearEvents] = useState([]);
@@ -442,7 +444,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
       setLoaded(true);
     } catch (reason) {
       if (sequence !== readSequence.current) return;
-      setError(playerText(reason?.message, "Kampanjen kunde inte läsas."));
+      setError(playerText(reason?.message, "Kampanjen kunde inte läsas.")); setRetryYear(false);
       setLoaded(true);
     }
   }, []);
@@ -500,12 +502,12 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   const perform = useCallback(async (operation, annual = false, withModel = annual, quiet = false, summary = null) => {
     if (busyRef.current) return undefined;
     busyRef.current = true;
-    setBusy(true); setAnnualBusy(withModel); setError(""); setNotice("");
+    setBusy(true); setAnnualBusy(withModel); setError(""); setNotice(""); setRetryYear(false);
     // The result goes back to the caller as well, so a control such as the scheme list can react to a refusal.
     let result;
     try {
       result = await operation();
-      if (!result?.ok) { if (!quiet) setError(playerText(result?.error, withModel ? YEAR_FAILED : ACTION_FAILED)); }
+      if (!result?.ok) { if (!quiet) { setError(withModel ? yearRefusal(result?.error) : playerText(result?.error, ACTION_FAILED)); setRetryYear(withModel); } }
       else {
         setNotice(summary?.(result.events || []) || (result.events?.length ? result.events.slice(-2).map((event) => event.title).join(" · ") : "Beslutet har sparats i kampanjen."));
         if (annual) {
@@ -516,8 +518,8 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
       }
       await refresh();
     } catch (reason) {
-      result = { ok: false, error: playerText(reason?.message, withModel ? YEAR_FAILED : "Handlingen kunde inte sparas. Försök igen.") };
-      if (!quiet) setError(result.error);
+      result = { ok: false, error: withModel ? yearRefusal(reason?.message) : playerText(reason?.message, "Handlingen kunde inte sparas. Försök igen.") };
+      if (!quiet) { setError(result.error); setRetryYear(withModel); }
     } finally { busyRef.current = false; setBusy(false); setAnnualBusy(false); }
     return result;
   }, [refresh]);
@@ -525,7 +527,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
   const runAction = useCallback(async (work) => {
     if (busyRef.current) return undefined;
     busyRef.current = true;
-    setBusy(true); setError(""); setNotice("");
+    setBusy(true); setError(""); setNotice(""); setRetryYear(false);
     try { return await work(); }
     catch (reason) { setError(playerText(reason?.message, "Handlingen kunde inte genomföras. Försök igen.")); return undefined; }
     finally { busyRef.current = false; setBusy(false); await refresh(); }
@@ -558,7 +560,7 @@ export default function CharactersPanel({ open, onClose, chronicleRequest = 0, r
       <div className="char-content" aria-busy={busy}>
         {modelConnectOpen && <LocalModelConnect onAdvanced={() => window.dispatchEvent(new Event("oh:open-character-model-settings"))} />}
         {view && events?.length > 0 && !yearEvents.length && !error && <div className="char-section-heading"><button type="button" className="char-text-button" disabled={busy} title="Läs den senaste sparade turen utan att låta tiden gå" onClick={() => perform(revealLatestCharacterTurn, true, false)}>Visa senaste turens händelser →</button></div>}
-        {error && <div className="char-feedback char-feedback--error" role="alert"><strong>Beslutet kunde inte genomföras</strong><span>{error}</span>{error.includes("Läs färdigt") && <button type="button" className="char-button" disabled={busy} onClick={() => perform(revealLatestCharacterTurn, true, false)}>Visa senaste turens händelser</button>}<button type="button" className="char-text-button" onClick={() => setError("")}>Stäng meddelandet</button></div>}
+        {error && <div className="char-feedback char-feedback--error" role="alert"><strong>Beslutet kunde inte genomföras</strong><span>{error}</span>{error.includes("Läs färdigt") && <button type="button" className="char-button" disabled={busy} onClick={() => perform(revealLatestCharacterTurn, true, false)}>Visa senaste turens händelser</button>}{retryYear && !error.includes("Läs färdigt") && <button type="button" className="char-button" disabled={busy || talkHold || view?.status?.ended} onClick={() => perform(() => advanceCharacterYearWithModel(), true)}>Försök igen</button>}<button type="button" className="char-text-button" onClick={() => setError("")}>Stäng meddelandet</button></div>}
         {notice && <div className="char-feedback" role="status">{notice}</div>}
         {annualBusy && <div className="char-feedback" role="status"><strong>Modellen arbetar med årets händelser</strong><span>Det kan ta några minuter. Du kan läsa om personer och familjer eller stänga panelen under tiden. Årets resultat visas här när det är färdigt.</span></div>}
         {interruption && <div className="char-feedback char-care-notice" role="status"><strong>{interruption.type === "health-care" ? "Tiden stannade vid ett vårdärende" : interruption.type === "watch" ? "Tiden stannade vid en bevakning" : "Tiden stannade vid en karaktärshändelse"}</strong><span>{interruption.message}</span>{pending.length > 0 && <button type="button" className="char-button" onClick={() => setTab("decisions")}>Gå till besluten →</button>}</div>}
